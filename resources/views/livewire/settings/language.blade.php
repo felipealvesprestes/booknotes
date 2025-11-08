@@ -2,6 +2,15 @@
     @include('partials.settings-heading')
 
     <x-settings.layout :heading="__('Language')" :subheading="__('Choose your interface language')">
+        @if (session('language_reload_notice'))
+            <flux:callout
+                class="mb-4"
+                variant="success"
+                icon="check-circle"
+                heading="{{ session('language_reload_notice') }}"
+            />
+        @endif
+
         <form wire:submit="updateLanguage" class="my-6 w-full space-y-6">
             <flux:text muted>
                 {{ __('Select the language used across Booknotes.') }}
@@ -26,10 +35,6 @@
                 <div class="flex items-center justify-end">
                     <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
                 </div>
-
-                <x-action-message class="me-3" on="language-updated">
-                    {{ __('Language preference updated.') }}
-                </x-action-message>
             </div>
         </form>
     </x-settings.layout>

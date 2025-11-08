@@ -42,8 +42,7 @@ class Language extends Component
 
         App::setLocale($validated['locale']);
         session()->put('locale', $validated['locale']);
-
-        $this->dispatch('language-updated');
+        session()->flash('language_reload_notice', __('Language preference updated. Page reloaded to apply the new language.'));
 
         $this->redirectRoute('settings.language');
     }
