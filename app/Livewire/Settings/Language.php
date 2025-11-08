@@ -44,6 +44,8 @@ class Language extends Component
         session()->put('locale', $validated['locale']);
 
         $this->dispatch('language-updated');
+
+        $this->redirectRoute('settings.language');
     }
 
     public function render()
