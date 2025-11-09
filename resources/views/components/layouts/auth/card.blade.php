@@ -23,6 +23,7 @@
             </div>
         </div>
     </div>
+    <x-cookie-consent />
     @fluxScripts
 </body>
 

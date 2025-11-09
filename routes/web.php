@@ -31,6 +31,8 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::view('politica-de-privacidade', 'privacy')->name('privacy');
+
 Route::get('dashboard', DashboardOverview::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');

@@ -18,6 +18,7 @@
                     <a href="#workflow" class="transition hover:text-neutral-900">Como funciona</a>
                     <a href="#testimonials" class="transition hover:text-neutral-900">Depoimentos</a>
                     <a href="#faq" class="transition hover:text-neutral-900">Perguntas</a>
+                    <a href="{{ route('privacy') }}" class="transition hover:text-neutral-900">Privacidade</a>
                 </nav>
 
                 <div class="flex flex-wrap items-center gap-3 text-sm font-semibold">
@@ -251,6 +252,14 @@
                                     Além das verificações por e-mail, você pode habilitar 2FA, acompanhar cada ação no log de atividades e controlar idioma e senha nas telas de configurações.
                                 </dd>
                             </div>
+                            <div class="pt-10" id="lgpd">
+                                <dt class="text-base font-semibold text-neutral-900">Como o {{ config('app.name') }} trata cookies e dados pessoais?</dt>
+                                <dd class="mt-3 text-sm text-neutral-600">
+                                    Mantemos apenas cookies essenciais para autenticação e segurança e solicitamos seu consentimento para métricas opcionais, seguindo os princípios de finalidade, necessidade e transparência previstos na LGPD. Saiba mais na nossa
+                                    <a href="{{ route('privacy') }}" class="font-semibold text-indigo-600 underline-offset-4 transition hover:text-indigo-500">Política de privacidade</a>
+                                    ou ajuste o consentimento pelo banner exibido na área deslogada.
+                                </dd>
+                            </div>
                         </dl>
                     </div>
                 </section>
@@ -286,6 +295,7 @@
                         <a href="#features" class="transition hover:text-neutral-700">Recursos</a>
                         <a href="#workflow" class="transition hover:text-neutral-700">Como funciona</a>
                         <a href="#faq" class="transition hover:text-neutral-700">Perguntas</a>
+                        <a href="{{ route('privacy') }}" class="transition hover:text-neutral-700">Privacidade</a>
                         @if (Route::has('login'))
                             <a href="{{ route('login') }}" class="transition hover:text-neutral-700">Área do usuário</a>
                         @endif
@@ -294,6 +304,7 @@
             </footer>
         </div>
 
+        <x-cookie-consent />
         @fluxScripts
     </body>
 </html>
