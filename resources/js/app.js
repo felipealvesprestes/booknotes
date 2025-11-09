@@ -50,4 +50,8 @@ const initCookieBanner = () => {
     });
 };
 
-document.addEventListener('DOMContentLoaded', initCookieBanner);
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookieBanner, { once: true });
+} else {
+    initCookieBanner();
+}
