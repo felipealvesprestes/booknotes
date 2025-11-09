@@ -280,6 +280,14 @@
                         <a href="#features" class="transition hover:text-neutral-700">Recursos</a>
                         <a href="#workflow" class="transition hover:text-neutral-700">Como funciona</a>
                         <a href="#faq" class="transition hover:text-neutral-700">Perguntas</a>
+                        <a href="{{ route('legal.cookies') }}" class="transition hover:text-neutral-700">Política de cookies</a>
+                        @cookieconsentbutton(
+                            action: 'reset',
+                            label: __('cookieConsent::cookies.manage'),
+                            attributes: [
+                                'class' => 'cookiereset inline-flex items-center rounded-full border border-neutral-200 px-3 py-1 text-xs font-semibold text-neutral-600 transition hover:border-neutral-400'
+                            ]
+                        )
                         @if (Route::has('login'))
                             <a href="{{ route('login') }}" class="transition hover:text-neutral-700">Área do usuário</a>
                         @endif
@@ -287,6 +295,8 @@
                 </div>
             </footer>
         </div>
+
+        @include('partials.cookie-consent')
 
         @fluxScripts
     </body>

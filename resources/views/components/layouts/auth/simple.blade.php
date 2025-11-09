@@ -50,6 +50,22 @@
             </div>
         </div>
 
+        <div class="px-6 py-6 text-center text-sm text-indigo-100">
+            <p class="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-200">Privacidade</p>
+            <p class="mt-2 text-indigo-100">Você pode revisar ou alterar o consentimento quando quiser.</p>
+            <div class="mt-4 flex justify-center">
+                @cookieconsentbutton(
+                    action: 'reset',
+                    label: __('cookieConsent::cookies.manage'),
+                    attributes: [
+                        'class' => 'cookiereset inline-flex items-center rounded-full border border-white/30 px-4 py-2 text-xs font-semibold text-white transition hover:border-white',
+                    ]
+                )
+            </div>
+        </div>
+
+        @include('partials.cookie-consent')
+
         @fluxScripts
     </body>
 </html>

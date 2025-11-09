@@ -84,6 +84,7 @@
                     </form>
                 </flux:menu>
             </flux:dropdown>
+
         </flux:sidebar>
 
         <!-- Mobile User Menu -->
@@ -135,6 +136,8 @@
         </flux:header>
 
         {{ $slot }}
+
+        @include('partials.cookie-consent')
 
         @fluxScripts
     </body>
