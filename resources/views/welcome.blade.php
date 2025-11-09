@@ -289,6 +289,5 @@
         </div>
 
         @fluxScripts
-        @include('partials.cookie-consent')
     </body>
 </html>
