@@ -77,14 +77,6 @@ select:focus[data-flux-control] {
     .dark [data-flux-navlist-item][data-current] {
         @apply !bg-white/[7%] !text-white !border !border-transparent !shadow-none;
     }
-
-    .cookiereset__link {
-        @apply inline-flex w-full items-center justify-center gap-2 rounded-full bg-transparent text-current transition;
-    }
-
-    .cookiereset__label {
-        @apply text-xs font-semibold uppercase tracking-[0.2em];
-    }
 }
 
 /* \[:where(&)\]:size-4 {

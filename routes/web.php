@@ -31,8 +31,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::view('politica-de-cookies', 'legal.cookies')->name('legal.cookies');
-
 Route::get('dashboard', DashboardOverview::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
