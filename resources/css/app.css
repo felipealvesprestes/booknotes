@@ -38,6 +38,13 @@
 
 @layer base {
 
+    body {
+        font-feature-settings: "liga" 1, "kern";
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
     *,
     ::after,
     ::before,
