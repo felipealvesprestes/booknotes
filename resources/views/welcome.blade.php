@@ -8,37 +8,142 @@
         <div class="relative isolate overflow-hidden">
             <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-gradient-to-b from-indigo-100 via-white to-transparent"></div>
 
-            <header class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-6 px-6 py-10">
-                <div class="flex items-center gap-3">
-                    <p class="text-lg font-semibold text-neutral-800">{{ config('app.name') }}</p>
+            @php($siteNavigation = [
+                ['label' => 'Recursos', 'href' => '#features'],
+                ['label' => 'Como funciona', 'href' => '#workflow'],
+                ['label' => 'Depoimentos', 'href' => '#testimonials'],
+                ['label' => 'Perguntas', 'href' => '#faq'],
+                ['label' => 'Privacidade', 'href' => route('privacy')],
+            ])
+
+            <header
+                x-data="{ mobileMenuOpen: false }"
+                @keydown.escape.window="mobileMenuOpen = false"
+                class="mx-auto max-w-6xl px-6 py-8 sm:py-10"
+            >
+                <div class="flex flex-wrap items-center justify-between gap-6">
+                    <div class="flex items-center gap-3">
+                        <p class="text-lg font-semibold text-neutral-800">{{ config('app.name') }}</p>
+                    </div>
+
+                    <nav class="hidden text-sm font-medium text-neutral-600 lg:flex lg:flex-wrap lg:items-center lg:gap-6">
+                        @foreach ($siteNavigation as $item)
+                            <a href="{{ $item['href'] }}" class="transition hover:text-neutral-900">{{ $item['label'] }}</a>
+                        @endforeach
+                    </nav>
+
+                    <div class="hidden items-center gap-3 text-sm font-semibold lg:flex">
+                        @if (Route::has('login'))
+                            <a
+                                href="{{ route('login') }}"
+                                class="inline-flex items-center rounded-lg px-4 py-2 text-neutral-600 transition hover:text-neutral-900"
+                            >
+                                Entrar
+                            </a>
+                        @endif
+
+                        @if (Route::has('register'))
+                            <a
+                                href="{{ route('register') }}"
+                                class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white transition hover:bg-indigo-500"
+                            >
+                                Criar conta gratuita
+                            </a>
+                        @endif
+                    </div>
+
+                    <button
+                        type="button"
+                        class="inline-flex items-center justify-center rounded-lg border border-neutral-200 p-2 text-neutral-700 transition hover:border-neutral-300 hover:text-neutral-900 lg:hidden"
+                        @click="mobileMenuOpen = !mobileMenuOpen"
+                        x-bind:aria-expanded="mobileMenuOpen ? 'true' : 'false'"
+                        aria-controls="site-mobile-menu"
+                    >
+                        <span class="sr-only">Alternar menu</span>
+                        <svg
+                            x-show="!mobileMenuOpen"
+                            class="size-5"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <path d="M4 7h16M4 12h16M4 17h16" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+
+                        <svg
+                            x-show="mobileMenuOpen"
+                            x-cloak
+                            class="size-5"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            fill="none"
+                            aria-hidden="true"
+                        >
+                            <path d="M6 6l12 12M6 18L18 6" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                    </button>
                 </div>
 
-                <nav class="flex flex-wrap items-center gap-6 text-sm font-medium text-neutral-600">
-                    <a href="#features" class="transition hover:text-neutral-900">Recursos</a>
-                    <a href="#workflow" class="transition hover:text-neutral-900">Como funciona</a>
-                    <a href="#testimonials" class="transition hover:text-neutral-900">Depoimentos</a>
-                    <a href="#faq" class="transition hover:text-neutral-900">Perguntas</a>
-                    <a href="{{ route('privacy') }}" class="transition hover:text-neutral-900">Privacidade</a>
-                </nav>
+                <div
+                    id="site-mobile-menu"
+                    x-cloak
+                    x-show="mobileMenuOpen"
+                    x-transition:enter="origin-top motion-safe:transition motion-safe:duration-200 motion-safe:ease-out"
+                    x-transition:enter-start="opacity-0 -translate-y-2 scale-95"
+                    x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                    x-transition:leave="motion-safe:transition motion-safe:duration-150 motion-safe:ease-in"
+                    x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                    x-transition:leave-end="opacity-0 -translate-y-2 scale-95"
+                    @click.away="mobileMenuOpen = false"
+                    class="mt-6 grid gap-5 rounded-2xl border border-neutral-200 bg-white p-5 shadow-lg shadow-neutral-900/5 lg:hidden"
+                >
+                    <nav class="grid gap-3 text-sm font-medium text-neutral-700">
+                        @foreach ($siteNavigation as $item)
+                            <a
+                                href="{{ $item['href'] }}"
+                                class="flex items-center justify-between rounded-xl px-3 py-2 transition hover:bg-neutral-50 hover:text-neutral-900"
+                                @click="mobileMenuOpen = false"
+                            >
+                                <span>{{ $item['label'] }}</span>
+                                <svg class="size-4 text-current" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M7.23 4.21a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 1 1-1.06-1.06L10.94 10 7.23 6.27a.75.75 0 0 1 0-1.06Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </a>
+                        @endforeach
+                    </nav>
 
-                <div class="flex flex-wrap items-center gap-3 text-sm font-semibold">
-                    @if (Route::has('login'))
-                        <a
-                            href="{{ route('login') }}"
-                            class="inline-flex items-center rounded-lg px-4 py-2 text-neutral-600 transition hover:text-neutral-900"
-                        >
-                            Entrar
-                        </a>
-                    @endif
+                    <div class="grid gap-3 text-sm font-semibold">
+                        @if (Route::has('login'))
+                            <a
+                                href="{{ route('login') }}"
+                                class="inline-flex items-center justify-center rounded-lg border border-neutral-200 px-4 py-2 text-neutral-700 transition hover:border-neutral-300 hover:text-neutral-900"
+                                @click="mobileMenuOpen = false"
+                            >
+                                Entrar
+                            </a>
+                        @endif
 
-                    @if (Route::has('register'))
-                        <a
-                            href="{{ route('register') }}"
-                            class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-white transition hover:bg-indigo-500"
-                        >
-                            Criar conta gratuita
-                        </a>
-                    @endif
+                        @if (Route::has('register'))
+                            <a
+                                href="{{ route('register') }}"
+                                class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-4 py-2 text-white transition hover:bg-indigo-500"
+                                @click="mobileMenuOpen = false"
+                            >
+                                Criar conta gratuita
+                            </a>
+                        @endif
+                    </div>
+
+                    <p class="text-xs leading-relaxed text-neutral-500">
+                        Explore o painel, gere PDFs e teste flashcards gratuitos antes de assumir qualquer compromisso.
+                    </p>
                 </div>
             </header>
 

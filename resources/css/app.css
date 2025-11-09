@@ -68,6 +68,10 @@ select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
+[x-cloak] {
+    display: none !important;
+}
+
 @layer components {
     /* Ensure active sidebar items use the same visual treatment as hover */
     [data-flux-navlist-item][data-current] {
