@@ -1,7 +1,7 @@
-<div class="mx-auto w-full max-w-6xl space-y-8">
+<div class="w-full space-y-8">
     <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
         <div>
-            <h1 class="text-3xl font-semibold text-zinc-900">{{ __('Export to PDF') }}</h1>
+            <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Export to PDF') }}</h1>
             <p class="mt-2 text-sm text-zinc-500">
                 {{ __('Bundle your notes and flashcards into a polished PDF. Choose what to include, how to organize it, and we will prepare the file for download.') }}
             </p>
