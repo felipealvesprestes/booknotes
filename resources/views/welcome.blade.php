@@ -45,13 +45,13 @@
                 <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                     <div class="mx-auto max-w-3xl text-center">
                         <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                            Nova experiência de estudos
+                            Estudos orientados por dados
                         </span>
-                        <h1 class="mt-6 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
-                            Organize resumos, notas e revisões em um só lugar.
+                        <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase sm:text-4xl">
+                            CENTRALIZE NOTAS, FLASHCARDS E PDFS NO SEU HUB DE ESTUDOS.
                         </h1>
                         <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                            {{ config('app.name') }} é o seu QG de aprendizagem: transforme livros em insights acionáveis, crie rotinas de revisão inteligentes e nunca mais perca o fio da meada. Ideal para quem estuda para concursos, certificações ou quer aprender com profundidade.
+                            {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, revise no modo foco, exporte materiais em PDF e mantenha tudo protegido com autenticação em duas etapas.
                         </p>
                         <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                             @if (Route::has('register'))
@@ -76,21 +76,21 @@
                     </div>
                     <div class="mt-14 grid gap-6 sm:grid-cols-3">
                         <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Material organizado</h3>
+                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Arquitetura em camadas</h3>
                             <p class="mt-3 text-sm text-neutral-600">
-                                Estruture livros em notebooks, resumos e cartões de revisão em segundos, com tags e filtros avançados.
+                                Organize livros e projetos em notebooks, disciplinas e notas com filtros rápidos e contadores automáticos.
                             </p>
                         </div>
                         <div class="rounded-2xl border border-indigo-100/60 bg-white p-6 text-left shadow-sm shadow-indigo-100/50">
-                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Revisão inteligente</h3>
+                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Biblioteca conectada</h3>
                             <p class="mt-3 text-sm text-neutral-600">
-                                Cronogramas automáticos lembram você quando revisar e indicam quais capítulos merecem atenção imediata.
+                                Envie PDFs, visualize referências e converta qualquer nota em flashcard para estudar direto no hub de revisões.
                             </p>
                         </div>
                         <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Insights acionáveis</h3>
+                            <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Segurança e histórico</h3>
                             <p class="mt-3 text-sm text-neutral-600">
-                                Gere highlights, perguntas e tópicos de debate para transformar aprendizado em prática contínua.
+                                Ative 2FA, consulte o log de atividades e saiba quem exportou ou removeu conteúdo pela sua conta.
                             </p>
                         </div>
                     </div>
@@ -112,9 +112,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-neutral-900">Dashboard claro de leitura</h3>
+                                <h3 class="text-lg font-semibold text-neutral-900">Painel de estudos e métricas</h3>
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Visualize seu progresso por livro, disciplina e sessão de estudo, com estatísticas que mostram tempo investido e capítulos críticos.
+                                    Veja quantos notebooks, disciplinas, notas e flashcards você possui, acompanhe sessões recentes e monitore a taxa de acertos dos últimos 30 dias no dashboard.
                                 </p>
                             </div>
                         </div>
@@ -126,9 +126,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-neutral-900">Templates adaptáveis</h3>
+                                <h3 class="text-lg font-semibold text-neutral-900">Notas e flashcards conectados</h3>
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Comece com roteiros prontos para fichamentos, resenhas, mapas mentais e estudos dirigidos, totalmente customizáveis.
+                                    Crie notas ricas, associe a disciplinas e transforme em flashcards com um clique para usar filtros, buscas e o hub de estudos com foco.
                                 </p>
                             </div>
                         </div>
@@ -140,9 +140,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-neutral-900">Revisões com alerta</h3>
+                                <h3 class="text-lg font-semibold text-neutral-900">Biblioteca de PDFs e exportações</h3>
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Receba notificações automáticas de revisão espaçada, com foco nos trechos que você marcou como frágeis.
+                                    Armazene apostilas e artigos no visualizador de PDFs e gere PDFs unificados de notas ou flashcards com filtros, agrupamentos e layouts configuráveis.
                                 </p>
                             </div>
                         </div>
@@ -154,9 +154,9 @@
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-lg font-semibold text-neutral-900">Espaço colaborativo opcional</h3>
+                                <h3 class="text-lg font-semibold text-neutral-900">Segurança e registro de atividades</h3>
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Compartilhe resumos com colegas, receba comentários e mantenha tudo versionado automaticamente.
+                                    Ative autenticação em duas etapas, escolha o idioma preferido e acompanhe cada exclusão, exportação ou estudo registrado no log de atividades.
                                 </p>
                             </div>
                         </div>
@@ -173,23 +173,23 @@
                     <div class="mt-16 grid gap-10 sm:grid-cols-3">
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                             <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">01</p>
-                            <h3 class="mt-4 text-xl font-semibold">Capture conhecimento</h3>
+                            <h3 class="mt-4 text-xl font-semibold">Capture e organize</h3>
                             <p class="mt-3 text-sm text-neutral-300">
-                                Importe highlights, fotos ou PDFs e transforme em notas conectadas automaticamente ao conteúdo original.
+                                Crie notebooks e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
                             </p>
                         </div>
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                             <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
-                            <h3 class="mt-4 text-xl font-semibold">Transforme em insights</h3>
+                            <h3 class="mt-4 text-xl font-semibold">Transforme em estudo ativo</h3>
                             <p class="mt-3 text-sm text-neutral-300">
-                                Use prompts guiados para gerar perguntas, fichamentos e mapas mentais que elevam a compreensão.
+                                Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e registre cada acerto e erro automaticamente.
                             </p>
                         </div>
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                             <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">03</p>
-                            <h3 class="mt-4 text-xl font-semibold">Revisão contínua</h3>
+                            <h3 class="mt-4 text-xl font-semibold">Compartilhe e acompanhe</h3>
                             <p class="mt-3 text-sm text-neutral-300">
-                                Receba sugestões de revisão baseadas em intervalos ideais e acompanhe sua curva de esquecimento em tempo real.
+                                Gere exportações em PDF para mentores ou equipes, consulte o log de atividades e use as métricas para planejar as próximas revisões.
                             </p>
                         </div>
                     </div>
@@ -205,7 +205,7 @@
                         <div class="mt-16 grid gap-8 sm:grid-cols-2">
                             <figure class="flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                                 <blockquote class="text-sm leading-relaxed text-neutral-700">
-                                    "Criei resumos de três livros em uma semana e usei os roteiros de revisão para acertar 90% das questões do meu simulado. Nunca fui tão consistente."
+                                    "O painel diário mostra quantas cartas revisei e quais disciplinas ficaram para trás. Consigo retomar o estudo exatamente de onde parei."
                                 </blockquote>
                                 <figcaption class="mt-6 text-sm font-semibold text-neutral-900">
                                     Ana Luiza Ribeiro — Estudante para concursos
@@ -213,7 +213,7 @@
                             </figure>
                             <figure class="flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                                 <blockquote class="text-sm leading-relaxed text-neutral-700">
-                                    "O fluxo de importação de highlights e os lembretes de revisão salvaram minhas leituras de pós-graduação. Tudo fica organizado automaticamente."
+                                    "Envio minhas apostilas para a biblioteca de PDFs e exporto notas em PDF para o grupo de pesquisa. Fica tudo padronizado e registrado no log."
                                 </blockquote>
                                 <figcaption class="mt-6 text-sm font-semibold text-neutral-900">
                                     Prof. Thiago Martins — Pesquisa em educação
@@ -230,19 +230,25 @@
                             <div class="pt-0">
                                 <dt class="text-base font-semibold text-neutral-900">Preciso instalar algo?</dt>
                                 <dd class="mt-3 text-sm text-neutral-600">
-                                    Não. {{ config('app.name') }} roda no navegador e se adapta ao seu computador, tablet ou celular. Você só precisa criar uma conta.
+                                    Não. {{ config('app.name') }} roda no navegador, funciona bem em qualquer dispositivo e oferece autenticação em duas etapas direto pela web.
                                 </dd>
                             </div>
                             <div class="pt-10">
-                                <dt class="text-base font-semibold text-neutral-900">Consigo importar notas de outros apps?</dt>
+                                <dt class="text-base font-semibold text-neutral-900">Como organizo diferentes áreas de estudo?</dt>
                                 <dd class="mt-3 text-sm text-neutral-600">
-                                    Sim. Suportamos arquivos em PDF, EPUB e integrações com Kindle e Notion. Novos conectores são adicionados continuamente.
+                                    Use notebooks para temas amplos, crie disciplinas para cada prova ou módulo e relacione notas e flashcards. Os contadores e filtros ajudam a achar tudo rapidamente.
                                 </dd>
                             </div>
                             <div class="pt-10">
-                                <dt class="text-base font-semibold text-neutral-900">Posso colaborar com colegas?</dt>
+                                <dt class="text-base font-semibold text-neutral-900">Consigo estudar com flashcards pelo próprio app?</dt>
                                 <dd class="mt-3 text-sm text-neutral-600">
-                                    Você decide o nível de colaboração: mantenha notas privadas, compartilhe com grupos específicos ou torne materiais públicos para sua equipe.
+                                    Sim. Marque notas como flashcards, abra o hub de estudos, revele respostas no seu ritmo e registre acertos e erros. Cartas incorretas voltam automaticamente ao final da fila.
+                                </dd>
+                            </div>
+                            <div class="pt-10">
+                                <dt class="text-base font-semibold text-neutral-900">Minha conta fica protegida?</dt>
+                                <dd class="mt-3 text-sm text-neutral-600">
+                                    Além das verificações por e-mail, você pode habilitar 2FA, acompanhar cada ação no log de atividades e controlar idioma e senha nas telas de configurações.
                                 </dd>
                             </div>
                         </dl>
@@ -254,16 +260,16 @@
                         <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)]"></div>
                         <div class="mx-auto flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
                             <div>
-                                <h2 class="text-3xl font-semibold tracking-tight">Pronto para transformar seus estudos?</h2>
+                                <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos agora</h2>
                                 <p class="mt-4 text-sm text-indigo-100">
-                                    Junte-se à comunidade que já está dominando livros e artigos com um fluxo de estudos consistente.
+                                    Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos.
                                 </p>
                             </div>
 
                             @if (Route::has('register'))
                                 <a
                                     href="{{ route('register') }}"
-                                    class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-indigo-600 transition hover:bg-indigo-50"
+                                    class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-indigo-600 text-center transition hover:bg-indigo-50"
                                 >
                                     Criar minha conta gratuita
                                 </a>

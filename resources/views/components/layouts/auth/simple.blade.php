@@ -19,27 +19,31 @@
 
                     <div class="space-y-5">
                         <h1 class="text-4xl font-semibold leading-snug tracking-tight text-white md:text-5xl">
-                            Seu hub inteligente para transformar leitura em aprendizado contínuo.
+                            Painel completo para suas leituras, notas e flashcards.
                         </h1>
                         <p class="text-base leading-relaxed text-indigo-100">
-                            Capture insights de livros, organize resumos e mantenha uma rotina de revisão guiada. Concentre-se em aprender; nós cuidamos da estrutura.
+                            Acompanhe métricas de estudo, envie PDFs, gere exportações e mantenha tudo seguro com autenticação em duas etapas e registro de atividades.
                         </p>
                     </div>
 
-                    <dl class="grid gap-6 sm:grid-cols-2">
-                        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                            <dt class="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-200">Rotina guiada</dt>
-                            <dd class="mt-3 text-sm text-indigo-100">
-                                Receba lembretes e planos automáticos de revisão focados no que você precisa reforçar.
-                            </dd>
-                        </div>
-                        <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-                            <dt class="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-200">Notas conectadas</dt>
-                            <dd class="mt-3 text-sm text-indigo-100">
-                                Vincule resumos, highlights e fichamentos sem perder o contexto original.
-                            </dd>
-                        </div>
-                    </dl>
+                    @isset($aside)
+                        {{ $aside }}
+                    @else
+                        <dl class="grid gap-6 sm:grid-cols-2">
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                                <dt class="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-200">Estudos com contexto</dt>
+                                <dd class="mt-3 text-sm text-indigo-100">
+                                    Organize notebooks, disciplinas, notas e PDFs com a mesma taxonomia que aparece em toda a área logada.
+                                </dd>
+                            </div>
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
+                                <dt class="text-sm font-semibold uppercase tracking-[0.24em] text-indigo-200">Segurança e registros</dt>
+                                <dd class="mt-3 text-sm text-indigo-100">
+                                    2FA opcional, confirmação por e-mail e log detalhado para acompanhar cada exportação ou exclusão.
+                                </dd>
+                            </div>
+                        </dl>
+                    @endisset
                 </aside>
 
                 <main class="w-full max-w-md rounded-3xl bg-white p-8 text-neutral-900 shadow-2xl shadow-indigo-900/20 sm:p-10">

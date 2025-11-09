@@ -2,13 +2,13 @@
     <div class="space-y-8">
         <div class="space-y-3">
             <span class="inline-flex items-center rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-indigo-600">
-                {{ __('Welcome back') }}
+                {{ __('Bem-vindo de volta') }}
             </span>
             <h2 class="text-3xl font-semibold tracking-tight text-neutral-900">
-                {{ __('Access your study hub') }}
+                {{ __('Retome seus painéis e flashcards') }}
             </h2>
             <p class="text-sm leading-relaxed text-neutral-600">
-                {{ __('Keep progressing with dashboards, revisões e insights atualizados em tempo real.') }}
+                {{ __('Acesse o dashboard com métricas, continue suas sessões de estudo, faça downloads em PDF e gerencie a segurança da conta com 2FA.') }}
             </p>
         </div>
 
@@ -60,7 +60,7 @@
         <div class="rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-sm text-neutral-600">
             <p class="font-medium text-neutral-900">{{ __('Dica rápida') }}</p>
             <p class="mt-2">
-                {{ __('Use o mesmo email das suas leituras para importar highlights automaticamente em questão de segundos.') }}
+                {{ __('Ative a autenticação em duas etapas e acompanhe o log de atividades em Configurações > Segurança sempre que fizer login em um novo dispositivo.') }}
             </p>
         </div>
 

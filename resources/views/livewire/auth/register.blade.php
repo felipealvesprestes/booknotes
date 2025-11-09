@@ -1,43 +1,45 @@
 <x-layouts.auth>
+    <x-slot name="aside">
+        <ul class="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-6 text-sm text-indigo-100 backdrop-blur">
+            <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex size-6 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-200">
+                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
+                    </svg>
+                </span>
+                <span>{{ __('Monte notebooks e disciplinas para cada prova, curso ou projeto e acompanhe os contadores automaticamente.') }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex size-6 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-200">
+                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
+                    </svg>
+                </span>
+                <span>{{ __('Transforme notas em flashcards e estude no hub dedicado com fila embaralhada e modo foco.') }}</span>
+            </li>
+            <li class="flex items-start gap-3">
+                <span class="mt-1 inline-flex size-6 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-200">
+                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
+                    </svg>
+                </span>
+                <span>{{ __('Envie PDFs importantes e gere exportações em PDF para compartilhar conteúdo com sua turma ou mentoria.') }}</span>
+            </li>
+        </ul>
+    </x-slot>
+
     <div class="space-y-8">
         <div class="space-y-3">
             <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-emerald-600">
                 {{ __('Create your account') }}
             </span>
             <h2 class="text-3xl font-semibold tracking-tight text-neutral-900">
-                {{ __('Comece a construir sua biblioteca de estudos') }}
+                {{ __('Construa seu hub de notas, flashcards e PDFs') }}
             </h2>
             <p class="text-sm leading-relaxed text-neutral-600">
-                {{ __('Centralize resumos, fichamentos e revisões inteligentes em poucos cliques. Basta preencher seus dados abaixo.') }}
+                {{ __('Preencha seus dados e comece a organizar notebooks, disciplinas, notas e sessões de estudo com métricas em tempo real.') }}
             </p>
         </div>
-
-        <ul class="space-y-3 rounded-2xl border border-neutral-200 bg-neutral-50 p-5 text-sm text-neutral-700">
-            <li class="flex items-start gap-3">
-                <span class="mt-1 inline-flex size-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
-                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
-                    </svg>
-                </span>
-                <span>{{ __('Organize notas por livro, disciplina e objetivo de estudo.') }}</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="mt-1 inline-flex size-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
-                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
-                    </svg>
-                </span>
-                <span>{{ __('Importe highlights e anexos direto do Kindle, PDFs ou Notion.') }}</span>
-            </li>
-            <li class="flex items-start gap-3">
-                <span class="mt-1 inline-flex size-5 items-center justify-center rounded-full bg-emerald-500/10 text-emerald-600">
-                    <svg class="size-3.5" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                        <path d="M6.667 10.114 4.553 8l-.943.943 3.057 3.057 6-6-.943-.943-5.057 5.057Z" />
-                    </svg>
-                </span>
-                <span>{{ __('Receba planos de revisão personalizados para fixar conteúdo.') }}</span>
-            </li>
-        </ul>
 
         <x-auth-session-status class="text-center" :status="session('status')" />
 
@@ -87,12 +89,12 @@
                 <x-form.error name="password_confirmation" />
             </div>
 
-            <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
-                <p class="font-medium text-emerald-900">{{ __('Garantimos privacidade total') }}</p>
-                <p class="mt-2">
-                    {{ __('Você controla o que compartilhar. Seus resumos e anotações permanecem privados até que escolha colaborar com alguém.') }}
-                </p>
-            </div>
+        <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
+            <p class="font-medium text-emerald-900">{{ __('Segurança em primeiro lugar') }}</p>
+            <p class="mt-2">
+                {{ __('Ative a autenticação em duas etapas, acompanhe o log de atividades e controle senha, idioma e exportações em um único painel.') }}
+            </p>
+        </div>
 
             <flux:button type="submit" variant="primary" class="w-full">
                 {{ __('Create account') }}
