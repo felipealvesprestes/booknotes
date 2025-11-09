@@ -30,10 +30,30 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
         ])->validate();
 
-        return User::create([
+        $trialDays = (int) config('services.stripe.trial_days', 14);
+
+        $user = User::create([
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => $input['password'],
+            'trial_starts_at' => now(),
+            'trial_ends_at' => now()->addDays($trialDays),
         ]);
+
+        if ($this->shouldGrantLifetimeAccess($user->email)) {
+            $user->forceFill([
+                'is_lifetime' => true,
+                'trial_ends_at' => null,
+            ])->save();
+        }
+
+        return $user;
+    }
+
+    private function shouldGrantLifetimeAccess(string $email): bool
+    {
+        $emails = array_map('strtolower', config('services.stripe.lifetime_emails', []));
+
+        return in_array(strtolower($email), $emails, true);
     }
 }

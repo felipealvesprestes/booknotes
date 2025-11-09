@@ -1,5 +1,15 @@
 <?php
 
+$stripeLifetimeDefaults = [
+    'felipealvesprestes@gmail.com',
+    'gabrielakrauzerprestes@gmail.com',
+];
+
+$stripeLifetimeFromEnv = array_filter(array_map(
+    static fn ($email) => trim($email),
+    explode(',', (string) env('SUBSCRIPTION_LIFETIME_EMAILS', ''))
+));
+
 return [
 
     /*
@@ -33,6 +43,20 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+        'webhook_secret' => env('STRIPE_WEBHOOK_SECRET'),
+        'price_id' => env('STRIPE_PRICE_ID'),
+        'trial_days' => (int) env('SUBSCRIPTION_TRIAL_DAYS', 14),
+        'plan_name' => env('SUBSCRIPTION_PLAN_NAME', 'Acesso Plataforma Booknotes'),
+        'monthly_amount' => (float) env('SUBSCRIPTION_MONTHLY_AMOUNT', 14.90),
+        'lifetime_emails' => array_values(array_unique(array_merge(
+            $stripeLifetimeDefaults,
+            $stripeLifetimeFromEnv,
+        ))),
     ],
 
 ];

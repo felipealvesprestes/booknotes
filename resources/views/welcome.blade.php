@@ -11,6 +11,7 @@
             @php($siteNavigation = [
                 ['label' => 'Recursos', 'href' => '#features'],
                 ['label' => 'Como funciona', 'href' => '#workflow'],
+                ['label' => 'Plano', 'href' => '#pricing'],
                 ['label' => 'Depoimentos', 'href' => '#testimonials'],
                 ['label' => 'Perguntas', 'href' => '#faq'],
                 ['label' => 'Privacidade', 'href' => route('privacy')],
@@ -296,6 +297,74 @@
                             <h3 class="mt-4 text-xl font-semibold">Compartilhe e acompanhe</h3>
                             <p class="mt-3 text-sm text-neutral-300">
                                 Gere exportações em PDF para mentores ou equipes, consulte o log de atividades e use as métricas para planejar as próximas revisões.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="pricing" class="py-24">
+                    @php($monthlyPrice = number_format(config('services.stripe.monthly_amount', 14.90), 2, ',', '.'))
+                    <div class="mx-auto max-w-4xl text-center">
+                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-600">Plano único</p>
+                        <h2 class="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+                            Assine {{ config('app.name') }} por R$ {{ $monthlyPrice }} ao mês
+                        </h2>
+                        <p class="mt-4 text-base leading-relaxed text-neutral-600">
+                            Teste todos os recursos por 14 dias, sem cartão antecipado, e continue com cobranças mensais automáticas via Stripe quando fizer sentido para o seu estudo.
+                        </p>
+                    </div>
+
+                    <div class="mt-12 grid gap-8 lg:grid-cols-2">
+                        <div class="rounded-3xl border border-neutral-200 bg-white/90 p-8 shadow-xl shadow-indigo-100">
+                            <p class="text-sm font-semibold text-neutral-500">Inclui acesso completo</p>
+                            <div class="mt-3 flex items-baseline gap-2">
+                                <span class="text-4xl font-bold tracking-tight text-neutral-900">R$ {{ $monthlyPrice }}</span>
+                                <span class="text-sm text-neutral-500">/mês</span>
+                            </div>
+                            <p class="mt-3 text-sm text-neutral-600">
+                                14 dias de testes gratuitos · impostos calculados automaticamente · cancelamento a qualquer momento
+                            </p>
+                            <div class="mt-8 space-y-2 text-sm text-neutral-600">
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
+                                    <p>Notas, flashcards, biblioteca de PDFs, exportações e dashboard de estudos sem limitações.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
+                                    <p>Pagamentos seguros com Stripe Billing, suporte a cupons e recibos em português.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
+                                    <p>Suporte prioritário para centralizar estudos de equipes, mentores e turmas.</p>
+                                </div>
+                            </div>
+                            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}" class="inline-flex flex-1 items-center justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500">
+                                        Começar período grátis
+                                    </a>
+                                @endif
+                                @if (Route::has('login'))
+                                    <a href="{{ route('login') }}" class="inline-flex flex-1 items-center justify-center rounded-2xl border border-neutral-200 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:border-neutral-300">
+                                        Já tenho conta
+                                    </a>
+                                @endif
+                            </div>
+                            <p class="mt-4 text-xs text-neutral-500">
+                                A cobrança acontece somente após o período de testes. O controle do cartão e notas fiscais fica disponível no portal da Stripe.
+                            </p>
+                        </div>
+
+                        <div class="rounded-3xl border border-neutral-200 bg-neutral-50/80 p-8 text-sm leading-relaxed text-neutral-700">
+                            <p class="text-base font-semibold text-neutral-900">Por que fixamos o preço em R$ {{ $monthlyPrice }}?</p>
+                            <p class="mt-3">
+                                Esse valor cobre infraestrutura segura (DigitalOcean + MySQL 8), renderização de PDFs, filas em tempo real e o roadmap contínuo do {{ config('app.name') }}.
+                            </p>
+                            <p class="mt-3">
+                                Cada assinatura ativa financia novos recursos para organização de conteúdos, revisão com flashcards e exportações inteligentes — sempre com foco em estudantes brasileiros.
+                            </p>
+                            <p class="mt-3">
+                                Precisa contratar para um time maior ou emissão fiscal personalizada? Fale conosco e criamos um plano especial mantendo os 14 dias de testes.
                             </p>
                         </div>
                     </div>

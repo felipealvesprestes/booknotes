@@ -7,8 +7,8 @@ return [
             'native_label' => 'English',
         ],
         'pt_BR' => [
-            'label' => 'Portuguese (Brazil)',
-            'native_label' => 'Portugues (Brasil)',
+            'label' => 'Portuguese',
+            'native_label' => 'Portugues',
         ],
     ],
 

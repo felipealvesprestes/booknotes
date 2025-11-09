@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use Laravel\Cashier\Billable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use Billable;
+    use HasFactory;
+    use Notifiable;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -25,6 +29,8 @@ class User extends Authenticatable
         'email',
         'password',
         'locale',
+        'trial_starts_at',
+        'trial_ends_at',
     ];
 
     /**
@@ -49,6 +55,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'trial_starts_at' => 'datetime',
+            'trial_ends_at' => 'datetime',
+            'is_lifetime' => 'boolean',
         ];
     }
 
@@ -80,6 +89,29 @@ class User extends Authenticatable
         return $this->hasMany(PdfDocument::class);
     }
 
+    public function hasLifetimeAccess(): bool
+    {
+        return (bool) $this->is_lifetime;
+    }
+
+    public function hasActiveSubscriptionOrTrial(): bool
+    {
+        if ($this->hasLifetimeAccess()) {
+            return true;
+        }
+
+        if ($this->subscribed('default')) {
+            return true;
+        }
+
+        return $this->onGenericTrial();
+    }
+
+    public function subscriptionPlanName(): string
+    {
+        return (string) config('services.stripe.plan_name', config('app.name'));
+    }
+
     /**
      * Get the user's initials
      */
@@ -88,7 +120,7 @@ class User extends Authenticatable
         return Str::of($this->name)
             ->explode(' ')
             ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
+            ->map(fn($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
 }
