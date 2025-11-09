@@ -296,7 +296,7 @@
                 <div class="mx-auto max-w-4xl text-center">
                     <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-600">Plano único</p>
                     <h2 class="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                        Assine {{ config('app.name') }} por R$ {{ $monthlyPrice }} ao mês
+                        Evolua seus estudos com o {{ config('app.name') }} Premium
                     </h2>
                     <p class="mt-4 text-base leading-relaxed text-neutral-600">
                         Teste todos os recursos por 14 dias, sem precisar de cartão antecipado, e continue com cobranças automáticas mensais apenas se o Booknotes fizer sentido para o seu estudo.
