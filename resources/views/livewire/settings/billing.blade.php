@@ -119,9 +119,9 @@
                             </flux:button>
                         @endif
 
-                        <flux:button wire:click="openBillingPortal" type="button" variant="ghost" wire:target="openBillingPortal" wire:loading.attr="disabled">
+                        <!-- <flux:button wire:click="openBillingPortal" type="button" variant="ghost" wire:target="openBillingPortal" wire:loading.attr="disabled">
                             {{ __('Gerenciar cartão / notas fiscais') }}
-                        </flux:button>
+                        </flux:button> -->
                     @endif
                 </div>
             </div>
