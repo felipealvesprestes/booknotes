@@ -35,6 +35,9 @@ Route::get('/', function () {
 
 Route::view('politica-de-privacidade', 'privacy')->name('privacy');
 
+Route::post('/stripe/webhook', [WebhookController::class, 'handleWebhook'])
+    ->name('cashier.webhook');
+
 Route::get('dashboard', DashboardOverview::class)
     ->middleware(['auth', 'verified', 'subscribed'])
     ->name('dashboard');
