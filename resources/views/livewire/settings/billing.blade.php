@@ -82,7 +82,7 @@
                     @else
                         @if ($subscription && $subscription->active())
                             <p class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-emerald-900">
-                                {{ __('Sua assinatura está ativa. A Stripe cuidará das renovações mensais automaticamente e você pode cancelar quando quiser.') }}
+                                {{ __('Sua assinatura está ativa. Cuidaremos das renovações mensais automaticamente e você pode cancelar quando quiser.') }}
                             </p>
                         @elseif ($subscription && $subscription->onGracePeriod())
                             <p class="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-900">
