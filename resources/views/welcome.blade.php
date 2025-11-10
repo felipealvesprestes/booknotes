@@ -146,7 +146,7 @@
                         Estudos orientados por dados
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase sm:text-4xl">
-                        CENTRALIZE NOTAS, FLASHCARDS E PDFS NO SEU HUB DE ESTUDOS.
+                        Seu hub de estudos: notas, flashcards, PDFs e métricas em um só lugar
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
                         {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, revise no modo foco, exporte materiais em PDF e mantenha tudo protegido com autenticação em duas etapas.
@@ -172,7 +172,7 @@
                 </div>
                 <div class="mt-14 grid gap-6 sm:grid-cols-3">
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Arquitetura em camadas</h3>
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Organização inteligente</h3>
                         <p class="mt-3 text-sm text-neutral-600">
                             Organize livros e projetos em notebooks, disciplinas e notas com filtros rápidos e contadores automáticos.
                         </p>
@@ -276,7 +276,7 @@
                     </div>
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
-                        <h3 class="mt-4 text-xl font-semibold">Transforme em estudo ativo</h3>
+                        <h3 class="mt-4 text-xl font-semibold">Aprenda de forma ativa</h3>
                         <p class="mt-3 text-sm text-neutral-300">
                             Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e registre cada acerto e erro automaticamente.
                         </p>
@@ -299,7 +299,7 @@
                         Evolua seus estudos com o {{ config('app.name') }} Premium
                     </h2>
                     <p class="mt-4 text-base leading-relaxed text-neutral-600">
-                        Teste todos os recursos por 14 dias, sem precisar de cartão antecipado, e continue com cobranças automáticas mensais apenas se o Booknotes fizer sentido para o seu estudo.
+                        Teste todos os recursos por 14 dias, sem precisar de cartão. Se gostar, você ativa a assinatura mensal com cobrança automática — sem burocracia.
                     </p>
                 </div>
 
@@ -365,7 +365,6 @@
                             Precisa de um plano para equipes, mentorias ou instituições? Fale conosco e criamos uma condição personalizada mantendo os 14 dias de teste gratuitos.
                         </p>
                     </div>
-
                 </div>
             </section>
 
@@ -373,7 +372,7 @@
                 <div class="mx-auto max-w-5xl">
                     <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Quem já está aprendendo com {{ config('app.name') }}</h2>
                     <p class="mt-4 text-lg text-neutral-600">
-                        Milhares de estudantes, pesquisadores e profissionais já usam a plataforma para transformar leitura em resultados.
+                        Estudantes, pesquisadores e profissionais já usam a plataforma para transformar leitura em resultados.
                     </p>
 
                     <div class="mt-16 grid gap-8 sm:grid-cols-2">
@@ -444,7 +443,7 @@
                         <div>
                             <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos agora</h2>
                             <p class="mt-4 text-sm text-indigo-100">
-                                Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos.
+                                Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos. Sem cartão, sem pegadinha, cancele quando quiser.
                             </p>
                         </div>
 
