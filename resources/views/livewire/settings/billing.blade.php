@@ -62,10 +62,10 @@
                                     {{ __('Seu teste termina em :data.', ['data' => optional($user->trial_ends_at)?->translatedFormat('d \\d\\e F')]) }}
                                 </p>
                             @else
-                                <p class="font-medium text-neutral-700">
-                                    {{ __('Período de teste encerrado') }}
-                                </p>
                                 @if ($user->trial_ends_at)
+                                    <p class="font-medium text-neutral-700">
+                                        {{ __('Período de teste encerrado') }}
+                                    </p>
                                     <p>{{ __('O teste foi finalizado em :data.', ['data' => $user->trial_ends_at->translatedFormat('d \\d\\e F')]) }}</p>
                                     <p>{{ __('Inicie a assinatura para continuar usando o Booknotes.') }}</p>
                                 @endif
