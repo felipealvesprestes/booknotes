@@ -67,7 +67,6 @@
                                 </p>
                                 @if ($user->trial_ends_at)
                                     <p>{{ __('O teste foi finalizado em :data.', ['data' => $user->trial_ends_at->translatedFormat('d \\d\\e F')]) }}</p>
-                                @else
                                     <p>{{ __('Inicie a assinatura para continuar usando o Booknotes.') }}</p>
                                 @endif
                             @endif
