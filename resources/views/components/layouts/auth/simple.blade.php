@@ -8,7 +8,7 @@
             <div class="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-br from-indigo-500 via-indigo-700 to-neutral-900 opacity-90"></div>
             <div class="pointer-events-none absolute -top-24 right-24 -z-10 size-[520px] rounded-full bg-indigo-400/20 blur-3xl"></div>
 
-            <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-12 px-6 py-12 md:flex-row md:items-center md:justify-between md:py-16">
+            <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-12 px-6 py-12 md:flex-row md:items-center md:justify-between">
                 <aside class="flex max-w-xl flex-col gap-8 md:gap-10">
                     <a href="{{ route('home') }}" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-indigo-200" wire:navigate>
                         <span class="flex size-10 items-center justify-center">

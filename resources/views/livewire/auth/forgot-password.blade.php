@@ -15,7 +15,7 @@
                 :label="__('Email cadastrado')"
                 type="email"
                 autofocus
-                placeholder="email@example.com"
+                placeholder="email@exemplo.com"
                 value="{{ old('email') }}"
             />
 

@@ -31,7 +31,7 @@
     <div class="space-y-8">
         <div class="space-y-3">
             <span class="inline-flex items-center rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-emerald-600">
-                {{ __('Create your account') }}
+                {{ __('Crie sua conta') }}
             </span>
             <h2 class="text-3xl font-semibold tracking-tight text-neutral-900">
                 {{ __('Construa seu hub de notas, flashcards e PDFs') }}

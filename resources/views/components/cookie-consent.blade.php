@@ -36,10 +36,6 @@
 
 <script>
 (() => {
-    if (typeof window === 'undefined' || window.__booknotesCookieConsentInitialized) {
-        return;
-    }
-
     window.__booknotesCookieConsentInitialized = true;
 
     const storageKey = 'booknotes-cookie-consent';
