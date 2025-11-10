@@ -49,44 +49,40 @@
             <div class="space-y-4">
                 <flux:input
                     name="name"
-                    :label="__('Name')"
+                    :label="__('Nome')"
                     type="text"
                     autofocus
                     autocomplete="name"
                     :placeholder="__('Seu nome completo')"
                     value="{{ old('name') }}"
                 />
-                <x-form.error name="name" />
 
                 <flux:input
                     name="email"
-                    :label="__('Email address')"
+                    :label="__('Email')"
                     type="email"
                     autocomplete="email"
                     placeholder="email@exemplo.com"
                     value="{{ old('email') }}"
                 />
-                <x-form.error name="email" />
 
                 <flux:input
                     name="password"
-                    :label="__('Password')"
+                    :label="__('Senha')"
                     type="password"
                     autocomplete="new-password"
                     :placeholder="__('Crie uma senha segura')"
                     viewable
                 />
-                <x-form.error name="password" />
 
                 <flux:input
                     name="password_confirmation"
-                    :label="__('Confirm password')"
+                    :label="__('Confirmar senha')"
                     type="password"
                     autocomplete="new-password"
                     :placeholder="__('Repita a senha para confirmar')"
                     viewable
                 />
-                <x-form.error name="password_confirmation" />
             </div>
 
         <div class="rounded-2xl border border-emerald-200 bg-emerald-50 p-4 text-sm text-emerald-700">
@@ -97,12 +93,12 @@
         </div>
 
             <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Create account') }}
+                {{ __('Criar conta') }}
             </flux:button>
         </form>
 
         <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-neutral-600">
-            <span>{{ __('Already have an account?') }}</span>
+            <span>{{ __('Já tem uma conta?') }}</span>
             <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
         </div>
     </div>

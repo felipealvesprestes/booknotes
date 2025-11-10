@@ -10,10 +10,8 @@
 
         <form method="POST" action="{{ route('password.update') }}" class="flex flex-col gap-6">
             @csrf
-            <!-- Token -->
             <input type="hidden" name="token" value="{{ request()->route('token') }}">
 
-            <!-- Email Address -->
             <flux:input
                 name="email"
                 value="{{ old('email', request('email')) }}"
@@ -21,9 +19,7 @@
                 type="email"
                 autocomplete="email"
             />
-            <x-form.error name="email" />
 
-            <!-- Password -->
             <flux:input
                 name="password"
                 :label="__('Senha')"
@@ -32,9 +28,7 @@
                 :placeholder="__('Senha')"
                 viewable
             />
-            <x-form.error name="password" />
 
-            <!-- Confirm Password -->
             <flux:input
                 name="password_confirmation"
                 :label="__('Confirmar senha')"
@@ -43,7 +37,6 @@
                 :placeholder="__('Confirmar senha')"
                 viewable
             />
-            <x-form.error name="password_confirmation" />
 
             <div class="flex items-center justify-end">
                 <flux:button type="submit" variant="primary" class="w-full" data-test="reset-password-button">

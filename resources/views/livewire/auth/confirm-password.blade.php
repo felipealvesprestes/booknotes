@@ -18,7 +18,6 @@
                 :placeholder="__('Senha')"
                 viewable
             />
-            <x-form.error name="password" />
 
             <flux:button variant="primary" type="submit" class="w-full" data-test="confirm-password-button">
                 {{ __('Confirmar acesso') }}

@@ -11,8 +11,8 @@
             <div class="mx-auto flex min-h-screen w-full max-w-6xl flex-col gap-12 px-6 py-12 md:flex-row md:items-center md:justify-between md:py-16">
                 <aside class="flex max-w-xl flex-col gap-8 md:gap-10">
                     <a href="{{ route('home') }}" class="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.3em] text-indigo-200" wire:navigate>
-                        <span class="flex size-10 items-center justify-center rounded-xl border border-white/20 bg-white/10 backdrop-blur">
-                            <x-app-logo-icon class="size-8 fill-white" />
+                        <span class="flex size-10 items-center justify-center">
+                            <x-app-logo-icon class="size- text-white" />
                         </span>
                         {{ config('app.name', 'Laravel') }}
                     </a>

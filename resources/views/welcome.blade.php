@@ -25,7 +25,7 @@
             class="mx-auto max-w-6xl px-6 py-8 sm:py-10">
             <div class="flex flex-wrap items-center justify-between gap-6">
                 <div class="flex items-center gap-3">
-                    <p class="text-lg font-semibold text-neutral-800">{{ config('app.name') }}</p>
+                    <a href="{{ url('/') }}" class="text-lg font-semibold text-neutral-800">{{ config('app.name') }}</a>
                 </div>
 
                 <nav class="hidden text-sm font-medium text-neutral-600 lg:flex lg:flex-wrap lg:items-center lg:gap-6">
@@ -145,8 +145,8 @@
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
                         Estudos orientados por dados
                     </span>
-                    <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase sm:text-4xl">
-                        Seu hub de estudos: notas, flashcards, PDFs e métricas em um só lugar
+                    <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
+                        Um só lugar para anotar, revisar, aprender e evoluir
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
                         {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, revise no modo foco, exporte materiais em PDF e mantenha tudo protegido com autenticação em duas etapas.
