@@ -43,7 +43,7 @@
             @endunless
 
             <div class="rounded-3xl border border-neutral-200 bg-white p-6">
-                <div class="flex flex-wrap items-start justify-between gap-4">
+                <div class="flex flex-wrap items-start justify-between">
                     <div>
                         <p class="text-sm font-medium text-neutral-500">{{ __('Plano atual') }}</p>
                         <p class="text-2xl font-semibold text-neutral-900">{{ $planLabel }}</p>
