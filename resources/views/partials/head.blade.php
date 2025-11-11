@@ -32,6 +32,9 @@
     content="{{ $twitterDescription ?? $ogDescription ?? $metaDescription ?? 'Flashcards online, resumos e PDFs em um único hub de estudos.' }}">
 <meta name="twitter:image" content="{{ $twitterImage ?? $ogImage ?? asset('img/share-default.jpg') }}">
 
+{{-- Google  --}}
+<meta name="google-site-verification" content="Eq3LfdnEnQfqjmE2AoomRvHQIUJZiyqHw30Lk7INBmA" />
+
 <link rel="icon" href="/favicon.ico" sizes="any">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
