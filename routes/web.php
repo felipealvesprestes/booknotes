@@ -33,6 +33,10 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/sitemap.xml', function () {
+    return response()->view('sitemap')->header('Content-Type', 'application/xml');
+});
+
 Route::view('politica-de-privacidade', 'privacy')->name('privacy');
 
 Route::post('/stripe/webhook', [WebhookController::class, 'handleWebhook'])

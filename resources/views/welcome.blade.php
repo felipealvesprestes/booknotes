@@ -2,7 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    @php($title = config('app.name'))
+    @php($title = config('app.name') . ' - Plataforma de estudos com flashcards, resumos e PDFs')
+    @php($metaDescription = 'Use o ' . config('app.name') . ' para criar resumos, organizar cadernos, estudar com flashcards online e acompanhar métricas. Ideal para concursos, ENEM, faculdade e certificações.')
+    @php($metaRobots = 'index,follow')
+    @php($canonical = url('/'))
+    @php($ogTitle = 'Flashcards online, resumos e PDFs em um hub de estudos completo')
+    @php($ogDescription = 'Organize, revise e memorize conteúdos com uma plataforma de estudos feita para quem leva o aprendizado a sério.')
+    @php($ogImage = asset('img/share-default.jpg')) {{-- ajusta quando tiver uma imagem bonita --}}
     @include('partials.head')
 </head>
 

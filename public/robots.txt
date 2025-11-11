@@ -1,2 +1,11 @@
 User-agent: *
-Disallow:
+Disallow: /dashboard
+Disallow: /notebooks
+Disallow: /disciplines
+Disallow: /notes
+Disallow: /pdfs
+Disallow: /logs
+Disallow: /settings
+Disallow: /study
+Disallow: /stripe
+Sitemap: https://booknotes.com.br/sitemap.xml
