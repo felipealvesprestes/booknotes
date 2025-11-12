@@ -72,7 +72,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('notebooks/{notebook}/edit', EditNotebook::class)->name('notebooks.edit');
         Route::get('notebooks/{notebook}', ShowNotebook::class)->name('notebooks.show');
 
-        Route::get('study', StudyIndex::class)->name('study.index');
+        Route::redirect('study', 'study/flashcards')->name('study.redirect');
+        Route::get('study/flashcards', StudyIndex::class)->name('study.flashcards');
         Route::get('study/exercises', StudyExercises::class)->name('study.exercises');
 
         Route::get('disciplines', DisciplineIndex::class)->name('disciplines.index');

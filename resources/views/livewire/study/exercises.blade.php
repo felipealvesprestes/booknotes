@@ -21,24 +21,22 @@
             </p>
         </div>
 
-        <label class="flex flex-col gap-1 text-xs font-semibold uppercase tracking-wide text-zinc-500">
-            {{ __('Discipline') }}
+        <div class="flex items-center gap-2">
             <select
                 wire:model.live="disciplineId"
-                class="rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 md:w-60"
             >
                 <option value="">{{ __('All disciplines') }}</option>
                 @foreach ($disciplines as $discipline)
                 <option value="{{ $discipline->id }}">{{ $discipline->title }}</option>
                 @endforeach
             </select>
-        </label>
+        </div>
     </div>
 
     <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
-        <div class="rounded-xl bg-white/95 p-6 shadow-sm ring-1 ring-zinc-100 space-y-6">
+        <div class="rounded-md border border-zinc-200 bg-white/95 p-6 ring-zinc-100 space-y-6">
             <div>
-                <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Exercise menu') }}</p>
                 <p class="mt-1 text-sm text-zinc-500">
                     {{ __('Use your flashcards as the source of every drill and rotate the modes to stay sharp.') }}
                 </p>
@@ -182,7 +180,7 @@
             @endif
         </div>
 
-        <section class="rounded-xl border border-zinc-200 bg-white/80 p-6 shadow-sm space-y-4">
+        <section class="rounded-md border border-zinc-200 bg-white/80 p-6 space-y-4">
             <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Modes overview') }}</p>
 
             <fieldset class="space-y-3">

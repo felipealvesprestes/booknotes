@@ -47,10 +47,9 @@
             'w-full max-w-3xl' => $focusMode,
         ])>
             @unless ($focusMode)
-            <section class="rounded-2xl border border-zinc-200 bg-white/90 p-6 shadow-sm">
+            <section class="rounded-md border border-zinc-200 bg-white/90 p-6">
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                        <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Flashcards') }}</p>
                         <p class="mt-1 text-sm text-zinc-500">
                             {{ __('Review how today\'s flashcard practice is going before jumping into the queue.') }}
                         </p>
@@ -389,7 +388,7 @@
                 x-show="! atEnd"
                 x-transition.opacity
             >
-                <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500 shadow-sm">
+                <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500">
                     <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                         <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75V13l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06L9.25 13V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
                     </svg>
