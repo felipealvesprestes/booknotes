@@ -149,13 +149,13 @@
             <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Estudos orientados por dados
+                        Novo módulo de exercícios
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
                         Um só lugar para anotar, revisar, aprender e evoluir
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, revise no modo foco, exporte materiais em PDF e mantenha tudo protegido com autenticação em duas etapas.
+                        {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, estude no modo foco e, agora, pratique com exercícios de Verdadeiro ou Falso, Complete as Lacunas e Múltipla Escolha — tudo protegido com autenticação em duas etapas.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
@@ -190,10 +190,65 @@
                         </p>
                     </div>
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Segurança e histórico</h3>
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Modos de estudo</h3>
                         <p class="mt-3 text-sm text-neutral-600">
-                            Ative 2FA, consulte o log de atividades e saiba quem exportou ou removeu conteúdo pela sua conta.
+                            Verdadeiro ou Falso, Complete as Lacunas e Múltipla Escolha equilibram memorização, vocabulário e análise com base na sua própria base de flashcards.
                         </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mt-20 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">
+                <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+                    <div class="space-y-6">
+                        <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
+                            Segurança e confiança
+                        </span>
+                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+                            Controle total sobre dados, acessos e histórico
+                        </h2>
+                        <p class="text-base leading-relaxed text-neutral-300">
+                            Toda atividade do {{ config('app.name') }} é registrada: exclusões, exportações e estudos entram no log com data, horário e dispositivo. Some a isso autenticação em duas etapas e você tem uma plataforma pronta para mentores, equipes e instituições exigentes.
+                        </p>
+                        <ul class="space-y-3 text-sm text-neutral-300">
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Autenticação 2FA com apps TOTP e recuperação por códigos únicos.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Log completo de ações, com filtros e identificação do conteúdo impactado.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Criptografia em repouso/uso de backups redundantes e monitoramento contínuo.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-neutral-300">Últimas atividades</span>
+                                <span class="text-xs text-indigo-200">Atualizado agora</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">Exportação PDF — Biologia</p>
+                                    <p class="text-xs text-neutral-300">Hoje, 08:42 · Safari no macOS</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">Nova sessão de flashcards</p>
+                                    <p class="text-xs text-neutral-300">Ontem, 21:10 · iOS App</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">2FA verificada</p>
+                                    <p class="text-xs text-neutral-300">Ontem, 18:22 · Chrome no Windows</p>
+                                </div>
+                            </div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">
+                                Log completo disponível no painel autenticado
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -205,7 +260,7 @@
                         Construído para quem quer dominar conteúdos complexos, sem perder tempo com ferramentas dispersas.
                     </p>
                 </div>
-                <div class="mt-16 grid gap-10 sm:grid-cols-2">
+                <div class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
                     <div class="flex gap-4">
                         <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
                             <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -242,7 +297,7 @@
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Biblioteca de PDFs e exportações</h3>
+                            <h3 class="text-lg font-semibold text-neutral-900">Hub de PDFs e exportações</h3>
                             <p class="mt-3 text-sm leading-relaxed text-neutral-600">
                                 Armazene apostilas e artigos no visualizador de PDFs e gere PDFs unificados de notas ou flashcards com filtros, agrupamentos e layouts configuráveis.
                             </p>
@@ -251,14 +306,41 @@
                     <div class="flex gap-4">
                         <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
                             <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M12 7.5a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5ZM4.5 19.594a7.5 7.5 0 0 1 15 0A1.406 1.406 0 0 1 18.094 21H5.906A1.406 1.406 0 0 1 4.5 19.594Z" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M19.5 13.5v-2.25A1.5 1.5 0 0 0 18 9.75h-1.5" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9 9h6v6H9z" /><path d="M7 7h10v10H7z" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
                         <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Segurança e registro de atividades</h3>
+                            <h3 class="text-lg font-semibold text-neutral-900">Verdadeiro ou falso</h3>
                             <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Ative autenticação em duas etapas, escolha o idioma preferido e acompanhe cada exclusão, exportação ou estudo registrado no log de atividades.
+                                Gere afirmações combinadas com respostas de outros cards para testar rapidamente se o conceito apresentado corresponde ao conteúdo original.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <path d="M5 12h14" stroke-linecap="round" />
+                                <path d="M6 8h6M12 16h6" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Complete as lacunas</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                Escondemos até quatro termos relevantes da resposta para você digitar e reforçar vocabulário, fórmulas ou datas críticas de cada flashcard.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
+                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                <path d="M7 9h10M7 13h10M7 17h6" stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M5 7h14v12H5z" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-semibold text-neutral-900">Múltipla escolha</h3>
+                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
                             </p>
                         </div>
                     </div>
@@ -284,7 +366,7 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
                         <h3 class="mt-4 text-xl font-semibold">Aprenda de forma ativa</h3>
                         <p class="mt-3 text-sm text-neutral-300">
-                            Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e registre cada acerto e erro automaticamente.
+                            Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e pratique com exercícios de Verdadeiro ou Falso, Lacunas e Múltipla Escolha com estatísticas instantâneas.
                         </p>
                     </div>
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
@@ -322,7 +404,7 @@
                         <div class="mt-8 space-y-2 text-sm text-neutral-600">
                             <div class="flex items-start gap-3">
                                 <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
-                                <p>Notas, flashcards, biblioteca de PDFs, exportações e dashboard de estudos sem limitações.</p>
+                                <p>Notas, flashcards, exercícios em três modos, biblioteca de PDFs, exportações e dashboard de estudos sem limitações.</p>
                             </div>
                             <li class="flex items-start gap-3">
                                 <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
