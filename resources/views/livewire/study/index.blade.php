@@ -61,6 +61,11 @@
                 <p class="mt-1 text-xs text-zinc-500">{{ __('Aim for steady progress—consistency beats perfection.') }}</p>
             </div>
         </div>
+
+        <livewire:study.exercises
+            :discipline-id="$disciplineFilter"
+            :key="'study-exercises-' . ($disciplineFilter ?? 'all')"
+        />
     @endunless
 
     <div @class([
