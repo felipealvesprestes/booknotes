@@ -2,7 +2,7 @@
     @unless ($focusMode)
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
-                <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Study hub') }}</h1>
+                <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Flashcards') }}</h1>
                 <p class="text-sm text-zinc-500">
                     {{ __('Review your flashcards with spaced practice, track accuracy, and revisit past sessions whenever you need.') }}
                 </p>
@@ -36,36 +36,6 @@
         </div>
         @endif
 
-        <div class="grid gap-4 md:grid-cols-4">
-            <div class="rounded-md border border-zinc-200 bg-white p-4">
-                <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Studied today') }}</dt>
-                <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['reviewed'] }}</dd>
-                <p class="mt-1 text-xs text-zinc-500">{{ __('Cards reviewed across your open sessions.') }}</p>
-            </div>
-
-            <div class="rounded-md border border-zinc-200 bg-white p-4">
-                <dt class="text-xs font-semibold uppercase tracking-wide text-green-600">{{ __('Correct answers') }}</dt>
-                <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['correct'] }}</dd>
-                <p class="mt-1 text-xs text-zinc-500">{{ __('Well done! These cards are sticking.') }}</p>
-            </div>
-
-            <div class="rounded-md border border-zinc-200 bg-white p-4">
-                <dt class="text-xs font-semibold uppercase tracking-wide text-amber-600">{{ __('Needs review') }}</dt>
-                <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['incorrect'] }}</dd>
-                <p class="mt-1 text-xs text-zinc-500">{{ __('We will show these again so you can reinforce them.') }}</p>
-            </div>
-
-            <div class="rounded-md border border-zinc-200 bg-white p-4">
-                <dt class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Accuracy') }}</dt>
-                <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['accuracy'] }}%</dd>
-                <p class="mt-1 text-xs text-zinc-500">{{ __('Aim for steady progress—consistency beats perfection.') }}</p>
-            </div>
-        </div>
-
-        <livewire:study.exercises
-            :discipline-id="$disciplineFilter"
-            :key="'study-exercises-' . ($disciplineFilter ?? 'all')"
-        />
     @endunless
 
     <div @class([
@@ -76,6 +46,48 @@
             'space-y-6' => ! $focusMode,
             'w-full max-w-3xl' => $focusMode,
         ])>
+            @unless ($focusMode)
+            <section class="rounded-2xl border border-zinc-200 bg-white/90 p-6 shadow-sm">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Flashcards') }}</p>
+                        <p class="mt-1 text-sm text-zinc-500">
+                            {{ __('Review how today\'s flashcard practice is going before jumping into the queue.') }}
+                        </p>
+                    </div>
+                    <span class="text-xs font-medium text-zinc-500">
+                        {{ __('Updated in real time during this session.') }}
+                    </span>
+                </div>
+
+                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Studied today') }}</dt>
+                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['reviewed'] }}</dd>
+                        <p class="mt-1 text-xs text-zinc-500">{{ __('Cards reviewed across your open sessions.') }}</p>
+                    </div>
+
+                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wide text-green-600">{{ __('Correct answers') }}</dt>
+                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['correct'] }}</dd>
+                        <p class="mt-1 text-xs text-zinc-500">{{ __('Well done! These cards are sticking.') }}</p>
+                    </div>
+
+                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wide text-amber-600">{{ __('Needs review') }}</dt>
+                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['incorrect'] }}</dd>
+                        <p class="mt-1 text-xs text-zinc-500">{{ __('We will show these again so you can reinforce them.') }}</p>
+                    </div>
+
+                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                        <dt class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Accuracy') }}</dt>
+                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['accuracy'] }}%</dd>
+                        <p class="mt-1 text-xs text-zinc-500">{{ __('Aim for steady progress—consistency beats perfection.') }}</p>
+                    </div>
+                </div>
+            </section>
+            @endunless
+
             <div @class([
                 'rounded-md border border-zinc-200 bg-white p-6',
                 'mx-auto w-full max-w-3xl shadow-lg' => $focusMode,

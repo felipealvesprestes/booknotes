@@ -276,7 +276,7 @@ class Index extends Component
             'disciplines' => $this->disciplines,
             'progressPercent' => $this->progressPercent,
         ])->layout('layouts.app', [
-            'title' => __('Study'),
+            'title' => __('Flashcards'),
         ]);
     }
 

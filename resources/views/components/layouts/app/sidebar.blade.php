@@ -32,7 +32,8 @@
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Practice')" class="grid">
-                    <flux:navlist.item icon="sparkles" :href="route('study.index')" :current="request()->routeIs('study.*')" wire:navigate>{{ __('Study') }}</flux:navlist.item>
+                    <flux:navlist.item icon="sparkles" :href="route('study.index')" :current="request()->routeIs('study.index')" wire:navigate>{{ __('Flashcards') }}</flux:navlist.item>
+                    <flux:navlist.item icon="bolt" :href="route('study.exercises')" :current="request()->routeIs('study.exercises')" wire:navigate>{{ __('Exercises') }}</flux:navlist.item>
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Activity')" class="grid">

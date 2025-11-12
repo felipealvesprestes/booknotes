@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Study;
 
+use App\Models\Discipline;
 use App\Models\Note;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -40,6 +41,12 @@ class Exercises extends Component
     public function mount(?int $disciplineId = null): void
     {
         $this->disciplineId = $disciplineId;
+        $this->loadExercise();
+    }
+
+    public function updatedDisciplineId(): void
+    {
+        $this->disciplineId = $this->disciplineId ?: null;
         $this->loadExercise();
     }
 
@@ -131,6 +138,9 @@ class Exercises extends Component
         return view('livewire.study.exercises', [
             'flashcardCount' => $this->flashcards->count(),
             'accuracy' => $accuracy,
+            'disciplines' => $this->disciplines,
+        ])->layout('layouts.app', [
+            'title' => __('Exercises'),
         ]);
     }
 
@@ -411,6 +421,13 @@ class Exercises extends Component
             ->where('is_flashcard', true)
             ->when($this->disciplineId, fn ($query) => $query->where('discipline_id', $this->disciplineId))
             ->orderByDesc('updated_at')
+            ->get();
+    }
+
+    public function getDisciplinesProperty(): Collection
+    {
+        return Discipline::query()
+            ->orderBy('title')
             ->get();
     }
 }

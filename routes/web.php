@@ -20,6 +20,7 @@ use App\Livewire\Notebooks\EditNotebook;
 use App\Livewire\Notebooks\Index as NotebookIndex;
 use App\Livewire\Notebooks\ShowNotebook;
 use App\Livewire\Study\Index as StudyIndex;
+use App\Livewire\Study\Exercises as StudyExercises;
 use App\Livewire\Settings\Billing;
 use App\Livewire\Settings\Language;
 use App\Livewire\Settings\Password;
@@ -72,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('notebooks/{notebook}', ShowNotebook::class)->name('notebooks.show');
 
         Route::get('study', StudyIndex::class)->name('study.index');
+        Route::get('study/exercises', StudyExercises::class)->name('study.exercises');
 
         Route::get('disciplines', DisciplineIndex::class)->name('disciplines.index');
         Route::get('disciplines/create', CreateDiscipline::class)->name('disciplines.create');
