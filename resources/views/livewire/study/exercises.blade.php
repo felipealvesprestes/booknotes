@@ -68,83 +68,77 @@
                         <h3 class="text-base font-semibold text-zinc-900">{{ $exercise['question'] }}</h3>
                     </div>
 
-                    @switch($mode)
-                        @case('true_false')
-                            <div class="rounded-md border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700">
-                                {{ $exercise['statement'] }}
-                            </div>
+                    @if ($mode === 'true_false')
+                        <div class="rounded-md border border-zinc-200 bg-white px-4 py-3 text-sm text-zinc-700">
+                            {{ $exercise['statement'] }}
+                        </div>
 
-                            <div class="flex flex-col gap-3 sm:flex-row">
-                                <flux:button
-                                    class="flex-1"
-                                    variant="ghost"
-                                    color="zinc"
-                                    icon="x-mark"
-                                    wire:click="submitTrueFalse(false)"
-                                    :disabled="$answeredCorrectly !== null"
-                                >
-                                    {{ __('False') }}
-                                </flux:button>
+                        <div class="flex flex-col gap-3 sm:flex-row">
+                            <flux:button
+                                class="flex-1"
+                                variant="ghost"
+                                color="zinc"
+                                icon="x-mark"
+                                wire:click="submitTrueFalse(false)"
+                                :disabled="$answeredCorrectly !== null"
+                            >
+                                {{ __('False') }}
+                            </flux:button>
 
-                                <flux:button
-                                    class="flex-1"
-                                    variant="primary"
-                                    icon="check-circle"
-                                    wire:click="submitTrueFalse(true)"
-                                    :disabled="$answeredCorrectly !== null"
-                                >
-                                    {{ __('True') }}
-                                </flux:button>
-                            </div>
-                            @break
+                            <flux:button
+                                class="flex-1"
+                                variant="primary"
+                                icon="check-circle"
+                                wire:click="submitTrueFalse(true)"
+                                :disabled="$answeredCorrectly !== null"
+                            >
+                                {{ __('True') }}
+                            </flux:button>
+                        </div>
+                    @elseif ($mode === 'fill_blank')
+                        <div class="rounded-md border border-zinc-200 bg-white px-4 py-3">
+                            <p class="text-sm text-zinc-700 whitespace-pre-wrap leading-relaxed">@foreach ($exercise['segments'] ?? [] as $segment)@if (($segment['type'] ?? '') === 'blank')<span class="inline-flex items-center justify-center rounded-md border border-dashed border-indigo-200 bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700 mx-1 my-0.5 align-middle">#{{ $segment['label'] }}</span>@else{{ $segment['value'] ?? '' }}@endif@endforeach</p>
+                        </div>
 
-                        @case('fill_blank')
-                            <div class="rounded-md border border-zinc-200 bg-white px-4 py-3">
-                                <p class="text-sm text-zinc-700 whitespace-pre-wrap leading-relaxed">@foreach ($exercise['segments'] ?? [] as $segment)@if (($segment['type'] ?? '') === 'blank')<span class="inline-flex items-center justify-center rounded-md border border-dashed border-indigo-200 bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700 mx-1 my-0.5 align-middle">#{{ $segment['label'] }}</span>@else{{ $segment['value'] ?? '' }}@endif@endforeach</p>
-                            </div>
-
-                            <form wire:submit.prevent="submitFillBlank" class="space-y-4">
-                                <div class="grid gap-3 sm:grid-cols-2">
-                                    @foreach ($exercise['blanks'] ?? [] as $blank)
-                                        <label class="flex flex-col gap-1 text-xs font-medium text-zinc-500">
-                                            <span>{{ $blank['label'] }}</span>
-                                            <input
-                                                type="text"
-                                                wire:model.defer="fillGuesses.{{ $blank['index'] }}"
-                                                class="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                                                placeholder="{{ __('Type the missing word') }}"
-                                                @disabled($answeredCorrectly !== null)
-                                            >
-                                        </label>
-                                    @endforeach
-                                </div>
-
-                                <flux:button
-                                    type="submit"
-                                    variant="primary"
-                                    icon="sparkles"
-                                    :disabled="$answeredCorrectly !== null"
-                                >
-                                    {{ __('Check answer') }}
-                                </flux:button>
-                            </form>
-                            @break
-
-                        @case('multiple_choice')
-                            <div class="grid gap-2">
-                                @foreach ($exercise['options'] as $option)
-                                    <button
-                                        type="button"
-                                        wire:click="submitMultipleChoice('{{ $option['key'] }}')"
-                                        class="flex items-start gap-3 rounded-md border border-zinc-200 bg-white px-4 py-3 text-left text-sm text-zinc-700 transition hover:border-indigo-200 hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500 {{ $answeredCorrectly !== null ? 'pointer-events-none opacity-60' : '' }}"
-                                    >
-                                        <span class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ $option['key'] }}</span>
-                                        <span class="flex-1">{{ $option['text'] }}</span>
-                                    </button>
+                        <form wire:submit.prevent="submitFillBlank" class="space-y-4">
+                            <div class="grid gap-3 sm:grid-cols-2">
+                                @foreach ($exercise['blanks'] ?? [] as $blank)
+                                    <label class="flex flex-col gap-1 text-xs font-medium text-zinc-500">
+                                        <span>{{ $blank['label'] }}</span>
+                                        <input
+                                            type="text"
+                                            wire:model.defer="fillGuesses.{{ $blank['index'] }}"
+                                            class="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                            placeholder="{{ __('Type the missing word') }}"
+                                            @disabled="$answeredCorrectly !== null"
+                                        >
+                                    </label>
                                 @endforeach
                             </div>
-                            @break
-                    @endswitch
+
+                            <flux:button
+                                type="submit"
+                                variant="primary"
+                                icon="sparkles"
+                                :disabled="$answeredCorrectly !== null"
+                            >
+                                {{ __('Check answer') }}
+                            </flux:button>
+                        </form>
+                    @elseif ($mode === 'multiple_choice')
+                        <div class="grid gap-2">
+                            @foreach ($exercise['options'] as $option)
+                                <button
+                                    type="button"
+                                    wire:click="submitMultipleChoice('{{ $option['key'] }}')"
+                                    class="flex items-start gap-3 rounded-md border border-zinc-200 bg-white px-4 py-3 text-left text-sm text-zinc-700 transition hover:border-indigo-200 hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-indigo-500 {{ $answeredCorrectly !== null ? 'pointer-events-none opacity-60' : '' }}"
+                                >
+                                    <span class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ $option['key'] }}</span>
+                                    <span class="flex-1">{{ $option['text'] }}</span>
+                                </button>
+                            @endforeach
+                        </div>
+                    @endif
 
                     @if (! is_null($answeredCorrectly))
                         <div class="space-y-3 rounded-md border {{ $answeredCorrectly ? 'border-emerald-200 bg-emerald-50' : 'border-amber-200 bg-amber-50' }} px-4 py-3">
