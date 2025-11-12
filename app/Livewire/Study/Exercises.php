@@ -27,7 +27,7 @@ class Exercises extends Component
         'correct' => 0,
     ];
 
-    public string $fillGuess = '';
+    public array $fillGuesses = [];
 
     public ?string $warningMessage = null;
 
@@ -75,21 +75,35 @@ class Exercises extends Component
             return;
         }
 
-        $expected = Str::lower(trim($this->exercise['missing_word'] ?? ''));
-        $guess = Str::lower(trim($this->fillGuess));
+        $blanks = $this->exercise['blanks'] ?? [];
 
-        if ($expected === '') {
+        if (empty($blanks)) {
             return;
         }
 
-        if ($guess === '') {
-            $this->feedbackTitle = __('Type your guess before checking the answer.');
-            $this->feedbackBody = null;
+        $isCorrect = true;
 
-            return;
+        foreach ($blanks as $index => $blank) {
+            $expected = Str::lower(trim($blank['answer'] ?? ''));
+            $guess = Str::lower(trim($this->fillGuesses[$index] ?? ''));
+
+            if ($expected === '') {
+                continue;
+            }
+
+            if ($guess === '') {
+                $this->feedbackTitle = __('Type your guess before checking the answer.');
+                $this->feedbackBody = null;
+
+                return;
+            }
+
+            if ($guess !== $expected) {
+                $isCorrect = false;
+            }
         }
 
-        $this->registerResult($expected === $guess);
+        $this->registerResult($isCorrect);
     }
 
     public function submitMultipleChoice(string $key): void
@@ -122,7 +136,7 @@ class Exercises extends Component
 
     protected function loadExercise(): void
     {
-        $this->fillGuess = '';
+        $this->fillGuesses = [];
         $this->answeredCorrectly = null;
         $this->feedbackTitle = null;
         $this->feedbackBody = null;
@@ -151,6 +165,13 @@ class Exercises extends Component
         }
 
         $this->exercise = $exercise;
+
+        if ($this->mode === 'fill_blank') {
+            $blankCount = count($exercise['blanks'] ?? []);
+            $this->fillGuesses = $blankCount > 0
+                ? array_fill(0, $blankCount, '')
+                : [];
+        }
     }
 
     protected function registerResult(bool $isCorrect): void
@@ -224,41 +245,76 @@ class Exercises extends Component
             return null;
         }
 
-        $words = collect(preg_split('/\s+/u', $answer, -1, PREG_SPLIT_NO_EMPTY));
+        $tokens = preg_split('/(\b[\p{L}\p{N}]+\b)/u', $answer, -1, PREG_SPLIT_DELIM_CAPTURE);
 
-        if ($words->isEmpty()) {
+        if ($tokens === false || empty($tokens)) {
             return null;
         }
 
-        $candidates = $words->filter(function (string $word) {
-            $clean = preg_replace('/[^\p{L}\p{N}]/u', '', $word);
+        $candidateIndices = [];
 
-            return mb_strlen($clean ?? '') >= 3;
-        });
+        foreach ($tokens as $index => $token) {
+            $clean = preg_replace('/[^\p{L}\p{N}]/u', '', $token ?? '');
 
-        if ($candidates->isEmpty()) {
-            $candidates = $words;
+            if ($clean !== '' && mb_strlen($clean) >= 3) {
+                $candidateIndices[] = $index;
+            }
         }
 
-        $target = $candidates->random();
-        $missing = trim($target, " \t\n\r\0\x0B.,!?;:()[]{}\"'");
-
-        if ($missing === '') {
+        if (count($candidateIndices) < 4) {
             return null;
         }
 
-        $blanked = Str::replaceFirst($target, '_____', $answer);
+        shuffle($candidateIndices);
 
-        if ($blanked === $answer) {
-            $pattern = '/' . preg_quote($missing, '/') . '/iu';
-            $blanked = preg_replace($pattern, '_____', $answer, 1) ?: $answer;
+        $selectedIndices = array_slice($candidateIndices, 0, 4);
+
+        sort($selectedIndices);
+
+        $selectedMap = [];
+        $blanks = [];
+
+        foreach ($selectedIndices as $order => $tokenIndex) {
+            $selectedMap[$tokenIndex] = $order;
+            $blanks[] = [
+                'index' => $order,
+                'answer' => trim($tokens[$tokenIndex]),
+            ];
+        }
+
+        $segments = [];
+
+        foreach ($tokens as $index => $token) {
+            if ($token === null) {
+                continue;
+            }
+
+            if (array_key_exists($index, $selectedMap)) {
+                $segments[] = [
+                    'type' => 'blank',
+                    'index' => $selectedMap[$index],
+                    'label' => $selectedMap[$index] + 1,
+                ];
+            } else {
+                $segments[] = [
+                    'type' => 'text',
+                    'value' => $token,
+                ];
+            }
         }
 
         return [
             'type' => 'fill_blank',
             'question' => $question,
-            'text_with_blank' => $blanked,
-            'missing_word' => $missing,
+            'segments' => $segments,
+            'blanks' => collect($blanks)
+                ->map(fn (array $blank) => [
+                    'index' => $blank['index'],
+                    'label' => __('Blank :number', ['number' => $blank['index'] + 1]),
+                    'answer' => $blank['answer'],
+                ])
+                ->values()
+                ->all(),
             'correct_answer' => $answer,
         ];
     }
@@ -343,7 +399,7 @@ class Exercises extends Component
     protected function warningForMode(string $mode): string
     {
         return match ($mode) {
-            'fill_blank' => __('We could not find a long enough answer to hide a word. Add richer flashcards or try another mode.'),
+            'fill_blank' => __('We could not find at least four meaningful words to hide. Add richer flashcards or try another mode.'),
             'multiple_choice' => __('Add at least four flashcard answers to unlock multiple choice exercises.'),
             default => __('Not enough flashcards to create exercises right now.'),
         };
