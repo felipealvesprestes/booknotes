@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class Index extends Component
+class Flashcards extends Component
 {
     use WithPagination;
 
@@ -267,7 +267,7 @@ class Index extends Component
 
     public function render(): View
     {
-        return view('livewire.study.index', [
+        return view('livewire.study.flashcards', [
             'session' => $this->session,
             'currentCard' => $this->currentCard,
             'todaySummary' => $this->todaySummary,

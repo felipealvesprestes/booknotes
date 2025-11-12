@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\Study\Index as StudyIndex;
+use App\Livewire\Study\Flashcards as StudyFlashcards;
 use App\Models\Discipline;
 use App\Models\FlashcardSession;
 use App\Models\Notebook;
@@ -52,7 +52,7 @@ it('starts a study session and records progress', function (): void {
 
     [$discipline, $notes] = seedDisciplineWithFlashcards($user, 2);
 
-    $component = Livewire::test(StudyIndex::class)
+    $component = Livewire::test(StudyFlashcards::class)
         ->set('disciplineFilter', $discipline->id)
         ->call('startSession')
         ->assertHasNoErrors();
@@ -79,7 +79,7 @@ it('prevents starting a session without flashcards', function (): void {
     $user = User::factory()->create();
     actingAs($user);
 
-    Livewire::test(StudyIndex::class)
+    Livewire::test(StudyFlashcards::class)
         ->call('startSession')
         ->assertHasErrors(['session']);
 
@@ -92,7 +92,7 @@ it('completes a session and stores accuracy', function (): void {
 
     [$discipline] = seedDisciplineWithFlashcards($user, 1);
 
-    $component = Livewire::test(StudyIndex::class)
+    $component = Livewire::test(StudyFlashcards::class)
         ->set('disciplineFilter', $discipline->id)
         ->call('startSession')
         ->assertHasNoErrors();
