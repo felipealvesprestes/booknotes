@@ -13,6 +13,22 @@ use Livewire\Component;
 
 class Overview extends Component
 {
+    /**
+     * Controls whether the profile reminder modal should be visible.
+     */
+    public bool $showProfileCompletionModal = false;
+
+    /**
+     * @var list<string>
+     */
+    public array $missingProfileFields = [];
+
+    public function mount(): void
+    {
+        $this->missingProfileFields = $this->resolveMissingProfileFields();
+        $this->showProfileCompletionModal = $this->missingProfileFields !== [];
+    }
+
     public function render(): View
     {
         $noteStats = Note::query()
@@ -112,5 +128,34 @@ class Overview extends Component
             })
             ->sortByDesc('date')
             ->values();
+    }
+
+    /**
+     * Determine which required profile fields are still missing.
+     *
+     * @return list<string>
+     */
+    protected function resolveMissingProfileFields(): array
+    {
+        $user = auth()->user();
+
+        if (! $user) {
+            return [];
+        }
+
+        $fields = [
+            'cpf' => __('CPF'),
+            'cep' => __('CEP'),
+            'address_street' => __('Street'),
+            'address_number' => __('Number'),
+            'address_neighborhood' => __('Neighborhood'),
+            'address_city' => __('City'),
+            'address_state' => __('State'),
+        ];
+
+        return collect($fields)
+            ->reject(fn (string $label, string $attribute): bool => filled($user->{$attribute}))
+            ->values()
+            ->all();
     }
 }

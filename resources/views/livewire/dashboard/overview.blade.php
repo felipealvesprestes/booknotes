@@ -1,4 +1,57 @@
-<div class="space-y-8">
+<div>
+    <flux:modal
+        name="complete-profile"
+        wire:model="showProfileCompletionModal"
+        class="max-w-lg">
+        <div class="space-y-6">
+            <div class="flex gap-3">
+                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+                    <flux:icon.shield-exclamation class="h-6 w-6" />
+                </div>
+                <div class="flex-1 space-y-1">
+                    <flux:heading size="lg">{{ __('Complete your profile') }}</flux:heading>
+                    <flux:text>
+                        {{ __('We still need a few details to finish your registration. Please keep your billing information up to date.') }}
+                    </flux:text>
+                </div>
+            </div>
+
+            <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                <p class="text-sm font-semibold text-emerald-900">{{ __('Missing information') }}</p>
+
+                @if ($missingProfileFields !== [])
+                    <ul class="mt-3 list-disc space-y-1 ps-4 text-sm text-emerald-900">
+                        @foreach ($missingProfileFields as $fieldLabel)
+                            <li>{{ $fieldLabel }}</li>
+                        @endforeach
+                    </ul>
+                @endif
+
+                <p class="mt-3 text-xs text-emerald-800">
+                    {{ __('This data is required for invoices and receipts, and only needs to be completed once.') }}
+                </p>
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <flux:modal.close>
+                    <flux:button variant="ghost" class="flex-1 sm:flex-none">
+                        {{ __('Remind me later') }}
+                    </flux:button>
+                </flux:modal.close>
+
+                <flux:button
+                    variant="primary"
+                    icon="cog-6-tooth"
+                    :href="route('profile.edit')"
+                    wire:navigate
+                >
+                    {{ __('Update profile') }}
+                </flux:button>
+            </div>
+        </div>
+    </flux:modal>
+
+    <div class="space-y-8">
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
             <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Welcome back') }}</h1>
