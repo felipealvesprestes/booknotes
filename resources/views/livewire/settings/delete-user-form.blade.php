@@ -6,7 +6,7 @@
                     {{ __('Delete account') }}
                 </h2>
                 <p class="mt-1 text-sm text-red-600/80">
-                    {{ __('Delete your account and all of its resources.') }}
+                    {{ __('Delete your account and all of its resources') }}
                 </p>
             </div>
 

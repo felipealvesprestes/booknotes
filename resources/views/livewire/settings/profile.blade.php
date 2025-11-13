@@ -46,10 +46,10 @@
                     class="md:justify-self-end"
                 >
                     <span wire:loading.remove wire:target="lookupCep">
-                        {{ __('Buscar CEP') }}
+                        {{ __('Lookup CEP') }}
                     </span>
                     <span wire:loading wire:target="lookupCep">
-                        {{ __('Buscando...') }}
+                        {{ __('Searching...') }}
                     </span>
                 </flux:button>
             </div>
