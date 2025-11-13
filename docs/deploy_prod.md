@@ -91,10 +91,14 @@ Antes de publicar, garanta que o `.env` de produção contém:
 Essencial após qualquer alteração de código, view, rota ou config.
 
 ```
-php artisan optimize:clear
 php artisan config:cache
 php artisan route:cache
 php artisan view:cache
+php artisan optimize:clear
+php artisan view:clear
+php artisan cache:clear
+php artisan config:clear
+php artisan route:clear
 ```
 
 ---
