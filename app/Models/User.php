@@ -28,6 +28,7 @@ class User extends Authenticatable
         'name',
         'email',
         'cpf',
+        'cep',
         'address_street',
         'address_number',
         'address_neighborhood',

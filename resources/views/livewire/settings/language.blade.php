@@ -12,10 +12,6 @@
         @endif
 
         <form wire:submit="updateLanguage" class="my-6 w-full space-y-6">
-            <flux:text muted>
-                {{ __('Select the language used across Booknotes.') }}
-            </flux:text>
-
             <flux:select
                 wire:model="locale"
                 :label="__('Preferred language')"

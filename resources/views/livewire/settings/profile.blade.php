@@ -27,6 +27,33 @@
                 @endif
             </div>
 
+            <div class="grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
+                <flux:input
+                    wire:model.live="cep"
+                    :label="__('CEP')"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="9"
+                    autocomplete="postal-code"
+                />
+
+                <flux:button
+                    type="button"
+                    variant="ghost"
+                    wire:click="lookupCep"
+                    wire:loading.attr="disabled"
+                    wire:target="lookupCep"
+                    class="md:justify-self-end"
+                >
+                    <span wire:loading.remove wire:target="lookupCep">
+                        {{ __('Buscar CEP') }}
+                    </span>
+                    <span wire:loading wire:target="lookupCep">
+                        {{ __('Buscando...') }}
+                    </span>
+                </flux:button>
+            </div>
+
             <flux:input
                 wire:model="cpf"
                 :label="__('CPF')"
