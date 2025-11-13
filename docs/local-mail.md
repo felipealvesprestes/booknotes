@@ -58,3 +58,25 @@ MAIL_FROM_NAME="Booknotes"
 - O Mailpit armazena tudo em memória; reiniciar o container limpa os e-mails.
 - Para compartilhar um e-mail específico com o time, use o botão **Share** da UI para copiar o link.
 - Antes de subir para produção, lembre-se de trocar as variáveis para o provedor real (Mailgun, SES, etc.).
+
+---
+
+## 6. Produção com Mailgun
+
+No servidor da DigitalOcean, ajuste o `.env` para usar o mailer `mailgun` (já configurado em `config/mail.php`) e defina o DSN:
+
+```
+MAIL_MAILER=mailgun
+MAIL_HOST=null
+MAIL_PORT=null
+MAIL_USERNAME=null
+MAIL_PASSWORD=null
+MAIL_ENCRYPTION=null
+MAILGUN_DSN="mailgun+smtp://booknotes%40booknotes.com.br:Canoas%402025%24@smtp.mailgun.org:587"
+MAIL_FROM_ADDRESS="contato@booknotes.com.br"
+MAIL_FROM_NAME="Booknotes"
+```
+
+> O DSN acima usa o login `booknotes@booknotes.com.br`, senha `Canoas@2025$`, host `smtp.mailgun.org` e porta `587`. Ajuste conforme novas credenciais.
+
+Depois de atualizar, execute `php artisan config:clear && php artisan config:cache` para aplicar.

@@ -36,7 +36,7 @@ git pull origin main   # ou a branch em uso
 ## 🧰 4. Atualizar dependências PHP
 
 ```
-composer install --no-dev --optimize-autoloader
+composer install --no-dev --optimize-autoloader --ignore-platform-req=ext-bcmath
 ```
 
 ---
