@@ -3,5 +3,5 @@
 </div>
 <div class="grid flex-1 text-start leading-tight">
     <span class="mb-0.5 truncate text-sm font-semibold tracking-tight">Booknotes</span>
-    <span class="truncate text-xs text-zinc-500 dark:text-white/60">Your buddy to study</span>
+    <span class="truncate text-xs text-zinc-500 dark:text-white/60">Estudando com eficiência</span>
 </div>
