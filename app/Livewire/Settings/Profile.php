@@ -14,13 +14,36 @@ class Profile extends Component
 
     public string $email = '';
 
+    public string $cpf = '';
+
+    public string $address_street = '';
+
+    public string $address_number = '';
+
+    public string $address_neighborhood = '';
+
+    public string $address_city = '';
+
+    public string $address_state = '';
+
+    public string $address_country = 'Brasil';
+
     /**
      * Mount the component.
      */
     public function mount(): void
     {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
+        $user = Auth::user();
+
+        $this->name = (string) $user->name;
+        $this->email = (string) $user->email;
+        $this->cpf = (string) ($user->cpf ?? '');
+        $this->address_street = (string) ($user->address_street ?? '');
+        $this->address_number = (string) ($user->address_number ?? '');
+        $this->address_neighborhood = (string) ($user->address_neighborhood ?? '');
+        $this->address_city = (string) ($user->address_city ?? '');
+        $this->address_state = (string) ($user->address_state ?? '');
+        $this->address_country = (string) ($user->address_country ?? 'Brasil');
     }
 
     /**
@@ -41,6 +64,13 @@ class Profile extends Component
                 'max:255',
                 Rule::unique(User::class)->ignore($user->id),
             ],
+            'cpf' => ['required', 'string', 'max:14'],
+            'address_street' => ['required', 'string', 'max:255'],
+            'address_number' => ['required', 'string', 'max:20'],
+            'address_neighborhood' => ['required', 'string', 'max:255'],
+            'address_city' => ['required', 'string', 'max:255'],
+            'address_state' => ['required', 'string', 'max:255'],
+            'address_country' => ['required', 'string', 'max:255'],
         ]);
 
         $user->fill($validated);

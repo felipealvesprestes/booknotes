@@ -1,7 +1,7 @@
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <x-settings.layout :heading="__('Profile')" :subheading="__('Update your name and email address')">
+    <x-settings.layout :heading="__('Profile')" :subheading="__('Update your personal information')">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
             <flux:input wire:model="name" :label="__('Name')" type="text" autofocus autocomplete="name" />
 
@@ -25,6 +25,64 @@
                         @endif
                     </div>
                 @endif
+            </div>
+
+            <flux:input
+                wire:model="cpf"
+                :label="__('CPF')"
+                type="text"
+                inputmode="numeric"
+                maxlength="14"
+                autocomplete="off"
+            />
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <flux:input
+                    wire:model="address_street"
+                    :label="__('Street')"
+                    type="text"
+                    autocomplete="street-address"
+                />
+
+                <flux:input
+                    wire:model="address_number"
+                    :label="__('Number')"
+                    type="text"
+                    autocomplete="address-line2"
+                />
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <flux:input
+                    wire:model="address_neighborhood"
+                    :label="__('Neighborhood')"
+                    type="text"
+                    autocomplete="address-level3"
+                />
+
+                <flux:input
+                    wire:model="address_city"
+                    :label="__('City')"
+                    type="text"
+                    autocomplete="address-level2"
+                />
+            </div>
+
+            <div class="grid gap-4 md:grid-cols-2">
+                <flux:input
+                    wire:model="address_state"
+                    :label="__('State')"
+                    type="text"
+                    autocomplete="address-level1"
+                />
+
+                <flux:input
+                    wire:model="address_country"
+                    :label="__('Country')"
+                    type="text"
+                    readonly
+                    autocomplete="country-name"
+                />
             </div>
 
             <div class="flex items-center gap-4">
