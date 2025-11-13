@@ -3,6 +3,7 @@
 namespace App\Livewire\Settings;
 
 use App\Models\User;
+use App\Rules\ValidCpf;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Session;
@@ -40,7 +41,7 @@ class Profile extends Component
 
         $this->name = (string) $user->name;
         $this->email = (string) $user->email;
-        $this->cpf = (string) ($user->cpf ?? '');
+        $this->cpf = $this->formatCpf((string) ($user->cpf ?? ''));
         $this->cep = $this->formatCep((string) ($user->cep ?? ''));
         $this->address_street = (string) ($user->address_street ?? '');
         $this->address_number = (string) ($user->address_number ?? '');
@@ -69,7 +70,7 @@ class Profile extends Component
                 Rule::unique(User::class)->ignore($user->id),
             ],
             'cep' => ['required', 'string', 'regex:/^\d{5}-\d{3}$/'],
-            'cpf' => ['required', 'string', 'max:14'],
+            'cpf' => ['required', 'string', 'max:14', new ValidCpf()],
             'address_street' => ['required', 'string', 'max:255'],
             'address_number' => ['required', 'string', 'max:20'],
             'address_neighborhood' => ['required', 'string', 'max:255'],
@@ -77,6 +78,8 @@ class Profile extends Component
             'address_state' => ['required', 'string', 'max:255'],
             'address_country' => ['required', 'string', 'max:255'],
         ]);
+
+        $validated['cpf'] = $this->normalizeCpf($validated['cpf']);
 
         $user->fill($validated);
 
@@ -92,6 +95,11 @@ class Profile extends Component
     public function updatedCep(?string $value): void
     {
         $this->cep = $this->formatCep($value);
+    }
+
+    public function updatedCpf(?string $value): void
+    {
+        $this->cpf = $this->formatCpf($value);
     }
 
     public function lookupCep(): void
@@ -140,6 +148,35 @@ class Profile extends Component
         $this->address_country = 'Brasil';
 
         $this->cep = $this->formatCep($digits);
+    }
+
+    protected function normalizeCpf(?string $value): string
+    {
+        return substr(preg_replace('/\D/', '', (string) $value), 0, 11);
+    }
+
+    protected function formatCpf(?string $value): string
+    {
+        $digits = $this->normalizeCpf($value);
+        $length = strlen($digits);
+
+        if ($length === 0) {
+            return '';
+        }
+
+        if ($length <= 3) {
+            return $digits;
+        }
+
+        if ($length <= 6) {
+            return substr($digits, 0, 3) . '.' . substr($digits, 3);
+        }
+
+        if ($length <= 9) {
+            return substr($digits, 0, 3) . '.' . substr($digits, 3, 3) . '.' . substr($digits, 6);
+        }
+
+        return substr($digits, 0, 3) . '.' . substr($digits, 3, 3) . '.' . substr($digits, 6, 3) . '-' . substr($digits, 9, 2);
     }
 
     protected function formatCep(?string $value): string

@@ -165,6 +165,7 @@ return [
     'url' => 'O campo :attribute precisa ser uma URL válida.',
     'ulid' => 'O campo :attribute precisa ser um ULID válido.',
     'uuid' => 'O campo :attribute precisa ser um UUID válido.',
+    'invalid_cpf' => 'Informe um CPF válido.',
 
     /*
     |--------------------------------------------------------------------------
