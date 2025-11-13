@@ -73,10 +73,13 @@ MAIL_USERNAME=null
 MAIL_PASSWORD=null
 MAIL_ENCRYPTION=null
 MAILGUN_DSN="mailgun+smtp://booknotes%40booknotes.com.br:Canoas%402025%24@smtp.mailgun.org:587"
+MAILGUN_DOMAIN="booknotes.com.br"
+MAILGUN_SECRET="SUA_API_KEY"   # substitua pela API key real
+MAILGUN_ENDPOINT="api.mailgun.net"
 MAIL_FROM_ADDRESS="contato@booknotes.com.br"
 MAIL_FROM_NAME="Booknotes"
 ```
 
-> O DSN acima usa o login `booknotes@booknotes.com.br`, senha `Canoas@2025$`, host `smtp.mailgun.org` e porta `587`. Ajuste conforme novas credenciais.
+> O DSN acima usa o login SMTP `booknotes@booknotes.com.br`, senha `Canoas@2025$`, host `smtp.mailgun.org` e porta `587`. Para o campo `MAILGUN_SECRET`, utilize a API key real do Mailgun (não o password SMTP).
 
 Depois de atualizar, execute `php artisan config:clear && php artisan config:cache` para aplicar.
