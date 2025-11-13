@@ -104,17 +104,21 @@ $modeOverviewDescriptions = [
                 {{-- FILL BLANK --}}
                 @if ($mode === 'fill_blank')
                 <div class="rounded-md border border-zinc-200 bg-white px-4 py-3">
-                    <p class="text-sm text-zinc-700 whitespace-pre-wrap leading-relaxed">
-                        @foreach ($exercise['segments'] ?? [] as $segment)
-                        @if (($segment['type'] ?? '') === 'blank')
-                        <span class="inline-flex items-center justify-center rounded-md border border-dashed border-indigo-200 bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700 mx-1 my-0.5 align-middle">
-                            #{{ $segment['label'] }}
-                        </span>
-                        @else
-                        {{ $segment['value'] ?? '' }}
-                        @endif
-                        @endforeach
-                    </p>
+                    @php
+                    $formattedSegments = collect($exercise['segments'] ?? [])
+                        ->map(function ($segment) {
+                            if (($segment['type'] ?? '') === 'blank') {
+                                $label = e($segment['label'] ?? '');
+
+                                return '<span class="inline-flex items-center justify-center rounded-md border border-dashed border-indigo-200 bg-indigo-50 px-2 py-0.5 text-xs font-semibold text-indigo-700 mx-1 my-0.5 align-middle">#' . $label . '</span>';
+                            }
+
+                            return e($segment['value'] ?? '');
+                        })
+                        ->implode('');
+                    @endphp
+
+                    <p class="text-sm text-zinc-700 whitespace-pre-wrap leading-relaxed">{!! $formattedSegments !!}</p>
                 </div>
 
                 <form wire:submit.prevent="submitFillBlank" class="space-y-4">
