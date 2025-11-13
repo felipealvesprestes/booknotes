@@ -47,7 +47,11 @@ Route::get('dashboard', DashboardOverview::class)
     ->middleware(['auth', 'verified', 'subscribed'])
     ->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
+Route::view('email/verified', 'livewire.auth.email-verified')
+    ->middleware(['auth', 'verified'])
+    ->name('verification.success');
+
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
     Route::get('settings/profile', Profile::class)->name('profile.edit');

@@ -105,6 +105,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Fortify Redirects
+    |--------------------------------------------------------------------------
+    |
+    | You may customize the URLs Fortify should redirect the user to after
+    | completing specific actions. Any option left as null will fall back
+    | to the Fortify home configuration or Laravel's default behavior.
+    |
+    */
+
+    'redirects' => [
+        'login' => null,
+        'logout' => null,
+        'password-confirmation' => null,
+        'register' => null,
+        'password-reset' => null,
+        'email-verification' => '/email/verified',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Rate Limiting
     |--------------------------------------------------------------------------
     |
