@@ -391,7 +391,7 @@
                     </p>
                 </div>
 
-                <div class="mt-12 grid gap-8 lg:grid-cols-2">
+                <div class="mt-12 grid gap-8 items-start lg:grid-cols-2">
                     <div class="rounded-3xl border border-neutral-200 bg-white/90 p-8 shadow-xl shadow-indigo-100">
                         <p class="text-sm font-semibold text-neutral-500">Inclui acesso completo</p>
                         <div class="mt-3 flex items-baseline gap-2">
@@ -401,20 +401,43 @@
                         <p class="mt-3 text-sm text-neutral-600">
                             14 dias de testes gratuitos · impostos calculados automaticamente · cancelamento a qualquer momento
                         </p>
-                        <div class="mt-8 space-y-2 text-sm text-neutral-600">
-                            <div class="flex items-start gap-3">
-                                <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
-                                <p>Notas, flashcards, exercícios em três modos, biblioteca de PDFs, exportações e dashboard de estudos sem limitações.</p>
-                            </div>
+                        <ul class="mt-8 space-y-3 rounded-2xl bg-neutral-50/80 p-5 text-sm text-neutral-700">
                             <li class="flex items-start gap-3">
-                                <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
-                                <span>Assinatura simples e segura, com cobrança transparente e cancelamento a qualquer momento.</span>
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Modo Múltipla Escolha</p>
+                                    <p>O sistema transforma automaticamente suas notas, flashcards e PDFs em quizzes com alternativas baralhadas e feedback instantâneo para medir retenção rapidamente.</p>
+                                </div>
                             </li>
                             <li class="flex items-start gap-3">
-                                <span class="mt-1 size-2 rounded-full bg-indigo-500"></span>
-                                <span>Atualizações constantes e suporte humano em português sempre que precisar.</span>
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Modo Complete a Lacuna</p>
+                                    <p>A plataforma identifica termos-chave nos seus resumos, gera lacunas automaticamente e oferece dicas para você treinar memorização ativa.</p>
+                                </div>
                             </li>
-                        </div>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Modo Verdadeiro ou Falso</p>
+                                    <p>Receba afirmações criadas automaticamente a partir do seu conteúdo e pratique conceitos em séries focadas, acompanhando métricas para ajustar o cronograma.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Assinatura transparente</p>
+                                    <p>Assinatura simples e segura, com cobrança clara, cancelamento a qualquer momento e 14 dias de testes gratuitos.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Suporte contínuo</p>
+                                    <p>Atualizações constantes e suporte humano em português sempre que precisar.</p>
+                                </div>
+                            </li>
+                        </ul>
                         <div class="mt-8 flex flex-col gap-3 sm:flex-row">
                             @if (Route::has('register'))
                             <a href="{{ route('register') }}" class="inline-flex flex-1 items-center justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500">
@@ -439,6 +462,10 @@
 
                         <p class="mt-3">
                             Organize suas anotações, revise com flashcards, exporte seus resumos em PDF e acompanhe sua evolução de forma prática e sem limitações.
+                        </p>
+
+                        <p class="mt-3">
+                            Converta qualquer conteúdo em exercícios de Múltipla Escolha, Complete a Lacuna e Verdadeiro ou Falso para transformar teoria em prática com feedback imediato.
                         </p>
 
                         <p class="mt-3">
