@@ -213,7 +213,7 @@ return [
         'flashcardQuestion' => 'flashcard question',
         'flashcardAnswer' => 'flashcard answer',
         'cpf' => 'CPF',
-        'cep' => 'CEP',
+        'cep' => 'ZIP Code',
         'address_street' => 'street',
         'address_number' => 'number',
         'address_neighborhood' => 'neighborhood',
