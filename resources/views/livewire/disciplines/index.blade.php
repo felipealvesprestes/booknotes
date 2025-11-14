@@ -79,6 +79,15 @@
                                 <div class="flex justify-end gap-2">
                                     <flux:button
                                         size="xs"
+                                        variant="primary"
+                                        icon="plus"
+                                        :href="route('notes.create', $discipline)"
+                                        wire:navigate
+                                    >
+                                        {{ __('Create note') }}
+                                    </flux:button>
+                                    <flux:button
+                                        size="xs"
                                         variant="ghost"
                                         :href="route('notes.index', $discipline)"
                                         wire:navigate
