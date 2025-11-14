@@ -12,5 +12,5 @@ return [
         ],
     ],
 
-    'default' => env('APP_LOCALE', 'en'),
+    'default' => env('LOCALIZATION_DEFAULT', 'pt_BR'),
 ];

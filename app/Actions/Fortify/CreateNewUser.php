@@ -36,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => $input['password'],
+            'locale' => config('localization.default', 'pt_BR'),
             'trial_starts_at' => now(),
             'trial_ends_at' => now()->addDays($trialDays),
         ]);
