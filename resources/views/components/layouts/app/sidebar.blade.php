@@ -137,6 +137,8 @@
 
         {{ $slot }}
 
+        <x-help.how-it-works-fab />
+
         @fluxScripts
     </body>
 </html>
