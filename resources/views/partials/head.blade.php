@@ -42,8 +42,7 @@
 <link rel="preconnect" href="https://fonts.bunny.net">
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-532Q36MTXB"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6DV39NELX"></script>
 <script>
     window.dataLayer = window.dataLayer || [];
 
@@ -52,7 +51,7 @@
     }
     gtag('js', new Date());
 
-    gtag('config', 'G-532Q36MTXB');
+    gtag('config', 'G-K6DV39NELX');
 </script>
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
