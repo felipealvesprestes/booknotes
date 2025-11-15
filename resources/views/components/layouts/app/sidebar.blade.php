@@ -139,8 +139,6 @@
 
         <x-help.how-it-works-fab />
 
-        <x-toast />
-
         @fluxScripts
     </body>
 </html>

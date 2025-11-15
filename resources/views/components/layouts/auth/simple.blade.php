@@ -55,7 +55,6 @@
         </div>
 
         <x-cookie-consent />
-        <x-toast />
         @fluxScripts
     </body>
 </html>
