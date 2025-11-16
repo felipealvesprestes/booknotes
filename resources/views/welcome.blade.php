@@ -8,7 +8,7 @@
     @php($canonical = url('/'))
     @php($ogTitle = 'Flashcards online, resumos e PDFs em um hub de estudos completo')
     @php($ogDescription = 'Organize, revise e memorize conteúdos com uma plataforma de estudos feita para quem leva o aprendizado a sério.')
-    @php($ogImage = asset('img/share-default.jpg')) {{-- ajusta quando tiver uma imagem bonita --}}
+    @php($ogImage = asset('img/share-default.jpg'))
     @include('partials.head')
 </head>
 
@@ -225,7 +225,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                    <div class="rounded-xl border border-gray-100/10 bg-white/5 p-6 backdrop-blur">
                         <div class="space-y-4 text-sm">
                             <div class="flex items-center justify-between">
                                 <span class="text-neutral-300">Últimas atividades</span>
@@ -254,94 +254,146 @@
             </section>
 
             <section id="features" class="py-24">
-                <div class="mx-auto max-w-5xl text-center">
-                    <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Recursos que impulsionam o seu estudo</h2>
-                    <p class="mt-4 text-lg text-neutral-600">
-                        Construído para quem quer dominar conteúdos complexos, sem perder tempo com ferramentas dispersas.
-                    </p>
-                </div>
-                <div class="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M4.75 5.75h14.5M4.75 18.25h14.5M6.25 5.75v12.5A1.5 1.5 0 0 0 7.75 19.75h8.5a1.5 1.5 0 0 0 1.5-1.5V5.75" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M9.5 9.5h5M9.5 13h5" stroke-linecap="round" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Painel de estudos e métricas</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Veja quantos notebooks, disciplinas, notas e flashcards você possui, acompanhe sessões recentes e monitore a taxa de acertos dos últimos 30 dias no dashboard.
+                <div class="relative overflow-hidden rounded-3xl border border-neutral-100 bg-gradient-to-b from-white via-indigo-50/40 to-white px-8 py-20 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:px-14">
+                    <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-52 max-w-5xl bg-gradient-to-r from-indigo-200/50 via-white to-sky-200/40 blur-[120px]"></div>
+                    <div class="pointer-events-none absolute -bottom-12 -left-16 h-40 w-40 rounded-full bg-gradient-to-br from-sky-200/60 to-purple-200/50 blur-[110px]"></div>
+                    <div class="relative space-y-16">
+                        <div class="mx-auto max-w-3xl space-y-6 text-center">
+                            <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
+                                Recursos exclusivos
+                            </span>
+                            <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+                                Recursos que impulsionam o seu estudo
+                            </h2>
+                            <p class="text-base leading-relaxed text-neutral-600">
+                                Clareza e tempo de qualidade: organize leituras, transforme em flashcards e revise em modos inteligentes com o mesmo fluxo visual limpo em qualquer dispositivo.
                             </p>
                         </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M7.5 7.5h9M7.5 12h6M7.5 16.5h3" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M5 21h14a1 1 0 0 0 1-1V4.914a1 1 0 0 0-.293-.707l-1.914-1.914A1 1 0 0 0 17.086 2H5a1 1 0 0 0-1 1v17a1 1 0 0 0 1 1Z" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
+                        <div class="grid gap-6 lg:grid-cols-2">
+                            <div class="rounded-xl border border-gray-100 bg-white/80 p-6 shadow-sm shadow-indigo-50/40 sm:flex sm:items-center sm:gap-6">
+                                <div class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8 9h8M8 12h5M8 15h3" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <div class="mt-4 sm:mt-0">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">Rotina com contexto</p>
+                                    <p class="mt-2 text-xl font-semibold text-neutral-900">Painel 360º</p>
+                                    <p class="mt-2 text-sm text-neutral-600">Veja hábitos, progresso, taxa de acerto e logs importantes em um dashboard com filtros personalizáveis.</p>
+                                </div>
+                            </div>
+                            <div class="rounded-xl border border-gray-100 bg-white/80 p-6 shadow-sm shadow-purple-50/40 sm:flex sm:items-center sm:gap-6">
+                                <div class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-purple-50 text-purple-600">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="m7 12 3 3 7-7" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <div class="mt-4 sm:mt-0">
+                                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-purple-500">Compartilhe resultados</p>
+                                    <p class="mt-2 text-xl font-semibold text-neutral-900">Exportações premium</p>
+                                    <p class="mt-2 text-sm text-neutral-600">Monte PDFs por disciplina, filtros e envie pacotes completos para mentores, alunos ou equipes.</p>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Notas e flashcards conectados</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Crie notas ricas, associe a disciplinas e transforme em flashcards com um clique para usar filtros, buscas e o hub de estudos com foco.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M15.75 17.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" />
-                                <path d="M15.75 5.25V3M7.5 12H3m5.25-6.75-1.5-1.5m0 13.5 1.5-1.5m12.75-4.5h-4.5" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Hub de PDFs e exportações</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Armazene apostilas e artigos no visualizador de PDFs e gere PDFs unificados de notas ou flashcards com filtros, agrupamentos e layouts configuráveis.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M9 9h6v6H9z" /><path d="M7 7h10v10H7z" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Verdadeiro ou falso</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Gere afirmações combinadas com respostas de outros cards para testar rapidamente se o conceito apresentado corresponde ao conteúdo original.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M5 12h14" stroke-linecap="round" />
-                                <path d="M6 8h6M12 16h6" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Complete as lacunas</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Escondemos até quatro termos relevantes da resposta para você digitar e reforçar vocabulário, fórmulas ou datas críticas de cada flashcard.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-                            <svg class="size-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                <path d="M7 9h10M7 13h10M7 17h6" stroke-linecap="round" stroke-linejoin="round" />
-                                <path d="M5 7h14v12H5z" stroke-linecap="round" stroke-linejoin="round" />
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-lg font-semibold text-neutral-900">Múltipla escolha</h3>
-                            <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
-                            </p>
+                        <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M4.75 5.75h14.5M4.75 18.25h14.5M6.25 5.75v12.5A1.5 1.5 0 0 0 7.75 19.75h8.5a1.5 1.5 0 0 0 1.5-1.5V5.75" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M9.5 9.5h5M9.5 13h5" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Painel de estudos e métricas</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Acompanhe notebooks, disciplinas, notas e flashcards, veja sessões recentes e monitore a taxa de acertos dos últimos 30 dias.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Métricas</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Insights</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M7.5 7.5h9M7.5 12h6M7.5 16.5h3" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M5 21h14a1 1 0 0 0 1-1V4.914a1 1 0 0 0-.293-.707l-1.914-1.914A1 1 0 0 0 17.086 2H5a1 1 0 0 0-1 1v17a1 1 0 0 0 1 1Z" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Notas e flashcards conectados</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Crie notas ricas, vincule a disciplinas e transforme em flashcards com um clique para usar filtros, buscas e o hub de estudos com foco.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Flashcards</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Filtros</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M15.75 17.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" />
+                                        <path d="M15.75 5.25V3M7.5 12H3m5.25-6.75-1.5-1.5m0 13.5 1.5-1.5m12.75-4.5h-4.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Hub de PDFs e exportações</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Guarde apostilas no visualizador de PDFs e gere documentos unificados com filtros, agrupamentos e layouts configuráveis.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">PDFs</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Exportações</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M9 9h6v6H9z" />
+                                        <path d="M7 7h10v10H7z" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Verdadeiro ou falso</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Gere afirmações combinadas com respostas de outros cards para testar rapidamente se o conceito apresentado corresponde ao conteúdo original.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Revisões</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Conceitos</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M5 12h14" stroke-linecap="round" />
+                                        <path d="M6 8h6M12 16h6" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Complete as lacunas</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Escondemos até quatro termos relevantes da resposta para você digitar e reforçar vocabulário, fórmulas ou datas críticas de cada flashcard.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Memória ativa</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Vocabulár</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M7 9h10M7 13h10M7 17h6" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M5 7h14v12H5z" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Múltipla escolha</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Quizzes</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Pegadinhas</span>
+                                </div>
+                            </article>
                         </div>
                     </div>
                 </div>
