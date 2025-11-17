@@ -42,6 +42,43 @@ it('creates a discipline linked to a notebook and logs the action', function ():
     expect($log?->context['notebook_id'])->toBe($notebook->id);
 });
 
+it('prefills notebook selection when query parameter is provided', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    Notebook::create([
+        'title' => 'Notebook Default',
+        'description' => null,
+    ]);
+
+    $targetNotebook = Notebook::create([
+        'title' => 'Notebook Target',
+        'description' => null,
+    ]);
+
+    Livewire::withQueryParams(['notebook' => $targetNotebook->id])
+        ->test(CreateDiscipline::class)
+        ->assertSet('notebookId', $targetNotebook->id);
+
+    Livewire::withQueryParams([]);
+});
+
+it('ignores notebook query parameter that does not belong to the user', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    $defaultNotebook = Notebook::create([
+        'title' => 'Notebook Default',
+        'description' => null,
+    ]);
+
+    Livewire::withQueryParams(['notebook' => 999])
+        ->test(CreateDiscipline::class)
+        ->assertSet('notebookId', $defaultNotebook->id);
+
+    Livewire::withQueryParams([]);
+});
+
 it('updates a discipline and stores the change in logs', function (): void {
     $user = User::factory()->create();
     actingAs($user);

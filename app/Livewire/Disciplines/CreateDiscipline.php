@@ -19,7 +19,16 @@ class CreateDiscipline extends Component
 
     public function mount(): void
     {
-        $this->notebookId = auth()->user()->notebooks()->value('id');
+        $userNotebooksQuery = Notebook::query()->where('user_id', auth()->id());
+        $preferredNotebookId = request()->integer('notebook');
+
+        if ($preferredNotebookId && (clone $userNotebooksQuery)->whereKey($preferredNotebookId)->exists()) {
+            $this->notebookId = $preferredNotebookId;
+
+            return;
+        }
+
+        $this->notebookId = $userNotebooksQuery->value('id');
     }
 
     public function save(): void

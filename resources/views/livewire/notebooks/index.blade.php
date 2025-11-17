@@ -70,6 +70,14 @@
                         <div class="flex justify-end gap-2">
                             <flux:button
                                 size="xs"
+                                variant="primary"
+                                icon="plus"
+                                :href="route('disciplines.create', ['notebook' => $notebook->id])"
+                                wire:navigate>
+                                {{ __('Create discipline') }}
+                            </flux:button>
+                            <flux:button
+                                size="xs"
                                 variant="ghost"
                                 :href="route('notebooks.show', $notebook)"
                                 wire:navigate>
