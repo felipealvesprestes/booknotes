@@ -95,6 +95,7 @@
 
             <flux:dropdown position="top" align="end">
                 <flux:profile
+                    class="border border-zinc-200 bg-white/95 py-1 gap-1.5 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40"
                     :initials="auth()->user()->initials()"
                     icon-trailing="chevron-down"
                 />
