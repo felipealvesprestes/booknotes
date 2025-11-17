@@ -217,7 +217,10 @@
                 </div>
 
                 @if ($notesByDiscipline->isNotEmpty())
-                <div class="mt-6 overflow-hidden rounded-md border border-zinc-200">
+                <p class="sm:hidden mb-2 mt-6 text-xs text-zinc-600 bg-zinc-50 border border-dashed border-zinc-200 rounded-md px-3 py-2">
+                    {{ __('Swipe sideways to reveal all options.') }}
+                </p>
+                <div class="overflow-x-auto rounded-md border border-zinc-200 mt-4 sm:mt-6">
                     <table class="min-w-full divide-y divide-zinc-200 text-sm text-zinc-700">
                         <thead class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
                             <tr>

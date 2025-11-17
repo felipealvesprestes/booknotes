@@ -44,7 +44,10 @@
         </flux:button>
     </div>
     @else
-    <div class="overflow-hidden rounded-md border border-zinc-200 bg-white w-full">
+    <p class="sm:hidden mb-2 text-xs text-zinc-600 bg-zinc-50 border border-dashed border-zinc-200 rounded-md px-3 py-2">
+        {{ __('Swipe sideways to reveal all options.') }}
+    </p>
+    <div class="overflow-x-auto rounded-md border border-zinc-200 bg-white w-full">
         <table class="min-w-full w-full divide-y divide-zinc-200">
             <thead class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
                 <tr>

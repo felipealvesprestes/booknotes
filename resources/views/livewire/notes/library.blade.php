@@ -77,7 +77,10 @@
             </flux:button>
         </div>
     @else
-        <div class="overflow-hidden rounded-md border border-zinc-200 bg-white" id="notes-library-list">
+        <p class="sm:hidden mb-2 text-xs text-zinc-600 bg-zinc-50 border border-dashed border-zinc-200 rounded-md px-3 py-2">
+            {{ __('Swipe sideways to reveal all options.') }}
+        </p>
+        <div class="overflow-x-auto rounded-md border border-zinc-200 bg-white" id="notes-library-list">
             <div class="flex flex-wrap items-center justify-between gap-3 border-b border-zinc-200 bg-zinc-50 px-4 py-3">
                 <span class="text-xs font-medium text-zinc-500">
                     {{ $notes->total() }} {{ __('notes') }}
