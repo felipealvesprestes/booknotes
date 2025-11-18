@@ -32,7 +32,6 @@ class Library extends Component
     protected $queryString = [
         'search' => ['except' => ''],
         'perPage' => ['except' => 10],
-        'selectedPdfId' => ['except' => null],
     ];
 
     protected $rules = [
@@ -126,7 +125,6 @@ class Library extends Component
         $pdf = PdfDocument::findOrFail($pdfId);
 
         Storage::disk('local')->delete($pdf->path);
-
         $pdf->delete();
 
         Log::create([
@@ -137,20 +135,12 @@ class Library extends Component
             ],
         ]);
 
-        $currentPagePdfs = $this->pdfs;
-        $currentItems = collect($currentPagePdfs->items());
-
-        if ($this->getPage() > 1 && $currentItems->isEmpty()) {
-            $this->previousPage();
-            $currentPagePdfs = $this->pdfs;
-            $currentItems = collect($currentPagePdfs->items());
-        }
-
-        if ($this->selectedPdfId === $pdfId) {
-            $this->selectedPdfId = $currentItems->first()?->id;
-        }
+        $this->selectedPdfId = null;
+        $this->resetPage();
 
         session()->flash('status', __('PDF deleted successfully.'));
+
+        $this->redirectRoute('pdfs.index', navigate: true);
     }
 
     public function getPdfsProperty()
@@ -170,23 +160,18 @@ class Library extends Component
 
     public function getSelectedPdfProperty(): ?PdfDocument
     {
-        if ($this->selectedPdfId) {
-            $pdf = PdfDocument::find($this->selectedPdfId);
+        if (! $this->selectedPdfId) {
+            return null;
+        }
 
-            if ($pdf) {
-                return $pdf;
-            }
+        $pdf = PdfDocument::find($this->selectedPdfId);
 
+        if (! $pdf) {
             $this->selectedPdfId = null;
+            return null;
         }
 
-        $firstVisible = collect($this->pdfs->items())->first();
-
-        if ($firstVisible && ! $this->selectedPdfId) {
-            $this->selectedPdfId = $firstVisible->id;
-        }
-
-        return $firstVisible;
+        return $pdf;
     }
 
     public function render(): View

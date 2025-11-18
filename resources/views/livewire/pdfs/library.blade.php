@@ -208,7 +208,7 @@
             </div>
         </div>
 
-        <div class="rounded-md border border-zinc-200 bg-white p-6">
+        <div  class="rounded-md border border-zinc-200 bg-white p-6" wire:key="pdf-reader-container-{{ $selectedPdf?->id ?? 'none' }}">
             @if ($selectedPdf)
                 <div class="space-y-4">
                     <div>
