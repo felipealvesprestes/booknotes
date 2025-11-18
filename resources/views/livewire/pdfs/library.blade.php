@@ -111,7 +111,7 @@
                         </label>
                     </div>
                     <span class="text-xs font-medium text-zinc-500">
-                        {{ trans_choice('{0}No PDFs yet|{1}1 PDF|[2,*]:count PDFs', $pdfs->total(), ['count' => $pdfs->total()]) }}
+                        {{ trans_choice('pdfs.library.total', $pdfs->total(), ['count' => $pdfs->total()]) }}
                     </span>
                     <p class="text-xs text-zinc-500">
                         {{ __('Click any PDF to preview it instantly in the reader below.') }}

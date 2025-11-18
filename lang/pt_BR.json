@@ -145,6 +145,7 @@
     "Disciplines": "Disciplinas",
     "Disciplines overview": "Visão geral das disciplinas",
     "Document library": "Biblioteca de documentos",
+    "pdfs.library.total": "{0}Nenhum PDF ainda|{1}1 PDF|[2,*]:count PDFs",
     "Documentation": "Documentação",
     "Don't have an account?": "Não tem uma conta?",
     "Download": "Download",
