@@ -16,33 +16,33 @@ class Library extends Component
     use WithPagination;
 
     public string $search = '';
-
     public int $perPage = 10;
-
     public ?int $selectedPdfId = null;
 
     public $upload = null;
-
     public string $title = '';
-
     public bool $showUploadSuccess = false;
 
     protected array $perPageOptions = [10, 25, 50];
 
     protected $queryString = [
-        'search' => ['except' => ''],
+        'search'  => ['except' => ''],
         'perPage' => ['except' => 10],
     ];
 
     protected $rules = [
-        'title' => ['nullable', 'string', 'max:255'],
+        'title'  => ['nullable', 'string', 'max:255'],
         'upload' => ['nullable', 'file', 'mimes:pdf', 'max:20480'], // 20MB
     ];
 
     public function mount(): void
     {
         if (! $this->selectedPdfId) {
-            $this->selectedPdfId = auth()->user()?->pdfDocuments()->latest('last_opened_at')->latest()->value('id');
+            $this->selectedPdfId = auth()->user()
+                ?->pdfDocuments()
+                ->latest('last_opened_at')
+                ->latest()
+                ->value('id');
         }
     }
 
@@ -77,7 +77,7 @@ class Library extends Component
     public function save(): void
     {
         $this->validate([
-            'title' => ['nullable', 'string', 'max:255'],
+            'title'  => ['nullable', 'string', 'max:255'],
             'upload' => ['required', 'file', 'mimes:pdf', 'max:20480'],
         ]);
 
@@ -86,6 +86,7 @@ class Library extends Component
         $storedPath = $file->store('pdfs/' . auth()->id(), 'local');
 
         $pdfDocument = PdfDocument::create([
+            'user_id' => auth()->id(),
             'title' => $this->title ?: pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME),
             'original_name' => $file->getClientOriginalName(),
             'path' => $storedPath,
@@ -94,10 +95,10 @@ class Library extends Component
         ]);
 
         Log::create([
-            'action' => 'pdf.uploaded',
+            'action'  => 'pdf.uploaded',
             'context' => [
                 'pdf_id' => $pdfDocument->id,
-                'title' => $pdfDocument->title,
+                'title'  => $pdfDocument->title,
             ],
         ]);
 
@@ -111,7 +112,8 @@ class Library extends Component
 
     public function selectPdf(int $pdfId): void
     {
-        $pdf = PdfDocument::findOrFail($pdfId);
+        $pdf = PdfDocument::where('user_id', auth()->id())
+            ->findOrFail($pdfId);
 
         PdfDocument::withoutTimestamps(function () use ($pdf): void {
             $pdf->forceFill(['last_opened_at' => now()])->save();
@@ -122,30 +124,33 @@ class Library extends Component
 
     public function deletePdf(int $pdfId): void
     {
-        $pdf = PdfDocument::findOrFail($pdfId);
+        $pdf = PdfDocument::where('user_id', auth()->id())
+            ->findOrFail($pdfId);
 
         Storage::disk('local')->delete($pdf->path);
         $pdf->delete();
 
         Log::create([
-            'action' => 'pdf.deleted',
+            'action'  => 'pdf.deleted',
             'context' => [
                 'pdf_id' => $pdfId,
-                'title' => $pdf->title,
+                'title'  => $pdf->title,
             ],
         ]);
 
-        $this->selectedPdfId = null;
+        if ($this->selectedPdfId === $pdfId) {
+            $this->selectedPdfId = null;
+        }
+
         $this->resetPage();
 
         session()->flash('status', __('PDF deleted successfully.'));
-
-        $this->redirectRoute('pdfs.index', navigate: true);
     }
 
-    public function getPdfsProperty()
+    public function render(): View
     {
-        return PdfDocument::query()
+        $pdfs = PdfDocument::query()
+            ->where('user_id', auth()->id())
             ->latest('last_opened_at')
             ->latest()
             ->when($this->search, function ($query) {
@@ -156,29 +161,31 @@ class Library extends Component
                 });
             })
             ->paginate($this->perPage);
-    }
 
-    public function getSelectedPdfProperty(): ?PdfDocument
-    {
-        if (! $this->selectedPdfId) {
-            return null;
+        $selectedPdf = null;
+
+        if ($this->selectedPdfId) {
+            $selectedPdf = PdfDocument::where('user_id', auth()->id())
+                ->find($this->selectedPdfId);
+
+            if (! $selectedPdf) {
+                $this->selectedPdfId = null;
+            }
         }
 
-        $pdf = PdfDocument::find($this->selectedPdfId);
+        if (! $selectedPdf && $pdfs->isNotEmpty()) {
+            $selectedPdf = $pdfs->first();
+            $this->selectedPdfId = $selectedPdf->id;
+        }
 
-        if (! $pdf) {
+        if ($pdfs->isEmpty()) {
+            $selectedPdf = null;
             $this->selectedPdfId = null;
-            return null;
         }
 
-        return $pdf;
-    }
-
-    public function render(): View
-    {
         return view('livewire.pdfs.library', [
-            'pdfs' => $this->pdfs,
-            'selectedPdf' => $this->selectedPdf,
+            'pdfs'           => $pdfs,
+            'selectedPdf'    => $selectedPdf,
             'perPageOptions' => $this->perPageOptions,
         ])->layout('layouts.app', [
             'title' => __('Document library'),

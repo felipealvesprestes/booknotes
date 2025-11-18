@@ -124,7 +124,7 @@
                         <p>{{ __('Your uploads will appear here once you add them.') }}</p>
                     </div>
                 @else
-                    <ul class="divide-y divide-zinc-100">
+                    <ul class="divide-y divide-zinc-100" wire:key="pdf-list-{{ $pdfs->total() }}-{{ $pdfs->currentPage() }}">
                         @foreach ($pdfs as $pdf)
                             <li
                                 wire:key="pdf-{{ $pdf->id }}"
