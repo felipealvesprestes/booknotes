@@ -217,7 +217,8 @@
                         <thead class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
                             <tr>
                                 <th scope="col" class="px-4 py-3">{{ __('Discipline') }}</th>
-                                <th scope="col" class="px-4 py-3">{{ __('Notes dashboard') }}</th>
+                                <th scope="col" class="px-4 py-3 sm:hidden">{{ __('Notes dashboard') }}</th>
+                                <th scope="col" class="px-4 py-3 hidden sm:table-cell">{{ __('Notes') }}</th>
                                 <th scope="col" class="px-4 py-3">{{ __('Flashcards') }}</th>
                             </tr>
                         </thead>
