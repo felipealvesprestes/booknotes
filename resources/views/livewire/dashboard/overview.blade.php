@@ -63,14 +63,6 @@
         <div class="flex flex-wrap items-center gap-3">
             <flux:button
                 variant="primary"
-                icon="book-open"
-                :href="route('notes.library')"
-                wire:navigate>
-                {{ __('Browse all notes') }}
-            </flux:button>
-
-            <flux:button
-                variant="ghost"
                 icon="plus"
                 :href="route('notebooks.create')"
                 wire:navigate>
@@ -86,7 +78,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Notebooks') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($metrics['notebooks']) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-indigo-50 p-2 text-indigo-600">
                     <flux:icon.book-open class="h-5 w-5" />
                 </span>
             </div>
@@ -101,7 +93,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Disciplines') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($metrics['disciplines']) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-sky-50 p-2 text-sky-600">
                     <flux:icon.layout-grid class="h-5 w-5" />
                 </span>
             </div>
@@ -116,7 +108,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Notes') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($metrics['notes']) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-amber-50 p-2 text-amber-600">
                     <flux:icon.book-open-text class="h-5 w-5" />
                 </span>
             </div>
@@ -131,7 +123,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Flashcards') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($metrics['flashcards']) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-violet-50 p-2 text-violet-600">
                     <flux:icon.sparkles class="h-5 w-5" />
                 </span>
             </div>
@@ -146,7 +138,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Active sessions') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($activeSessions) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-cyan-50 p-2 text-cyan-600">
                     <flux:icon.play class="h-5 w-5" />
                 </span>
             </div>
@@ -161,7 +153,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Completed sessions') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($completedSessions) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-emerald-50 p-2 text-emerald-600">
                     <flux:icon.check class="h-5 w-5" />
                 </span>
             </div>
@@ -176,7 +168,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Cards reviewed (30 days)') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($reviewed30d) }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-rose-50 p-2 text-rose-600">
                     <flux:icon.chart-bar class="h-5 w-5" />
                 </span>
             </div>
@@ -191,7 +183,7 @@
                     <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Accuracy (30 days)') }}</dt>
                     <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $reviewed30d > 0 ? $accuracy30d . '%' : __('—') }}</dd>
                 </div>
-                <span class="rounded-md bg-zinc-100 p-2 text-zinc-500">
+                <span class="rounded-md bg-fuchsia-50 p-2 text-fuchsia-600">
                     <flux:icon.chart-bar-square class="h-5 w-5" />
                 </span>
             </div>
