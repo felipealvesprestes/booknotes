@@ -73,13 +73,32 @@ select:focus[data-flux-control] {
 }
 
 @layer components {
-    /* Ensure active sidebar items use the same visual treatment as hover */
     [data-flux-navlist-item][data-current] {
-        @apply !bg-zinc-800/5 !text-zinc-800 !border !border-transparent !shadow-none;
+        position: relative;
+        background: linear-gradient(90deg, #02b680 0%, #00d493 100%) !important;
+        color: #ffffff !important;
+        border: none !important;
+    }
+
+    [data-flux-navlist-item][data-current]::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        opacity: 0.35;
+        pointer-events: none;
     }
 
     .dark [data-flux-navlist-item][data-current] {
-        @apply !bg-white/[7%] !text-white !border !border-transparent !shadow-none;
+        color: #f8fafc !important;
+        background: linear-gradient(120deg, rgba(165, 180, 252, 0.25), rgba(59, 130, 246, 0.12));
+        border-color: rgba(165, 180, 252, 0.45) !important;
+        box-shadow: 0 12px 40px rgba(15, 23, 42, 0.65), 0 10px 30px rgba(79, 70, 229, 0.5);
+    }
+
+    .dark [data-flux-navlist-item][data-current]::after {
+        border-color: rgba(255, 255, 255, 0.12);
     }
 }
 
