@@ -30,11 +30,14 @@ class Flashcards extends Component
 
     public function mount(): void
     {
+        if ($this->attemptLoadRequestedSession()) {
+            return;
+        }
+
         $activeSession = $this->getActiveSession();
 
         if ($activeSession) {
-            $this->sessionId = $activeSession->id;
-            $this->disciplineFilter = $activeSession->discipline_id;
+            $this->setSessionState($activeSession);
         }
     }
 
@@ -45,8 +48,7 @@ class Flashcards extends Component
         $existingSession = $this->getActiveSession($disciplineId);
 
         if ($existingSession) {
-            $this->sessionId = $existingSession->id;
-            $this->showAnswer = false;
+            $this->setSessionState($existingSession);
 
             session()->flash('status', __('Resuming your active study session.'));
 
@@ -86,8 +88,7 @@ class Flashcards extends Component
             'discipline_id' => $disciplineId,
         ]);
 
-        $this->sessionId = $session->id;
-        $this->showAnswer = false;
+        $this->setSessionState($session);
 
         Log::create([
             'action' => 'flashcard.session_started',
@@ -131,9 +132,9 @@ class Flashcards extends Component
             return;
         }
 
-        $this->sessionId = $session->id;
-        $this->disciplineFilter = $session->discipline_id;
-        $this->showAnswer = false;
+        $session->ensureStatusFromProgress();
+
+        $this->setSessionState($session);
 
         session()->flash('status', __('Session loaded.'));
     }
@@ -335,12 +336,21 @@ class Flashcards extends Component
 
     protected function getActiveSession(?int $disciplineId = null): ?FlashcardSession
     {
-        return FlashcardSession::query()
+        $sessions = FlashcardSession::query()
             ->active()
             ->when($disciplineId, fn ($query) => $query->where('discipline_id', $disciplineId))
-            ->whereDate('studied_at', now()->toDateString())
             ->latest('updated_at')
-            ->first();
+            ->get();
+
+        foreach ($sessions as $session) {
+            if ($session->hasRemainingCardsInQueue()) {
+                return $session;
+            }
+
+            $session->ensureStatusFromProgress();
+        }
+
+        return null;
     }
 
     protected function todaySessionsQuery()
@@ -349,5 +359,39 @@ class Flashcards extends Component
             ->with('discipline')
             ->whereDate('studied_at', now()->toDateString())
             ->orderByDesc('studied_at');
+    }
+
+    protected function attemptLoadRequestedSession(): bool
+    {
+        $sessionId = request()->query('session');
+
+        if ($sessionId === null) {
+            return false;
+        }
+
+        $sessionId = filter_var($sessionId, FILTER_VALIDATE_INT, ['options' => ['min_range' => 1]]);
+
+        if ($sessionId === false) {
+            return false;
+        }
+
+        $session = FlashcardSession::query()->find($sessionId);
+
+        if (! $session) {
+            return false;
+        }
+
+        $session->ensureStatusFromProgress();
+
+        $this->setSessionState($session);
+
+        return true;
+    }
+
+    protected function setSessionState(FlashcardSession $session): void
+    {
+        $this->sessionId = $session->id;
+        $this->disciplineFilter = $session->discipline_id;
+        $this->showAnswer = false;
     }
 }

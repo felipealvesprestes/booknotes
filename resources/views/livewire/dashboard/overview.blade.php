@@ -353,6 +353,18 @@
                                 <span class="text-zinc-400">•</span>
                                 <span>{{ $session->studied_at?->diffForHumans() }}</span>
                             </div>
+                            @if (! $isCompleted)
+                            <div class="mt-4">
+                                <flux:button
+                                    size="sm"
+                                    variant="ghost"
+                                    icon="arrow-top-right-on-square"
+                                    :href="route('study.flashcards', ['session' => $session->id])"
+                                    wire:navigate>
+                                    {{ __('Resume') }}
+                                </flux:button>
+                            </div>
+                            @endif
                         </li>
                         @endforeach
                     </ul>

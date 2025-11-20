@@ -113,3 +113,111 @@ it('completes a session and stores accuracy', function (): void {
     expect($session->incorrect_count)->toBe(0);
     expect($session->completed_at)->not->toBeNull();
 });
+
+it('resumes longstanding active sessions instead of creating new ones', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    [$discipline, $notes] = seedDisciplineWithFlashcards($user, 2);
+
+    $session = FlashcardSession::create([
+        'status' => 'active',
+        'total_cards' => $notes->count(),
+        'current_index' => 0,
+        'correct_count' => 0,
+        'incorrect_count' => 0,
+        'accuracy' => 0,
+        'note_ids' => $notes->pluck('id')->all(),
+        'studied_at' => now()->subDays(7),
+        'discipline_id' => $discipline->id,
+    ]);
+
+    Livewire::test(StudyFlashcards::class)
+        ->set('disciplineFilter', $discipline->id)
+        ->call('startSession')
+        ->assertSet('sessionId', $session->id);
+
+    expect(FlashcardSession::count())->toBe(1);
+});
+
+it('loads sessions directly when visiting with the session query parameter', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    [$discipline, $notes] = seedDisciplineWithFlashcards($user, 2);
+
+    $session = FlashcardSession::create([
+        'status' => 'active',
+        'total_cards' => $notes->count(),
+        'current_index' => 0,
+        'correct_count' => 0,
+        'incorrect_count' => 0,
+        'accuracy' => 0,
+        'note_ids' => $notes->pluck('id')->all(),
+        'studied_at' => now()->subDay(),
+        'discipline_id' => $discipline->id,
+    ]);
+
+    Livewire::withQueryParams(['session' => $session->id])
+        ->test(StudyFlashcards::class)
+        ->assertSet('sessionId', $session->id)
+        ->assertSet('disciplineFilter', $discipline->id);
+
+    Livewire::withQueryParams([]);
+});
+
+it('marks finished sessions as completed when loading from the query string', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    [$discipline, $notes] = seedDisciplineWithFlashcards($user, 2);
+
+    $session = FlashcardSession::create([
+        'status' => 'active',
+        'total_cards' => $notes->count(),
+        'current_index' => $notes->count(),
+        'correct_count' => $notes->count(),
+        'incorrect_count' => 0,
+        'accuracy' => 100,
+        'note_ids' => $notes->pluck('id')->all(),
+        'studied_at' => now()->subWeek(),
+        'discipline_id' => $discipline->id,
+    ]);
+
+    Livewire::withQueryParams(['session' => $session->id])
+        ->test(StudyFlashcards::class)
+        ->assertSet('sessionId', $session->id);
+
+    expect($session->fresh()->status)->toBe('completed');
+
+    Livewire::withQueryParams([]);
+});
+
+it('ignores stale sessions without pending cards when starting a new one', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    [$discipline, $notes] = seedDisciplineWithFlashcards($user, 2);
+
+    $staleSession = FlashcardSession::create([
+        'status' => 'active',
+        'total_cards' => $notes->count(),
+        'current_index' => $notes->count(),
+        'correct_count' => $notes->count(),
+        'incorrect_count' => 0,
+        'accuracy' => 100,
+        'note_ids' => $notes->pluck('id')->all(),
+        'studied_at' => now()->subDays(3),
+        'discipline_id' => $discipline->id,
+    ]);
+
+    Livewire::test(StudyFlashcards::class)
+        ->set('disciplineFilter', $discipline->id)
+        ->call('startSession')
+        ->assertHasNoErrors();
+
+    $staleSession->refresh();
+
+    expect($staleSession->status)->toBe('completed');
+    expect(FlashcardSession::query()->where('status', 'active')->count())->toBe(1);
+});

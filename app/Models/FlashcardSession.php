@@ -53,9 +53,7 @@ class FlashcardSession extends Model
 
     public function hasPendingCards(): bool
     {
-        $queueSize = is_array($this->note_ids) ? count($this->note_ids) : 0;
-
-        return $this->status === 'active' && $queueSize > $this->current_index;
+        return $this->status === 'active' && $this->hasRemainingCardsInQueue();
     }
 
     public function currentNoteId(): ?int
@@ -95,5 +93,32 @@ class FlashcardSession extends Model
         }
 
         $this->save();
+    }
+
+    public function queueSize(): int
+    {
+        return is_array($this->note_ids) ? count($this->note_ids) : 0;
+    }
+
+    public function hasRemainingCardsInQueue(): bool
+    {
+        return $this->queueSize() > $this->current_index;
+    }
+
+    public function ensureStatusFromProgress(): bool
+    {
+        if ($this->status !== 'active' || $this->hasRemainingCardsInQueue()) {
+            return false;
+        }
+
+        $this->status = 'completed';
+
+        if (! $this->completed_at) {
+            $this->completed_at = now();
+        }
+
+        $this->save();
+
+        return true;
     }
 }

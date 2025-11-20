@@ -60,6 +60,8 @@ class Overview extends Component
             ->limit(5)
             ->get();
 
+        $recentSessions->each->ensureStatusFromProgress();
+
         $last30DaySessions = FlashcardSession::query()
             ->where('studied_at', '>=', now()->subDays(30))
             ->get();
