@@ -139,30 +139,69 @@
             </div>
         </div>
 
-        <div class="h-full rounded-2xl border border-zinc-200 bg-white p-6">
-            <h3 class="text-lg font-semibold text-zinc-900">{{ __('Quick checklist') }}</h3>
-            <p class="mt-1 text-sm text-zinc-600">
-                {{ __('Use this checklist before leaving the screen to guarantee every action was recorded.') }}
-            </p>
+        <div class="space-y-6">
+            <div class="rounded-2xl border border-zinc-200 bg-white p-6 self-start">
+                <h3 class="text-lg font-semibold text-zinc-900">{{ __('Quick checklist') }}</h3>
+                <p class="mt-1 text-sm text-zinc-600">
+                    {{ __('Use this checklist before leaving the screen to guarantee every action was recorded.') }}
+                </p>
 
-            <ul class="mt-5 space-y-3 text-sm text-zinc-700">
-                <li class="flex items-start gap-3">
-                    <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
-                    <span>{{ __('Did I add notes and mark which ones became flashcards?') }}</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
-                    <span>{{ __('Did I update the correct discipline or should I move this content?') }}</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
-                    <span>{{ __('Did I record important logs for future reference?') }}</span>
-                </li>
-                <li class="flex items-start gap-3">
-                    <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
-                    <span>{{ __('Is there any study session pending to finish?') }}</span>
-                </li>
-            </ul>
+                <ul class="mt-5 space-y-3 text-sm text-zinc-700">
+                    <li class="flex items-start gap-3">
+                        <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
+                        <span>{{ __('Did I add notes and mark which ones became flashcards?') }}</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
+                        <span>{{ __('Did I update the correct discipline or should I move this content?') }}</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
+                        <span>{{ __('Did I record important logs for future reference?') }}</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <flux:icon.check-circle class="mt-0.5 h-4 w-4 text-emerald-500" />
+                        <span>{{ __('Is there any study session pending to finish?') }}</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="rounded-2xl border border-zinc-200 bg-white p-6 self-start">
+                <h3 class="text-lg font-semibold text-zinc-900">{{ __('More help resources') }}</h3>
+                <p class="mt-1 text-sm text-zinc-600">
+                    {{ __('Use these quick references when you need extra help or must document an issue.') }}
+                </p>
+
+                <ul class="mt-5 space-y-4 text-sm text-zinc-700">
+                    <li class="flex items-start gap-3">
+                        <flux:icon.book-open class="mt-0.5 h-4 w-4 text-sky-500" />
+                        <div>
+                            <p class="text-sm font-semibold text-zinc-900">{{ __('Review the guide sections') }}</p>
+                            <p class="text-sm text-zinc-600">
+                                {{ __('Open this help page in another tab and highlight the screen related to your question before contacting support.') }}
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <flux:icon.queue-list class="mt-0.5 h-4 w-4 text-sky-500" />
+                        <div>
+                            <p class="text-sm font-semibold text-zinc-900">{{ __('Confirm data in the activity log') }}</p>
+                            <p class="text-sm text-zinc-600">
+                                {{ __('Filter by notebook, discipline, or action type to confirm the activity before repeating the step.') }}
+                            </p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <flux:icon.chat-bubble-bottom-center-text class="mt-0.5 h-4 w-4 text-sky-500" />
+                        <div>
+                            <p class="text-sm font-semibold text-zinc-900">{{ __('Prepare context for support') }}</p>
+                            <p class="text-sm text-zinc-600">
+                                {{ __('Send screenshots or a short clip with timestamps and notebook names when emailing support.') }}
+                            </p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 

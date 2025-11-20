@@ -26,6 +26,10 @@ class Guide extends Component
                 'title' => __('Study, track, and adjust'),
                 'description' => __('Use the study modes and review the activity log to stay on pace and plan revisions.'),
             ],
+            [
+                'title' => __('Repeat to reinforce'),
+                'description' => __('Repeat the cycle often to adapt plans and keep your study rhythm on track.'),
+            ],
         ];
 
         $featureHighlights = [
