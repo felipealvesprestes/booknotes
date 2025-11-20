@@ -207,7 +207,7 @@
             <flux:button
                 variant="primary"
                 icon="chat-bubble-left-right"
-                href="mailto:suporte@booknotes.app"
+                href="mailto:contato@booknotes.com.br"
             >
                 {{ __('Contact support') }}
             </flux:button>
