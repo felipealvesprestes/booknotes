@@ -39,6 +39,17 @@
                 <flux:navlist.group :heading="__('Activity')" class="grid">
                     <flux:navlist.item icon="queue-list" :href="route('logs.index')" :current="request()->routeIs('logs.*')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
                 </flux:navlist.group>
+
+                <flux:navlist.group :heading="__('Help')" class="grid">
+                    <flux:navlist.item
+                        icon="question-mark-circle"
+                        :href="route('help.guide')"
+                        :current="request()->routeIs('help.guide')"
+                        wire:navigate
+                    >
+                        {{ __('Platform guide') }}
+                    </flux:navlist.item>
+                </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />

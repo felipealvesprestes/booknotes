@@ -26,6 +26,7 @@ use App\Livewire\Settings\Language;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
 use App\Livewire\Settings\TwoFactor;
+use App\Livewire\Help\Guide as HelpGuide;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 use Laravel\Cashier\Http\Controllers\WebhookController;
@@ -58,6 +59,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('settings/language', Language::class)->name('settings.language');
     Route::get('settings/password', Password::class)->name('user-password.edit');
     Route::get('settings/billing', Billing::class)->name('settings.billing');
+    Route::get('help', HelpGuide::class)->name('help.guide');
 
     Route::get('settings/two-factor', TwoFactor::class)
         ->middleware(
