@@ -27,15 +27,6 @@
             </select>
 
             <flux:button
-                variant="ghost"
-                icon="arrow-down-tray"
-                :href="route('notes.export')"
-                wire:navigate
-            >
-                {{ __('PDF exports') }}
-            </flux:button>
-
-            <flux:button
                 variant="primary"
                 icon="plus"
                 :href="route('notes.create', $discipline)"

@@ -34,15 +34,6 @@
                 <option value="flashcards">{{ __('Flashcards only') }}</option>
             </select>
 
-            <flux:button
-                variant="ghost"
-                icon="arrow-down-tray"
-                :href="route('notes.export')"
-                wire:navigate
-            >
-                {{ __('PDF exports') }}
-            </flux:button>
-
             @if ($disciplineFilter)
                 <flux:button
                     variant="primary"
