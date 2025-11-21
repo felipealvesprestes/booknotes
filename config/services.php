@@ -10,6 +10,11 @@ $stripeLifetimeFromEnv = array_filter(array_map(
     explode(',', (string) env('SUBSCRIPTION_LIFETIME_EMAILS', ''))
 ));
 
+$reengagementRecipients = array_values(array_filter(array_map(
+    static fn ($email) => trim($email),
+    explode(',', (string) env('REENGAGEMENT_EMAILS', 'felipealvesprestes@gmail.com'))
+)));
+
 return [
 
     /*
@@ -50,6 +55,12 @@ return [
             'bot_user_oauth_token' => env('SLACK_BOT_USER_OAUTH_TOKEN'),
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
+    ],
+
+    'booknotes' => [
+        'reengagement_emails' => array_values(array_unique($reengagementRecipients)),
+        'booknotes_url' => env('BOOKNOTES_APP_URL', 'https://booknotes.com.br'),
+        'instagram_url' => env('BOOKNOTES_INSTAGRAM_URL', 'https://instagram.com/booknotes.br'),
     ],
 
     'stripe' => [
