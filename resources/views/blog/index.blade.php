@@ -48,43 +48,17 @@
         </header>
 
         <main class="mx-auto max-w-5xl px-6 pb-16">
-            <section class="relative overflow-hidden rounded-3xl border border-neutral-200 bg-white px-6 py-12 sm:px-10" aria-labelledby="blog-hero-title">
+            <section class="relative overflow-hidden rounded-xl border border-neutral-200 bg-white px-6 py-12 sm:px-10" aria-labelledby="blog-hero-title">
                 <div class="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(99,102,241,0.08),transparent_35%),radial-gradient(circle_at_80%_0%,rgba(59,130,246,0.08),transparent_30%)]"></div>
                 <div class="pointer-events-none absolute inset-x-6 -top-6 h-12 bg-gradient-to-b from-neutral-100/90 to-transparent"></div>
 
-                <p class="text-xs font-semibold uppercase tracking-[0.35em] text-indigo-600">Blog do {{ config('app.name') }}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.15em] text-indigo-600">Blog do {{ config('app.name') }}</p>
                 <h1 id="blog-hero-title" class="mt-3 text-3xl font-semibold text-neutral-900 sm:text-4xl">
-                    Novidades do produto, guias de estudo e bastidores
+                    Aprender pode ser mais leve, organizado e eficiente!
                 </h1>
                 <p class="mt-3 max-w-3xl text-base leading-relaxed text-neutral-600 sm:text-lg">
-                    Atualizações rápidas, técnicas práticas para flashcards, PDFs e anotações, e aprendizados reais de quem está construindo o {{ config('app.name') }}.
+                    Tudo sobre técnicas de aprendizagem, recursos do Booknotes e a jornada de quem está reinventando o estudo digital.
                 </p>
-                <div class="mt-4 flex flex-wrap items-center gap-3 text-xs font-semibold uppercase tracking-[0.15em] text-neutral-600">
-                    <span class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-indigo-700">
-                        <svg class="size-3.5 text-current" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M10 2a8 8 0 1 0 7.944 7.027A1 1 0 0 0 16.95 7.95l-3.9-3.9A1 1 0 0 0 12.243 4H10Z" />
-                        </svg>
-                        {{ $posts->total() }} {{ \Illuminate\Support\Str::plural('publicação', $posts->total()) }}
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-neutral-700">
-                        <svg class="size-3.5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M3.25 4.5A1.75 1.75 0 0 1 5 2.75h10A1.75 1.75 0 0 1 16.75 4.5v11a.75.75 0 0 1-1.18.6L10 11.576 4.43 16.1a.75.75 0 0 1-1.18-.6z" clip-rule="evenodd" />
-                        </svg>
-                        Novidades do produto em primeira mão
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-neutral-700">
-                        <svg class="size-3.5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M6 3a2 2 0 0 0-2 2v10.25c0 .69.747 1.12 1.343.776L10 14l4.657 2.026c.596.344 1.343-.086 1.343-.776V5a2 2 0 0 0-2-2z" clip-rule="evenodd" />
-                        </svg>
-                        Playbook para flashcards, notas e PDFs
-                    </span>
-                    <span class="inline-flex items-center gap-2 rounded-full bg-neutral-100 px-3 py-1 text-neutral-700">
-                        <svg class="size-3.5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path d="M3.75 3A.75.75 0 0 0 3 3.75v12.5c0 .414.336.75.75.75H8v-5h4v5h4.25a.75.75 0 0 0 .75-.75V3.75A.75.75 0 0 0 16.25 3z" />
-                        </svg>
-                        Para provas, concursos e certificações
-                    </span>
-                </div>
             </section>
 
             <section class="mt-6 divide-y divide-neutral-200" aria-label="Lista de publicações">
@@ -92,7 +66,7 @@
                     @php($publishedAt = $post->published_at->copy()->locale('pt_BR'))
                     <article class="py-10">
                         <header class="flex flex-col gap-3">
-                            <div class="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-neutral-500">
+                            <div class="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.15em] text-neutral-500">
                                 <time datetime="{{ $post->published_at->toDateString() }}" class="text-indigo-600">
                                     {{ $publishedAt->translatedFormat('d \\d\\e F, Y') }}
                                 </time>
