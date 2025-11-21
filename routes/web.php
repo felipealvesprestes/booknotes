@@ -19,6 +19,7 @@ use App\Livewire\Notebooks\CreateNotebook;
 use App\Livewire\Notebooks\EditNotebook;
 use App\Livewire\Notebooks\Index as NotebookIndex;
 use App\Livewire\Notebooks\ShowNotebook;
+use App\Http\Controllers\BlogController;
 use App\Livewire\Study\Flashcards as StudyFlashcards;
 use App\Livewire\Study\Exercises as StudyExercises;
 use App\Livewire\Settings\Billing;
@@ -43,6 +44,9 @@ Route::view('politica-de-privacidade', 'privacy')->name('privacy');
 
 Route::post('/stripe/webhook', [WebhookController::class, 'handleWebhook'])
     ->name('cashier.webhook');
+
+Route::get('blog', [BlogController::class, 'index'])->name('blog.index');
+Route::get('blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 
 Route::get('dashboard', DashboardOverview::class)
     ->middleware(['auth', 'verified', 'subscribed'])

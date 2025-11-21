@@ -22,6 +22,7 @@
         ['label' => 'Plano', 'href' => '#pricing'],
         ['label' => 'Depoimentos', 'href' => '#testimonials'],
         ['label' => 'Perguntas', 'href' => '#faq'],
+        ['label' => 'Blog', 'href' => route('blog.index')],
         ['label' => 'Privacidade', 'href' => route('privacy')],
         ])
 
