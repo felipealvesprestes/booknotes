@@ -6,7 +6,7 @@
 </head>
 
 <body class="bg-neutral-50 text-neutral-900 antialiased">
-    <div class="bg-white">
+    <div class="flex min-h-screen flex-col bg-white">
         <header class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-6 py-8">
             <div class="flex items-center gap-3">
                 <a href="{{ route('home') }}" class="text-lg font-semibold tracking-tight text-neutral-900" wire:navigate>

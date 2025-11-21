@@ -4,7 +4,7 @@ slug: "o-poder-da-repeticao-no-aprendizado"
 description: "Entenda como a repetição consolida informações na memória de longo prazo e descubra como aplicar essa técnica de forma inteligente nos seus estudos."
 published_at: "2025-11-21"
 tags: ["estudos", "repeticao", "memorizacao", "produtividade", "booknotes"]
-status: "published"
+status: "draft"
 ---
 
 # O poder da repetição no aprendizado: por que revisar transforma a sua memória
