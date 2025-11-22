@@ -150,7 +150,7 @@
             <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Novos módulo de exercícios
+                        Novo módulo de exercícios
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
                         Um só lugar para anotar, revisar, aprender e evoluir
