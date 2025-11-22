@@ -193,7 +193,6 @@
                 font-size: 11.5px;
                 line-height: 1.5;
                 color: #1f2937;
-                white-space: pre-wrap;
             }
 
             .flashcard-block {
