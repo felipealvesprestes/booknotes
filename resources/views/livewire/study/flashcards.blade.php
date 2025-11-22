@@ -158,7 +158,7 @@
                             <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600">{{ __('Answer') }}</p>
 
                             @if ($showAnswer)
-                            <div class="mt-2 text-sm text-zinc-700 whitespace-pre-wrap">
+                            <div class="mt-2 text-sm text-zinc-700 pt-2">
                                 {{ $currentCard->flashcard_answer ?: strip_tags($currentCard->content) }}
                             </div>
                             @else
