@@ -131,7 +131,7 @@ class Index extends Component
     public function getNotesProperty()
     {
         return Note::query()
-            ->with('discipline')
+            ->with(['discipline', 'tags'])
             ->whereBelongsTo($this->discipline)
             ->latest()
             ->when($this->search, fn ($query) => $query->where('title', 'like', '%' . $this->search . '%'))

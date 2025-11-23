@@ -138,7 +138,7 @@ class Library extends Component
     public function getNotesProperty()
     {
         return Note::query()
-            ->with('discipline')
+            ->with(['discipline', 'tags'])
             ->latest()
             ->when($this->search, fn ($query) => $query->where('title', 'like', '%' . $this->search . '%'))
             ->when($this->flashcardFilter !== 'all', function ($query) {

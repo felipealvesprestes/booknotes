@@ -671,5 +671,7 @@
     "Chronological table highlights author and context for each action.": "A tabela cronológica destaca autor e contexto de cada ação.",
     "Quick filters help isolate specific actions like deletions or exports.": "Filtros rápidos ajudam a isolar ações específicas, como deleções ou exportações.",
     "Help": "Ajuda",
-    "Platform guide": "Guia da plataforma"
+    "Platform guide": "Guia da plataforma",
+    "Type tags separated by commas, then press Enter": "Digite tags separadas por vírgula e depois pressione Enter",
+    "Type tags separated by commas and press Enter to create them. Use backspace to edit the input.": "Digite as tags separadas por vírgula e pressione Enter para criar. Use backspace para editar o campo."
 }

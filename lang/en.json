@@ -584,5 +584,7 @@
     "Everything revolves around flashcards": "Everything revolves around flashcards",
     "They power every study mode: flashcards, fill in the blank, multiple choice, and true or false.": "They power every study mode: flashcards, fill in the blank, multiple choice, and true or false.",
     "Not now": "Not now",
-    "Start a notebook": "Start a notebook"
+    "Start a notebook": "Start a notebook",
+    "Type tags separated by commas, then press Enter": "Type tags separated by commas, then press Enter",
+    "Type tags separated by commas and press Enter to create them. Use backspace to edit the input.": "Type tags separated by commas and press Enter to create them. Use backspace to edit the input."
 }

@@ -13,6 +13,15 @@
                 {{ $note->is_flashcard ? __('Flashcard') : __('Note') }}
             </span>
             <span class="text-xs text-zinc-400">{{ __('Last updated: :date', ['date' => $note->updated_at->format('d/m/Y H:i')]) }}</span>
+            @if ($note->tags->isNotEmpty())
+                <div class="flex flex-wrap items-center gap-2">
+                    @foreach ($note->tags as $tag)
+                        <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+                            {{ $tag->name }}
+                        </span>
+                    @endforeach
+                </div>
+            @endif
         </div>
 
         <div class="prose max-w-none text-sm text-zinc-700">

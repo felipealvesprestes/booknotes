@@ -106,6 +106,15 @@
                             <td class="px-4 py-3">
                                 <div class="font-medium text-zinc-900">{{ $note->title }}</div>
                                 <p class="mt-1 text-xs text-zinc-500 line-clamp-2">{{ \Illuminate\Support\Str::limit(strip_tags($note->content), 140) }}</p>
+                                @if ($note->tags->isNotEmpty())
+                                    <div class="mt-2 flex flex-wrap gap-2">
+                                        @foreach ($note->tags as $tag)
+                                            <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[11px] font-medium text-indigo-700">
+                                                {{ $tag->name }}
+                                            </span>
+                                        @endforeach
+                                    </div>
+                                @endif
                             </td>
                             <td class="px-4 py-3 text-sm text-zinc-500">
                                 {{ $note->discipline?->title ?? __('Unknown') }}

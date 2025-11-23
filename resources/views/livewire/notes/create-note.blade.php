@@ -18,6 +18,41 @@
                 />
             </div>
 
+            <div x-data="{}">
+                <label class="block text-sm font-medium text-zinc-700">
+                    {{ __('Tags') }}
+                </label>
+                <p class="mt-1 text-xs text-zinc-500">
+                    {{ __('Type tags separated by commas and press Enter to create them. Use backspace to edit the input.') }}
+                </p>
+                @if (! empty($tags))
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        @foreach ($tags as $tag)
+                            <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+                                {{ $tag }}
+                                <button
+                                    type="button"
+                                    class="text-indigo-500 hover:text-indigo-700"
+                                    wire:click="removeTag(@js($tag))"
+                                    aria-label="{{ __('Remove tag') }}"
+                                >
+                                    ×
+                                </button>
+                            </span>
+                        @endforeach
+                    </div>
+                @endif
+                <div class="mt-2">
+                    <flux:input
+                        wire:model.defer="tagInput"
+                        :placeholder="__('Type tags separated by commas, then press Enter')"
+                        type="text"
+                        x-on:keydown.enter.prevent="$wire.addTagsFromInput($event.target.value)"
+                        x-on:blur="$wire.addTagsFromInput($event.target.value)"
+                    />
+                </div>
+            </div>
+
             <div>
                 <flux:textarea
                     wire:model="content"

@@ -22,7 +22,7 @@ class ShowNote extends Component
         abort_if($note->discipline_id !== $discipline->id, 404);
 
         $this->discipline = $discipline;
-        $this->note = $note;
+        $this->note = $note->load('tags');
     }
 
     public function convertToFlashcard(): void
@@ -47,7 +47,7 @@ class ShowNote extends Component
 
         session()->flash('status', __('Note converted to flashcard.'));
 
-        $this->note->refresh();
+        $this->refreshNote();
     }
 
     public function revertFlashcard(): void
@@ -70,7 +70,7 @@ class ShowNote extends Component
 
         session()->flash('status', __('Note marked as regular note.'));
 
-        $this->note->refresh();
+        $this->refreshNote();
     }
 
     public function delete(): void
@@ -91,6 +91,11 @@ class ShowNote extends Component
         session()->flash('status', __('Note deleted successfully.'));
 
         $this->redirectRoute('notes.index', ['discipline' => $this->discipline->id], navigate: true);
+    }
+
+    protected function refreshNote(): void
+    {
+        $this->note->refresh()->load('tags');
     }
 
     public function render(): View
