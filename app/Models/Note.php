@@ -26,6 +26,39 @@ class Note extends Model
         'is_flashcard' => 'bool',
     ];
 
+    public function getWordCountAttribute(): int
+    {
+        $text = $this->cleanContent();
+
+        if ($text === '') {
+            return 0;
+        }
+
+        return count(preg_split('/\\s+/u', $text, -1, PREG_SPLIT_NO_EMPTY));
+    }
+
+    public function getCharCountAttribute(): int
+    {
+        $text = $this->cleanContent();
+
+        if ($text === '') {
+            return 0;
+        }
+
+        return mb_strlen($text);
+    }
+
+    public function getReadingTimeAttribute(): int
+    {
+        $wordCount = $this->word_count;
+
+        if ($wordCount === 0) {
+            return 0;
+        }
+
+        return max(1, (int) ceil($wordCount / 200));
+    }
+
     public function discipline(): BelongsTo
     {
         return $this->belongsTo(Discipline::class);
@@ -77,5 +110,15 @@ class Note extends Model
         });
 
         $this->tags()->sync($tagIds->all());
+    }
+
+    protected function cleanContent(): string
+    {
+        $content = (string) $this->content;
+        $stripped = strip_tags($content);
+        $decoded = html_entity_decode($stripped, ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $normalizedWhitespace = preg_replace('/\\s+/u', ' ', $decoded);
+
+        return trim($normalizedWhitespace);
     }
 }

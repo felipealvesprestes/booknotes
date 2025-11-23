@@ -104,12 +104,22 @@
                     @foreach ($notes as $note)
                         <tr wire:key="library-note-{{ $note->id }}">
                             <td class="px-4 py-3">
+                                <div class="mt-1 mb-2 flex-wrap items-center gap-3 text-[11px] text-zinc-500 hidden sm:flex">
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <flux:icon.book-open class="h-3.5 w-3.5 text-indigo-500" />
+                                        <span>{{ $note->word_count }} palavras</span>
+                                    </span>
+                                    <span class="inline-flex items-center gap-1.5">
+                                        <flux:icon.clock class="h-3.5 w-3.5 text-sky-500" />
+                                        <span>{{ $note->reading_time }} min</span>
+                                    </span>
+                                </div>
                                 <div class="font-medium text-zinc-900">{{ $note->title }}</div>
-                                <p class="mt-1 text-xs text-zinc-500 line-clamp-2">{{ \Illuminate\Support\Str::limit(strip_tags($note->content), 140) }}</p>
+                                <p class="mt-1 mb-4 text-xs text-zinc-500 line-clamp-2">{{ \Illuminate\Support\Str::limit(strip_tags($note->content), 140) }}</p>
                                 @if ($note->tags->isNotEmpty())
-                                    <div class="mt-2 flex flex-wrap gap-2">
+                                    <div class="mt-2 flex-wrap gap-2 hidden sm:flex">
                                         @foreach ($note->tags as $tag)
-                                            <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[11px] font-medium text-indigo-700">
+                                            <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-[11px] text-indigo-700">
                                                 {{ $tag->name }}
                                             </span>
                                         @endforeach

@@ -9,19 +9,34 @@
 
     <div class="rounded-md border border-zinc-200 bg-white p-6 space-y-4">
         <div class="flex flex-wrap items-center gap-2">
-            <span class="rounded-md bg-indigo-100 px-2 py-1 text-xs font-semibold text-indigo-600">
+            <span class="rounded-md bg-green-100 px-2 py-1 text-xs text-green-600">
                 {{ $note->is_flashcard ? __('Flashcard') : __('Note') }}
             </span>
             <span class="text-xs text-zinc-400">{{ __('Last updated: :date', ['date' => $note->updated_at->format('d/m/Y H:i')]) }}</span>
             @if ($note->tags->isNotEmpty())
                 <div class="flex flex-wrap items-center gap-2">
                     @foreach ($note->tags as $tag)
-                        <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+                        <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs text-indigo-700">
                             {{ $tag->name }}
                         </span>
                     @endforeach
                 </div>
             @endif
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3 text-sm text-zinc-500">
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.book-open class="h-4 w-4 text-indigo-500" />
+                <span>{{ $note->word_count }} palavras</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.pencil-square class="h-4 w-4 text-amber-500" />
+                <span>{{ $note->char_count }} caracteres</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.clock class="h-4 w-4 text-sky-500" />
+                <span>{{ $note->reading_time }} min de leitura</span>
+            </span>
         </div>
 
         <div class="prose max-w-none text-sm text-zinc-700">

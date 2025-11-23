@@ -4,6 +4,20 @@
         <p class="mt-1 text-sm text-zinc-500">
             {{ __('Update the note or adjust flashcard details for :discipline.', ['discipline' => $discipline->title]) }}
         </p>
+        <div class="mt-2 flex flex-wrap items-center gap-3 text-xs text-zinc-500">
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.book-open class="h-3.5 w-3.5 text-indigo-500" />
+                <span>{{ $note->word_count }} palavras</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.pencil-square class="h-3.5 w-3.5 text-amber-500" />
+                <span>{{ $note->char_count }} caracteres</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+                <flux:icon.clock class="h-3.5 w-3.5 text-sky-500" />
+                <span>{{ $note->reading_time }} min de leitura</span>
+            </span>
+        </div>
     </div>
 
     <x-auth-session-status :status="session('status')" class="mb-4" />
@@ -19,6 +33,14 @@
                 />
             </div>
 
+            <div>
+                <flux:textarea
+                    wire:model="content"
+                    :label="__('Content')"
+                    rows="14"
+                />
+            </div>
+
             <div x-data="{}">
                 <label class="block text-sm font-medium text-zinc-700">
                     {{ __('Tags') }}
@@ -26,8 +48,17 @@
                 <p class="mt-1 text-xs text-zinc-500">
                     {{ __('Type tags separated by commas and press Enter to create them. Use backspace to edit the input.') }}
                 </p>
+                <div class="mt-2">
+                    <flux:input
+                        wire:model.defer="tagInput"
+                        :placeholder="__('Type tags separated by commas, then press Enter')"
+                        type="text"
+                        x-on:keydown.enter.prevent="$wire.addTagsFromInput($event.target.value)"
+                        x-on:blur="$wire.addTagsFromInput($event.target.value)"
+                    />
+                </div>
                 @if (! empty($tags))
-                    <div class="mt-2 flex flex-wrap gap-2">
+                    <div class="mt-3 flex flex-wrap gap-2">
                         @foreach ($tags as $tag)
                             <span class="inline-flex items-center gap-1 rounded-full border border-indigo-100 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
                                 {{ $tag }}
@@ -43,23 +74,6 @@
                         @endforeach
                     </div>
                 @endif
-                <div class="mt-2">
-                    <flux:input
-                        wire:model.defer="tagInput"
-                        :placeholder="__('Type tags separated by commas, then press Enter')"
-                        type="text"
-                        x-on:keydown.enter.prevent="$wire.addTagsFromInput($event.target.value)"
-                        x-on:blur="$wire.addTagsFromInput($event.target.value)"
-                    />
-                </div>
-            </div>
-
-            <div>
-                <flux:textarea
-                    wire:model="content"
-                    :label="__('Content')"
-                    rows="14"
-                />
             </div>
 
             <div
