@@ -433,7 +433,11 @@
             </section>
 
             <section id="pricing" class="py-24">
-                @php($monthlyPrice = number_format(config('services.stripe.monthly_amount', 14.90), 2, ',', '.'))
+                @php($originalPriceValue = 29.90)
+                @php($discountedPriceValue = config('services.stripe.monthly_amount', 14.90))
+                @php($originalPrice = number_format($originalPriceValue, 2, ',', '.'))
+                @php($monthlyPrice = number_format($discountedPriceValue, 2, ',', '.'))
+                @php($discountPercent = (int) max(0, min(100, round(100 - ($discountedPriceValue / $originalPriceValue * 100)))))
                 <div class="mx-auto max-w-4xl text-center">
                     <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-600">Plano único</p>
                     <h2 class="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
@@ -445,12 +449,17 @@
                 </div>
 
                 <div class="mt-12 grid gap-8 items-start lg:grid-cols-2">
-                    <div class="rounded-3xl border border-neutral-200 bg-white/90 p-8 shadow-xl shadow-indigo-100">
+                    <div class="relative rounded-3xl border border-neutral-200 bg-white/90 p-8 shadow-xl shadow-indigo-100">
+                        <span class="absolute right-6 top-6 inline-flex items-center rounded-full bg-emerald-600/10 px-4 py-2 text-base font-semibold uppercase tracking-wide text-emerald-700">50% OFF</span>
                         <p class="text-sm font-semibold text-neutral-500">Inclui acesso completo</p>
-                        <div class="mt-3 flex items-baseline gap-2">
-                            <span class="text-4xl font-bold tracking-tight text-neutral-900">R$ {{ $monthlyPrice }}</span>
-                            <span class="text-sm text-neutral-500">/mês</span>
+                        <div class="mt-3 flex flex-wrap items-center gap-2">
+                            <span class="text-sm font-semibold text-neutral-400 line-through">R$ {{ $originalPrice }}</span>
+                            <div class="flex items-baseline gap-2">
+                                <span class="text-4xl font-bold tracking-tight text-neutral-900">R$ {{ $monthlyPrice }}</span>
+                                <span class="text-sm text-neutral-500">/mês</span>
+                            </div>
                         </div>
+                        <p class="mt-2 text-sm font-semibold text-emerald-700">Oferta por tempo limitado!</p>
                         <p class="mt-3 text-sm text-neutral-600">
                             14 dias de testes gratuitos · impostos calculados automaticamente · cancelamento a qualquer momento
                         </p>
