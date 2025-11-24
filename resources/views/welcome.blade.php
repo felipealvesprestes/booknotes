@@ -461,9 +461,23 @@
                         </div>
                         <p class="mt-2 text-sm font-semibold text-emerald-700">Oferta por tempo limitado!</p>
                         <p class="mt-3 text-sm text-neutral-600">
-                            14 dias de testes gratuitos · impostos calculados automaticamente · cancelamento a qualquer momento
+                            <span class="font-bold">14 dias de testes gratuitos</span> · impostos calculados automaticamente · cancelamento a qualquer momento
                         </p>
                         <ul class="mt-8 space-y-3 rounded-2xl bg-neutral-50/80 p-5 text-sm text-neutral-700">
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Notas Rápidas</p>
+                                    <p>Organize seus estudos com anotações rápidas e funcionais. Utilize tags para manter tudo organizado.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Flashcards</p>
+                                    <p>Converta qualquer anotação em flashcards. Utilize suas anotações como flashcardspara criar revisões eficientes em um clique.</p>
+                                </div>
+                            </li>
                             <li class="flex items-start gap-3">
                                 <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
                                 <div>
