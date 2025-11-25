@@ -199,7 +199,7 @@
                 </div>
             </section>
 
-            <section class="mt-20 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">
+            <section class="mt-20 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">  
                 <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                     <div class="space-y-6">
                         <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
@@ -250,6 +250,45 @@
                                 Log completo disponível no painel autenticado
                             </p>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="pt-24">
+                <div class="mx-auto max-w-6xl">
+                    <div class="max-w-3xl mx-auto text-center">
+                        <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
+                            Hub de estudos completo para quem leva o aprendizado a sério
+                        </h2>
+                        <p class="mt-4 text-base leading-relaxed text-neutral-600">
+                            Um pouco da experiência dentro do {{ config('app.name') }} — sem tirar o foco do que importa: estudar com eficiência.
+                        </p>
+                    </div>
+
+                    <div class="mt-12">
+                        <figure class="group rounded-2xl border border-neutral-200 bg-white shadow-[0_18px_60px_rgba(15,23,42,0.06)] overflow-hidden">
+                            <div class="border-b border-neutral-100 bg-neutral-50/80 px-4 py-2 flex items-center gap-2">
+                                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-red-300"></span>
+                                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-amber-300"></span>
+                                <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-300"></span>
+                                <span class="ml-3 text-[11px] font-medium text-neutral-400 truncate">
+                                    Painel de estudos
+                                </span>
+                            </div>
+
+                            <div class="relative bg-neutral-900/5">
+                                <img
+                                    src="{{ asset('img/landing/dashboard-pt.png') }}"
+                                    alt="Painel de estudos do Booknotes com métricas, cadernos e sessões."
+                                    class="w-full h-auto max-md:blur-[1px]"
+                                />
+                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-900/10 via-transparent opacity-0 transition group-hover:opacity-100"></div>
+                            </div>
+
+                            <figcaption class="px-5 py-4 text-xs leading-snug text-neutral-600 border-t border-neutral-100 bg-white/90">
+                                Visão geral com cadernos, disciplinas, cards revisados e últimas sessões de estudo.
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </section>
