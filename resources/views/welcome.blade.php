@@ -413,8 +413,8 @@
                                     Escondemos até quatro termos relevantes da resposta para você digitar e reforçar vocabulário, fórmulas ou datas críticas de cada flashcard.
                                 </p>
                                 <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Memória ativa</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Vocabulár</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Memória</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Vocabulário</span>
                                 </div>
                             </article>
                             <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
@@ -536,7 +536,7 @@
                                 <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
                                 <div>
                                     <p class="font-semibold text-neutral-900">Flashcards</p>
-                                    <p>Converta qualquer anotação em flashcards. Utilize suas anotações como flashcardspara criar revisões eficientes em um clique.</p>
+                                    <p>Converta qualquer anotação em flashcards. Utilize suas anotações como flashcards para criar revisões eficientes em um clique.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
@@ -620,14 +620,14 @@
                 </div>
             </section>
 
-            <section id="testimonials" class="py-24">
+            <section id="testimonials" class="mt-14 pb-24">
                 <div class="mx-auto">
                     <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Quem já está aprendendo com {{ config('app.name') }}</h2>
                     <p class="mt-4 text-lg text-neutral-600">
                         Estudantes, pesquisadores e profissionais já usam a plataforma para transformar leitura em resultados.
                     </p>
 
-                    <div class="mt-16 grid gap-8 sm:grid-cols-3">
+                    <div class="mt-10 grid gap-8 sm:grid-cols-3">
                         <figure class="flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                             <blockquote class="text-sm leading-relaxed text-neutral-700">
                                 "O painel diário mostra quantas cartas revisei e quais disciplinas ficaram para trás. Consigo retomar o estudo exatamente de onde parei."
@@ -666,25 +666,25 @@
                                 Não. {{ config('app.name') }} roda no navegador, funciona bem em qualquer dispositivo e oferece autenticação em duas etapas direto pela web.
                             </dd>
                         </div>
-                        <div class="pt-10">
+                        <div class="pt-8">
                             <dt class="text-base font-semibold text-neutral-900">Como organizo diferentes áreas de estudo?</dt>
                             <dd class="mt-3 text-sm text-neutral-600">
                                 Use notebooks para temas amplos, crie disciplinas para cada prova ou módulo e relacione notas e flashcards. Os contadores e filtros ajudam a achar tudo rapidamente.
                             </dd>
                         </div>
-                        <div class="pt-10">
+                        <div class="pt-8">
                             <dt class="text-base font-semibold text-neutral-900">Consigo estudar com flashcards pelo próprio app?</dt>
                             <dd class="mt-3 text-sm text-neutral-600">
                                 Sim. Marque notas como flashcards, abra o hub de estudos, revele respostas no seu ritmo e registre acertos e erros. Cartas incorretas voltam automaticamente ao final da fila.
                             </dd>
                         </div>
-                        <div class="pt-10">
+                        <div class="pt-8">
                             <dt class="text-base font-semibold text-neutral-900">Minha conta fica protegida?</dt>
                             <dd class="mt-3 text-sm text-neutral-600">
                                 Além das verificações por e-mail, você pode habilitar 2FA, acompanhar cada ação no log de atividades e controlar idioma e senha nas telas de configurações.
                             </dd>
                         </div>
-                        <div class="pt-10" id="lgpd">
+                        <div class="pt-8" id="lgpd">
                             <dt class="text-base font-semibold text-neutral-900">Como o {{ config('app.name') }} trata cookies e dados pessoais?</dt>
                             <dd class="mt-3 text-sm text-neutral-600">
                                 Mantemos apenas cookies essenciais para autenticação e segurança e solicitamos seu consentimento para métricas opcionais, seguindo os princípios de finalidade, necessidade e transparência previstos na LGPD. Saiba mais na nossa
