@@ -199,57 +199,34 @@
                 </div>
             </section>
 
-            <section class="mt-20 overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">  
-                <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
-                    <div class="space-y-6">
-                        <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
-                            Segurança e confiança
-                        </span>
-                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
-                            Controle total sobre dados, acessos e histórico
-                        </h2>
-                        <p class="text-base leading-relaxed text-neutral-300">
-                            Toda atividade do {{ config('app.name') }} é registrada: exclusões, exportações e estudos entram no log com data, horário e dispositivo. Some a isso autenticação em duas etapas e você tem uma plataforma pronta para mentores, equipes e instituições exigentes.
+            <section id="workflow" class="mt-20 overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
+                <div class="mx-auto max-w-4xl text-center">
+                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Do livro ao aprendizado aplicado em três passos</h2>
+                    <p class="mt-4 text-base leading-relaxed text-neutral-300">
+                        Combine leitura ativa, anotações estruturadas e revisão contínua sem precisar alternar entre múltiplas ferramentas.
+                    </p>
+                </div>
+                <div class="mt-16 grid gap-10 sm:grid-cols-3">
+                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
+                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">01</p>
+                        <h3 class="mt-4 text-xl font-semibold">Capture e organize</h3>
+                        <p class="mt-3 text-sm text-neutral-300">
+                            Crie notebooks e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
                         </p>
-                        <ul class="space-y-3 text-sm text-neutral-300">
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
-                                <span>Autenticação 2FA com apps TOTP e recuperação por códigos únicos.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
-                                <span>Log completo de ações, com filtros e identificação do conteúdo impactado.</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
-                                <span>Criptografia em repouso/uso de backups redundantes e monitoramento contínuo.</span>
-                            </li>
-                        </ul>
                     </div>
-                    <div class="rounded-xl border border-gray-100/10 bg-white/5 p-6 backdrop-blur">
-                        <div class="space-y-4 text-sm">
-                            <div class="flex items-center justify-between">
-                                <span class="text-neutral-300">Últimas atividades</span>
-                                <span class="text-xs text-indigo-200">Atualizado agora</span>
-                            </div>
-                            <div class="space-y-3">
-                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                                    <p class="text-white">Exportação PDF — Biologia</p>
-                                    <p class="text-xs text-neutral-300">Hoje, 08:42 · Safari no macOS</p>
-                                </div>
-                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                                    <p class="text-white">Nova sessão de flashcards</p>
-                                    <p class="text-xs text-neutral-300">Ontem, 21:10 · iOS App</p>
-                                </div>
-                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                                    <p class="text-white">2FA verificada</p>
-                                    <p class="text-xs text-neutral-300">Ontem, 18:22 · Chrome no Windows</p>
-                                </div>
-                            </div>
-                            <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">
-                                Log completo disponível no painel autenticado
-                            </p>
-                        </div>
+                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
+                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
+                        <h3 class="mt-4 text-xl font-semibold">Aprenda de forma ativa</h3>
+                        <p class="mt-3 text-sm text-neutral-300">
+                            Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e pratique com exercícios de Verdadeiro ou Falso, Lacunas e Múltipla Escolha com estatísticas instantâneas.
+                        </p>
+                    </div>
+                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
+                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">03</p>
+                        <h3 class="mt-4 text-xl font-semibold">Compartilhe e acompanhe</h3>
+                        <p class="mt-3 text-sm text-neutral-300">
+                            Gere exportações em PDF para mentores ou equipes, consulte o log de atividades e use as métricas para planejar as próximas revisões.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -293,7 +270,29 @@
                 </div>
             </section>
 
-            <section id="features" class="py-24">
+            <section class="mt-10">
+                <div class="relative overflow-hidden rounded-3xl bg-indigo-600 px-8 py-16 text-white sm:px-12">
+                    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)]"></div>
+                    <div class="mx-auto flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
+                        <div>
+                            <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos agora</h2>
+                            <p class="mt-4 text-sm text-indigo-100">
+                                Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos. Sem cartão, sem pegadinha, cancele quando quiser.
+                            </p>
+                        </div>
+
+                        @if (Route::has('register'))
+                        <a
+                            href="{{ route('register') }}"
+                            class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-indigo-600 text-center transition hover:bg-indigo-50">
+                            Criar minha conta gratuita
+                        </a>
+                        @endif
+                    </div>
+                </div>
+            </section>
+
+            <section id="features" class="mt-10 pb-24">
                 <div class="relative overflow-hidden rounded-3xl border border-neutral-100 bg-gradient-to-b from-white via-indigo-50/40 to-white px-8 py-20 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:px-14">
                     <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-52 max-w-5xl bg-gradient-to-r from-indigo-200/50 via-white to-sky-200/40 blur-[120px]"></div>
                     <div class="pointer-events-none absolute -bottom-12 -left-16 h-40 w-40 rounded-full bg-gradient-to-br from-sky-200/60 to-purple-200/50 blur-[110px]"></div>
@@ -439,39 +438,62 @@
                 </div>
             </section>
 
-            <section id="workflow" class="overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
-                <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Do livro ao aprendizado aplicado em três passos</h2>
-                    <p class="mt-4 text-base leading-relaxed text-neutral-300">
-                        Combine leitura ativa, anotações estruturadas e revisão contínua sem precisar alternar entre múltiplas ferramentas.
-                    </p>
-                </div>
-                <div class="mt-16 grid gap-10 sm:grid-cols-3">
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
-                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">01</p>
-                        <h3 class="mt-4 text-xl font-semibold">Capture e organize</h3>
-                        <p class="mt-3 text-sm text-neutral-300">
-                            Crie notebooks e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
+            <section class="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">  
+                <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+                    <div class="space-y-6">
+                        <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
+                            Segurança e confiança
+                        </span>
+                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+                            Controle total sobre dados, acessos e histórico
+                        </h2>
+                        <p class="text-base leading-relaxed text-neutral-300">
+                            Toda atividade do {{ config('app.name') }} é registrada: exclusões, exportações e estudos entram no log com data, horário e dispositivo. Some a isso autenticação em duas etapas e você tem uma plataforma pronta para mentores, equipes e instituições exigentes.
                         </p>
+                        <ul class="space-y-3 text-sm text-neutral-300">
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Autenticação 2FA com apps TOTP e recuperação por códigos únicos.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Log completo de ações, com filtros e identificação do conteúdo impactado.</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 size-2.5 rounded-full bg-indigo-400"></span>
+                                <span>Criptografia em repouso/uso de backups redundantes e monitoramento contínuo.</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
-                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
-                        <h3 class="mt-4 text-xl font-semibold">Aprenda de forma ativa</h3>
-                        <p class="mt-3 text-sm text-neutral-300">
-                            Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e pratique com exercícios de Verdadeiro ou Falso, Lacunas e Múltipla Escolha com estatísticas instantâneas.
-                        </p>
-                    </div>
-                    <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
-                        <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">03</p>
-                        <h3 class="mt-4 text-xl font-semibold">Compartilhe e acompanhe</h3>
-                        <p class="mt-3 text-sm text-neutral-300">
-                            Gere exportações em PDF para mentores ou equipes, consulte o log de atividades e use as métricas para planejar as próximas revisões.
-                        </p>
+                    <div class="rounded-xl border border-gray-100/10 bg-white/5 p-6 backdrop-blur">
+                        <div class="space-y-4 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-neutral-300">Últimas atividades</span>
+                                <span class="text-xs text-indigo-200">Atualizado agora</span>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">Exportação PDF — Biologia</p>
+                                    <p class="text-xs text-neutral-300">Hoje, 08:42 · Safari no macOS</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">Nova sessão de flashcards</p>
+                                    <p class="text-xs text-neutral-300">Ontem, 21:10 · iOS App</p>
+                                </div>
+                                <div class="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+                                    <p class="text-white">2FA verificada</p>
+                                    <p class="text-xs text-neutral-300">Ontem, 18:22 · Chrome no Windows</p>
+                                </div>
+                            </div>
+                            <p class="text-xs uppercase tracking-[0.2em] text-neutral-400">
+                                Log completo disponível no painel autenticado
+                            </p>
+                        </div>
                     </div>
                 </div>
             </section>
 
-            <section id="pricing" class="py-24">
+            <section id="pricing" class="pt-24 pb-10">
                 @php($originalPriceValue = 29.90)
                 @php($discountedPriceValue = config('services.stripe.monthly_amount', 14.90))
                 @php($originalPrice = number_format($originalPriceValue, 2, ',', '.'))
@@ -599,13 +621,13 @@
             </section>
 
             <section id="testimonials" class="py-24">
-                <div class="mx-auto max-w-5xl">
+                <div class="mx-auto">
                     <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Quem já está aprendendo com {{ config('app.name') }}</h2>
                     <p class="mt-4 text-lg text-neutral-600">
                         Estudantes, pesquisadores e profissionais já usam a plataforma para transformar leitura em resultados.
                     </p>
 
-                    <div class="mt-16 grid gap-8 sm:grid-cols-2">
+                    <div class="mt-16 grid gap-8 sm:grid-cols-3">
                         <figure class="flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                             <blockquote class="text-sm leading-relaxed text-neutral-700">
                                 "O painel diário mostra quantas cartas revisei e quais disciplinas ficaram para trás. Consigo retomar o estudo exatamente de onde parei."
@@ -622,12 +644,20 @@
                                 Prof. Thiago Martins — Pesquisa em educação
                             </figcaption>
                         </figure>
+                        <figure class="flex flex-col rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
+                            <blockquote class="text-sm leading-relaxed text-neutral-700">
+                                "As ferramentas de lacunas e múltipla escolha aumentaram muito a retenção do meu time. Agora conseguimos revisar conteúdos complexos de forma prática."
+                            </blockquote>
+                            <figcaption class="mt-6 text-sm font-semibold text-neutral-900">
+                                Marcos Silva — Mentor de equipes de estudo
+                            </figcaption>
+                        </figure>
                     </div>
                 </div>
             </section>
 
             <section id="faq" class="pb-24">
-                <div class="mx-auto max-w-4xl">
+                <div class="mx-auto">
                     <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Perguntas frequentes</h2>
                     <dl class="mt-12 space-y-10 divide-y divide-neutral-200">
                         <div class="pt-0">
@@ -663,28 +693,6 @@
                             </dd>
                         </div>
                     </dl>
-                </div>
-            </section>
-
-            <section class="mb-24">
-                <div class="relative overflow-hidden rounded-3xl bg-indigo-600 px-8 py-16 text-white sm:px-12">
-                    <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)]"></div>
-                    <div class="mx-auto flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
-                        <div>
-                            <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos agora</h2>
-                            <p class="mt-4 text-sm text-indigo-100">
-                                Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos. Sem cartão, sem pegadinha, cancele quando quiser.
-                            </p>
-                        </div>
-
-                        @if (Route::has('register'))
-                        <a
-                            href="{{ route('register') }}"
-                            class="inline-flex items-center justify-center rounded-lg bg-white px-6 py-3 text-base font-semibold text-indigo-600 text-center transition hover:bg-indigo-50">
-                            Criar minha conta gratuita
-                        </a>
-                        @endif
-                    </div>
                 </div>
             </section>
         </main>
