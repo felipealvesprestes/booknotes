@@ -7,7 +7,9 @@ use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Note extends Model
 {
@@ -86,30 +88,39 @@ class Note extends Model
             return;
         }
 
-        $user = Auth::user();
+        $ownerId = $this->getAttribute($this->getUserForeignKey()) ?? Auth::id();
+
+        if (! $ownerId) {
+            $this->tags()->detach();
+
+            return;
+        }
+
+        $lowered = $normalized->map(fn (string $tag) => mb_strtolower($tag));
 
         $existing = Tag::query()
-            ->ownedBy($user)
-            ->whereIn('name', $normalized)
+            ->withoutGlobalScopes()
+            ->where('user_id', $ownerId)
+            ->whereIn(DB::raw('LOWER(name)'), $lowered->all())
             ->get()
             ->keyBy(fn (Tag $tag) => mb_strtolower($tag->name));
 
-        $tagIds = $normalized->map(function (string $tagName) use ($existing, $user): int {
+        $tagIds = [];
+
+        foreach ($normalized as $tagName) {
             $lower = mb_strtolower($tagName);
 
-            if ($existing->has($lower)) {
-                return $existing->get($lower)->id;
+            if (! $existing->has($lower)) {
+                $match = $this->findExistingTagForOwner($ownerId, $tagName, $lower)
+                    ?? $this->createTagForOwner($ownerId, $tagName, $lower);
+
+                $existing->put($lower, $match);
             }
 
-            $created = Tag::create([
-                'name' => $tagName,
-                'user_id' => $user?->id,
-            ]);
+            $tagIds[] = $existing->get($lower)->id;
+        }
 
-            return $created->id;
-        });
-
-        $this->tags()->sync($tagIds->all());
+        $this->tags()->sync($tagIds);
     }
 
     protected function cleanContent(): string
@@ -120,5 +131,47 @@ class Note extends Model
         $normalizedWhitespace = preg_replace('/\\s+/u', ' ', $decoded);
 
         return trim($normalizedWhitespace);
+    }
+
+    protected function findExistingTagForOwner(int $ownerId, string $tagName, string $lower): ?Tag
+    {
+        return Tag::query()
+            ->withoutGlobalScopes()
+            ->where('user_id', $ownerId)
+            ->where(function ($query) use ($tagName, $lower): void {
+                $query->where('name', $tagName)
+                    ->orWhereRaw('LOWER(name) = ?', [$lower]);
+            })
+            ->first();
+    }
+
+    protected function createTagForOwner(int $ownerId, string $tagName, string $lower): Tag
+    {
+        try {
+            return Tag::create([
+                'name' => $tagName,
+                'user_id' => $ownerId,
+            ]);
+        } catch (QueryException $exception) {
+            if (! $this->isDuplicateTagConstraint($exception)) {
+                throw $exception;
+            }
+
+            $existing = $this->findExistingTagForOwner($ownerId, $tagName, $lower);
+
+            if ($existing) {
+                return $existing;
+            }
+
+            throw $exception;
+        }
+    }
+
+    protected function isDuplicateTagConstraint(QueryException $exception): bool
+    {
+        $errorCode = (int) ($exception->errorInfo[1] ?? 0);
+
+        return $errorCode === 1062
+            && str_contains($exception->getMessage(), 'tags_user_id_name_unique');
     }
 }
