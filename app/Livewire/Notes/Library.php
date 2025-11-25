@@ -5,6 +5,7 @@ namespace App\Livewire\Notes;
 use App\Models\Discipline;
 use App\Models\Log;
 use App\Models\Note;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -20,6 +21,8 @@ class Library extends Component
     public $disciplineFilter = null;
 
     public int $perPage = 10;
+
+    public array $selectedTags = [];
 
     protected array $perPageOptions = [10, 30, 50];
 
@@ -135,8 +138,51 @@ class Library extends Component
         session()->flash('status', __('Note marked as regular note.'));
     }
 
+    public function toggleTagFilter(int $tagId): void
+    {
+        $tagId = (int) $tagId;
+
+        if ($tagId <= 0) {
+            return;
+        }
+
+        $current = $this->sanitizedTagFilters();
+
+        if (in_array($tagId, $current, true)) {
+            $current = array_values(array_diff($current, [$tagId]));
+        } else {
+            $current[] = $tagId;
+        }
+
+        $this->selectedTags = $current;
+
+        $this->resetPage();
+    }
+
+    public function clearTagFilter(): void
+    {
+        if (empty($this->selectedTags)) {
+            return;
+        }
+
+        $this->selectedTags = [];
+        $this->resetPage();
+    }
+
+    protected function sanitizedTagFilters(): array
+    {
+        return collect($this->selectedTags ?? [])
+            ->map(fn ($id) => (int) $id)
+            ->filter(fn ($id) => $id > 0)
+            ->unique()
+            ->values()
+            ->all();
+    }
+
     public function getNotesProperty()
     {
+        $tagIds = $this->sanitizedTagFilters();
+
         return Note::query()
             ->with(['discipline', 'tags'])
             ->latest()
@@ -149,6 +195,10 @@ class Library extends Component
                 }
             })
             ->when($this->disciplineFilter, fn ($query) => $query->where('discipline_id', $this->disciplineFilter))
+            ->when(! empty($tagIds), fn ($query) => $query->whereHas(
+                'tags',
+                fn ($tagQuery) => $tagQuery->whereIn('tags.id', $tagIds)
+            ))
             ->paginate($this->perPage);
     }
 
@@ -159,10 +209,17 @@ class Library extends Component
             ->select('id', 'title')
             ->get();
 
+        $availableTags = Tag::query()
+            ->select('id', 'name')
+            ->whereHas('notes')
+            ->orderBy('name')
+            ->get();
+
         return view('livewire.notes.library', [
             'notes' => $this->notes,
             'disciplines' => $disciplines,
             'perPageOptions' => $this->perPageOptions,
+            'availableTags' => $availableTags,
         ])->layout('layouts.app', [
             'title' => __('All notes'),
         ]);

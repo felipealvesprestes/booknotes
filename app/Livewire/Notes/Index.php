@@ -5,6 +5,7 @@ namespace App\Livewire\Notes;
 use App\Models\Discipline;
 use App\Models\Log;
 use App\Models\Note;
+use App\Models\Tag;
 use Illuminate\Contracts\View\View;
 use Livewire\Attributes\Locked;
 use Livewire\Component;
@@ -22,6 +23,8 @@ class Index extends Component
     public string $flashcardFilter = 'all';
 
     public int $perPage = 10;
+
+    public array $selectedTags = [];
 
     protected array $perPageOptions = [10, 30, 50];
 
@@ -123,6 +126,47 @@ class Index extends Component
         session()->flash('status', __('Note marked as regular note.'));
     }
 
+    public function toggleTagFilter(int $tagId): void
+    {
+        $tagId = (int) $tagId;
+
+        if ($tagId <= 0) {
+            return;
+        }
+
+        $current = $this->sanitizedTagFilters();
+
+        if (in_array($tagId, $current, true)) {
+            $current = array_values(array_diff($current, [$tagId]));
+        } else {
+            $current[] = $tagId;
+        }
+
+        $this->selectedTags = $current;
+
+        $this->resetPage();
+    }
+
+    public function clearTagFilter(): void
+    {
+        if (empty($this->selectedTags)) {
+            return;
+        }
+
+        $this->selectedTags = [];
+        $this->resetPage();
+    }
+
+    protected function sanitizedTagFilters(): array
+    {
+        return collect($this->selectedTags ?? [])
+            ->map(fn ($id) => (int) $id)
+            ->filter(fn ($id) => $id > 0)
+            ->unique()
+            ->values()
+            ->all();
+    }
+
     protected function pageIsEmpty(): bool
     {
         return $this->getNotesProperty()->count() === 0;
@@ -130,6 +174,8 @@ class Index extends Component
 
     public function getNotesProperty()
     {
+        $tagIds = $this->sanitizedTagFilters();
+
         return Note::query()
             ->with(['discipline', 'tags'])
             ->whereBelongsTo($this->discipline)
@@ -142,15 +188,26 @@ class Index extends Component
                     $query->where('is_flashcard', false);
                 }
             })
+            ->when(! empty($tagIds), fn ($query) => $query->whereHas(
+                'tags',
+                fn ($tagQuery) => $tagQuery->whereIn('tags.id', $tagIds)
+            ))
             ->paginate($this->perPage);
     }
 
     public function render(): View
     {
+        $availableTags = Tag::query()
+            ->select('tags.id', 'tags.name')
+            ->whereHas('notes', fn ($query) => $query->where('discipline_id', $this->discipline->id))
+            ->orderBy('name')
+            ->get();
+
         return view('livewire.notes.index', [
             'notes' => $this->notes,
             'discipline' => $this->discipline,
             'perPageOptions' => $this->perPageOptions,
+            'availableTags' => $availableTags,
         ])->layout('layouts.app', [
             'title' => __('Notes for :discipline', ['discipline' => $this->discipline->title]),
         ]);

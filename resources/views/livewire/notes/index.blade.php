@@ -39,6 +39,47 @@
 
     <x-auth-session-status :status="session('status')" class="mb-4" />
 
+    @if ($availableTags->isNotEmpty())
+        <div class="rounded-md border border-zinc-200 bg-white px-4 py-3">
+            <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-medium text-zinc-500">
+                <span>{{ __('Filter by tags') }}</span>
+                @if (! empty($selectedTags))
+                    <button
+                        type="button"
+                        class="text-indigo-600 hover:text-indigo-700 hover:underline"
+                        wire:click="clearTagFilter"
+                    >
+                        {{ __('Clear') }}
+                    </button>
+                @endif
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+                @foreach ($availableTags as $tag)
+                    @php
+                        $active = in_array($tag->id, $selectedTags, true);
+                    @endphp
+                    <button
+                        type="button"
+                        wire:click="toggleTagFilter({{ $tag->id }})"
+                        wire:key="tag-filter-{{ $tag->id }}"
+                        @class([
+                            'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium transition',
+                            'border-emerald-200 bg-emerald-50 text-emerald-700' => $active,
+                            'border-zinc-200 bg-zinc-100 text-zinc-600 hover:border-zinc-300' => ! $active,
+                        ])
+                    >
+                        @if ($active)
+                            <flux:icon.check class="h-3.5 w-3.5" />
+                        @else
+                            <flux:icon.tag class="h-3.5 w-3.5 text-zinc-400" />
+                        @endif
+                        <span>{{ $tag->name }}</span>
+                    </button>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
     @if ($notes->isEmpty())
         <div class="rounded-md border border-dashed border-zinc-300 p-6 text-center">
             <h2 class="text-lg font-medium text-zinc-700">
