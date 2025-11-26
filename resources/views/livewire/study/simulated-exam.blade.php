@@ -140,7 +140,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         <p class="text-sm text-zinc-500">{{ __('Choose the source of your questions.') }}</p>
                     </div>
 
-                    <div class="flex rounded-full border border-zinc-200 bg-white p-1 text-sm font-medium text-zinc-500 shadow-sm">
+                    <div class="flex rounded-full border border-zinc-200 bg-white p-1 text-sm font-medium text-zinc-500">
                         @foreach ($scopeLabels as $type => $label)
                         @php
                         $isActiveScope = $scopeType === $type;
@@ -213,14 +213,11 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                                 aria-pressed="{{ $isActive ? 'true' : 'false' }}"
                                 @class([
                                     'relative flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-1',
-                                    'border-indigo-500 bg-indigo-50 text-indigo-900 shadow-md ring-2 ring-indigo-200' => $isActive,
+                                    'border-indigo-500 bg-indigo-50 text-indigo-900' => $isActive,
                                     'border-zinc-200 text-zinc-600 hover:border-indigo-300 hover:bg-zinc-50' => ! $isActive,
                                 ])
                             >
                                 <span>{{ $countOption }}</span>
-                                @if ($isActive)
-                                <flux:icon.check class="h-4 w-4 text-indigo-600" />
-                                @endif
                             </button>
                             @endforeach
                         </div>
