@@ -4,7 +4,7 @@ slug: "importancia-de-tomar-notas-nos-estudos"
 description: "Descubra por que registrar suas próprias notas aumenta a retenção do conteúdo e como o Booknotes potencializa essa prática essencial."
 published_at: "2025-11-26"
 tags: ["estudos", "aprendizagem", "produtividade", "booknotes"]
-status: "draft"
+status: "published"
 ---
 
 # Por que tomar notas transforma seus estudos
