@@ -43,8 +43,6 @@ class SimulatedExam extends Component
 
     public ?int $durationSeconds = null;
 
-    public bool $focusMode = false;
-
     public ?array $activeScope = null;
 
     protected array $questionCountOptions = [10, 30, 50];
@@ -171,17 +169,6 @@ class SimulatedExam extends Component
         $this->timerHidden = ! $this->timerHidden;
     }
 
-    public function toggleFocusMode(): void
-    {
-        if (! $this->examStarted) {
-            $this->focusMode = false;
-
-            return;
-        }
-
-        $this->focusMode = ! $this->focusMode;
-    }
-
     public function render(): View
     {
         return view('livewire.study.simulated-exam', [
@@ -230,7 +217,6 @@ class SimulatedExam extends Component
         $this->startedAt = null;
         $this->completedAt = null;
         $this->durationSeconds = null;
-        $this->focusMode = false;
         $this->activeScope = null;
     }
 
