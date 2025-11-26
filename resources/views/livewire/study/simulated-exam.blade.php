@@ -20,7 +20,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
         </div>
     </div>
 
-    <div class="grid gap-6 lg:grid-cols-[2fr_1fr]">
+    <div class="grid gap-6 lg:grid-cols-[2fr_1fr] lg:items-start">
         <section class="space-y-6 rounded-lg border border-zinc-200 bg-white/95 p-6">
             <div class="grid gap-3 sm:grid-cols-3">
                 <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4">

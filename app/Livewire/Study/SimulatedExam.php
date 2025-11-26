@@ -441,7 +441,7 @@ class SimulatedExam extends Component
             ->with(['discipline', 'notebook'])
             ->orderByDesc('completed_at')
             ->orderByDesc('created_at')
-            ->limit(6)
+            ->limit(3)
             ->get();
     }
 
