@@ -8,7 +8,30 @@ $questionCountOptions = [10, 30, 50];
 $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 @endphp
 
-<div class="space-y-8">
+<div
+    class="space-y-8"
+    x-data="{
+        scrollToQuestions() {
+            this.scrollToRef('questionBlock');
+        },
+        scrollToResults() {
+            this.scrollToRef('resultsBlock');
+        },
+        scrollToRef(refName) {
+            this.$nextTick(() => {
+                const target = this.$refs[refName];
+                const offset = 24; // px de margem superior
+
+                if (target) {
+                    const top = window.pageYOffset + target.getBoundingClientRect().top - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        }
+    }"
+    x-on:scroll-to-simulated-questions.window="scrollToQuestions()"
+    x-on:scroll-to-simulated-results.window="scrollToResults()"
+>
     <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div>
             <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Simulated test') }}</h1>
@@ -338,7 +361,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
     </div>
 
     @if ($examStarted)
-    <section class="space-y-5 rounded-lg border border-zinc-200 bg-white/90 p-5">
+    <section
+        x-ref="questionBlock"
+        class="space-y-5 rounded-lg border border-zinc-200 bg-white/90 p-5"
+    >
         <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div class="space-y-2">
                 <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Progress') }}</p>
@@ -483,7 +509,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
     @endif
 
     @if ($examFinished)
-    <div class="space-y-4 rounded-xl border border-indigo-200 bg-indigo-50 p-6">
+    <div
+        x-ref="resultsBlock"
+        class="space-y-4 rounded-xl border border-indigo-200 bg-indigo-50 p-6"
+    >
         <div>
             <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Results saved') }}</p>
             <p class="mt-2 text-4xl font-semibold text-indigo-900">{{ $score }}%</p>

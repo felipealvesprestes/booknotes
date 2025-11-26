@@ -101,6 +101,8 @@ class SimulatedExam extends Component
         $this->examFinished = false;
         $this->startedAt = now()->toIso8601String();
         $this->activeScope = $this->scopeSnapshot();
+
+        $this->dispatch('scroll-to-simulated-questions');
     }
 
     public function selectOption(int $questionIndex, string $key): void
@@ -162,6 +164,8 @@ class SimulatedExam extends Component
         $this->durationSeconds = $this->calculateDurationSeconds();
 
         $this->persistAttempt();
+
+        $this->dispatch('scroll-to-simulated-results');
     }
 
     public function toggleTimerVisibility(): void
