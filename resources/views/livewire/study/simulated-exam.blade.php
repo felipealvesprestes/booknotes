@@ -406,9 +406,11 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         type="button"
                         wire:click="selectOption({{ $index }}, '{{ $optionKey }}')"
                         wire:key="question-{{ $index }}-option-{{ $optionKey }}"
+                        wire:loading.attr="disabled"
+                        wire:target="selectOption({{ $index }}, '{{ $optionKey }}')"
                         @disabled($examFinished)
                         @class([
-                            'flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500',
+                            'relative flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500',
                             'border-indigo-500 bg-indigo-50 text-indigo-900' => ! $examFinished && $isSelected,
                             'border-zinc-200 text-zinc-700 hover:border-indigo-300 hover:bg-white' => ! $examFinished && ! $isSelected,
                             'border-emerald-400 bg-emerald-50 text-emerald-900' => $examFinished && $isCorrectOption,
@@ -416,6 +418,14 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                             'border-zinc-100 text-zinc-500 opacity-70 pointer-events-none' => $examFinished && ! $isCorrectOption && ! $isSelected,
                         ])
                     >
+                        <div
+                            wire:loading.flex
+                            wire:target="selectOption({{ $index }}, '{{ $optionKey }}')"
+                            class="absolute inset-0 hidden items-center justify-center rounded-lg bg-white/80"
+                        >
+                            <flux:icon.arrow-path class="h-4 w-4 animate-spin text-indigo-600" />
+                        </div>
+
                         <span class="text-xs font-semibold uppercase tracking-wide">{{ $optionKey }}</span>
                         <span class="flex-1">{{ $option['text'] }}</span>
                         @if ($examFinished && $isCorrectOption)
