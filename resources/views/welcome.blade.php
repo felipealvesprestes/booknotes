@@ -428,7 +428,7 @@
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
                                     Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
                                 </p>
-                               <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Quizzes</span>
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Pegadinhas</span>
                                 </div>
@@ -448,6 +448,38 @@
                                 <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Simulado</span>
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Estatísticas</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M8 9h8M8 12h5M8 15h3" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Painel 360º</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Acompanhe hábitos, taxa de acertos, desempenho nos simulados, logs e sessões recentes em um painel completo com filtros personalizados.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Métricas</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Insights</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-100 via-pink-100 to-indigo-100 text-purple-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="m7 12 3 3 7-7" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Exportações premium</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Monte PDFs por disciplina, filtros e agrupamentos e compartilhe cadernos completos com mentores, equipes ou turmas inteiras.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">PDFs</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Compartilhe</span>
                                 </div>
                             </article>
                         </div>
