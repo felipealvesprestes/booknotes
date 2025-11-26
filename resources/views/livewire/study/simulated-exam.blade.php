@@ -4,8 +4,6 @@ $scopeLabels = [
     'discipline' => __('Discipline'),
 ];
 
-$startedTimestamp = $startedAt ? \Illuminate\Support\Carbon::parse($startedAt)->timestamp : null;
-$completedTimestamp = $completedAt ? \Illuminate\Support\Carbon::parse($completedAt)->timestamp : null;
 $questionCountOptions = [10, 30, 50];
 $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 @endphp
@@ -56,33 +54,53 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                 class="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-4"
                 x-data="{
                     hidden: @entangle('timerHidden'),
-                    startedAt: @js($startedTimestamp),
-                    finishedAt: @js($completedTimestamp),
-                    lockedDuration: @js($examFinished ? $durationSeconds : null),
-                    display: '00:00',
+                    startedAtIso: @entangle('startedAt'),
+                    completedAtIso: @entangle('completedAt'),
+                    serverDuration: @entangle('durationSeconds'),
+                    display: '00:00:00',
+                    intervalId: null,
+                    startTimestamp: null,
+                    completedTimestamp: null,
+                    lockedSeconds: null,
                     init() {
+                        this.$watch('startedAtIso', () => this.sync());
+                        this.$watch('completedAtIso', () => this.sync());
+                        this.$watch('serverDuration', () => this.sync());
+                        this.sync();
+                    },
+                    sync() {
+                        this.startTimestamp = this.startedAtIso
+                            ? Math.floor(Date.parse(this.startedAtIso) / 1000)
+                            : null;
+
+                        this.completedTimestamp = this.completedAtIso
+                            ? Math.floor(Date.parse(this.completedAtIso) / 1000)
+                            : null;
+
+                        this.lockedSeconds = this.serverDuration === null || this.serverDuration === undefined
+                            ? null
+                            : Number(this.serverDuration);
+
+                        if (this.intervalId) {
+                            clearInterval(this.intervalId);
+                            this.intervalId = null;
+                        }
+
                         this.refresh();
 
-                        if (! this.lockedDuration && this.startedAt) {
-                            const interval = setInterval(() => {
-                                if (this.lockedDuration || ! this.startedAt) {
-                                    clearInterval(interval);
-
-                                    return;
-                                }
-
-                                this.refresh();
-                            }, 1000);
+                        if (this.startTimestamp && this.lockedSeconds === null) {
+                            this.intervalId = setInterval(() => this.refresh(), 1000);
                         }
                     },
                     refresh() {
-                        if (! this.startedAt) {
-                            this.display = '00:00';
+                        if (! this.startTimestamp) {
+                            this.display = '00:00:00';
 
                             return;
                         }
 
-                        let seconds = this.lockedDuration ?? Math.max(0, Math.floor(((this.finishedAt ?? Math.floor(Date.now() / 1000)) - this.startedAt)));
+                        const now = Math.floor(Date.now() / 1000);
+                        let seconds = this.lockedSeconds ?? Math.max(0, (this.completedTimestamp ?? now) - this.startTimestamp);
 
                         if (seconds < 0) {
                             seconds = 0;
@@ -92,9 +110,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         const minutes = Math.floor((seconds % 3600) / 60);
                         const secs = seconds % 60;
 
-                        this.display = hours > 0
-                            ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
-                            : `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                        this.display = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
                     }
                 }"
             >
@@ -484,17 +500,8 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                 <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $correctCount }}</p>
             </div>
             <div class="rounded-lg border border-indigo-100 bg-white/70 p-4">
-                <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Time spent') }}</p>
-                @php
-                $durationSeconds = $durationSeconds ?? 0;
-                $durationHours = intdiv($durationSeconds, 3600);
-                $durationMinutes = intdiv($durationSeconds % 3600, 60);
-                $durationSecs = $durationSeconds % 60;
-                $durationLabel = $durationHours > 0
-                    ? sprintf('%02d:%02d:%02d', $durationHours, $durationMinutes, $durationSecs)
-                    : sprintf('%02d:%02d', $durationMinutes, $durationSecs);
-                @endphp
-                <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $durationLabel }}</p>
+                <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Accuracy') }}</p>
+                <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $score }}%</p>
             </div>
         </div>
 
