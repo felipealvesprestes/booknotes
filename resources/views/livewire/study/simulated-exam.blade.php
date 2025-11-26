@@ -1,0 +1,527 @@
+@php
+$scopeLabels = [
+    'notebook' => __('Notebook'),
+    'discipline' => __('Discipline'),
+];
+
+$startedTimestamp = $startedAt ? \Illuminate\Support\Carbon::parse($startedAt)->timestamp : null;
+$completedTimestamp = $completedAt ? \Illuminate\Support\Carbon::parse($completedAt)->timestamp : null;
+$questionCountOptions = [10, 30, 50];
+@endphp
+
+<div class="space-y-8">
+    <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div>
+            <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Simulated test') }}</h1>
+            <p class="mt-1 text-sm text-zinc-500">
+                {{ __('Create a mock exam with your flashcards, keep an eye on the timer, and store every result for future review.') }}
+            </p>
+        </div>
+
+    </div>
+
+    <div @class([
+        'grid gap-6 lg:grid-cols-[2fr_1fr]' => ! $focusMode,
+        'space-y-6' => $focusMode,
+    ])>
+        <section class="space-y-6 rounded-lg border border-zinc-200 bg-white/95 p-6">
+            @php
+            $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
+            @endphp
+            <div class="grid gap-3 sm:grid-cols-3">
+                <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Questions selected') }}</p>
+                    <p class="mt-2 text-2xl font-semibold text-zinc-900">
+                        {{ $totalQuestions > 0 ? $totalQuestions : $questionCount }}
+                    </p>
+                    <p class="text-xs text-zinc-500">
+                        {{ __('Goal for this mock exam.') }}
+                    </p>
+                </div>
+
+                <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Answered so far') }}</p>
+                    <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $answeredDisplay }}</p>
+                    <p class="text-xs text-zinc-500">
+                        {{ __('Keep a steady rhythm to finish on time.') }}
+                    </p>
+                </div>
+
+                <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-emerald-600">{{ __('Accuracy') }}</p>
+                    <p class="mt-2 text-2xl font-semibold text-zinc-900">
+                        {{ $examFinished && $totalQuestions > 0 ? ($score . '%') : '—' }}
+                    </p>
+                    <p class="text-xs text-zinc-500">
+                        {{ $examFinished ? __('Calculated from your current session.') : __('Grades are calculated only after you submit the exam.') }}
+                    </p>
+                </div>
+            </div>
+
+            <div
+                class="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-4"
+                x-data="{
+                    hidden: @entangle('timerHidden'),
+                    startedAt: @js($startedTimestamp),
+                    finishedAt: @js($completedTimestamp),
+                    lockedDuration: @js($examFinished ? $durationSeconds : null),
+                    display: '00:00',
+                    init() {
+                        this.refresh();
+
+                        if (! this.lockedDuration && this.startedAt) {
+                            const interval = setInterval(() => {
+                                if (this.lockedDuration || ! this.startedAt) {
+                                    clearInterval(interval);
+
+                                    return;
+                                }
+
+                                this.refresh();
+                            }, 1000);
+                        }
+                    },
+                    refresh() {
+                        if (! this.startedAt) {
+                            this.display = '00:00';
+
+                            return;
+                        }
+
+                        let seconds = this.lockedDuration ?? Math.max(0, Math.floor(((this.finishedAt ?? Math.floor(Date.now() / 1000)) - this.startedAt)));
+
+                        if (seconds < 0) {
+                            seconds = 0;
+                        }
+
+                        const hours = Math.floor(seconds / 3600);
+                        const minutes = Math.floor((seconds % 3600) / 60);
+                        const secs = seconds % 60;
+
+                        this.display = hours > 0
+                            ? `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+                            : `${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+                    }
+                }"
+            >
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="space-y-1">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Timer') }}</p>
+                        <p
+                            class="text-2xl font-semibold text-zinc-900"
+                            x-show="!hidden"
+                            x-text="display"
+                            x-cloak
+                        ></p>
+                        <p
+                            class="text-base font-medium text-zinc-600"
+                            x-show="hidden"
+                            x-cloak
+                        >
+                            {{ __('Timer hidden') }}
+                        </p>
+                        @if (! $examStarted)
+                        <p class="text-xs text-zinc-500">{{ __('Start the simulation to activate the timer.') }}</p>
+                        @endif
+                    </div>
+
+                    <div class="flex items-center gap-2">
+                        <span
+                            class="text-xs text-zinc-500"
+                            x-text="hidden ? @js(__('Timer hidden')) : @js(__('Timer visible'))"
+                        >
+                            {{ $timerHidden ? __('Timer hidden') : __('Timer visible') }}
+                        </span>
+                        <flux:button size="sm" variant="ghost" color="zinc" wire:click="toggleTimerVisibility">
+                            {{ $timerHidden ? __('Show timer') : __('Hide timer') }}
+                        </flux:button>
+                    </div>
+                </div>
+            </div>
+
+            <section class="space-y-4 rounded-lg border border-zinc-200 bg-white/80 p-4">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Scope') }}</p>
+                        <p class="text-sm text-zinc-500">{{ __('Choose the source of your questions.') }}</p>
+                    </div>
+
+                    <div class="flex rounded-full border border-zinc-200 bg-white p-1 text-sm font-medium text-zinc-500 shadow-sm">
+                        @foreach ($scopeLabels as $type => $label)
+                        @php
+                        $isActiveScope = $scopeType === $type;
+                        @endphp
+                        <button
+                            type="button"
+                            wire:click="$set('scopeType', '{{ $type }}')"
+                            @class([
+                                'flex-1 rounded-full px-4 py-1 transition',
+                                'bg-indigo-600 text-white shadow-sm' => $isActiveScope,
+                                'hover:text-zinc-900' => ! $isActiveScope,
+                            ])
+                        >
+                            {{ $label }}
+                        </button>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="grid gap-4 md:grid-cols-2">
+                    @if ($scopeType === 'notebook')
+                    <label class="text-sm font-medium text-zinc-700">
+                        <span>{{ __('Notebook') }}</span>
+                        <select
+                            wire:model.live="notebookId"
+                            class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">{{ __('Select a notebook') }}</option>
+                            @foreach ($notebooks as $notebook)
+                            <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
+                            @endforeach
+                        </select>
+                        @error('notebookId')
+                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </label>
+                    @endif
+
+                    @if ($scopeType === 'discipline')
+                    <label class="text-sm font-medium text-zinc-700">
+                        <span>{{ __('Discipline') }}</span>
+                        <select
+                            wire:model.live="disciplineId"
+                            class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            <option value="">{{ __('Select a discipline') }}</option>
+                            @foreach ($disciplines as $discipline)
+                            <option value="{{ $discipline->id }}">
+                                {{ $discipline->title }}
+                                @if ($discipline->notebook?->title)
+                                — {{ $discipline->notebook->title }}
+                                @endif
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('disciplineId')
+                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </label>
+                    @endif
+
+                    <label class="text-sm font-medium text-zinc-700">
+                        <span>{{ __('Questions per exam') }}</span>
+                        <div class="mt-1 grid grid-cols-3 gap-2">
+                            @foreach ($questionCountOptions as $countOption)
+                            @php
+                            $isActive = (int) $questionCount === $countOption;
+                            @endphp
+                            <button
+                                type="button"
+                                wire:click="$set('questionCount', {{ $countOption }})"
+                                aria-pressed="{{ $isActive ? 'true' : 'false' }}"
+                                @class([
+                                    'relative flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-1',
+                                    'border-indigo-500 bg-indigo-50 text-indigo-900 shadow-md ring-2 ring-indigo-200' => $isActive,
+                                    'border-zinc-200 text-zinc-600 hover:border-indigo-300 hover:bg-zinc-50' => ! $isActive,
+                                ])
+                            >
+                                <span>{{ $countOption }}</span>
+                                @if ($isActive)
+                                <flux:icon.check class="h-4 w-4 text-indigo-600" />
+                                @endif
+                            </button>
+                            @endforeach
+                        </div>
+                    </label>
+
+                    <div class="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Flashcards available') }}</p>
+                        <p class="mt-2 text-lg font-semibold text-zinc-900">
+                            {{ $availableFlashcards }}
+                        </p>
+                        <p class="text-xs text-zinc-500">
+                            @if ($availableFlashcards === 0)
+                            {{ __('No flashcards found for this scope yet.') }}
+                            @else
+                            {{ __('We will shuffle them to generate the mock exam.') }}
+                            @endif
+                        </p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div class="text-xs text-zinc-500">
+                        {{ __('Make sure you have enough flashcards with detailed answers to form convincing alternatives.') }}
+                    </div>
+                    <flux:button variant="primary" icon="play" wire:click="startExam">
+                        {{ $examStarted ? __('Restart simulation') : __('Start simulation') }}
+                    </flux:button>
+                </div>
+
+                @error('exam')
+                <div class="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                    {{ $message }}
+                </div>
+                @enderror
+            </section>
+
+            @if ($examStarted)
+            <div @class([
+                'space-y-5 rounded-lg border border-zinc-200 bg-white/90 p-5',
+                'mx-auto w-full max-w-4xl shadow-lg' => $focusMode,
+            ])>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div class="space-y-2">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Progress') }}</p>
+                        <p class="text-sm font-semibold text-zinc-900">
+                            {{ __('Answered :answered of :total', ['answered' => $answeredDisplay, 'total' => $totalQuestions]) }}
+                        </p>
+                        <p class="text-xs text-zinc-500">
+                            {{ __('All questions are listed below. Select an option for each one before submitting.') }}
+                        </p>
+                        <p class="text-xs text-zinc-500">
+                            {{ __('Grades are calculated only after you submit the exam.') }}
+                        </p>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2 sm:justify-end">
+                        <flux:button
+                            variant="ghost"
+                            wire:click="toggleFocusMode"
+                            @class([
+                                'text-indigo-600' => ! $focusMode,
+                                'text-rose-600' => $focusMode,
+                            ])
+                        >
+                            {{ $focusMode ? __('Exit focus mode') : __('Focus mode') }}
+                        </flux:button>
+
+                        @if ($activeScope)
+                        <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600">
+                            {{ $scopeLabels[$activeScope['type']] ?? __('Scope') }}:
+                            <span class="text-zinc-900">{{ $activeScope['label'] }}</span>
+                        </span>
+                        @endif
+                    </div>
+                </div>
+
+                <div class="h-2 rounded-full bg-zinc-100">
+                    <div class="h-2 rounded-full bg-indigo-500 transition-all duration-500" style="width: {{ $progressPercent }}%;"></div>
+                </div>
+
+                <div class="space-y-4" data-question-list>
+                    @foreach ($questions as $index => $question)
+                    @php
+                    $selectedKey = $question['selected_key'] ?? null;
+                    $correctKey = $question['correct_key'] ?? null;
+                    $isCorrect = $question['is_correct'] ?? null;
+                    $isUnanswered = $examFinished && $selectedKey === null;
+                    @endphp
+                    <article class="space-y-3 rounded-lg border border-zinc-200 bg-white/80 p-4" wire:key="question-{{ $question['note_id'] ?? $index }}-{{ $index }}">
+                        <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
+                            <div>
+                                <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                                    {{ __('Question') }} {{ $question['order'] }}
+                                </p>
+                                <h3 class="text-base font-semibold text-zinc-900">{{ $question['question'] }}</h3>
+                                @if (! empty($question['discipline_title']))
+                                <span class="text-xs text-zinc-500">
+                                    {{ $question['discipline_title'] }}
+                                    @if ($question['notebook_title'])
+                                    — {{ $question['notebook_title'] }}
+                                    @endif
+                                </span>
+                                @endif
+                            </div>
+
+                            @if ($examFinished)
+                            <span @class([
+                                'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold',
+                                'border-emerald-200 bg-emerald-50 text-emerald-700' => $isCorrect,
+                                'border-rose-200 bg-rose-50 text-rose-700' => ! $isCorrect && ! $isUnanswered,
+                                'border-amber-200 bg-amber-50 text-amber-700' => $isUnanswered,
+                            ])>
+                                @if ($isUnanswered)
+                                <flux:icon.question-mark-circle class="h-4 w-4" />
+                                {{ __('Not answered') }}
+                                @elseif ($isCorrect)
+                                <flux:icon.check class="h-4 w-4" />
+                                {{ __('Correct') }}
+                                @else
+                                <flux:icon.x-mark class="h-4 w-4" />
+                                {{ __('Incorrect') }}
+                                @endif
+                            </span>
+                            @endif
+                        </div>
+
+                        <div class="space-y-2">
+                            @foreach ($question['options'] as $option)
+                            @php
+                            $optionKey = $option['key'];
+                            $isSelected = $selectedKey === $optionKey;
+                            $isCorrectOption = $optionKey === $correctKey;
+                            @endphp
+                            <button
+                                type="button"
+                                wire:click="selectOption({{ $index }}, '{{ $optionKey }}')"
+                                wire:key="question-{{ $index }}-option-{{ $optionKey }}"
+                                @disabled($examFinished)
+                                @class([
+                                    'flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500',
+                                    'border-indigo-500 bg-indigo-50 text-indigo-900' => ! $examFinished && $isSelected,
+                                    'border-zinc-200 text-zinc-700 hover:border-indigo-300 hover:bg-white' => ! $examFinished && ! $isSelected,
+                                    'border-emerald-400 bg-emerald-50 text-emerald-900' => $examFinished && $isCorrectOption,
+                                    'border-rose-300 bg-rose-50 text-rose-900' => $examFinished && $isSelected && ! $isCorrectOption,
+                                    'border-zinc-100 text-zinc-500 opacity-70 pointer-events-none' => $examFinished && ! $isCorrectOption && ! $isSelected,
+                                ])>
+                                <span class="text-xs font-semibold uppercase tracking-wide">{{ $optionKey }}</span>
+                                <span class="flex-1">{{ $option['text'] }}</span>
+                                @if ($examFinished && $isCorrectOption)
+                                <flux:icon.check class="h-4 w-4 text-emerald-600" />
+                                @endif
+                            </button>
+                            @endforeach
+                        </div>
+
+                        @if ($examFinished)
+                        <div class="text-xs text-zinc-600">
+                            <span class="font-semibold text-zinc-900">{{ __('Correct answer') }}:</span>
+                            <span>{{ $question['answer'] }}</span>
+                        </div>
+                        @endif
+                    </article>
+                    @endforeach
+                </div>
+
+                <div class="flex flex-col gap-2 border-t border-dashed border-zinc-200 pt-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+                    <p>{{ $examFinished ? __('Results saved') : __('Need to wrap up this attempt?') }}</p>
+                    @if (! $examFinished)
+                    <flux:button variant="primary" icon="flag" wire:click="finishExam">
+                        {{ __('Submit exam') }}
+                    </flux:button>
+                    @endif
+                </div>
+            </div>
+            @else
+            <div class="flex flex-col items-center gap-3 rounded-lg border border-dashed border-zinc-200 bg-zinc-50 px-6 py-10 text-center text-sm text-zinc-500">
+                <flux:icon.sparkles class="h-10 w-10 text-zinc-300" />
+                <p class="text-sm font-medium text-zinc-700">
+                    {{ __('Define the scope, pick how many questions you want, and we will assemble a mock exam on the spot.') }}
+                </p>
+                <p class="text-xs text-zinc-500">
+                    {{ __('Every attempt is saved so you can compare performance later.') }}
+                </p>
+            </div>
+            @endif
+
+            @if ($examFinished)
+            <div class="space-y-4 rounded-xl border border-indigo-200 bg-indigo-50 p-6">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Results saved') }}</p>
+                    <p class="mt-2 text-4xl font-semibold text-indigo-900">{{ $score }}%</p>
+                    <p class="text-sm text-indigo-800">{{ __('Final score for this simulation.') }}</p>
+                </div>
+
+                <div class="grid gap-3 sm:grid-cols-3">
+                    <div class="rounded-lg border border-indigo-100 bg-white/70 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Answered questions') }}</p>
+                        <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $answeredCount }}</p>
+                    </div>
+                    <div class="rounded-lg border border-indigo-100 bg-white/70 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Correct answers') }}</p>
+                        <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $correctCount }}</p>
+                    </div>
+                    <div class="rounded-lg border border-indigo-100 bg-white/70 p-4">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Time spent') }}</p>
+                        @php
+                        $durationSeconds = $durationSeconds ?? 0;
+                        $durationHours = intdiv($durationSeconds, 3600);
+                        $durationMinutes = intdiv($durationSeconds % 3600, 60);
+                        $durationSecs = $durationSeconds % 60;
+                        $durationLabel = $durationHours > 0
+                            ? sprintf('%02d:%02d:%02d', $durationHours, $durationMinutes, $durationSecs)
+                            : sprintf('%02d:%02d', $durationMinutes, $durationSecs);
+                        @endphp
+                        <p class="mt-2 text-2xl font-semibold text-zinc-900">{{ $durationLabel }}</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <p class="text-xs text-indigo-800">
+                        {{ __('This attempt is stored in your history. Start another simulation to stay sharp.') }}
+                    </p>
+                    <flux:button variant="primary" icon="play" wire:click="startExam">
+                        {{ __('Start another simulation') }}
+                    </flux:button>
+                </div>
+            </div>
+            @endif
+        </section>
+
+        @unless ($focusMode)
+        <aside class="space-y-4 rounded-lg border border-zinc-200 bg-white/90 p-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Latest simulations') }}</p>
+                    <p class="text-sm text-zinc-500">{{ __('Track how each attempt performed.') }}</p>
+                </div>
+            </div>
+
+            <div class="space-y-3">
+                @forelse ($recentAttempts as $attempt)
+                @php
+                $scopeTypeLabel = $scopeLabels[$attempt->scope_type] ?? __('Scope');
+                $scopeTitle = $attempt->metadata['scope_label'] ?? $attempt->notebook?->title ?? $attempt->discipline?->title ?? '—';
+                $scopeSubtitle = $attempt->metadata['scope_sub_label'] ?? $attempt->discipline?->notebook?->title;
+                $attemptScore = $attempt->score;
+                $durationSeconds = $attempt->duration_seconds ?? 0;
+                $durationHours = intdiv($durationSeconds, 3600);
+                $durationMinutes = intdiv($durationSeconds % 3600, 60);
+                $durationSecs = $durationSeconds % 60;
+                $durationLabel = $durationHours > 0
+                    ? sprintf('%02d:%02d:%02d', $durationHours, $durationMinutes, $durationSecs)
+                    : sprintf('%02d:%02d', $durationMinutes, $durationSecs);
+                @endphp
+                <article class="space-y-3 rounded-lg border border-zinc-200 bg-white/80 p-4" wire:key="attempt-{{ $attempt->id }}">
+                    <div class="flex items-center justify-between gap-3">
+                        <div>
+                            <p class="text-sm font-semibold text-zinc-900">{{ $scopeTitle }}</p>
+                            @if ($scopeSubtitle)
+                            <p class="text-xs text-zinc-500">{{ $scopeSubtitle }}</p>
+                            @endif
+                        </div>
+                        <span class="text-xl font-semibold text-indigo-600">{{ $attemptScore }}%</span>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-2 text-xs text-zinc-500">
+                        <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-50 px-2 py-0.5 font-semibold text-zinc-600">
+                            {{ $scopeTypeLabel }}
+                        </span>
+                        <span>•</span>
+                        <span>
+                            {{ __('Questions') }}: {{ $attempt->question_count }}
+                        </span>
+                        <span>•</span>
+                        <span>{{ __('Time') }}: {{ $durationLabel }}</span>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between text-xs text-zinc-500">
+                            <span>{{ __('Score') }}</span>
+                            <span>{{ $attemptScore }}%</span>
+                        </div>
+                        <div class="mt-1 h-2 rounded-full bg-zinc-100">
+                            <div class="h-2 rounded-full bg-indigo-500" style="width: {{ min(100, max(0, $attemptScore)) }}%;"></div>
+                        </div>
+                    </div>
+                </article>
+                @empty
+                <div class="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 px-4 py-6 text-center text-sm text-zinc-500">
+                    <p class="font-medium text-zinc-700">{{ __('Your simulation history will appear here.') }}</p>
+                    <p class="mt-1 text-xs text-zinc-500">{{ __('Run your first mock exam to unlock insights.') }}</p>
+                </div>
+                @endforelse
+            </div>
+        </aside>
+        @endunless
+    </div>
+</div>
