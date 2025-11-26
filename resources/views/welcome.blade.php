@@ -428,9 +428,26 @@
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
                                     Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
                                 </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                               <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Quizzes</span>
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Pegadinhas</span>
+                                </div>
+                            </article>
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <path d="M6.75 7.75h10.5v10.5H6.75z" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M6.75 10.5h10.5" stroke-linecap="round" />
+                                        <path d="M10.5 7.75v-2a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v2" stroke-linecap="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Simulados completos</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Selecione cadernos ou disciplinas, defina 10, 30 ou 50 perguntas e receba provas com múltipla escolha baseadas nos seus próprios flashcards.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Simulado</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Estatísticas</span>
                                 </div>
                             </article>
                         </div>
@@ -558,6 +575,13 @@
                                 <div>
                                     <p class="font-semibold text-neutral-900">Modo Verdadeiro ou Falso</p>
                                     <p>Receba afirmações criadas automaticamente a partir do seu conteúdo e pratique conceitos em séries focadas, acompanhando métricas para ajustar o cronograma.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Simulado sob demanda</p>
+                                    <p>Monte provas com 10, 30 ou 50 questões usando os seus flashcards, controle o tempo e salve estatísticas detalhadas de cada tentativa.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
