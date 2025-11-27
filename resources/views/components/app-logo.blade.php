@@ -2,6 +2,5 @@
     <x-app-logo-icon class="size-9 text-accent-foreground" />
 </div>
 <div class="grid flex-1 text-start leading-tight">
-    <span class="mb-0.5 truncate text-sm font-semibold tracking-tight">Booknotes</span>
-    <span class="truncate text-xs text-zinc-500 dark:text-white/60">Estudando com eficiência</span>
+    <span class="mb-0.5 truncate text-sm font-bold tracking-tight">BOOK<span class="text-emerald-500">NOTES</span></span>
 </div>

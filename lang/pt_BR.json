@@ -734,6 +734,7 @@
     "We will shuffle them to generate the mock exam.": "Vamos embaralhá-los para gerar o simulado.",
     "You need at least :count flashcards for this selection.": "Você precisa de pelo menos :count flashcards para esse escopo.",
     "Your simulation history will appear here.": "Seu histórico de simulados aparecerá aqui.",
+    "Toggle sidebar": "Alternar menu",
     "All questions are listed below. Select an option for each one before submitting.": "Todas as questões estão abaixo. Selecione uma alternativa para cada uma antes de enviar.",
     "Grades are calculated only after you submit the exam.": "A nota só é calculada depois que você entrega o simulado.",
     "Submit exam": "Entregar simulado",

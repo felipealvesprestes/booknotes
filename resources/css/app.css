@@ -106,6 +106,65 @@ select:focus[data-flux-control] {
     .dark [data-flux-navlist-item][data-current]::after {
         border-color: rgba(255, 255, 255, 0.12);
     }
+
+    /* Preserve heading spacing when the desktop sidebar collapses */
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] .sidebar-nav-group > :first-child {
+        visibility: hidden;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] {
+        width: 4.25rem !important;
+        min-width: 4.25rem;
+        padding-inline: 0.5rem !important;
+        cursor: default !important;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] * {
+        cursor: default !important;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-sidebar-collapse] {
+        opacity: 1 !important;
+        position: static !important;
+        width: 3.25rem !important;
+        min-width: 3.25rem;
+        margin-inline: auto;
+        display: flex;
+        justify-content: center;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-sidebar-collapse] button {
+        justify-content: center;
+        padding-inline: 0;
+        width: 3.25rem;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-sidebar-header] {
+        justify-content: flex-start;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-navlist-item] {
+        padding-inline: 0.5rem;
+        justify-content: center;
+        gap: 0.25rem;
+        width: 3.25rem;
+        min-width: 3.25rem;
+        max-width: 3.25rem;
+        margin-inline: auto;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-navlist-item][data-current]::after {
+        display: none;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-navlist-item] [data-content],
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-flux-navlist-item] [data-flux-navlist-badge] {
+        display: none;
+    }
+
+    [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-desktop-user-menu] {
+        display: none !important;
+    }
 }
 
 /* \[:where(&)\]:size-4 {

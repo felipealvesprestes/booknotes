@@ -4,21 +4,27 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white">
-        <flux:sidebar sticky stashable class="border-e border-zinc-200 bg-white">
-            <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
+        <flux:sidebar sticky stashable collapsible class="border-e border-zinc-200 bg-white">
+            <flux:sidebar.header class="mb-2">
+                <div class="flex items-center gap-2 in-data-flux-sidebar-collapsed-desktop:hidden">
+                    <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
-            <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse" wire:navigate>
-                <x-app-logo />
-            </a>
+                    <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse in-data-flux-sidebar-collapsed-desktop:hidden" wire:navigate>
+                        <x-app-logo />
+                    </a>
+                </div>
+
+                <flux:sidebar.collapse class="hidden lg:flex" :tooltip="__('Toggle sidebar')" />
+            </flux:sidebar.header>
 
             <flux:navlist variant="outline" class="space-y-6">
-                <flux:navlist.group :heading="__('Workspace')" class="grid">
+                <flux:navlist.group :heading="__('Workspace')" class="sidebar-nav-group">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open" :href="route('notebooks.index')" :current="request()->routeIs('notebooks.*')" wire:navigate>{{ __('Notebooks') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open-text" :href="route('disciplines.index')" :current="request()->routeIs('disciplines.*')" wire:navigate>{{ __('Disciplines') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Library')" class="grid">
+                <flux:navlist.group :heading="__('Library')" class="sidebar-nav-group">
                     <flux:navlist.item
                         icon="document"
                         :href="route('notes.library')"
@@ -31,17 +37,17 @@
                     <flux:navlist.item icon="document-text" :href="route('pdfs.index')" :current="request()->routeIs('pdfs.*')" wire:navigate>{{ __('Document library') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Practice')" class="grid">
+                <flux:navlist.group :heading="__('Practice')" class="sidebar-nav-group">
                     <flux:navlist.item icon="bolt" :href="route('study.flashcards')" :current="request()->routeIs('study.flashcards')" wire:navigate>{{ __('Flashcards') }}</flux:navlist.item>
                     <flux:navlist.item icon="sparkles" :href="route('study.exercises')" :current="request()->routeIs('study.exercises')" wire:navigate>{{ __('Exercises') }}</flux:navlist.item>
                     <flux:navlist.item icon="clipboard-document-check" :href="route('study.simulated')" :current="request()->routeIs('study.simulated')" wire:navigate>{{ __('Simulated test') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Activity')" class="grid">
+                <flux:navlist.group :heading="__('Activity')" class="sidebar-nav-group">
                     <flux:navlist.item icon="queue-list" :href="route('logs.index')" :current="request()->routeIs('logs.*')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Help')" class="grid">
+                <flux:navlist.group :heading="__('Help')" class="sidebar-nav-group">
                     <flux:navlist.item
                         icon="question-mark-circle"
                         :href="route('help.guide')"
@@ -56,7 +62,7 @@
             <flux:spacer />
 
             <!-- Desktop User Menu -->
-            <flux:dropdown class="hidden lg:block" position="bottom" align="start">
+            <flux:dropdown class="hidden lg:block" position="bottom" align="start" data-desktop-user-menu>
                 <flux:profile
                     :name="auth()->user()->name"
                     :initials="auth()->user()->initials()"
