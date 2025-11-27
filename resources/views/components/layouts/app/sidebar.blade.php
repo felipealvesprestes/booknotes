@@ -6,12 +6,12 @@
     <body class="min-h-screen bg-white">
         <flux:sidebar sticky stashable collapsible class="border-e border-zinc-200 bg-white">
             <flux:sidebar.header class="mb-2">
-                <div class="flex items-center gap-2 in-data-flux-sidebar-collapsed-desktop:hidden">
-                    <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
-
+                <div class="flex items-center gap-2 w-full in-data-flux-sidebar-collapsed-desktop:hidden">
                     <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse in-data-flux-sidebar-collapsed-desktop:hidden" wire:navigate>
                         <x-app-logo />
                     </a>
+
+                    <flux:sidebar.toggle class="lg:hidden ms-auto -me-2" icon="x-mark" />
                 </div>
 
                 <flux:sidebar.collapse class="hidden lg:flex" :tooltip="__('Toggle sidebar')" />
