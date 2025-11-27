@@ -235,7 +235,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             </div>
 
             <div
-                class="fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-full border border-zinc-200 bg-white/95 px-4 py-2 text-xs font-semibold text-zinc-900 shadow-lg shadow-zinc-900/10 backdrop-blur"
+                class="fixed top-3 right-6 z-30 flex items-center gap-2 rounded-full border border-zinc-200 bg-white/95 px-4 py-2 text-xs font-semibold text-zinc-900 shadow-lg shadow-zinc-900/10 backdrop-blur"
                 x-show="floatingVisible"
                 x-transition.opacity
                 x-cloak
@@ -461,10 +461,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             </div>
 
             @if ($activeScope)
-            <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600">
+            <!-- <span class="inline-flex items-center gap-1 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600">
                 {{ $scopeLabels[$activeScope['type']] ?? __('Scope') }}:
                 <span class="text-zinc-900">{{ $activeScope['label'] }}</span>
-            </span>
+            </span> -->
             @endif
         </div>
 
