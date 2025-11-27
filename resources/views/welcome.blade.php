@@ -150,13 +150,13 @@
             <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Novo módulo de exercícios
+                        Novo módulo de simulado
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
-                        Um só lugar para anotar, revisar, aprender e evoluir
+                        Um só lugar para anotar, aprender, revisar e evoluir
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        {{ config('app.name') }} conecta notebooks, disciplinas, notas e flashcards para que você acompanhe métricas em tempo real, estude no modo foco e, agora, pratique com exercícios de Verdadeiro ou Falso, Complete as Lacunas e Múltipla Escolha — tudo protegido com autenticação em duas etapas.
+                        O {{ config('app.name') }} reúne tudo o que você precisa para aprender melhor: anotações rápidas, flashcards inteligentes, modos de estudos funcionais, simulados sob demanda e métricas completas — em uma assinatura simples e segura.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
@@ -181,7 +181,7 @@
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Organização inteligente</h3>
                         <p class="mt-3 text-sm text-neutral-600">
-                            Organize livros e projetos em notebooks, disciplinas e notas com filtros rápidos e contadores automáticos.
+                            Organize livros e projetos em cadernos, disciplinas e notas com filtros rápidos e contadores automáticos.
                         </p>
                     </div>
                     <div class="rounded-2xl border border-indigo-100/60 bg-white p-6 text-left shadow-sm shadow-indigo-100/50">
@@ -193,7 +193,7 @@
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Modos de estudo</h3>
                         <p class="mt-3 text-sm text-neutral-600">
-                            Verdadeiro ou Falso, Complete as Lacunas e Múltipla Escolha equilibram memorização, vocabulário e análise com base na sua própria base de flashcards.
+                            Verdadeiro ou Falso, Complete as Lacunas, Múltipla Escolha e Simulado, equilibram memorização, vocabulário e análise com base em seus flashcards.
                         </p>
                     </div>
                 </div>
@@ -211,7 +211,7 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">01</p>
                         <h3 class="mt-4 text-xl font-semibold">Capture e organize</h3>
                         <p class="mt-3 text-sm text-neutral-300">
-                            Crie notebooks e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
+                            Crie cadernos e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
                         </p>
                     </div>
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
@@ -346,7 +346,7 @@
                                 </div>
                                 <h3 class="mt-6 text-lg font-semibold text-neutral-900">Painel de estudos e métricas</h3>
                                 <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Acompanhe notebooks, disciplinas, notas e flashcards, veja sessões recentes e monitore a taxa de acertos dos últimos 30 dias.
+                                    Acompanhe cadernos, disciplinas, notas e flashcards, veja sessões recentes e monitore a taxa de acertos dos últimos 30 dias.
                                 </p>
                                 <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Métricas</span>
@@ -654,15 +654,19 @@
                         </p>
 
                         <p class="mt-3">
-                            Organize suas anotações, revise com flashcards, exporte seus resumos em PDF e acompanhe sua evolução de forma prática e sem limitações.
+                            Organize suas anotações com rapidez, use tags para manter tudo no lugar e transforme qualquer conteúdo em flashcards para revisões eficientes. Exporte seus resumos em PDF e acompanhe sua evolução com métricas em tempo real.
                         </p>
 
                         <p class="mt-3">
-                            Converta qualquer conteúdo em exercícios de Múltipla Escolha, Complete a Lacuna e Verdadeiro ou Falso para transformar teoria em prática com feedback imediato.
+                            Pratique com métodos inteligentes: gere automaticamente exercícios de <strong>Múltipla Escolha</strong>, <strong>Complete a Lacuna</strong> e <strong>Verdadeiro ou Falso</strong> a partir das suas notas, flashcards ou PDFs — sempre com feedback imediato para consolidar o aprendizado.
                         </p>
 
                         <p class="mt-3">
-                            Cada assinatura mantém o Booknotes em constante melhoria — com novos recursos, atualizações frequentes e suporte em português sempre que você precisar.
+                            Use <strong>simulados</strong> sob demanda para montar provas com 10, 30 ou 50 questões, controlar o tempo, acompanhar estatísticas detalhadas e avaliar sua retenção antes de qualquer exame.
+                        </p>
+
+                        <p class="mt-3">
+                            Cada assinatura mantém o Booknotes em constante evolução — com novos recursos, atualizações frequentes e suporte humano em português sempre que você precisar.
                         </p>
 
                         <p class="mt-3">
@@ -670,9 +674,10 @@
                         </p>
 
                         <p class="mt-3">
-                            Precisa de um plano para equipes, mentorias ou instituições? Fale conosco e criamos uma condição personalizada mantendo os 14 dias de teste gratuitos.
+                            Precisa de um plano para equipes, mentorias ou instituições? Fale conosco e criamos uma condição personalizada — mantendo os 14 dias de testes gratuitos.
                         </p>
                     </div>
+
                 </div>
             </section>
 
@@ -725,7 +730,7 @@
                         <div class="pt-8">
                             <dt class="text-base font-semibold text-neutral-900">Como organizo diferentes áreas de estudo?</dt>
                             <dd class="mt-3 text-sm text-neutral-600">
-                                Use notebooks para temas amplos, crie disciplinas para cada prova ou módulo e relacione notas e flashcards. Os contadores e filtros ajudam a achar tudo rapidamente.
+                                Use cadernos para temas amplos, crie disciplinas para cada prova ou módulo e relacione notas e flashcards. Os contadores e filtros ajudam a achar tudo rapidamente.
                             </dd>
                         </div>
                         <div class="pt-8">
