@@ -75,6 +75,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 
             <div
                 class="rounded-lg border border-dashed border-zinc-200 bg-zinc-50 p-4"
+                x-ref="timerCard"
                 x-data="{
                     hidden: @entangle('timerHidden'),
                     startedAtIso: @entangle('startedAt'),
@@ -85,11 +86,72 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                     startTimestamp: null,
                     completedTimestamp: null,
                     lockedSeconds: null,
+                    timerInView: true,
+                    floatingDismissed: false,
+                    floatingVisible: false,
+                    visibilityObserver: null,
                     init() {
                         this.$watch('startedAtIso', () => this.sync());
                         this.$watch('completedAtIso', () => this.sync());
                         this.$watch('serverDuration', () => this.sync());
+                        this.$watch('hidden', () => this.onVisibilityPreferenceChange());
+                        this.observeTimerPosition();
                         this.sync();
+                    },
+                    observeTimerPosition() {
+                        this.$nextTick(() => {
+                            const hasObserver = 'IntersectionObserver' in window;
+                            const element = this.$refs.timerCard;
+
+                            if (! element) {
+                                return;
+                            }
+
+                            if (! hasObserver) {
+                                const updatePosition = () => {
+                                    const rect = element.getBoundingClientRect();
+                                    this.timerInView = rect.bottom > 0 && rect.top < window.innerHeight;
+                                    if (this.timerInView) {
+                                        this.floatingDismissed = false;
+                                    }
+                                    this.evaluateFloating();
+                                };
+                                window.addEventListener('scroll', updatePosition, { passive: true });
+                                updatePosition();
+                                return;
+                            }
+
+                            this.visibilityObserver = new IntersectionObserver((entries) => {
+                                entries.forEach((entry) => {
+                                    this.timerInView = entry.isIntersecting;
+                                    if (entry.isIntersecting) {
+                                        this.floatingDismissed = false;
+                                    }
+                                    this.evaluateFloating();
+                                });
+                            }, { threshold: 0.4 });
+
+                            this.visibilityObserver.observe(element);
+                        });
+                    },
+                    onVisibilityPreferenceChange() {
+                        if (this.hidden) {
+                            this.floatingVisible = false;
+                        } else {
+                            this.floatingDismissed = false;
+                            this.evaluateFloating();
+                        }
+                    },
+                    dismissFloating() {
+                        this.floatingDismissed = true;
+                        this.floatingVisible = false;
+                    },
+                    evaluateFloating() {
+                        const hasStarted = this.startTimestamp !== null;
+                        this.floatingVisible = ! this.hidden
+                            && ! this.timerInView
+                            && ! this.floatingDismissed
+                            && hasStarted;
                     },
                     sync() {
                         this.startTimestamp = this.startedAtIso
@@ -110,6 +172,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         }
 
                         this.refresh();
+                        this.evaluateFloating();
 
                         if (this.startTimestamp && this.lockedSeconds === null) {
                             this.intervalId = setInterval(() => this.refresh(), 1000);
@@ -166,10 +229,28 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                             {{ $timerHidden ? __('Timer hidden') : __('Timer visible') }}
                         </span>
                         <flux:button size="sm" variant="ghost" color="zinc" wire:click="toggleTimerVisibility">
-                            {{ $timerHidden ? __('Show timer') : __('Hide timer') }}
-                        </flux:button>
-                    </div>
+                        {{ $timerHidden ? __('Show timer') : __('Hide timer') }}
+                    </flux:button>
                 </div>
+            </div>
+
+            <div
+                class="fixed bottom-6 right-6 z-30 flex items-center gap-2 rounded-full border border-zinc-200 bg-white/95 px-4 py-2 text-xs font-semibold text-zinc-900 shadow-lg shadow-zinc-900/10 backdrop-blur"
+                x-show="floatingVisible"
+                x-transition.opacity
+                x-cloak
+            >
+                <flux:icon.clock class="h-4 w-4 text-zinc-500" />
+                <span class="w-[96px] text-center text-sm font-mono" x-text="display"></span>
+                <button
+                    type="button"
+                    class="rounded-full p-1 text-zinc-400 transition hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
+                    aria-label="{{ __('Hide timer') }}"
+                    x-on:click="dismissFloating"
+                >
+                    <flux:icon.x-mark class="h-4 w-4" />
+                </button>
+            </div>
             </div>
 
             <section class="space-y-4 rounded-lg border border-zinc-200 bg-white/80 p-4">
