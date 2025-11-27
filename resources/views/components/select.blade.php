@@ -10,7 +10,8 @@
 
 @php
     $selectId = $id ?? $attributes->get('id');
-    $wireModel = $attributes->whereStartsWith('wire:model')->first();
+    $wireModelDirective = $attributes->wire('model');
+    $wireModel = $wireModelDirective?->value();
 
     if (! $selectId && $wireModel) {
         $selectId = 'select-' . preg_replace('/[^a-zA-Z0-9_-]/', '-', $wireModel);
@@ -137,15 +138,33 @@
         >
             <span x-text="selectedLabel || placeholder" class="truncate"></span>
 
-            <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                class="size-4 text-zinc-400 transition-transform"
-                :class="{ 'rotate-180': open }"
-            >
-                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-            </svg>
+            <span class="relative flex h-4 w-4 items-center justify-center text-zinc-400">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    class="size-4 transition-transform"
+                    :class="{ 'rotate-180': open }"
+                    @if ($wireModel) wire:loading.remove wire:target="{{ $wireModel }}" @endif
+                >
+                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+                </svg>
+
+                @if ($wireModel)
+                    <svg
+                        class="absolute size-4 animate-spin text-indigo-500"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        wire:loading
+                        wire:target="{{ $wireModel }}"
+                    >
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                    </svg>
+                @endif
+            </span>
         </button>
 
         <div
