@@ -399,7 +399,8 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             $isCorrect = $question['is_correct'] ?? null;
             $isUnanswered = $examFinished && $selectedKey === null;
             @endphp
-            <article class="space-y-3 rounded-lg border border-zinc-200 bg-white/80 p-4" wire:key="question-{{ $question['note_id'] ?? $index }}-{{ $index }}">
+            <!-- rounded-lg border border-zinc-200 bg-white/80  -->
+            <article class="space-y-3 p-4" wire:key="question-{{ $question['note_id'] ?? $index }}-{{ $index }}">
                 <div class="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                         <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
