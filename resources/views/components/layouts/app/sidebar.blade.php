@@ -5,7 +5,7 @@
     </head>
     <body class="min-h-screen bg-white">
         <flux:sidebar sticky stashable collapsible class="border-e border-zinc-200 bg-white">
-            <flux:sidebar.header class="mb-2">
+            <flux:sidebar.header>
                 <div class="flex items-center gap-2 w-full in-data-flux-sidebar-collapsed-desktop:hidden">
                     <a href="{{ route('dashboard') }}" class="me-5 flex items-center space-x-2 rtl:space-x-reverse in-data-flux-sidebar-collapsed-desktop:hidden" wire:navigate>
                         <x-app-logo />
