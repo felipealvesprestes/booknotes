@@ -15,15 +15,15 @@
                 icon="magnifying-glass"
             />
 
-            <select
+            <x-select
                 wire:model.live="notebookFilter"
-                class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:w-56"
+                :placeholder="__('All notebooks')"
+                class="w-full sm:w-56"
             >
-                <option value="">{{ __('All notebooks') }}</option>
                 @foreach ($notebooks as $notebook)
                     <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
                 @endforeach
-            </select>
+            </x-select>
 
             <flux:button
                 variant="primary"
