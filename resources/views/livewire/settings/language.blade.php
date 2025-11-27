@@ -12,7 +12,7 @@
         @endif
 
         <form wire:submit="updateLanguage" class="my-6 w-full space-y-6">
-            <flux:select
+            <x-select
                 wire:model="locale"
                 :label="__('Preferred language')"
                 :placeholder="__('Select a language')"
@@ -25,7 +25,7 @@
                         @endif
                     </option>
                 @endforeach
-            </flux:select>
+            </x-select>
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

@@ -136,11 +136,11 @@
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div class="sm:col-span-2">
                             <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Notebook') }}</label>
-                            <select
+                            <x-select
                                 wire:model.live="selectedNotebook"
-                                class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                :placeholder="__('Select a notebook')"
+                                class="mt-2 w-full"
                             >
-                                <option value="">{{ __('Select a notebook') }}</option>
                                 @foreach ($notebooks as $notebook)
                                     @php
                                         $totalNotes = $notebook->disciplines->sum('notes_count');
@@ -153,7 +153,7 @@
                                         @endif
                                     </option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
 
                         <div class="rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-4 text-xs text-zinc-600 sm:col-span-2">
@@ -164,11 +164,11 @@
                     <div class="grid gap-4 sm:grid-cols-2">
                         <div class="sm:col-span-2">
                             <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Discipline') }}</label>
-                            <select
+                            <x-select
                                 wire:model.live="selectedDiscipline"
-                                class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                                :placeholder="__('Select a discipline')"
+                                class="mt-2 w-full"
                             >
-                                <option value="">{{ __('Select a discipline') }}</option>
                                 @foreach ($disciplines as $discipline)
                                     <option value="{{ $discipline->id }}">
                                         {{ $discipline->title }}
@@ -178,7 +178,7 @@
                                         · {{ trans_choice('{0} no notes|{1} :count note|[2,*] :count notes', $discipline->notes_count, ['count' => $discipline->notes_count]) }}
                                     </option>
                                 @endforeach
-                            </select>
+                            </x-select>
                         </div>
                     </div>
                 @endif
@@ -193,47 +193,47 @@
                 <div class="grid gap-4 sm:grid-cols-2">
                     <div>
                         <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Content type') }}</label>
-                        <select
+                        <x-select
                             wire:model.live="noteType"
-                            class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            class="mt-2 w-full"
                         >
                             <option value="all">{{ __('Notes and flashcards') }}</option>
                             <option value="notes">{{ __('Notes only') }}</option>
                             <option value="flashcards">{{ __('Flashcards only') }}</option>
-                        </select>
+                        </x-select>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Group sections by') }}</label>
-                        <select
+                        <x-select
                             wire:model.live="layoutGrouping"
-                            class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            class="mt-2 w-full"
                         >
                             <option value="discipline">{{ __('Discipline') }}</option>
                             <option value="notebook">{{ __('Notebook') }}</option>
-                        </select>
+                        </x-select>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Page orientation') }}</label>
-                        <select
+                        <x-select
                             wire:model.live="layoutOrientation"
-                            class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            class="mt-2 w-full"
                         >
                             <option value="portrait">{{ __('Portrait (recommended)') }}</option>
                             <option value="landscape">{{ __('Landscape') }}</option>
-                        </select>
+                        </x-select>
                     </div>
 
                     <div>
                         <label class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Layout density') }}</label>
-                        <select
+                        <x-select
                             wire:model.live="layoutDensity"
-                            class="mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                            class="mt-2 w-full"
                         >
                             <option value="detailed">{{ __('Detailed (full content)') }}</option>
                             <option value="compact">{{ __('Compact (shorter spacing)') }}</option>
-                        </select>
+                        </x-select>
                     </div>
                 </div>
 

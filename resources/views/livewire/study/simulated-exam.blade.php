@@ -282,42 +282,44 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 
                 <div class="grid gap-4 md:grid-cols-2">
                     @if ($scopeType === 'notebook')
-                    <label class="text-sm font-medium text-zinc-700">
-                        <span>{{ __('Notebook') }}</span>
-                        <select
-                            wire:model.live="notebookId"
-                            class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option value="">{{ __('Select a notebook') }}</option>
-                            @foreach ($notebooks as $notebook)
-                            <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
-                            @endforeach
-                        </select>
-                        @error('notebookId')
-                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
-                        @enderror
-                    </label>
+                        <div class="text-sm font-medium text-zinc-700">
+                            <span>{{ __('Notebook') }}</span>
+                            <x-select
+                                wire:model.live="notebookId"
+                                :placeholder="__('Select a notebook')"
+                                class="mt-1 w-full"
+                            >
+                                @foreach ($notebooks as $notebook)
+                                    <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
+                                @endforeach
+                            </x-select>
+                            @error('notebookId')
+                                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                     @endif
 
                     @if ($scopeType === 'discipline')
-                    <label class="text-sm font-medium text-zinc-700">
-                        <span>{{ __('Discipline') }}</span>
-                        <select
-                            wire:model.live="disciplineId"
-                            class="mt-1 w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                            <option value="">{{ __('Select a discipline') }}</option>
-                            @foreach ($disciplines as $discipline)
-                            <option value="{{ $discipline->id }}">
-                                {{ $discipline->title }}
-                                @if ($discipline->notebook?->title)
-                                — {{ $discipline->notebook->title }}
-                                @endif
-                            </option>
-                            @endforeach
-                        </select>
-                        @error('disciplineId')
-                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
-                        @enderror
-                    </label>
+                        <div class="text-sm font-medium text-zinc-700">
+                            <span>{{ __('Discipline') }}</span>
+                            <x-select
+                                wire:model.live="disciplineId"
+                                :placeholder="__('Select a discipline')"
+                                class="mt-1 w-full"
+                            >
+                                @foreach ($disciplines as $discipline)
+                                    <option value="{{ $discipline->id }}">
+                                        {{ $discipline->title }}
+                                        @if ($discipline->notebook?->title)
+                                            — {{ $discipline->notebook->title }}
+                                        @endif
+                                    </option>
+                                @endforeach
+                            </x-select>
+                            @error('disciplineId')
+                                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                            @enderror
+                        </div>
                     @endif
 
                     <label class="text-sm font-medium text-zinc-700">

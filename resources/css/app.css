@@ -73,6 +73,12 @@ select:focus[data-flux-control] {
 }
 
 @layer components {
+    [data-flux-input] [data-flux-control] {
+        @apply shadow-none;
+        box-shadow: none !important;
+        --tw-shadow: 0 0 #0000;
+    }
+
     [data-flux-navlist-item][data-current] {
         position: relative;
         background: linear-gradient(90deg, #02b680 0%, #00d493 100%) !important;

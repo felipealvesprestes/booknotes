@@ -17,14 +17,14 @@
                 icon="magnifying-glass"
             />
 
-            <select
+            <x-select
                 wire:model.live="flashcardFilter"
-                class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:w-48"
+                class="w-full sm:w-48"
             >
                 <option value="all">{{ __('All types') }}</option>
                 <option value="notes">{{ __('Notes only') }}</option>
                 <option value="flashcards">{{ __('Flashcards only') }}</option>
-            </select>
+            </x-select>
 
             <flux:button
                 variant="primary"
@@ -108,17 +108,17 @@
                     {{ $notes->total() }} {{ __('notes') }}
                 </span>
 
-                <label class="flex items-center gap-2 text-xs font-medium text-zinc-500">
+                <div class="flex items-center gap-2 text-xs font-medium text-zinc-500">
                     {{ __('Per page') }}
-                    <select
+                    <x-select
                         wire:model.live="perPage"
-                        class="rounded-md border border-zinc-200 bg-white px-2 py-1 text-xs font-medium text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        class="w-24"
                     >
                         @foreach ($perPageOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
                         @endforeach
-                    </select>
-                </label>
+                    </x-select>
+                </div>
             </div>
 
             <table class="min-w-full w-full divide-y divide-zinc-200">

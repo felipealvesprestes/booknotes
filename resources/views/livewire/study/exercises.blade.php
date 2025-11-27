@@ -28,14 +28,15 @@ $modeOverviewDescriptions = [
         </div>
 
         <div class="flex items-center gap-2">
-            <select
+            <x-select
                 wire:model.live="disciplineId"
-                class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 md:w-60">
-                <option value="">{{ __('All disciplines') }}</option>
+                :placeholder="__('All disciplines')"
+                class="w-full md:w-60"
+            >
                 @foreach ($disciplines as $discipline)
-                <option value="{{ $discipline->id }}">{{ $discipline->title }}</option>
+                    <option value="{{ $discipline->id }}">{{ $discipline->title }}</option>
                 @endforeach
-            </select>
+            </x-select>
         </div>
     </div>
 

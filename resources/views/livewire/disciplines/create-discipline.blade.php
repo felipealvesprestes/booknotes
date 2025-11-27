@@ -19,7 +19,7 @@
             </div>
 
             <div>
-                <flux:select
+                <x-select
                     wire:model="notebookId"
                     :label="__('Notebook')"
                     :placeholder="__('Select a notebook')"
@@ -27,7 +27,7 @@
                     @foreach ($notebooks as $notebook)
                         <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
                     @endforeach
-                </flux:select>
+                </x-select>
             </div>
 
             <div>

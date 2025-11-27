@@ -15,15 +15,15 @@
                 class="w-full sm:w-64"
             />
 
-            <select
+            <x-select
                 wire:model.live="actionFilter"
-                class="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 sm:w-56"
+                :placeholder="__('All actions')"
+                class="w-full sm:w-56"
             >
-                <option value="">{{ __('All actions') }}</option>
                 @foreach ($actionOptions as $option)
                     <option value="{{ $option['value'] }}">{{ $option['label'] }}</option>
                 @endforeach
-            </select>
+            </x-select>
         </div>
     </div>
 
@@ -42,17 +42,17 @@
                     {{ trans_choice(':count log|:count logs', $logs->total(), ['count' => $logs->total()]) }}
                 </span>
 
-                <label class="flex items-center gap-2 text-xs font-medium text-zinc-500">
+                <div class="flex items-center gap-2 text-xs font-medium text-zinc-500">
                     {{ __('Per page') }}
-                    <select
+                    <x-select
                         wire:model.live="perPage"
-                        class="rounded-md border border-zinc-200 bg-white px-2 py-1 text-xs font-medium text-zinc-700 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        class="w-24"
                     >
                         @foreach ($perPageOptions as $option)
                             <option value="{{ $option }}">{{ $option }}</option>
                         @endforeach
-                    </select>
-                </label>
+                    </x-select>
+                </div>
             </div>
 
             <div id="logs-list">
