@@ -165,6 +165,11 @@ select:focus[data-flux-control] {
     [data-flux-sidebar][data-flux-sidebar-collapsed-desktop] [data-desktop-user-menu] {
         display: none !important;
     }
+
+    [data-flux-avatar] {
+        background-color: #ffffff !important;
+        color: #0f172a !important;
+    }
 }
 
 /* \[:where(&)\]:size-4 {
