@@ -156,14 +156,14 @@
                         Um só lugar para anotar, aprender, revisar e evoluir
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        O {{ config('app.name') }} reúne tudo o que você precisa para aprender melhor: anotações rápidas, flashcards inteligentes, modos de estudos funcionais, simulados sob demanda e métricas completas — em uma assinatura simples e segura.
+                        A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência em um só lugar. Notas rápidas, flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados sob demanda.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
                         <a
                             href="{{ route('register') }}"
-                            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-base font-semibold text-white transition hover:bg-indigo-500">
-                            Começar agora mesmo
+                            class="inline-flex items-center justify-center rounded-lg bg-indigo-600 px-6 py-3 text-sm uppercase font-semibold text-white transition hover:bg-indigo-500">
+                            Criar minha conta gratuita
                         </a>
                         @endif
 
