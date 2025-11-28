@@ -1,7 +1,7 @@
 @php
 $scopeLabels = [
-    'notebook' => __('Notebook'),
-    'discipline' => __('Discipline'),
+'notebook' => __('Notebook'),
+'discipline' => __('Discipline'),
 ];
 
 $questionCountOptions = [10, 30, 50];
@@ -30,8 +30,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
         }
     }"
     x-on:scroll-to-simulated-questions.window="scrollToQuestions()"
-    x-on:scroll-to-simulated-results.window="scrollToResults()"
->
+    x-on:scroll-to-simulated-results.window="scrollToResults()">
     <div class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
         <div>
             <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Simulated test') }}</h1>
@@ -198,8 +197,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 
                         this.display = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
                     }
-                }"
-            >
+                }">
                 <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div class="space-y-1">
                         <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Timer') }}</p>
@@ -207,13 +205,11 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                             class="text-2xl font-semibold text-zinc-900"
                             x-show="!hidden"
                             x-text="display"
-                            x-cloak
-                        ></p>
+                            x-cloak></p>
                         <p
                             class="text-base font-medium text-zinc-600"
                             x-show="hidden"
-                            x-cloak
-                        >
+                            x-cloak>
                             {{ __('Timer hidden') }}
                         </p>
                         @if (! $examStarted)
@@ -224,33 +220,30 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                     <div class="flex items-center gap-2">
                         <span
                             class="text-xs text-zinc-500"
-                            x-text="hidden ? @js(__('Timer hidden')) : @js(__('Timer visible'))"
-                        >
+                            x-text="hidden ? @js(__('Timer hidden')) : @js(__('Timer visible'))">
                             {{ $timerHidden ? __('Timer hidden') : __('Timer visible') }}
                         </span>
                         <flux:button size="sm" variant="ghost" color="zinc" wire:click="toggleTimerVisibility">
-                        {{ $timerHidden ? __('Show timer') : __('Hide timer') }}
-                    </flux:button>
+                            {{ $timerHidden ? __('Show timer') : __('Hide timer') }}
+                        </flux:button>
+                    </div>
                 </div>
-            </div>
 
-            <div
-                class="fixed top-3 right-6 z-30 flex items-center gap-2 rounded-full border border-zinc-200 bg-white/95 px-4 py-2 text-xs font-semibold text-zinc-900 shadow-lg shadow-zinc-900/10 backdrop-blur"
-                x-show="floatingVisible"
-                x-transition.opacity
-                x-cloak
-            >
-                <flux:icon.clock class="h-4 w-4 text-zinc-500" />
-                <span class="w-[96px] text-center text-sm font-mono" x-text="display"></span>
-                <button
-                    type="button"
-                    class="rounded-full p-1 text-zinc-400 transition hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
-                    aria-label="{{ __('Hide timer') }}"
-                    x-on:click="dismissFloating"
-                >
-                    <flux:icon.x-mark class="h-4 w-4" />
-                </button>
-            </div>
+                <div
+                    class="fixed top-3 right-6 z-30 flex items-center gap-2 rounded-full border border-zinc-200 bg-white/95 px-4 py-2 text-xs font-semibold text-zinc-900 shadow-lg shadow-zinc-900/10 backdrop-blur"
+                    x-show="floatingVisible"
+                    x-transition.opacity
+                    x-cloak>
+                    <flux:icon.clock class="h-4 w-4 text-zinc-500" />
+                    <span class="w-[96px] text-center text-sm font-mono" x-text="display"></span>
+                    <button
+                        type="button"
+                        class="rounded-full p-1 text-zinc-400 transition hover:text-zinc-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60"
+                        aria-label="{{ __('Hide timer') }}"
+                        x-on:click="dismissFloating">
+                        <flux:icon.x-mark class="h-4 w-4" />
+                    </button>
+                </div>
             </div>
 
             <section class="space-y-4 rounded-lg border border-zinc-200 bg-white/80 p-4">
@@ -268,12 +261,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         <button
                             type="button"
                             wire:click="$set('scopeType', '{{ $type }}')"
-                            @class([
-                                'flex-1 rounded-full px-4 py-1 transition',
-                                'bg-indigo-600 text-white shadow-sm' => $isActiveScope,
-                                'hover:text-zinc-900' => ! $isActiveScope,
+                            @class([ 'flex-1 rounded-full px-4 py-1 transition' , 'bg-indigo-600 text-white shadow-sm'=> $isActiveScope,
+                            'hover:text-zinc-900' => ! $isActiveScope,
                             ])
-                        >
+                            >
                             {{ $label }}
                         </button>
                         @endforeach
@@ -282,44 +273,42 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 
                 <div class="grid gap-4 md:grid-cols-2">
                     @if ($scopeType === 'notebook')
-                        <div class="text-sm font-medium text-zinc-700">
-                            <span>{{ __('Notebook') }}</span>
-                            <x-select
-                                wire:model.live="notebookId"
-                                :placeholder="__('Select a notebook')"
-                                class="mt-1 w-full"
-                            >
-                                @foreach ($notebooks as $notebook)
-                                    <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
-                                @endforeach
-                            </x-select>
-                            @error('notebookId')
-                                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
-                            @enderror
-                        </div>
+                    <div class="text-sm font-medium text-zinc-700">
+                        <span>{{ __('Notebook') }}</span>
+                        <x-select
+                            wire:model.live="notebookId"
+                            :placeholder="__('Select a notebook')"
+                            class="mt-1 w-full">
+                            @foreach ($notebooks as $notebook)
+                            <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
+                            @endforeach
+                        </x-select>
+                        @error('notebookId')
+                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                     @endif
 
                     @if ($scopeType === 'discipline')
-                        <div class="text-sm font-medium text-zinc-700">
-                            <span>{{ __('Discipline') }}</span>
-                            <x-select
-                                wire:model.live="disciplineId"
-                                :placeholder="__('Select a discipline')"
-                                class="mt-1 w-full"
-                            >
-                                @foreach ($disciplines as $discipline)
-                                    <option value="{{ $discipline->id }}">
-                                        {{ $discipline->title }}
-                                        @if ($discipline->notebook?->title)
-                                            — {{ $discipline->notebook->title }}
-                                        @endif
-                                    </option>
-                                @endforeach
-                            </x-select>
-                            @error('disciplineId')
-                                <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
-                            @enderror
-                        </div>
+                    <div class="text-sm font-medium text-zinc-700">
+                        <span>{{ __('Discipline') }}</span>
+                        <x-select
+                            wire:model.live="disciplineId"
+                            :placeholder="__('Select a discipline')"
+                            class="mt-1 w-full">
+                            @foreach ($disciplines as $discipline)
+                            <option value="{{ $discipline->id }}">
+                                {{ $discipline->title }}
+                                @if ($discipline->notebook?->title)
+                                — {{ $discipline->notebook->title }}
+                                @endif
+                            </option>
+                            @endforeach
+                        </x-select>
+                        @error('disciplineId')
+                        <p class="mt-1 text-xs text-rose-600">{{ $message }}</p>
+                        @enderror
+                    </div>
                     @endif
 
                     <label class="text-sm font-medium text-zinc-700">
@@ -333,12 +322,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                                 type="button"
                                 wire:click="$set('questionCount', {{ $countOption }})"
                                 aria-pressed="{{ $isActive ? 'true' : 'false' }}"
-                                @class([
-                                    'relative flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-1',
-                                    'border-indigo-500 bg-indigo-50 text-indigo-900' => $isActive,
-                                    'border-zinc-200 text-zinc-600 hover:border-indigo-300 hover:bg-zinc-50' => ! $isActive,
+                                @class([ 'relative flex items-center justify-center gap-2 rounded-lg border px-3 py-2 text-sm font-semibold transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/60 focus-visible:ring-offset-1' , 'border-indigo-500 bg-indigo-50 text-indigo-900'=> $isActive,
+                                'border-zinc-200 text-zinc-600 hover:border-indigo-300 hover:bg-zinc-50' => ! $isActive,
                                 ])
-                            >
+                                >
                                 <span>{{ $countOption }}</span>
                             </button>
                             @endforeach
@@ -397,8 +384,8 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                 $durationMinutes = intdiv($durationSeconds % 3600, 60);
                 $durationSecs = $durationSeconds % 60;
                 $durationLabel = $durationHours > 0
-                    ? sprintf('%02d:%02d:%02d', $durationHours, $durationMinutes, $durationSecs)
-                    : sprintf('%02d:%02d', $durationMinutes, $durationSecs);
+                ? sprintf('%02d:%02d:%02d', $durationHours, $durationMinutes, $durationSecs)
+                : sprintf('%02d:%02d', $durationMinutes, $durationSecs);
                 @endphp
                 <article class="space-y-3 rounded-lg border border-zinc-200 bg-white/80 p-4" wire:key="attempt-{{ $attempt->id }}">
                     <div class="flex items-center justify-between gap-3">
@@ -446,8 +433,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
     @if ($examStarted)
     <section
         x-ref="questionBlock"
-        class="space-y-5 rounded-lg border border-zinc-200 bg-white/90 p-5"
-    >
+        class="space-y-5 rounded-lg border border-zinc-200 bg-white/90 p-5">
         <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
             <div class="space-y-2">
                 <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Progress') }}</p>
@@ -474,7 +460,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             <div class="h-2 rounded-full bg-indigo-500 transition-all duration-500" style="width: {{ $progressPercent }}%;"></div>
         </div>
 
-        <div class="space-y-4" data-question-list>
+        <div class="space-y-4 border-t border-dashed border-zinc-200 pt-2" data-question-list>
             @foreach ($questions as $index => $question)
             @php
             $selectedKey = $question['selected_key'] ?? null;
@@ -501,12 +487,10 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                     </div>
 
                     @if ($examFinished)
-                    <span @class([
-                        'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold',
-                        'border-emerald-200 bg-emerald-50 text-emerald-700' => $isCorrect,
+                    <span @class([ 'inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-semibold' , 'border-emerald-200 bg-emerald-50 text-emerald-700'=> $isCorrect,
                         'border-rose-200 bg-rose-50 text-rose-700' => ! $isCorrect && ! $isUnanswered,
                         'border-amber-200 bg-amber-50 text-amber-700' => $isUnanswered,
-                    ])>
+                        ])>
                         @if ($isUnanswered)
                         <flux:icon.question-mark-circle class="h-4 w-4" />
                         {{ __('Not answered') }}
@@ -535,20 +519,17 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                         wire:loading.attr="disabled"
                         wire:target="selectOption({{ $index }}, '{{ $optionKey }}')"
                         @disabled($examFinished)
-                        @class([
-                            'relative flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500',
-                            'border-indigo-500 bg-indigo-50 text-indigo-900' => ! $examFinished && $isSelected,
-                            'border-zinc-200 text-zinc-700 hover:border-indigo-300 hover:bg-white' => ! $examFinished && ! $isSelected,
-                            'border-emerald-400 bg-emerald-50 text-emerald-900' => $examFinished && $isCorrectOption,
-                            'border-rose-300 bg-rose-50 text-rose-900' => $examFinished && $isSelected && ! $isCorrectOption,
-                            'border-zinc-100 text-zinc-500 opacity-70 pointer-events-none' => $examFinished && ! $isCorrectOption && ! $isSelected,
+                        @class([ 'relative flex w-full items-start gap-3 rounded-lg border px-4 py-3 text-left text-sm transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500' , 'border-indigo-500 bg-indigo-50 text-indigo-900'=> ! $examFinished && $isSelected,
+                        'border-zinc-200 text-zinc-700 hover:border-indigo-300 hover:bg-white' => ! $examFinished && ! $isSelected,
+                        'border-emerald-400 bg-emerald-50 text-emerald-900' => $examFinished && $isCorrectOption,
+                        'border-rose-300 bg-rose-50 text-rose-900' => $examFinished && $isSelected && ! $isCorrectOption,
+                        'border-zinc-100 text-zinc-500 opacity-70 pointer-events-none' => $examFinished && ! $isCorrectOption && ! $isSelected,
                         ])
-                    >
+                        >
                         <div
                             wire:loading.flex
                             wire:target="selectOption({{ $index }}, '{{ $optionKey }}')"
-                            class="absolute inset-0 hidden items-center justify-center rounded-lg bg-white/80"
-                        >
+                            class="absolute inset-0 hidden items-center justify-center rounded-lg bg-white/80">
                             <flux:icon.arrow-path class="h-4 w-4 animate-spin text-indigo-600" />
                         </div>
 
@@ -595,8 +576,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
     @if ($examFinished)
     <div
         x-ref="resultsBlock"
-        class="space-y-4 rounded-xl border border-indigo-200 bg-indigo-50 p-6"
-    >
+        class="space-y-4 rounded-xl border border-indigo-200 bg-indigo-50 p-6">
         <div>
             <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Results saved') }}</p>
             <p class="mt-2 text-4xl font-semibold text-indigo-900">{{ $score }}%</p>
