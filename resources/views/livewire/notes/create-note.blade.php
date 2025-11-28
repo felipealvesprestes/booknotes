@@ -7,6 +7,20 @@
     </div>
 
     <div class="rounded-md border border-zinc-200 bg-white p-6">
+        @if (session('status'))
+            <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50/80 p-4 text-emerald-900">
+                <div class="flex items-start gap-3">
+                    <flux:icon.check-circle class="mt-0.5 h-5 w-5 text-emerald-500" />
+                    <div>
+                        <p class="text-sm font-semibold leading-snug">{{ session('status') }}</p>
+                        <p class="mt-1 text-xs text-emerald-800">
+                            {{ __('You can add another note right away or jump back to the list.') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endif
+
         <form wire:submit.prevent="save" class="space-y-5">
             <div>
                 <flux:input
@@ -104,18 +118,28 @@
                 </div>
             </div>
 
-            <div class="flex items-center justify-end gap-3">
+            <div class="flex flex-wrap items-center justify-between gap-3">
                 <flux:button
+                    type="button"
                     variant="ghost"
-                    :href="route('notes.index', $discipline)"
-                    wire:navigate
+                    wire:click="cancel"
                 >
                     {{ __('Cancel') }}
                 </flux:button>
 
-                <flux:button variant="primary" type="submit">
-                    {{ __('Save note') }}
-                </flux:button>
+                <div class="flex items-center gap-3">
+                    <flux:button
+                        variant="ghost"
+                        :href="route('notes.index', $discipline)"
+                        wire:navigate
+                    >
+                        {{ __('Back to notes list') }}
+                    </flux:button>
+
+                    <flux:button variant="primary" type="submit">
+                        {{ __('Save note') }}
+                    </flux:button>
+                </div>
             </div>
         </form>
     </div>

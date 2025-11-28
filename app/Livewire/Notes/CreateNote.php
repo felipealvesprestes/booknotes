@@ -96,9 +96,11 @@ class CreateNote extends Component
             ],
         ]);
 
-        session()->flash('status', __('Note created successfully.'));
+        session()->flash('status', __('Note saved successfully.'));
 
-        $this->redirectRoute('notes.index', ['discipline' => $this->discipline->id], navigate: true);
+        $this->resetFormState();
+
+        $this->redirectRoute('notes.create', ['discipline' => $this->discipline->id], navigate: true);
     }
 
     public function addTagsFromInput(?string $value = null): void
@@ -141,6 +143,26 @@ class CreateNote extends Component
             ->map(fn ($tag) => trim((string) $tag))
             ->filter()
             ->all();
+    }
+
+    public function cancel(): void
+    {
+        $this->resetFormState();
+    }
+
+    protected function resetFormState(): void
+    {
+        $this->reset([
+            'title',
+            'content',
+            'isFlashcard',
+            'flashcardQuestion',
+            'flashcardAnswer',
+            'tags',
+            'tagInput',
+        ]);
+
+        $this->resetValidation();
     }
 
     public function render(): View
