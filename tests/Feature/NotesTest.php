@@ -43,7 +43,7 @@ it('creates a note and logs the action', function (): void {
         ->set('flashcardQuestion', 'What is first?')
         ->set('flashcardAnswer', 'Answer')
         ->call('save')
-        ->assertRedirect(route('notes.index', $discipline));
+        ->assertRedirect(route('notes.create', $discipline));
 
     $this->assertDatabaseHas('notes', [
         'title' => 'First Note',
