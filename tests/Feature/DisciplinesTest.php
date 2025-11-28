@@ -67,14 +67,9 @@ it('ignores notebook query parameter that does not belong to the user', function
     $user = User::factory()->create();
     actingAs($user);
 
-    $defaultNotebook = Notebook::create([
-        'title' => 'Notebook Default',
-        'description' => null,
-    ]);
-
     Livewire::withQueryParams(['notebook' => 999])
         ->test(CreateDiscipline::class)
-        ->assertSet('notebookId', $defaultNotebook->id);
+        ->assertSet('notebookId', null);
 
     Livewire::withQueryParams([]);
 });
