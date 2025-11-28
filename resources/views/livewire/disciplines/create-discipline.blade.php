@@ -25,7 +25,12 @@
                     :placeholder="__('Select a notebook')"
                 >
                     @foreach ($notebooks as $notebook)
-                        <option value="{{ $notebook->id }}">{{ $notebook->title }}</option>
+                        <option
+                            value="{{ $notebook->id }}"
+                            @selected((string) $notebookId === (string) $notebook->id)
+                        >
+                            {{ $notebook->title }}
+                        </option>
                     @endforeach
                 </x-select>
             </div>
