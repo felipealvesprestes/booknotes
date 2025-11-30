@@ -1,4 +1,103 @@
 <div class="mx-auto w-full max-w-3xl space-y-6">
+    <flux:modal
+        name="notes-onboarding"
+        wire:model="showNotesOnboardingModal"
+        focusable
+        class="max-w-2xl"
+    >
+        <div class="space-y-6">
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-start">
+                <div class="flex h-14 w-14 items-center justify-center rounded-md bg-indigo-100 text-indigo-600">
+                    <flux:icon.sparkles class="h-7 w-7" />
+                </div>
+
+                <div class="space-y-2">
+                    <flux:heading size="lg">{{ __('Sua base de conhecimento começa aqui') }}</flux:heading>
+                    <flux:text>
+                        {{ __('É aqui onde tudo se inicia: é registrando notas que o Booknotes monta sua base de conhecimento, cria flashcards e impulsiona seus estudos.') }}
+                    </flux:text>
+                </div>
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-2xl border border-indigo-100 bg-indigo-50/60 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="rounded-full bg-white/90 p-2 text-indigo-600">
+                            <flux:icon.book-open class="h-5 w-5" />
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-indigo-900">{{ __('Notas são fundamentais ') }}</p>
+                            <p class="mt-1 text-xs text-indigo-800/80">
+                                {{ __('Construa notas ricas em detalhes sobre tudo que você está estudando. Isso ajuda a absorver o conteúdo.') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-emerald-100 bg-emerald-50/60 p-4">
+                    <div class="flex items-start gap-3">
+                        <div class="rounded-full bg-white/90 p-2 text-emerald-600">
+                            <flux:icon.bolt class="h-5 w-5" />
+                        </div>
+                        <div>
+                            <p class="text-sm font-semibold text-emerald-900">{{ __('Base para revisões inteligentes') }}</p>
+                            <p class="mt-1 text-xs text-emerald-800/80">
+                                {{ __('Cada nota pode virar flashcard com um clique. Flashcards alimentam simulados e todos os modos de estudo.') }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid gap-3 sm:grid-cols-3">
+                <div class="rounded-xl border border-zinc-200 bg-white/80 p-4">
+                    <p class="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Passo 1') }}</p>
+                    <p class="mt-2 text-sm font-semibold text-zinc-900">{{ __('Contextualize') }}</p>
+                    <p class="mt-1 text-xs text-zinc-600">
+                        {{ __('Use títulos claros e mantenha cada nota vinculada ao caderno e disciplina certos.') }}
+                    </p>
+                </div>
+                <div class="rounded-xl border border-zinc-200 bg-white/80 p-4">
+                    <p class="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Passo 2') }}</p>
+                    <p class="mt-2 text-sm font-semibold text-zinc-900">{{ __('Organize ideias') }}</p>
+                    <p class="mt-1 text-xs text-zinc-600">
+                        {{ __('Misture texto e tags para que o sistema entenda seu raciocínio completo.') }}
+                    </p>
+                </div>
+                <div class="rounded-xl border border-zinc-200 bg-white/80 p-4">
+                    <p class="text-[11px] font-semibold uppercase tracking-wide text-zinc-500">{{ __('Passo 3') }}</p>
+                    <p class="mt-2 text-sm font-semibold text-zinc-900">{{ __('Marque como flashcard') }}</p>
+                    <p class="mt-1 text-xs text-zinc-600">
+                        {{ __('Notas viram flashcards e você revisa com simulados e modos de estudos.') }}
+                    </p>
+                </div>
+            </div>
+
+            <div class="rounded-2xl border border-dashed border-zinc-200 bg-zinc-50/80 p-5 text-sm text-zinc-700">
+                {{ __('Quanto antes você começar a criar flashcards, mais rápido o Booknotes monta sua base de conhecimento e você já pode começar a estudar.') }}
+            </div>
+
+            <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                <flux:modal.close>
+                    <flux:button variant="ghost" class="flex-1 sm:flex-none">
+                        {{ __('Ler depois') }}
+                    </flux:button>
+                </flux:modal.close>
+
+                <flux:modal.close>
+                    <flux:button
+                        variant="primary"
+                        icon="sparkles"
+                        class="flex-1 sm:flex-none"
+                        type="button"
+                    >
+                        {{ __('Começar minha primeira nota') }}
+                    </flux:button>
+                </flux:modal.close>
+            </div>
+        </div>
+    </flux:modal>
+
     <div>
         <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Create note') }}</h1>
         <p class="mt-1 text-sm text-zinc-500">

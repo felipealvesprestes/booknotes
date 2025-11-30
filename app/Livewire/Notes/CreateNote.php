@@ -15,6 +15,11 @@ class CreateNote extends Component
     #[Locked]
     public Discipline $discipline;
 
+    /**
+     * Controls whether the onboarding modal should be shown on the form.
+     */
+    public bool $showNotesOnboardingModal = false;
+
     public string $title = '';
 
     public string $content = '';
@@ -32,6 +37,7 @@ class CreateNote extends Component
     public function mount(Discipline $discipline): void
     {
         $this->discipline = $discipline;
+        $this->updateNotesOnboardingState();
     }
 
     public function updatedIsFlashcard(bool $value): void
@@ -99,6 +105,7 @@ class CreateNote extends Component
         session()->flash('status', __('Note saved successfully.'));
 
         $this->resetFormState();
+        $this->showNotesOnboardingModal = false;
 
         $this->redirectRoute('notes.create', ['discipline' => $this->discipline->id], navigate: true);
     }
@@ -163,6 +170,11 @@ class CreateNote extends Component
         ]);
 
         $this->resetValidation();
+    }
+
+    protected function updateNotesOnboardingState(): void
+    {
+        $this->showNotesOnboardingModal = ! Note::query()->exists();
     }
 
     public function render(): View
