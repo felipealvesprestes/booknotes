@@ -655,5 +655,8 @@
     "Grades are calculated only after you submit the exam.": "Grades are calculated only after you submit the exam.",
     "Submit exam": "Submit exam",
     "Not answered": "Not answered",
-    "Incorrect": "Incorrect"
+    "Incorrect": "Incorrect",
+    "Prefer short notes": "Prefer short notes",
+    "Shorter notes are easier to review. Consider splitting very long content into smaller entries to keep focus.": "Shorter notes are easier to review. Consider splitting very long content into smaller entries to keep focus.",
+    "Got it": "Got it"
 }

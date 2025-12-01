@@ -742,5 +742,8 @@
     "Grades are calculated only after you submit the exam.": "A nota só é calculada depois que você entrega o simulado.",
     "Submit exam": "Entregar simulado",
     "Not answered": "Não respondida",
-    "Incorrect": "Incorreta"
+    "Incorrect": "Incorreta",
+    "Prefer short notes": "Prefira notas curtas",
+    "Shorter notes are easier to review. Consider splitting very long content into smaller entries to keep focus.": "Notas mais curtas são mais fáceis de revisar. Considere dividir conteúdos muito longos em entradas menores e diretas.",
+    "Got it": "Entendi"
 }
