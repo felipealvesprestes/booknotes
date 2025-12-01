@@ -7,7 +7,7 @@ $isDashboard = request()->routeIs('dashboard');
         <flux:modal.trigger name="how-it-works">
             <button
                 type="button"
-                class="flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-white shadow-xl transition hover:bg-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:px-6"
+                class="how-it-works-pulse flex items-center gap-2 rounded-full bg-emerald-400 px-5 py-3 text-sm font-semibold text-white shadow-xl transition hover:bg-emerald-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-400 sm:px-6"
                 aria-label="{{ __('How the platform works') }}"
             >
                 <span
@@ -49,9 +49,9 @@ $isDashboard = request()->routeIs('dashboard');
                     </li>
                 </ol>
 
-                <div class="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-                    <p class="text-sm font-semibold text-zinc-900">{{ __('Everything revolves around flashcards') }}</p>
-                    <p class="mt-1 text-xs text-zinc-500">
+                <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                    <p class="text-sm font-semibold text-emerald-900">{{ __('Everything revolves around flashcards') }}</p>
+                    <p class="mt-1 text-xs text-emerald-800">
                         {{ __('They power every study mode: flashcards, fill in the blank, multiple choice, and true or false.') }}
                     </p>
                 </div>
