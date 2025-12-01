@@ -1,55 +1,61 @@
 <div>
-    <flux:modal
-        name="complete-profile"
-        wire:model="showProfileCompletionModal"
-        class="max-w-lg">
-        <div class="space-y-6">
-            <div class="flex gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
-                    <flux:icon.shield-exclamation class="h-6 w-6" />
+    @php
+        $showOnboardingHero = $metrics['notebooks'] === 0 || $metrics['disciplines'] === 0 || $metrics['notes'] === 0;
+    @endphp
+
+    @if (! $showOnboardingHero)
+        <flux:modal
+            name="complete-profile"
+            wire:model="showProfileCompletionModal"
+            class="max-w-lg">
+            <div class="space-y-6">
+                <div class="flex gap-3">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-100 text-emerald-600">
+                        <flux:icon.shield-exclamation class="h-6 w-6" />
+                    </div>
+                    <div class="flex-1 space-y-1">
+                        <flux:heading size="lg">{{ __('Complete your profile') }}</flux:heading>
+                        <flux:text>
+                            {{ __('We still need a few details to finish your registration. Please keep your billing information up to date.') }}
+                        </flux:text>
+                    </div>
                 </div>
-                <div class="flex-1 space-y-1">
-                    <flux:heading size="lg">{{ __('Complete your profile') }}</flux:heading>
-                    <flux:text>
-                        {{ __('We still need a few details to finish your registration. Please keep your billing information up to date.') }}
-                    </flux:text>
+
+                <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
+                    <p class="text-sm font-semibold text-emerald-900">{{ __('Missing information') }}</p>
+
+                    @if ($missingProfileFields !== [])
+                        <ul class="mt-3 list-disc space-y-1 ps-4 text-sm text-emerald-900">
+                            @foreach ($missingProfileFields as $fieldLabel)
+                                <li>{{ $fieldLabel }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
+
+                    <p class="mt-3 text-xs text-emerald-800">
+                        {{ __('This data is required for invoices and receipts, and only needs to be completed once.') }}
+                    </p>
                 </div>
-            </div>
 
-            <div class="rounded-lg border border-emerald-200 bg-emerald-50 p-4">
-                <p class="text-sm font-semibold text-emerald-900">{{ __('Missing information') }}</p>
+                <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
+                    <flux:modal.close>
+                        <flux:button variant="ghost" class="flex-1 sm:flex-none">
+                            {{ __('Remind me later') }}
+                        </flux:button>
+                    </flux:modal.close>
 
-                @if ($missingProfileFields !== [])
-                    <ul class="mt-3 list-disc space-y-1 ps-4 text-sm text-emerald-900">
-                        @foreach ($missingProfileFields as $fieldLabel)
-                            <li>{{ $fieldLabel }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-
-                <p class="mt-3 text-xs text-emerald-800">
-                    {{ __('This data is required for invoices and receipts, and only needs to be completed once.') }}
-                </p>
-            </div>
-
-            <div class="flex flex-col gap-3 sm:flex-row sm:justify-end">
-                <flux:modal.close>
-                    <flux:button variant="ghost" class="flex-1 sm:flex-none">
-                        {{ __('Remind me later') }}
+                    <flux:button
+                        variant="primary"
+                        icon="cog-6-tooth"
+                        :href="route('profile.edit')"
+                        wire:navigate
+                    >
+                        {{ __('Update profile') }}
                     </flux:button>
-                </flux:modal.close>
-
-                <flux:button
-                    variant="primary"
-                    icon="cog-6-tooth"
-                    :href="route('profile.edit')"
-                    wire:navigate
-                >
-                    {{ __('Update profile') }}
-                </flux:button>
+                </div>
             </div>
-        </div>
-    </flux:modal>
+        </flux:modal>
+    @endif
 
     <div class="space-y-8">
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
@@ -70,6 +76,63 @@
             </flux:button>
         </div>
     </div>
+
+    @if ($showOnboardingHero)
+        @php
+            $onboardingSteps = [
+                [
+                    'title' => __('Create notebook'),
+                    'description' => __('Create your first notebook to start organizing your notes.'),
+                ],
+                [
+                    'title' => __('Add disciplines'),
+                    'description' => __('Create your first discipline to organize notes inside a notebook.'),
+                ],
+                [
+                    'title' => __('Capture notes and flashcards'),
+                    'description' => __('Capture your thoughts and promote them to flashcards when ready to study.'),
+                ],
+                [
+                    'title' => __('Start a study session'),
+                    'description' => __('Open the Practice menu, pick a study mode, and start reviewing right away.'),
+                ],
+            ];
+        @endphp
+
+        <div class="bg-white">
+            <div class="mx-auto w-full">
+                <div class="relative isolate overflow-hidden bg-gradient-to-br from-indigo-900 via-zinc-900 to-slate-900 px-6 py-16 text-center text-white sm:rounded-xl sm:px-16">
+                    <div class="mx-auto max-w-4xl">
+                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ __('Build your knowledge base inside Booknotes') }}</h2>
+                        <p class="mt-4 text-base text-zinc-200 sm:text-lg">
+                            {{ __('Create notebooks, disciplines, and your first note to unlock the full experience. Follow the steps below to activate your personalized study hub.') }}
+                        </p>
+                    </div>
+
+                    <div class="mt-10 grid gap-4 text-left sm:grid-cols-2 lg:grid-cols-4">
+                        @foreach ($onboardingSteps as $index => $step)
+                            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-left shadow-lg shadow-black/10">
+                                <p class="text-xs font-semibold uppercase tracking-wide text-indigo-200">{{ __('Step :number', ['number' => $index + 1]) }}</p>
+                                <h3 class="mt-2 text-lg font-semibold text-white">{{ $step['title'] }}</h3>
+                                <p class="mt-2 text-sm text-zinc-200">{{ $step['description'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
+                        <a
+                            href="{{ route('notebooks.create') }}"
+                            wire:navigate
+                            class="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+                            {{ __('Create notebook') }}
+                        </a>
+                        <span class="text-sm text-zinc-300">{{ __('Start with your notebook to unlock the next steps.') }}</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endif
 
     <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         <div class="rounded-md border border-zinc-200 bg-white p-5">
