@@ -153,7 +153,7 @@
                         Novo módulo de simulado
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
-                        Um só lugar para anotar, aprender, revisar e evoluir
+                        Transforme suas anotações no seu maior diferencial nos estudos
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
                         A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência em um só lugar. Notas rápidas, flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados sob demanda.
