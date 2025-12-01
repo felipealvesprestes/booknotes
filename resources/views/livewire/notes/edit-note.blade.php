@@ -33,12 +33,92 @@
                 />
             </div>
 
-            <div>
+            <div
+                x-data="{
+                    limit: 1100,
+                    content: $wire.entangle('content').live,
+                    showModal: false,
+                    wasOverLimit: false,
+                    init() {
+                        this.$watch('content', (value) => {
+                            const length = (value ?? '').length;
+                            const currentlyOver = length > this.limit;
+
+                            if (currentlyOver && ! this.wasOverLimit) {
+                                this.showModal = true;
+                            }
+
+                            this.wasOverLimit = currentlyOver;
+                        });
+                    },
+                    closeModal() {
+                        this.showModal = false;
+                    },
+                    get count() {
+                        return (this.content ?? '').length;
+                    },
+                    get isOverLimit() {
+                        return this.count > this.limit;
+                    },
+                }"
+                x-on:keydown.escape.window="showModal = false"
+            >
                 <flux:textarea
-                    wire:model="content"
+                    wire:model.live="content"
                     :label="__('Content')"
                     rows="14"
                 />
+
+                <div class="mt-2 flex justify-end text-xs font-medium">
+                    <span :class="isOverLimit ? 'text-rose-600' : 'text-zinc-500'">
+                        <span x-text="count"></span>
+                        / 1100
+                    </span>
+                </div>
+
+                <div
+                    x-cloak
+                    x-show="showModal"
+                    class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:px-0"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="note-length-warning-title"
+                >
+                    <div
+                        class="fixed inset-0 bg-zinc-950/25"
+                        x-show="showModal"
+                        x-transition.opacity
+                        x-on:click="closeModal()"
+                    ></div>
+
+                    <div
+                        class="relative z-10 w-full max-w-sm transform rounded-2xl bg-white p-6 text-center shadow-xl transition-all dark:bg-zinc-900"
+                        x-show="showModal"
+                        x-transition.scale
+                        x-on:click.stop
+                    >
+                        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+                            <flux:icon.shield-exclamation class="h-6 w-6" />
+                        </div>
+                        <div class="mt-4 space-y-2">
+                            <h3 id="note-length-warning-title" class="text-base font-semibold text-zinc-900 dark:text-white">
+                                {{ __('Prefer short notes') }}
+                            </h3>
+                            <p class="text-sm text-zinc-600 dark:text-zinc-300">
+                                {{ __('Shorter notes are easier to review. Consider splitting very long content into smaller entries to keep focus.') }}
+                            </p>
+                        </div>
+                        <div class="mt-6">
+                            <button
+                                type="button"
+                                class="inline-flex w-full justify-center rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-600"
+                                x-on:click="closeModal()"
+                            >
+                                {{ __('Got it') }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div x-data="{}">
