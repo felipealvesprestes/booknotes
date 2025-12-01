@@ -101,7 +101,7 @@
 
         <div class="bg-white">
             <div class="mx-auto w-full">
-                <div class="relative isolate overflow-hidden bg-gradient-to-br from-indigo-900 via-zinc-900 to-slate-900 px-6 py-16 text-center text-white sm:rounded-xl sm:px-16">
+                <div class="relative isolate overflow-hidden bg-gradient-to-br from-indigo-900 via-zinc-900 to-slate-900 px-6 py-16 text-center text-white rounded-xl sm:px-16">
                     <div class="mx-auto max-w-4xl">
                         <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ __('Build your knowledge base inside Booknotes') }}</h2>
                         <p class="mt-4 text-base text-zinc-200 sm:text-lg">
