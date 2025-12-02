@@ -297,7 +297,6 @@
                                     alt="Painel de estudos do Booknotes com métricas, cadernos e sessões."
                                     class="w-full h-auto max-md:blur-[1px]"
                                 />
-                                <div class="pointer-events-none absolute inset-0 bg-gradient-to-t from-neutral-900/10 via-transparent opacity-0 transition group-hover:opacity-100"></div>
                             </div>
 
                             <figcaption class="px-5 py-4 text-xs leading-snug text-neutral-600 border-t border-neutral-100 bg-white/90">
