@@ -6,7 +6,7 @@
     @php($metaDescription = 'Use o ' . config('app.name') . ' para criar resumos, organizar cadernos, estudar com flashcards online e acompanhar métricas. Ideal para concursos, ENEM, faculdade e certificações.')
     @php($metaRobots = 'index,follow')
     @php($canonical = url('/'))
-    @php($ogTitle = 'Flashcards online, resumos e PDFs em um hub de estudos completo')
+    @php($ogTitle = 'Flashcards, simulados e modos de estudo online em um hub de estudos completo')
     @php($ogDescription = 'Organize, revise e memorize conteúdos com uma plataforma de estudos feita para quem leva o aprendizado a sério.')
     @php($ogImage = asset('img/share-default.jpg'))
     @include('partials.head')
@@ -150,13 +150,13 @@
             <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Novo módulo de simulado
+                        Novo módulo de Inteligência Artificial
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
-                        Transforme suas anotações no seu maior diferencial nos estudos
+                        Transforme sua forma de estudar com a <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">Inteligência Artificial</span>
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência em um só lugar. Notas rápidas, flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados sob demanda.
+                        A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência. Utilize o poder da <span class="font-bold">Inteligência Artificial</span> para criar flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
@@ -201,7 +201,7 @@
 
             <section id="workflow" class="mt-20 overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
                 <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Do livro ao aprendizado aplicado em três passos</h2>
+                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Melhore seus estudos em três passos</h2>
                     <p class="mt-4 text-base leading-relaxed text-neutral-300">
                         Combine leitura ativa, anotações estruturadas e revisão contínua sem precisar alternar entre múltiplas ferramentas.
                     </p>
@@ -229,6 +229,44 @@
                         </p>
                     </div>
                 </div>
+            </section>
+
+            <section class="relative mt-16 overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-20 shadow-[0_18px_60px_rgba(15,23,42,0.08)] sm:px-12">
+                <div class="pointer-events-none absolute inset-x-0 bottom-[-28%] h-[360px] bg-[radial-gradient(circle_at_bottom,_rgba(129,140,248,0.45),_rgba(236,72,153,0.2),_transparent_70%)] blur-3xl"></div>
+                <div class="mx-auto max-w-3xl text-center">
+                    <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
+                        Novo assistente de IA
+                    </span>
+                    <h2 class="mt-6 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
+                        Estude com a Inteligência Artificial do {{ config('app.name') }}
+                    </h2>
+                    <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-600">
+                        Gere flashcards, resumos e toda a base de conhecimento em poucos cliques. A IA organiza suas notas, produz cards prontos para os modos de exercício e simulado e mostra o que precisa de reforço antes da próxima prova.
+                    </p>
+                    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+                        @if (Route::has('register'))
+                        <a
+                            href="{{ route('register') }}"
+                            class="relative z-10 rounded-lg bg-gradient-to-r bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/40 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                            Criar minha conta gratuita
+                        </a>
+                        @endif
+                        <a
+                            href="#features"
+                            class="text-sm font-semibold text-neutral-900 transition hover:text-neutral-600">
+                            Ver como funciona <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+                <svg viewBox="0 0 1024 1024" aria-hidden="true" class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 -translate-y-1/2">
+                    <circle r="512" cx="512" cy="512" fill="url(#ai-spotlight)" fill-opacity="0.7" />
+                    <defs>
+                        <radialGradient id="ai-spotlight">
+                            <stop stop-color="#818CF8" />
+                            <stop offset="1" stop-color="#E879F9" />
+                        </radialGradient>
+                    </defs>
+                </svg>
             </section>
 
             <section class="pt-24">
@@ -275,7 +313,7 @@
                     <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)]"></div>
                     <div class="mx-auto flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
                         <div>
-                            <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos agora</h2>
+                            <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos com IA</h2>
                             <p class="mt-4 text-sm text-indigo-100">
                                 Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos. Sem cartão, sem pegadinha, cancele quando quiser.
                             </p>
@@ -337,6 +375,22 @@
                             </div>
                         </div>
                         <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
+                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-100 via-indigo-100 to-sky-100 text-indigo-600 shadow-inner">
+                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                                        <circle cx="12" cy="12" r="3.25" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M6.25 6.25 4.5 4.5M17.75 17.75l1.75 1.75M17.75 6.25l1.75-1.75M6.25 17.75 4.5 19.5" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                                </div>
+                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Inteligência Artificial integrada</h3>
+                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
+                                    Crie flashcards completos em segundos e monte base de conhecimento para simulados e todos os modos de estudos.
+                                </p>
+                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">IA</span>
+                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Automação</span>
+                                </div>
+                            </article>
                             <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
                                 <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
                                     <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -466,22 +520,6 @@
                                     <span class="rounded-full bg-indigo-50 px-3 py-1">Insights</span>
                                 </div>
                             </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-100 via-pink-100 to-indigo-100 text-purple-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="m7 12 3 3 7-7" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Exportações premium</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Monte PDFs por disciplina, filtros e agrupamentos e compartilhe cadernos completos com mentores, equipes ou turmas inteiras.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">PDFs</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Compartilhe</span>
-                                </div>
-                            </article>
                         </div>
                     </div>
                 </div>
@@ -574,6 +612,13 @@
                             <span class="font-bold">14 dias de testes gratuitos</span> · impostos calculados automaticamente · cancelamento a qualquer momento
                         </p>
                         <ul class="mt-8 space-y-3 rounded-2xl bg-neutral-50/80 p-5 text-sm text-neutral-700">
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Assistente com Inteligência Artificial</p>
+                                    <p>Deixe a IA gerar flashcards e montar sua base de conhecimentos para simulados e modos de estudos com poucos cliques.</p>
+                                </div>
+                            </li>
                             <li class="flex items-start gap-3">
                                 <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
                                 <div>
