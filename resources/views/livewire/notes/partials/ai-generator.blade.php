@@ -6,17 +6,25 @@
 @endphp
 
 <div class="rounded-md border border-indigo-100 bg-indigo-50/80 p-4">
-    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-start gap-3">
             <div class="rounded-full bg-white/80 p-2 text-indigo-600">
                 <flux:icon.sparkles class="h-5 w-5" />
             </div>
 
-            <div>
+            <div class="space-y-1">
                 <p class="text-sm font-semibold text-indigo-900">{{ __('Generate flashcards with AI') }}</p>
-                <p class="mt-1 text-xs text-indigo-800/80">
+                <p class="text-xs text-indigo-800/80">
                     {{ __('Let Booknotes create flashcards for this discipline in seconds.') }}
                 </p>
+                <div class="text-xs text-indigo-900 font-semibold">
+                    <span>
+                        {{ trans_choice('ai_flashcards.used_today', $aiUsedToday, ['count' => $aiUsedToday]) }}
+                    </span>
+                    <span>
+                        {{ trans_choice('ai_flashcards.remaining_today', $aiRemainingToday, ['count' => $aiRemainingToday]) }}
+                    </span>
+                </div>
             </div>
         </div>
 
@@ -30,10 +38,6 @@
             {{ __('Generate flashcards with AI') }}
         </flux:button>
     </div>
-
-    <p class="mt-2 text-xs font-medium text-indigo-700">
-        {{ __('Daily limit: :count flashcards', ['count' => $aiDailyLimit]) }}
-    </p>
 </div>
 
 <flux:modal
@@ -50,54 +54,150 @@
             </p>
         </div>
 
-        @if ($aiStatusMessage)
-            <div class="rounded-lg border border-emerald-200 bg-emerald-50/80 p-3 text-sm text-emerald-900">
-                {{ $aiStatusMessage }}
-            </div>
-        @endif
-
         @if ($aiErrorMessage)
             <div class="rounded-lg border border-rose-200 bg-rose-50/80 p-3 text-sm text-rose-900">
                 {{ $aiErrorMessage }}
             </div>
         @endif
+        @if ($aiStatusMessage && ! $aiErrorMessage)
+            <div class="space-y-5">
+                <div class="rounded-lg border border-emerald-200 bg-emerald-50/80 p-3 text-sm text-emerald-900">
+                    {{ $aiStatusMessage }}
+                </div>
 
-        @if ($aiGeneratorStep === 'confirm')
-            <div class="space-y-4">
+                <div class="rounded-2xl border border-zinc-200 bg-white/80 p-4">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        {{ __('AI request summary') }}
+                    </p>
+                    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                        <div class="rounded-xl border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Discipline') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">{{ $discipline->title }}</p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Topic') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">{{ $aiTopic }}</p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-100 bg-zinc-50/90 p-3 sm:col-span-2">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Study focus (optional)') }}</p>
+                            <p class="mt-1 text-sm font-medium text-zinc-900">
+                                {{ $aiDescription ? $aiDescription : __('No description provided.') }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Number of flashcards to generate') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">
+                                {{ trans_choice('{1} :count flashcard|[2,*] :count flashcards', $aiQuantity, ['count' => $aiQuantity]) }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-xl border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Remaining after this generation') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">
+                                {{ trans_choice('ai_flashcards.remaining_after', $remainingAfterRequest, ['count' => $remainingAfterRequest]) }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-indigo-100 bg-indigo-50/80 p-4">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">
+                                {{ __('Remaining after this generation') }}
+                            </p>
+                            <p class="mt-1 text-lg font-semibold text-indigo-900">
+                                {{ trans_choice('ai_flashcards.remaining_after', $remainingAfterRequest, ['count' => $remainingAfterRequest]) }}
+                            </p>
+                            <p class="text-xs text-indigo-800">
+                                {{ __('Daily limit: :count flashcards', ['count' => $aiDailyLimit]) }}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-indigo-700">
+                            <flux:icon.sparkles class="h-4 w-4" />
+                            {{ trans_choice('ai_flashcards.batch_size', $aiQuantity, ['count' => $aiQuantity]) }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex justify-end">
+                <flux:modal.close>
+                    <flux:button type="button" variant="primary">
+                        {{ __('Close') }}
+                    </flux:button>
+                </flux:modal.close>
+            </div>
+        @elseif ($aiGeneratorStep === 'confirm')
+            <div class="space-y-5">
                 <p class="text-sm text-zinc-600">
                     {{ __('Review the details below before confirming the generation.') }}
                 </p>
 
-                <dl class="space-y-3 text-sm">
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="text-zinc-500">{{ __('Discipline') }}</dt>
-                        <dd class="text-right font-medium text-zinc-900">{{ $discipline->title }}</dd>
-                    </div>
+                <div class="rounded-md border border-zinc-200 bg-white/80 p-4">
+                    <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        {{ __('AI request summary') }}
+                    </p>
 
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="text-zinc-500">{{ __('Topic') }}</dt>
-                        <dd class="text-right font-medium text-zinc-900">{{ $aiTopic }}</dd>
-                    </div>
+                    <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Discipline') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">{{ $discipline->title }}</p>
+                        </div>
 
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="text-zinc-500">{{ __('Study focus (optional)') }}</dt>
-                        <dd class="text-right font-medium text-zinc-900">
-                            {{ $aiDescription ? $aiDescription : __('No description provided.') }}
-                        </dd>
-                    </div>
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Topic') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">{{ $aiTopic }}</p>
+                        </div>
 
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="text-zinc-500">{{ __('Number of flashcards to generate') }}</dt>
-                        <dd class="text-right font-medium text-zinc-900">{{ $aiQuantity }}</dd>
-                    </div>
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50/90 p-3 sm:col-span-2">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Study focus (optional)') }}</p>
+                            <p class="mt-1 text-sm font-medium text-zinc-900">
+                                {{ $aiDescription ? $aiDescription : __('No description provided.') }}
+                            </p>
+                        </div>
 
-                    <div class="flex items-start justify-between gap-4">
-                        <dt class="text-zinc-500">{{ __('Remaining after this generation') }}</dt>
-                        <dd class="text-right font-medium text-zinc-900">
-                            {{ trans_choice('ai_flashcards.remaining_after', $remainingAfterRequest, ['count' => $remainingAfterRequest]) }}
-                        </dd>
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Number of flashcards to generate') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">
+                                {{ trans_choice('{1} :count flashcard|[2,*] :count flashcards', $aiQuantity, ['count' => $aiQuantity]) }}
+                            </p>
+                        </div>
+
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50/90 p-3">
+                            <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Remaining after this generation') }}</p>
+                            <p class="mt-1 text-sm font-semibold text-zinc-900">
+                                {{ trans_choice('ai_flashcards.remaining_after', $remainingAfterRequest, ['count' => $remainingAfterRequest]) }}
+                            </p>
+                        </div>
                     </div>
-                </dl>
+                </div>
+
+                <div class="rounded-md border border-indigo-100 bg-indigo-50/80 p-4">
+                    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                        <div>
+                            <p class="text-xs font-semibold uppercase tracking-wide text-indigo-600">
+                                {{ __('Remaining after this generation') }}
+                            </p>
+                            <p class="mt-1 text-lg font-semibold text-indigo-900">
+                                {{ trans_choice('ai_flashcards.remaining_after', $remainingAfterRequest, ['count' => $remainingAfterRequest]) }}
+                            </p>
+                            <p class="text-xs text-indigo-800">
+                                {{ __('Daily limit: :count flashcards', ['count' => $aiDailyLimit]) }}
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-semibold text-indigo-700">
+                            <flux:icon.sparkles class="h-4 w-4" />
+                            {{ trans_choice('ai_flashcards.batch_size', $aiQuantity, ['count' => $aiQuantity]) }}
+                        </div>
+                    </div>
+                </div>
 
                 <div class="flex flex-col-reverse gap-3 sm:flex-row sm:items-center sm:justify-between">
                     <flux:button
@@ -117,12 +217,21 @@
                         wire:loading.attr="disabled"
                         wire:target="generateAiFlashcards"
                     >
-                        <span wire:loading.remove wire:target="generateAiFlashcards">
-                            {{ __('Confirm and generate') }}
-                        </span>
-                        <span wire:loading wire:target="generateAiFlashcards">
-                            {{ __('Generating flashcards with AI...') }}
-                        </span>
+                        <div class="flex items-center justify-center gap-2">
+                            <flux:icon.loading
+                                class="h-4 w-4"
+                                wire:loading
+                                wire:target="generateAiFlashcards"
+                            />
+
+                            <span wire:loading.remove wire:target="generateAiFlashcards">
+                                {{ __('Confirm and generate') }}
+                            </span>
+
+                            <span wire:loading wire:target="generateAiFlashcards">
+                                {{ __('Generating flashcards with AI...') }}
+                            </span>
+                        </div>
                     </flux:button>
                 </div>
             </div>
@@ -162,9 +271,30 @@
                     </p>
                 </div>
 
-                <div class="rounded-lg border border-zinc-200 bg-zinc-50/70 p-3 text-sm text-zinc-700">
-                    <p>{{ trans_choice('ai_flashcards.used_today', $aiUsedToday, ['count' => $aiUsedToday]) }}</p>
-                    <p class="mt-1">{{ trans_choice('ai_flashcards.remaining_today', $aiRemainingToday, ['count' => $aiRemainingToday]) }}</p>
+                <div class="grid gap-3 sm:grid-cols-2">
+                    <div class="rounded-lg border border-zinc-100 bg-white/70 p-3">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                            {{ __('ai_flashcards.used_title') }}
+                        </p>
+                        <p class="mt-1 text-xl font-semibold text-zinc-900">
+                            {{ $aiUsedToday }}
+                        </p>
+                        <p class="text-xs text-zinc-500">
+                            {{ trans_choice('ai_flashcards.used_today', $aiUsedToday, ['count' => $aiUsedToday]) }}
+                        </p>
+                    </div>
+
+                    <div class="rounded-lg border border-zinc-100 bg-white/70 p-3">
+                        <p class="text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                            {{ __('ai_flashcards.remaining_title') }}
+                        </p>
+                        <p class="mt-1 text-xl font-semibold text-zinc-900">
+                            {{ $aiRemainingToday }}
+                        </p>
+                        <p class="text-xs text-zinc-500">
+                            {{ trans_choice('ai_flashcards.remaining_today', $aiRemainingToday, ['count' => $aiRemainingToday]) }}
+                        </p>
+                    </div>
                 </div>
 
                 @if ($aiLimitReached)

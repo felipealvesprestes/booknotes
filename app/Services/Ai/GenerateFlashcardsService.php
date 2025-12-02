@@ -64,18 +64,26 @@ class GenerateFlashcardsService
                 'json_schema' => [
                     'name' => 'flashcards',
                     'schema' => [
-                        'type' => 'array',
-                        'minItems' => 1,
-                        'items' => [
-                            'type' => 'object',
-                            'properties' => [
-                                'question' => ['type' => 'string'],
-                                'answer' => ['type' => 'string'],
-                                'extra' => ['type' => 'string'],
+                        '$schema' => 'https://json-schema.org/draft/2020-12/schema',
+                        'type' => 'object',
+                        'properties' => [
+                            'flashcards' => [
+                                'type' => 'array',
+                                'minItems' => 1,
+                                'items' => [
+                                    'type' => 'object',
+                                    'properties' => [
+                                        'question' => ['type' => 'string'],
+                                        'answer' => ['type' => 'string'],
+                                        'extra' => ['type' => 'string'],
+                                    ],
+                                    'required' => ['question', 'answer'],
+                                    'additionalProperties' => false,
+                                ],
                             ],
-                            'required' => ['question', 'answer'],
-                            'additionalProperties' => false,
                         ],
+                        'required' => ['flashcards'],
+                        'additionalProperties' => false,
                     ],
                 ],
             ],
@@ -88,7 +96,7 @@ class GenerateFlashcardsService
                 ->timeout($this->timeout)
                 ->post('/chat/completions', $payload)
                 ->throw();
-        } catch (ConnectionException|RequestException $exception) {
+        } catch (ConnectionException | RequestException $exception) {
             throw new AiFlashcardGenerationException(
                 __('ai_flashcards.errors.unreachable'),
                 $exception->getCode(),
@@ -103,7 +111,7 @@ class GenerateFlashcardsService
         }
 
         try {
-        $decoded = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
+            $decoded = json_decode($content, true, 512, JSON_THROW_ON_ERROR);
         } catch (JsonException $exception) {
             throw new AiFlashcardGenerationException(
                 __('ai_flashcards.errors.invalid_response'),
@@ -112,12 +120,14 @@ class GenerateFlashcardsService
             );
         }
 
-        if (! is_array($decoded) || empty($decoded)) {
+        $cards = $decoded['flashcards'] ?? (is_array($decoded) ? $decoded : null);
+
+        if (! is_array($cards) || empty($cards)) {
             throw new AiFlashcardGenerationException(__('ai_flashcards.errors.no_flashcards'));
         }
 
-        return collect($decoded)
-            ->filter(fn ($card) => is_array($card))
+        return collect($cards)
+            ->filter(fn($card) => is_array($card))
             ->map(function (array $card) {
                 $question = trim((string) ($card['question'] ?? ''));
                 $answer = trim((string) ($card['answer'] ?? ''));
@@ -129,7 +139,7 @@ class GenerateFlashcardsService
                     'extra' => $extra !== '' ? $extra : null,
                 ];
             })
-            ->filter(fn (array $card) => $card['question'] !== '' && $card['answer'] !== '')
+            ->filter(fn(array $card) => $card['question'] !== '' && $card['answer'] !== '')
             ->take($quantity)
             ->values()
             ->all();
@@ -140,11 +150,16 @@ class GenerateFlashcardsService
         $language = $this->humanReadableLanguage($locale);
 
         return <<<PROMPT
-You are an expert study coach that produces concise, high quality flashcards in {$language}. Stick strictly to the topic, avoid hallucinations, and return only valid JSON.
-- Flashcards must be factual, aligned with the specified discipline context, and appropriate for students.
-- Each question must capture one concept, and answers should stay under 80 words.
-- Include an optional "extra" string only if a short mnemonic, context, or caution truly helps memorization.
-- DO NOT output any text outside the JSON payload.
+You generate study flashcards in {$language}.
+
+Rules:
+- Use only factual content related to the given discipline and topic.
+- Each flashcard covers ONE clear idea.
+- "question" is short and direct.
+- "answer" is correct and concise (max ~60–80 words).
+- "extra" is optional, use only for a short tip, mnemonic or warning.
+- Output ONLY a JSON array of objects with keys: "question", "answer", "extra".
+- Do NOT write explanations, comments or text outside the JSON.
 PROMPT;
     }
 
@@ -159,15 +174,21 @@ PROMPT;
         $trimmedDescription = trim((string) $description);
         $descriptionLine = $trimmedDescription !== ''
             ? "Study focus: {$trimmedDescription}"
-            : 'Study focus: keep content general for the topic.';
+            : 'Study focus: keep the content general for this topic, without leaving it.';
 
         return <<<PROMPT
+Language for questions and answers: {$language}
 Discipline: {$discipline->title}
 Topic: {$topic}
 {$descriptionLine}
-Quantity: {$quantity}
-Language: Write both questions and answers in {$language}.
-Return a JSON array where every item has "question", "answer", and optional "extra".
+Number of flashcards to generate: {$quantity}
+
+Generate EXACTLY {$quantity} flashcards about this topic, suitable for a student revising this discipline.
+
+Return ONLY the JSON array, where each item has:
+- "question": string
+- "answer": string
+- "extra": string (can be empty if not needed)
 PROMPT;
     }
 

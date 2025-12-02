@@ -202,17 +202,23 @@ trait HandlesAiFlashcardGenerator
             return 5;
         }
 
+        $minimum = $options[0];
+
         if ($remaining <= 0) {
-            return $options[0];
+            return $minimum;
         }
 
-        foreach (array_reverse($options) as $option) {
+        if ($remaining >= $minimum) {
+            return $minimum;
+        }
+
+        foreach ($options as $option) {
             if ($remaining >= $option) {
                 return $option;
             }
         }
 
-        return $options[0];
+        return $minimum;
     }
 
     protected function handleAiLimitError(AiFlashcardsLimitException $exception): void
