@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Notes;
 
+use App\Livewire\Concerns\HandlesAiFlashcardGenerator;
 use App\Models\Discipline;
 use App\Models\Log;
 use App\Models\Note;
@@ -12,6 +13,8 @@ use Livewire\Component;
 
 class CreateNote extends Component
 {
+    use HandlesAiFlashcardGenerator;
+
     #[Locked]
     public Discipline $discipline;
 
@@ -38,6 +41,7 @@ class CreateNote extends Component
     {
         $this->discipline = $discipline;
         $this->updateNotesOnboardingState();
+        $this->bootAiFlashcardGenerator();
     }
 
     public function updatedIsFlashcard(bool $value): void

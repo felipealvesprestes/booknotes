@@ -203,7 +203,9 @@ return [
         'isFlashcard' => 'flashcard toggle',
         'flashcardQuestion' => 'flashcard question',
         'flashcardAnswer' => 'flashcard answer',
+        'aiTopic' => 'AI topic',
+        'aiDescription' => 'AI study focus',
+        'aiQuantity' => 'AI flashcard quantity',
     ],
 
 ];
-

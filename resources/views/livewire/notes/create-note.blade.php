@@ -105,9 +105,12 @@
         </p>
     </div>
 
-    <div class="rounded-md border border-zinc-200 bg-white p-6">
-        @if (session('status'))
-            <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50/80 p-4 text-emerald-900">
+    <div class="space-y-6">
+        @include('livewire.notes.partials.ai-generator')
+
+        <div class="rounded-md border border-zinc-200 bg-white p-6">
+            @if (session('status'))
+                <div class="mb-6 rounded-lg border border-emerald-200 bg-emerald-50/80 p-4 text-emerald-900">
                 <div class="flex items-start gap-3">
                     <flux:icon.check-circle class="mt-0.5 h-5 w-5 text-emerald-500" />
                     <div>
@@ -117,10 +120,10 @@
                         </p>
                     </div>
                 </div>
-            </div>
-        @endif
+                </div>
+            @endif
 
-        <form wire:submit.prevent="save" class="space-y-5">
+            <form wire:submit.prevent="save" class="space-y-5">
             <div>
                 <flux:input
                     wire:model="title"

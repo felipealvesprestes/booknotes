@@ -199,6 +199,8 @@
                 </div>
             </div>
 
+            @include('livewire.notes.partials.ai-generator')
+
             <div class="flex items-center justify-between">
                 <flux:button
                     variant="ghost"

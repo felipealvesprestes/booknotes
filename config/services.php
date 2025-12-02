@@ -77,4 +77,12 @@ return [
         ))),
     ],
 
+    'openai' => [
+        'api_key' => env('OPENAI_API_KEY'),
+        'base_url' => env('OPENAI_BASE_URL', 'https://api.openai.com/v1'),
+        'flashcards_model' => env('OPENAI_FLASHCARDS_MODEL', 'gpt-4o-mini'),
+        'flashcards_max_output_tokens' => (int) env('OPENAI_FLASHCARDS_MAX_OUTPUT_TOKENS', 1200),
+        'timeout' => (int) env('OPENAI_REQUEST_TIMEOUT', 30),
+    ],
+
 ];
