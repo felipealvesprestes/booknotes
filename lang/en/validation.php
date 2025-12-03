@@ -166,6 +166,7 @@ return [
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
     'invalid_cpf' => 'Please enter a valid CPF.',
+    'full_name' => 'Please enter your first and last name.',
 
     /*
     |--------------------------------------------------------------------------
