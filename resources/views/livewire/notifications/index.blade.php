@@ -32,48 +32,49 @@
                 @forelse ($unreadNotifications as $notification)
                     <article
                         wire:key="unread-{{ $notification['id'] }}"
-                        class="flex flex-col gap-4 px-5 py-5 sm:flex-row border-b border-zinc-100"
+                        class="flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-start border-b border-zinc-100"
                     >
-                        <div>
+                        <div class="sm:pt-6">
                             <span class="flex h-12 w-12 items-center justify-center rounded-md {{ $notification['icon_classes'] }}">
                                 <flux:icon :icon="$notification['icon']" class="h-6 w-6" />
                             </span>
                         </div>
 
                         <div class="flex-1 space-y-3">
-                            <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                                <div class="space-y-2">
-                                    <div class="flex flex-wrap items-center gap-2">
-                                        <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
-                                            {{ $notification['tag'] }}
-                                        </span>
-                                        @if (!empty($notification['meta']))
-                                            <div class="flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-zinc-500">
-                                                @foreach ($notification['meta'] as $meta)
-                                                    <span class="inline-flex items-center gap-1 rounded-md border border-zinc-200 px-2 py-0.5 text-[11px] font-medium">
-                                                        <span class="text-zinc-400">{{ $meta['label'] }}:</span>
-                                                        <span class="text-zinc-700">{{ $meta['value'] }}</span>
-                                                    </span>
-                                                @endforeach
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="space-y-1">
-                                        <h3 class="text-base font-semibold text-zinc-900">{{ $notification['title'] }}</h3>
-                                        @if ($notification['message'])
-                                            <p class="text-sm text-zinc-600 leading-relaxed">
-                                                {{ $notification['message'] }}
-                                            </p>
-                                        @endif
-                                    </div>
-                                </div>
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-zinc-500">
+                                @if ($notification['timestamp'])
+                                    <span>{{ $notification['timestamp'] }}</span>
+                                @endif
+                                @if ($notification['timestamp'] && $notification['ago'])
+                                    <span class="text-zinc-400">•</span>
+                                @endif
+                                @if ($notification['ago'])
+                                    <span>{{ $notification['ago'] }}</span>
+                                @endif
+                            </div>
 
-                                <div class="text-xs text-zinc-500 lg:text-right">
-                                    @if ($notification['timestamp'])
-                                        <p>{{ $notification['timestamp'] }}</p>
+                            <div class="space-y-2">
+                                <div class="flex flex-wrap items-center gap-2">
+                                    <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
+                                        {{ $notification['tag'] }}
+                                    </span>
+                                    @if (!empty($notification['meta']))
+                                        <div class="flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-zinc-500">
+                                            @foreach ($notification['meta'] as $meta)
+                                                <span class="inline-flex items-center gap-1 rounded-md border border-zinc-200 px-2 py-0.5 text-[11px] font-medium">
+                                                    <span class="text-zinc-400">{{ $meta['label'] }}:</span>
+                                                    <span class="text-zinc-700">{{ $meta['value'] }}</span>
+                                                </span>
+                                            @endforeach
+                                        </div>
                                     @endif
-                                    @if ($notification['ago'])
-                                        <p>{{ $notification['ago'] }}</p>
+                                </div>
+                                <div class="space-y-1">
+                                    <h3 class="text-base font-semibold text-zinc-900">{{ $notification['title'] }}</h3>
+                                    @if ($notification['message'])
+                                        <p class="text-sm text-zinc-600 leading-relaxed">
+                                            {{ $notification['message'] }}
+                                        </p>
                                     @endif
                                 </div>
                             </div>
@@ -82,7 +83,7 @@
                                 <flux:button
                                     size="sm"
                                     variant="ghost"
-                                    class="text-zinc-700 hover:text-zinc-900"
+                                    class="text-zinc-700 hover:text-zinc-900 bg-zinc-100/80 hover:bg-zinc-200 rounded-md transition-colors"
                                     wire:click="markAsRead('{{ $notification['id'] }}')"
                                     wire:target="markAsRead('{{ $notification['id'] }}')"
                                     wire:loading.attr="disabled"
@@ -138,13 +139,22 @@
                         class="flex flex-col gap-4 px-5 py-5 border-b border-zinc-100"
                     >
                         <div class="flex flex-col gap-2">
+                            <div class="flex flex-wrap items-center gap-2 text-xs font-medium text-zinc-500">
+                                @if ($notification['timestamp'])
+                                    <span>{{ $notification['timestamp'] }}</span>
+                                @endif
+                                @if ($notification['timestamp'] && $notification['ago'])
+                                    <span class="text-zinc-400">•</span>
+                                @endif
+                                @if ($notification['ago'])
+                                    <span>{{ $notification['ago'] }}</span>
+                                @endif
+                            </div>
+
                             <div class="flex items-center gap-2 text-xs text-zinc-500">
                                 <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
                                     {{ $notification['tag'] }}
                                 </span>
-                                @if ($notification['timestamp'])
-                                    <span>{{ $notification['timestamp'] }}</span>
-                                @endif
                             </div>
 
                             <div class="space-y-1">
@@ -161,7 +171,7 @@
                             <flux:button
                                 size="xs"
                                 variant="ghost"
-                                class="text-zinc-600 hover:text-zinc-900"
+                                class="text-zinc-600 hover:text-zinc-900 bg-zinc-100/70 hover:bg-zinc-200 rounded-md transition-colors"
                                 wire:click="markAsUnread('{{ $notification['id'] }}')"
                                 wire:target="markAsUnread('{{ $notification['id'] }}')"
                                 wire:loading.attr="disabled"
