@@ -153,7 +153,7 @@
                         Novo módulo de Inteligência Artificial
                     </span>
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
-                        Transforme sua forma de estudar com a <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">Inteligência Artificial</span>
+                        Evolua seu modo de estudar com a <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">Inteligência Artificial</span>
                     </h1>
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
                         A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência. Utilize o poder da <span class="font-bold">Inteligência Artificial</span> para criar flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados.
