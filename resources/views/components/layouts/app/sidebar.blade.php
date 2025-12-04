@@ -17,14 +17,14 @@
                 <flux:sidebar.collapse class="hidden lg:flex" :tooltip="__('Toggle sidebar')" />
             </flux:sidebar.header>
 
-            <flux:navlist variant="outline" class="space-y-6">
-                <flux:navlist.group :heading="__('Workspace')" class="sidebar-nav-group">
+            <flux:navlist variant="outline" class="space-y-4">
+                <flux:navlist.group :heading="__('Workspace')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open" :href="route('notebooks.index')" :current="request()->routeIs('notebooks.*')" wire:navigate>{{ __('Notebooks') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open-text" :href="route('disciplines.index')" :current="request()->routeIs('disciplines.*')" wire:navigate>{{ __('Disciplines') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Library')" class="sidebar-nav-group">
+                <flux:navlist.group :heading="__('Library')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item
                         icon="document"
                         :href="route('notes.library')"
@@ -37,13 +37,13 @@
                     <flux:navlist.item icon="document-text" :href="route('pdfs.index')" :current="request()->routeIs('pdfs.*')" wire:navigate>{{ __('Document library') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Practice')" class="sidebar-nav-group">
+                <flux:navlist.group :heading="__('Practice')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item icon="bolt" :href="route('study.flashcards')" :current="request()->routeIs('study.flashcards')" wire:navigate>{{ __('Flashcards') }}</flux:navlist.item>
                     <flux:navlist.item icon="sparkles" :href="route('study.exercises')" :current="request()->routeIs('study.exercises')" wire:navigate>{{ __('Exercises') }}</flux:navlist.item>
                     <flux:navlist.item icon="clipboard-document-check" :href="route('study.simulated')" :current="request()->routeIs('study.simulated')" wire:navigate>{{ __('Simulated test') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Activity')" class="sidebar-nav-group">
+                <flux:navlist.group :heading="__('Activity')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item icon="bell" :href="route('notifications.index')" :current="request()->routeIs('notifications.*')" wire:navigate>
                         <span class="flex items-center gap-2">
                             <span>{{ __('Notifications') }}</span>
@@ -53,7 +53,7 @@
                     <flux:navlist.item icon="queue-list" :href="route('logs.index')" :current="request()->routeIs('logs.*')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
                 </flux:navlist.group>
 
-                <flux:navlist.group :heading="__('Help')" class="sidebar-nav-group">
+                <flux:navlist.group :heading="__('Help')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item
                         icon="question-mark-circle"
                         :href="route('help.guide')"
@@ -61,6 +61,14 @@
                         wire:navigate
                     >
                         {{ __('Platform guide') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item
+                        icon="chat-bubble-left-right"
+                        :href="route('support.tickets')"
+                        :current="request()->routeIs('support.*')"
+                        wire:navigate
+                    >
+                        {{ __('Support') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>

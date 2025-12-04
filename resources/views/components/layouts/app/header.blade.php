@@ -124,6 +124,25 @@
                         {{ __('Logs') }}
                     </flux:navlist.item>
                 </flux:navlist.group>
+
+                <flux:navlist.group :heading="__('Help')">
+                    <flux:navlist.item
+                        icon="question-mark-circle"
+                        :href="route('help.guide')"
+                        :current="request()->routeIs('help.guide')"
+                        wire:navigate
+                    >
+                        {{ __('Platform guide') }}
+                    </flux:navlist.item>
+                    <flux:navlist.item
+                        icon="chat-bubble-left-right"
+                        :href="route('support.tickets')"
+                        :current="request()->routeIs('support.*')"
+                        wire:navigate
+                    >
+                        {{ __('Support') }}
+                    </flux:navlist.item>
+                </flux:navlist.group>
             </flux:navlist>
 
             <flux:spacer />

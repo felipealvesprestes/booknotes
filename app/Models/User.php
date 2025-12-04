@@ -123,6 +123,11 @@ MESSAGE,
         return $this->hasMany(PdfDocument::class);
     }
 
+    public function supportTickets(): HasMany
+    {
+        return $this->hasMany(SupportTicket::class);
+    }
+
     public function hasLifetimeAccess(): bool
     {
         return (bool) $this->is_lifetime;
