@@ -33,6 +33,8 @@
     <div class="space-y-6 w-full">
         <x-auth-session-status :status="session('status')" class="w-full max-w-3xl" />
 
+        @include('livewire.notes.partials.ai-generator')
+
         <div class="rounded-md border border-zinc-200 bg-white p-6">
         <form wire:submit.prevent="save" class="space-y-5">
             <div class="w-full max-w-lg lg:max-w-xl">
@@ -209,8 +211,6 @@
                     </div>
                 </div>
             </div>
-
-            @include('livewire.notes.partials.ai-generator')
 
             <div class="flex items-center justify-between">
                 <flux:button
