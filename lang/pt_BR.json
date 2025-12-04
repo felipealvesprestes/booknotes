@@ -789,5 +789,7 @@
     "Reminder": "Lembrete",
     "Attention": "Atenção",
     "Update": "Atualização",
-    "You have unread notifications": "Você tem notificações não lidas"
+    "You have unread notifications": "Você tem notificações não lidas",
+    "View notification": "Ver notificação",
+    "Notification details": "Detalhes da notificação"
 }

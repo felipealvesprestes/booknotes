@@ -702,5 +702,7 @@
     "Reminder": "Reminder",
     "Attention": "Attention",
     "Update": "Update",
-    "You have unread notifications": "You have unread notifications"
+    "You have unread notifications": "You have unread notifications",
+    "View notification": "View notification",
+    "Notification details": "Notification details"
 }
