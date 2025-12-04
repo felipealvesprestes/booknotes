@@ -14,7 +14,7 @@ class Index extends Component
 
     public int $unreadPerPage = 6;
 
-    public int $historyPerPage = 12;
+    public int $historyPerPage = 5;
 
     protected $listeners = [
         'notification-received' => '$refresh',
