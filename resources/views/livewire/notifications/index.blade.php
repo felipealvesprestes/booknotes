@@ -56,14 +56,14 @@
                             <div class="space-y-2">
                                 <div class="flex flex-wrap items-center gap-2">
                                     <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
-                                        {{ $notification['tag'] }}
+                                        {{ __($notification['tag']) }}
                                     </span>
                                     @if (!empty($notification['meta']))
                                         <div class="flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-zinc-500">
                                             @foreach ($notification['meta'] as $meta)
                                                 <span class="inline-flex items-center gap-1 rounded-md border border-zinc-200 px-2 py-0.5 text-[11px] font-medium">
-                                                    <span class="text-zinc-400">{{ $meta['label'] }}:</span>
-                                                    <span class="text-zinc-700">{{ $meta['value'] }}</span>
+                                                    <span class="text-zinc-400">{{ __($meta['label']) }}:</span>
+                                                    <span class="text-zinc-700">{{ __($meta['value']) }}</span>
                                                 </span>
                                             @endforeach
                                         </div>
@@ -128,7 +128,7 @@
             <div class="border-b border-zinc-200 px-5 py-5">
                 <h2 class="text-lg font-semibold text-zinc-900">{{ __('Notification history') }}</h2>
                 <p class="mt-1 text-sm text-zinc-500">
-                    {{ __('Visit previous updates whenever you need a reminder.') }}
+                    {{ __('Visit previous updates whenever you need.') }}
                 </p>
             </div>
 
@@ -154,7 +154,7 @@
 
                             <div class="flex items-center gap-2 text-xs text-zinc-500">
                                 <span class="inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
-                                    {{ $notification['tag'] }}
+                                    {{ __($notification['tag']) }}
                                 </span>
                             </div>
 
@@ -214,14 +214,14 @@
 
                             <div class="flex flex-wrap items-center gap-2">
                                 <span class="inline-flex items-center rounded-full px-2.5 py-0.5 text-[11px] font-medium uppercase tracking-wide {{ $notification['tag_classes'] }}">
-                                    {{ $notification['tag'] }}
+                                    {{ __($notification['tag']) }}
                                 </span>
                                 @if (!empty($notification['meta']))
                                     <div class="flex flex-wrap gap-2 text-[11px] uppercase tracking-wide text-zinc-500">
                                         @foreach ($notification['meta'] as $meta)
                                             <span class="inline-flex items-center gap-1 rounded-md border border-zinc-200 px-2 py-0.5 text-[11px] font-medium">
-                                                <span class="text-zinc-400">{{ $meta['label'] }}:</span>
-                                                <span class="text-zinc-700">{{ $meta['value'] }}</span>
+                                                <span class="text-zinc-400">{{ __($meta['label']) }}:</span>
+                                                <span class="text-zinc-700">{{ __($meta['value']) }}</span>
                                             </span>
                                         @endforeach
                                     </div>

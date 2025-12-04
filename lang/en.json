@@ -693,7 +693,7 @@
     "You are all caught up": "You are all caught up",
     "We will notify you here as soon as something new happens.": "We will notify you here as soon as something new happens.",
     "Notification history": "Notification history",
-    "Visit previous updates whenever you need a reminder.": "Visit previous updates whenever you need a reminder.",
+    "Visit previous updates whenever you need.": "Visit previous updates whenever you need.",
     "Mark as unread": "Mark as unread",
     "No notifications yet": "No notifications yet",
     "As soon as the system has updates to share, they will be archived here.": "As soon as the system has updates to share, they will be archived here.",
@@ -704,5 +704,9 @@
     "Update": "Update",
     "You have unread notifications": "You have unread notifications",
     "View notification": "View notification",
-    "Notification details": "Notification details"
+    "Notification details": "Notification details",
+    "Onboarding": "Onboarding",
+    "origem": "Origin",
+    "Sistema": "System",
+    "System": "System"
 }
