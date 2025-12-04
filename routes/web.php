@@ -15,6 +15,7 @@ use App\Livewire\Notes\Library as NotesLibrary;
 use App\Livewire\Notes\ShowNote;
 use App\Livewire\Pdfs\Library as PdfLibrary;
 use App\Livewire\Logs\Index as LogsIndex;
+use App\Livewire\Notifications\Index as NotificationsIndex;
 use App\Livewire\Notebooks\CreateNotebook;
 use App\Livewire\Notebooks\EditNotebook;
 use App\Livewire\Notebooks\Index as NotebookIndex;
@@ -106,6 +107,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('pdfs', PdfLibrary::class)->name('pdfs.index');
         Route::get('pdfs/{pdfDocument}/preview', PdfDocumentStreamController::class)->name('pdfs.preview');
 
+        Route::get('notifications', NotificationsIndex::class)->name('notifications.index');
         Route::get('logs', LogsIndex::class)->name('logs.index');
     });
 });

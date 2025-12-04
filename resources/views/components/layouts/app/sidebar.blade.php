@@ -44,6 +44,12 @@
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Activity')" class="sidebar-nav-group">
+                    <flux:navlist.item icon="bell" :href="route('notifications.index')" :current="request()->routeIs('notifications.*')" wire:navigate>
+                        <span class="flex items-center gap-2">
+                            <span>{{ __('Notifications') }}</span>
+                            <livewire:notifications.indicator />
+                        </span>
+                    </flux:navlist.item>
                     <flux:navlist.item icon="queue-list" :href="route('logs.index')" :current="request()->routeIs('logs.*')" wire:navigate>{{ __('Logs') }}</flux:navlist.item>
                 </flux:navlist.group>
 
