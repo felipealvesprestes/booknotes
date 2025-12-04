@@ -72,8 +72,8 @@
                                 <div class="space-y-1">
                                     <h3 class="text-base font-semibold text-zinc-900">{{ $notification['title'] }}</h3>
                                     @if ($notification['message'])
-                                        <p class="text-sm text-zinc-600 leading-relaxed">
-                                            {{ $notification['message'] }}
+                                        <p class="text-sm text-zinc-600 leading-relaxed mt-4">
+                                            {!! nl2br(e($notification['message'])) !!}
                                         </p>
                                     @endif
                                 </div>
@@ -160,8 +160,8 @@
                             <div class="space-y-1">
                                 <h3 class="text-sm font-semibold text-zinc-900">{{ $notification['title'] }}</h3>
                                 @if ($notification['message'])
-                                    <p class="text-sm text-zinc-600 leading-relaxed">
-                                        {{ $notification['message'] }}
+                                    <p class="text-sm text-zinc-600 leading-relaxed whitespace-pre-line">
+                                        {!! nl2br(e($notification['message'])) !!}
                                     </p>
                                 @endif
                             </div>
