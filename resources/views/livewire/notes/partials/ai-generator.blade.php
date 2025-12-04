@@ -14,10 +14,10 @@
 
             <div class="space-y-1">
                 <p class="text-sm font-semibold text-indigo-900">{{ __('Generate flashcards with AI') }}</p>
-                <p class="text-xs text-indigo-800/80">
+                <p class="text-xs font-semibold text-indigo-800/80 mb-2">
                     {{ __('Let Booknotes create flashcards for this discipline in seconds.') }}
                 </p>
-                <div class="text-xs text-indigo-900 font-semibold">
+                <div class="text-xs text-indigo-800/80">
                     <span>
                         {{ trans_choice('ai_flashcards.used_today', $aiUsedToday, ['count' => $aiUsedToday]) }}
                     </span>

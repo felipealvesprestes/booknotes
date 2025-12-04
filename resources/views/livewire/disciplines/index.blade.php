@@ -100,14 +100,6 @@
                                     <flux:button
                                         size="xs"
                                         variant="ghost"
-                                        :href="route('disciplines.show', $discipline)"
-                                        wire:navigate
-                                    >
-                                        {{ __('View') }}
-                                    </flux:button>
-                                    <flux:button
-                                        size="xs"
-                                        variant="ghost"
                                         color="indigo"
                                         :href="route('disciplines.edit', $discipline)"
                                         wire:navigate

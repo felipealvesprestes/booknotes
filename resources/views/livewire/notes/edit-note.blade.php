@@ -1,30 +1,41 @@
-<div class="mx-auto w-full max-w-3xl space-y-6">
-    <div>
-        <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Edit note') }}</h1>
-        <p class="mt-1 text-sm text-zinc-500">
-            {{ __('Update the note or adjust flashcard details for :discipline.', ['discipline' => $discipline->title]) }}
-        </p>
-        <div class="mt-2 flex flex-wrap items-center gap-3 text-xs text-zinc-500">
-            <span class="inline-flex items-center gap-1.5">
-                <flux:icon.book-open class="h-3.5 w-3.5 text-indigo-500" />
-                <span>{{ $note->word_count }} palavras</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5">
-                <flux:icon.pencil-square class="h-3.5 w-3.5 text-amber-500" />
-                <span>{{ $note->char_count }} caracteres</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5">
-                <flux:icon.clock class="h-3.5 w-3.5 text-sky-500" />
-                <span>{{ $note->reading_time }} min de leitura</span>
-            </span>
+<div class="space-y-6 w-full">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Edit note') }}</h1>
+            <p class="mt-1 text-sm text-zinc-500">
+                {{ __('Update the note or adjust flashcard details for :discipline.', ['discipline' => $discipline->title]) }}
+            </p>
+            <div class="mt-2 flex flex-wrap items-center gap-3 text-xs text-zinc-500">
+                <span class="inline-flex items-center gap-1.5">
+                    <flux:icon.book-open class="h-3.5 w-3.5 text-indigo-500" />
+                    <span>{{ $note->word_count }} palavras</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                    <flux:icon.pencil-square class="h-3.5 w-3.5 text-amber-500" />
+                    <span>{{ $note->char_count }} caracteres</span>
+                </span>
+                <span class="inline-flex items-center gap-1.5">
+                    <flux:icon.clock class="h-3.5 w-3.5 text-sky-500" />
+                    <span>{{ $note->reading_time }} min de leitura</span>
+                </span>
+            </div>
         </div>
+
+        <flux:button
+            variant="ghost"
+            :href="route('notes.index', $discipline)"
+            wire:navigate
+        >
+            {{ __('Back to notes') }}
+        </flux:button>
     </div>
 
-    <x-auth-session-status :status="session('status')" class="mb-4" />
+    <div class="space-y-6 w-full">
+        <x-auth-session-status :status="session('status')" class="w-full max-w-3xl" />
 
-    <div class="rounded-md border border-zinc-200 bg-white p-6">
+        <div class="rounded-md border border-zinc-200 bg-white p-6">
         <form wire:submit.prevent="save" class="space-y-5">
-            <div>
+            <div class="w-full max-w-lg lg:max-w-xl">
                 <flux:input
                     wire:model="title"
                     :label="__('Title')"
@@ -269,4 +280,5 @@
             </x-confirm-dialog>
         </div>
     </div>
+</div>
 </div>

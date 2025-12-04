@@ -1,14 +1,24 @@
-<div class="mx-auto w-full max-w-2xl space-y-6">
-    <div>
-        <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Create discipline') }}</h1>
-        <p class="mt-1 text-sm text-zinc-500">
-            {{ __('Add a new discipline inside one of your notebooks.') }}
-        </p>
+<div class="space-y-6 w-full">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Create discipline') }}</h1>
+            <p class="mt-1 text-sm text-zinc-500">
+                {{ __('Add a new discipline inside one of your notebooks.') }}
+            </p>
+        </div>
+
+        <flux:button
+            variant="ghost"
+            :href="route('disciplines.index')"
+            wire:navigate
+        >
+            {{ __('Back to disciplines') }}
+        </flux:button>
     </div>
 
     <div class="rounded-md border border-zinc-200 bg-white p-6">
         <form wire:submit.prevent="save" class="space-y-5">
-            <div>
+            <div class="w-full max-w-lg lg:max-w-xl">
                 <flux:input
                     wire:model="title"
                     :label="__('Title')"
@@ -18,11 +28,12 @@
                 />
             </div>
 
-            <div>
+            <div class="w-full max-w-lg lg:max-w-xl">
                 <x-select
                     wire:model="notebookId"
                     :label="__('Notebook')"
                     :placeholder="__('Select a notebook')"
+                    class="w-full"
                 >
                     @foreach ($notebooks as $notebook)
                         <option

@@ -82,13 +82,6 @@
                             <flux:button
                                 size="xs"
                                 variant="ghost"
-                                :href="route('notebooks.show', $notebook)"
-                                wire:navigate>
-                                {{ __('View') }}
-                            </flux:button>
-                            <flux:button
-                                size="xs"
-                                variant="ghost"
                                 color="indigo"
                                 :href="route('notebooks.edit', $notebook)"
                                 wire:navigate>
