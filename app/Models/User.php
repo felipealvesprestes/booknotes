@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\Auth\VerifyEmail;
+use App\Notifications\GenericSystemNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +20,30 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasFactory;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
+    protected static function booted(): void
+    {
+        static::created(function (self $user) {
+            $user->notify(new GenericSystemNotification(
+                title: 'Bem-vindo ao Booknotes!',
+                message: <<<'MESSAGE'
+Estamos muito felizes em ter você aqui!
+
+A partir de agora, você tem um espaço organizado para anotar, aprender, revisar e evoluir nos seus estudos.
+
+Comece criando seu caderno e sua disciplina, ou importe um conteúdo para gerar flashcards e exercícios automaticamente.
+
+Se precisar de ajuda, pode contar com a gente. 🚀
+
+Bons estudos!
+Equipe Booknotes
+MESSAGE,
+                tag: 'Onboarding',
+                meta: ['origem' => 'Sistema'],
+                level: 'success',
+            ));
+        });
+    }
 
     /**
      * The attributes that are mass assignable.
