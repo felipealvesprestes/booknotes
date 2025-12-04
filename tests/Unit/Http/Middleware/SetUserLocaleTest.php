@@ -12,7 +12,7 @@ uses(TestCase::class, RefreshDatabase::class);
 
 test('middleware falls back to default locale when preferred is unsupported', function (): void {
     config(['localization.supported' => ['en' => 'English']]);
-    config(['app.locale' => 'en']);
+    config(['app.locale' => 'pt_BR']);
 
     $user = User::factory()->create(['locale' => 'it']);
 
@@ -25,6 +25,6 @@ test('middleware falls back to default locale when preferred is unsupported', fu
         return new Response('OK');
     });
 
-    expect(App::getLocale())->toBe('en')
+    expect(App::getLocale())->toBe('pt_BR')
         ->and($response->getContent())->toBe('OK');
 });
