@@ -79,6 +79,10 @@ select:focus[data-flux-control] {
         --tw-shadow: 0 0 #0000;
     }
 
+    [data-flux-sidebar] [data-flux-navlist-item] {
+        color: #2e3137 !important;
+    }
+
     [data-flux-navlist-item][data-current] {
         position: relative;
         background: linear-gradient(90deg, #02b680 0%, #00d493 100%) !important;
