@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Concerns\BelongsToAuthenticatedUser;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 class NoteExport extends Model
 {
     use BelongsToAuthenticatedUser;
+    use HasFactory;
 
     public const STATUS_PENDING = 'pending';
 

@@ -5,6 +5,7 @@ use App\Models\FlashcardSession;
 use App\Models\Notebook;
 use App\Models\Note;
 use App\Models\PdfDocument;
+use App\Models\SupportTicket;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -128,3 +129,34 @@ it('returns the configured subscription plan name with fallback to the app name'
 
     config(['services.stripe' => $originalStripeConfig]);
 });
+
+it('lists only support tickets owned by the user', function (): void {
+    $owner = User::factory()->create();
+    $otherUser = User::factory()->create();
+
+    $firstTicket = createSupportTicketForOwner($owner, ['subject' => 'Billing question']);
+    $secondTicket = createSupportTicketForOwner($owner, ['subject' => 'Bug report']);
+    createSupportTicketForOwner($otherUser, ['subject' => 'Other user ticket']);
+
+    $owner->load('supportTickets');
+
+    expect($owner->supportTickets)->toHaveCount(2)
+        ->and($owner->supportTickets->contains(fn (SupportTicket $ticket) => $ticket->is($firstTicket)))->toBeTrue()
+        ->and($owner->supportTickets->contains(fn (SupportTicket $ticket) => $ticket->is($secondTicket)))->toBeTrue()
+        ->and($owner->supportTickets->contains(fn (SupportTicket $ticket) => $ticket->user_id === $otherUser->id))->toBeFalse();
+});
+
+function createSupportTicketForOwner(User $user, array $attributes = []): SupportTicket
+{
+    $ticket = new SupportTicket(array_merge([
+        'subject' => 'Help with my account',
+        'category' => 'general',
+        'reference' => SupportTicket::generateReference(),
+        'status' => SupportTicket::STATUS_OPEN,
+    ], $attributes));
+
+    $ticket->user()->associate($user);
+    $ticket->save();
+
+    return $ticket->fresh();
+}
