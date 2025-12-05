@@ -636,7 +636,7 @@
                                 <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
                                 <div>
                                     <p class="font-semibold text-neutral-900">Modo Múltipla Escolha</p>
-                                    <p>O sistema transforma automaticamente suas notas, flashcards e PDFs em quizzes com alternativas baralhadas e feedback instantâneo para medir retenção rapidamente.</p>
+                                    <p>O sistema transforma automaticamente seus flashcards em quizzes com alternativas baralhadas e feedback instantâneo para medir retenção rapidamente.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">
@@ -702,7 +702,7 @@
                         </p>
 
                         <p class="mt-3">
-                            Pratique com métodos inteligentes: gere automaticamente exercícios de <strong>Múltipla Escolha</strong>, <strong>Complete a Lacuna</strong> e <strong>Verdadeiro ou Falso</strong> a partir das suas notas, flashcards ou PDFs — sempre com feedback imediato para consolidar o aprendizado.
+                            Pratique com métodos inteligentes: gere automaticamente exercícios de <strong>Múltipla Escolha</strong>, <strong>Complete a Lacuna</strong> e <strong>Verdadeiro ou Falso</strong> a partir dos seus flashcards — sempre com feedback imediato para consolidar o aprendizado.
                         </p>
 
                         <p class="mt-3">
