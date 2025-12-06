@@ -275,31 +275,47 @@
                 <p class="sm:hidden mb-2 mt-6 text-xs text-zinc-600 bg-zinc-50 border border-dashed border-zinc-200 rounded-md px-3 py-2">
                     {{ __('Swipe sideways to reveal all options.') }}
                 </p>
-                <div class="overflow-x-auto rounded-md border border-zinc-200 mt-4 sm:mt-6 w-full">
-                    <table class="min-w-full divide-y divide-zinc-200 text-sm text-zinc-700">
-                        <thead class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
-                            <tr>
-                                <th scope="col" class="px-4 py-3">{{ __('Discipline') }}</th>
-                                <th scope="col" class="px-4 py-3 sm:hidden">{{ __('Notes dashboard') }}</th>
-                                <th scope="col" class="px-4 py-3 hidden sm:table-cell">{{ __('Notes') }}</th>
-                                <th scope="col" class="px-4 py-3">{{ __('Flashcards') }}</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-zinc-200">
-                            @foreach ($notesByDiscipline as $discipline)
-                            <tr>
-                                <td class="px-4 py-3">
-                                    <div class="font-medium text-zinc-900">{{ $discipline->title }}</div>
-                                    <p class="text-xs text-zinc-500">
-                                        {{ __('Notebook: :notebook', ['notebook' => $discipline->notebook?->title ?? __('—')]) }}
-                                    </p>
-                                </td>
-                                <td class="px-4 py-3">{{ number_format($discipline->notes_count) }}</td>
-                                <td class="px-4 py-3">{{ number_format($discipline->flashcards_count) }}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="mt-4 sm:mt-6">
+                    <div class="flow-root">
+                        <div class="overflow-x-auto">
+                            <div class="inline-block min-w-full py-2 align-middle">
+                                <table class="relative min-w-full divide-y divide-gray-300">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-3">
+                                                {{ __('Discipline') }}
+                                            </th>
+                                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                <span class="sm:hidden">{{ __('Notes dashboard') }}</span>
+                                                <span class="hidden sm:inline">{{ __('Notes') }}</span>
+                                            </th>
+                                            <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                                {{ __('Flashcards') }}
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        @foreach ($notesByDiscipline as $discipline)
+                                            <tr class="even:bg-gray-50">
+                                                <td class="py-4 pr-3 pl-4 text-sm text-gray-900 align-top sm:pl-3">
+                                                    <div class="font-medium text-gray-900">{{ $discipline->title }}</div>
+                                                    <p class="text-xs text-gray-500">
+                                                        {{ __('Notebook: :notebook', ['notebook' => $discipline->notebook?->title ?? __('—')]) }}
+                                                    </p>
+                                                </td>
+                                                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                                    {{ number_format($discipline->notes_count) }}
+                                                </td>
+                                                <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                                    {{ number_format($discipline->flashcards_count) }}
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @else
                 <div class="mt-6 rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-6 py-12 text-center text-sm text-zinc-500">
