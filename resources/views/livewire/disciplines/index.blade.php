@@ -60,89 +60,107 @@
         <p class="sm:hidden mb-2 text-xs text-zinc-600 bg-zinc-50 border border-dashed border-zinc-200 rounded-md px-3 py-2">
             {{ __('Swipe sideways to reveal all options.') }}
         </p>
-        <div class="overflow-x-auto rounded-md border border-zinc-200 bg-white">
-            <table class="min-w-full w-full divide-y divide-zinc-200">
-                <thead class="bg-zinc-50 text-left text-xs font-semibold uppercase tracking-wide text-zinc-500">
-                    <tr>
-                        <th scope="col" class="px-4 py-3">{{ __('Title') }}</th>
-                        <th scope="col" class="px-4 py-3">{{ __('Notebook') }}</th>
-                        <th scope="col" class="px-4 py-3">{{ __('Updated at') }}</th>
-                        <th scope="col" class="px-4 py-3 text-right">{{ __('Actions') }}</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-zinc-200 text-sm text-zinc-700">
-                    @foreach ($disciplines as $discipline)
-                        <tr wire:key="discipline-{{ $discipline->id }}">
-                            <td class="px-4 py-3 font-medium">{{ $discipline->title }}</td>
-                            <td class="px-4 py-3 text-zinc-500">{{ $discipline->notebook?->title ?? __('Unknown') }}</td>
-                            <td class="px-4 py-3 text-sm text-zinc-500">
-                                {{ $discipline->updated_at->format('d/m/Y H:i') }}
-                            </td>
-                            <td class="px-4 py-3 text-right">
-                                <div class="flex justify-end gap-2">
-                                    <flux:button
-                                        size="xs"
-                                        variant="primary"
-                                        icon="plus"
-                                        :href="route('notes.create', $discipline)"
-                                        wire:navigate
-                                    >
-                                        {{ __('Create note') }}
-                                    </flux:button>
-                                    <flux:button
-                                        size="xs"
-                                        variant="ghost"
-                                        :href="route('notes.index', $discipline)"
-                                        wire:navigate
-                                    >
-                                        {{ __('Notes') }}
-                                    </flux:button>
-                                    <flux:button
-                                        size="xs"
-                                        variant="ghost"
-                                        color="indigo"
-                                        :href="route('disciplines.edit', $discipline)"
-                                        wire:navigate
-                                    >
-                                        {{ __('Edit') }}
-                                    </flux:button>
-                                    <x-confirm-dialog
-                                        class="inline-flex"
-                                        name="delete-discipline-{{ $discipline->id }}"
-                                        :title="__('Delete discipline')"
-                                        :description="__('This action cannot be undone and will be logged.')"
-                                    >
-                                        <x-slot:trigger>
-                                            <flux:button
-                                                size="xs"
-                                                variant="ghost"
-                                                color="red"
-                                                type="button"
-                                            >
-                                                {{ __('Delete') }}
-                                            </flux:button>
-                                        </x-slot:trigger>
-
-                                        <x-slot:confirm>
-                                            <flux:modal.close>
+        <div>
+            <div class="flow-root">
+                <div class="overflow-x-auto">
+                    <div class="inline-block min-w-full py-2 align-middle">
+                        <table class="relative min-w-full divide-y divide-gray-300">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="py-3.5 pr-3 pl-4 text-left text-sm font-semibold text-gray-900 sm:pl-3">
+                                        {{ __('Title') }}
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        {{ __('Notebook') }}
+                                    </th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                                        {{ __('Updated at') }}
+                                    </th>
+                                    <th scope="col" class="py-3.5 pr-4 pl-3 sm:pr-3">
+                                        <span class="sr-only">{{ __('Actions') }}</span>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                @foreach ($disciplines as $discipline)
+                                    <tr class="even:bg-gray-50" wire:key="discipline-{{ $discipline->id }}">
+                                        <td class="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-3">
+                                            {{ $discipline->title }}
+                                        </td>
+                                        <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                            {{ $discipline->notebook?->title ?? __('Unknown') }}
+                                        </td>
+                                        <td class="px-3 py-4 text-sm whitespace-nowrap text-gray-500">
+                                            {{ $discipline->updated_at->format('d/m/Y H:i') }}
+                                        </td>
+                                        <td class="py-4 pr-4 pl-3 text-right text-sm font-medium whitespace-nowrap sm:pr-3">
+                                            <div class="flex justify-end gap-2">
                                                 <flux:button
-                                                    type="button"
-                                                    variant="danger"
-                                                    wire:click="deleteDiscipline({{ $discipline->id }})"
-                                                    wire:loading.attr="disabled"
-                                                    class="min-w-[90px]"
+                                                    size="xs"
+                                                    variant="primary"
+                                                    icon="plus"
+                                                    :href="route('notes.create', $discipline)"
+                                                    wire:navigate
                                                 >
-                                                    {{ __('Delete') }}
+                                                    {{ __('Create note') }}
                                                 </flux:button>
-                                            </flux:modal.close>
-                                        </x-slot:confirm>
-                                    </x-confirm-dialog>
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                                                <flux:button
+                                                    size="xs"
+                                                    variant="ghost"
+                                                    :href="route('notes.index', $discipline)"
+                                                    wire:navigate
+                                                >
+                                                    {{ __('Notes') }}
+                                                </flux:button>
+                                                <flux:button
+                                                    size="xs"
+                                                    variant="ghost"
+                                                    color="indigo"
+                                                    :href="route('disciplines.edit', $discipline)"
+                                                    wire:navigate
+                                                >
+                                                    {{ __('Edit') }}
+                                                </flux:button>
+                                                <x-confirm-dialog
+                                                    class="inline-flex"
+                                                    name="delete-discipline-{{ $discipline->id }}"
+                                                    :title="__('Delete discipline')"
+                                                    :description="__('This action cannot be undone and will be logged.')"
+                                                >
+                                                    <x-slot:trigger>
+                                                        <flux:button
+                                                            size="xs"
+                                                            variant="ghost"
+                                                            color="red"
+                                                            type="button"
+                                                        >
+                                                            {{ __('Delete') }}
+                                                        </flux:button>
+                                                    </x-slot:trigger>
+
+                                                    <x-slot:confirm>
+                                                        <flux:modal.close>
+                                                            <flux:button
+                                                                type="button"
+                                                                variant="danger"
+                                                                wire:click="deleteDiscipline({{ $discipline->id }})"
+                                                                wire:loading.attr="disabled"
+                                                                class="min-w-[90px]"
+                                                            >
+                                                                {{ __('Delete') }}
+                                                            </flux:button>
+                                                        </flux:modal.close>
+                                                    </x-slot:confirm>
+                                                </x-confirm-dialog>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div>
