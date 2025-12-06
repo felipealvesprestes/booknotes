@@ -344,7 +344,7 @@
                 @if ($recentNotes->isNotEmpty())
                 <ul class="mt-6 space-y-4">
                     @foreach ($recentNotes as $note)
-                    <li class="rounded-md border border-zinc-200 bg-zinc-50 p-4">
+                    <li class="rounded-md border border-zinc-200 bg-zinc-50/40 p-4">
                         <div class="flex flex-wrap items-baseline justify-between gap-2">
                             <a
                                 class="text-sm font-medium text-indigo-600 hover:text-indigo-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
