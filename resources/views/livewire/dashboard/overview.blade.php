@@ -352,7 +352,11 @@
                             ? 'bg-emerald-50 text-emerald-600'
                             : 'bg-indigo-50 text-indigo-600';
                     @endphp
-                    <li class="relative flex flex-col gap-4 px-4 py-4 transition hover:bg-zinc-50 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+                    <li>
+                        <a
+                            class="relative flex flex-col gap-4 px-4 py-4 transition hover:bg-zinc-50 sm:flex-row sm:items-center sm:justify-between sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                            href="{{ route('notes.show', [$note->discipline, $note]) }}"
+                            wire:navigate>
                         <div class="flex min-w-0 gap-4">
                             <span class="flex h-12 w-12 flex-none items-center justify-center rounded-full {{ $iconWrapperClasses }}">
                                 @if ($note->is_flashcard)
@@ -363,13 +367,7 @@
                             </span>
                             <div class="min-w-0 flex-1">
                                 <p class="text-sm font-semibold text-zinc-900">
-                                    <a
-                                        class="relative hover:text-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-                                        href="{{ route('notes.show', [$note->discipline, $note]) }}"
-                                        wire:navigate>
-                                        <span class="absolute inset-x-0 -top-px bottom-0"></span>
-                                        {{ $note->title }}
-                                    </a>
+                                    {{ $note->title }}
                                 </p>
                                 <p class="mt-2 text-xs text-zinc-500">
                                     {{ $note->discipline?->title ?? __('No discipline') }}
@@ -383,6 +381,7 @@
                             </span>
                             <flux:icon.chevron-right class="h-5 w-5 text-zinc-400" />
                         </div>
+                        </a>
                     </li>
                     @endforeach
                 </ul>
