@@ -270,6 +270,9 @@ $statusClasses = [
                         </button>
                         @endforeach
                     </div>
+                    @error('planForm.study_days_per_week')
+                        <p class="text-xs text-rose-600">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <div class="space-y-3">
@@ -278,6 +281,9 @@ $statusClasses = [
                         <span class="text-xs text-zinc-500">{{ __('planner.form.selected_count', ['count' => count($planForm['selected_disciplines'])]) }}</span>
                     </div>
                     <p class="text-xs text-zinc-500">{{ __('planner.form.disciplines_hint') }}</p>
+                    @error('planForm.selected_disciplines')
+                        <p class="text-xs text-rose-600">{{ $message }}</p>
+                    @enderror
 
                     <div class="space-y-3">
                         @forelse ($availableDisciplines as $discipline)

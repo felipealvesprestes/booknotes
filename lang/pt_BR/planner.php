@@ -91,4 +91,8 @@ return [
         'subtitle' => 'Conclua seu roteiro de estudo antes de continuar.',
         'cta' => 'Ver roteiro de hoje',
     ],
+
+    'validation' => [
+        'select_discipline' => 'Selecione pelo menos uma disciplina com flashcards.',
+    ],
 ];

@@ -7,6 +7,7 @@ use App\Models\StudyPlan;
 use App\Models\StudyPlanDiscipline;
 use App\Models\StudyPlanTask;
 use App\Models\User;
+use App\Models\Note;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 
@@ -43,6 +44,13 @@ class StudyPlannerService
                 'last_mode_index' => 0,
             ],
         );
+    }
+
+    public function findPlan(User $user): ?StudyPlan
+    {
+        return StudyPlan::query()
+            ->where('user_id', $user->id)
+            ->first();
     }
 
     /**
@@ -112,13 +120,20 @@ class StudyPlannerService
      */
     public function ensureDailyTasks(User $user, Carbon $date): Collection
     {
-        $plan = $this->getOrCreatePlan($user)->loadMissing('disciplines');
+        $plan = $this->findPlan($user)?->loadMissing('disciplines');
 
-        if ($plan->disciplines->isEmpty()) {
+        if (! $plan || $plan->disciplines->isEmpty()) {
             return collect();
         }
 
         $day = $date->copy()->startOfDay();
+
+        $flashcardCounts = Note::query()
+            ->selectRaw('discipline_id, COUNT(*) as total')
+            ->where('is_flashcard', true)
+            ->whereIn('discipline_id', $plan->disciplines->pluck('discipline_id'))
+            ->groupBy('discipline_id')
+            ->pluck('total', 'discipline_id');
 
         $todayTasks = StudyPlanTask::query()
             ->ownedBy($user)
@@ -138,13 +153,23 @@ class StudyPlannerService
         $created = 0;
 
         foreach ($orderedDisciplines as $planDiscipline) {
+            $availableFlashcards = (int) ($flashcardCounts[$planDiscipline->discipline_id] ?? 0);
+
+            if ($availableFlashcards <= 0) {
+                continue;
+            }
+
             $perDayTarget = $planDiscipline->dailyTarget($plan->study_days_per_week);
             $currentCount = isset($todayTasks[$planDiscipline->id]) ? $todayTasks[$planDiscipline->id]->count() : 0;
             $missing = max(0, $perDayTarget - $currentCount);
 
             while ($missing > 0 && ($limit === null || ($existingCount + $created) < $limit)) {
                 $mode = self::STUDY_MODES[$modeIndex % count(self::STUDY_MODES)];
-                $payload = $this->taskPayload($user, $plan, $planDiscipline, $mode, $day);
+                $payload = $this->taskPayload($user, $plan, $planDiscipline, $mode, $day, $availableFlashcards);
+
+                if ($payload === null) {
+                    break;
+                }
 
                 StudyPlanTask::create($payload);
 
@@ -206,8 +231,19 @@ class StudyPlannerService
         StudyPlanDiscipline $planDiscipline,
         string $mode,
         Carbon $day,
-    ): array {
+        int $availableFlashcards,
+    ): ?array {
         $load = $this->modeLoadMap[$mode] ?? ['quantity' => 10, 'unit' => 'items'];
+
+        if ($mode === 'simulated') {
+            $load['quantity'] = 1;
+        } else {
+            if ($availableFlashcards <= 0) {
+                return null;
+            }
+
+            $load['quantity'] = min($load['quantity'], $availableFlashcards);
+        }
 
         return [
             'user_id' => $user->id,

@@ -44,6 +44,14 @@ class Planner extends Component
         $this->planner = $planner;
     }
 
+    public function messages(): array
+    {
+        return [
+            'planForm.selected_disciplines.required' => __('planner.validation.select_discipline'),
+            'planForm.selected_disciplines.min' => __('planner.validation.select_discipline'),
+        ];
+    }
+
     public function mount(): void
     {
         $this->todayTasks = collect();
@@ -88,19 +96,21 @@ class Planner extends Component
     public function resetPlanTasks(): void
     {
         $user = auth()->user();
-        $plan = $this->planner->getOrCreatePlan($user);
 
         StudyPlanTask::query()
             ->withoutGlobalScopes()
             ->where('user_id', $user->id)
             ->delete();
 
-        // Clear plan disciplines and selection.
-        $plan->disciplines()->delete();
+        if ($plan = $this->planner->findPlan($user)) {
+            $plan->disciplines()->delete();
+            $plan->delete();
+        }
+
+        $this->planForm['study_days_per_week'] = 5;
+        $this->planForm['daily_sessions_target'] = 0;
         $this->planForm['selected_disciplines'] = [];
         $this->planForm['sessions_per_week'] = [];
-
-        $plan->forceFill(['last_mode_index' => 0])->save();
 
         // Clear local collections to avoid flashing stale tasks.
         $this->todayTasks = collect();
@@ -163,8 +173,24 @@ class Planner extends Component
     protected function loadPlan(?StudyPlan $plan = null): void
     {
         $plan ??= $this->planner
-            ->getOrCreatePlan(auth()->user())
-            ->load('disciplines');
+            ->findPlan(auth()->user())
+            ?->load('disciplines');
+
+        if (! $plan) {
+            $this->planSummary = [
+                'disciplines' => 0,
+                'weekly_sessions' => 0,
+                'today_pending' => 0,
+                'today_completed' => 0,
+            ];
+
+            $this->planForm['study_days_per_week'] = 5;
+            $this->planForm['daily_sessions_target'] = 0;
+            $this->planForm['selected_disciplines'] = [];
+            $this->planForm['sessions_per_week'] = [];
+
+            return;
+        }
 
         $this->planSummary['disciplines'] = $plan->disciplines->count();
         $this->planSummary['weekly_sessions'] = $plan->disciplines->count() * $plan->study_days_per_week;
@@ -294,7 +320,7 @@ class Planner extends Component
     {
         return [
             'planForm.study_days_per_week' => ['required', Rule::in([3, 5, 7])],
-            'planForm.selected_disciplines' => ['array'],
+            'planForm.selected_disciplines' => ['required', 'array', 'min:1'],
             'planForm.selected_disciplines.*' => [
                 'integer',
                 Rule::exists('disciplines', 'id')->where(fn ($query) => $query->where('user_id', auth()->id())),

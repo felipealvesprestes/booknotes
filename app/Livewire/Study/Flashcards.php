@@ -175,6 +175,7 @@ class Flashcards extends Component
         $this->focusMode = true;
     }
 
+
     public function getSessionProperty(): ?FlashcardSession
     {
         return $this->sessionId

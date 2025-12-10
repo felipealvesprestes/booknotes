@@ -91,4 +91,8 @@ return [
         'subtitle' => 'Wrap up your study route before moving on.',
         'cta' => "Open today's route",
     ],
+
+    'validation' => [
+        'select_discipline' => 'Select at least one discipline with flashcards.',
+    ],
 ];
