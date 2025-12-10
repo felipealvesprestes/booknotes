@@ -47,6 +47,18 @@ class SimulatedExam extends Component
 
     protected array $questionCountOptions = [10, 30, 50];
 
+    protected $queryString = [
+        'disciplineId' => ['except' => null],
+        'scopeType' => ['except' => 'notebook'],
+    ];
+
+    public function mount(): void
+    {
+        if ($this->disciplineId) {
+            $this->scopeType = 'discipline';
+        }
+    }
+
     public function updatedScopeType(): void
     {
         $this->notebookId = null;

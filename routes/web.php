@@ -23,6 +23,7 @@ use App\Livewire\Notebooks\ShowNotebook;
 use App\Http\Controllers\BlogController;
 use App\Livewire\Study\Flashcards as StudyFlashcards;
 use App\Livewire\Study\Exercises as StudyExercises;
+use App\Livewire\Study\Planner as StudyPlanner;
 use App\Livewire\Study\SimulatedExam as StudySimulatedExam;
 use App\Livewire\Settings\Billing;
 use App\Livewire\Settings\Language;
@@ -87,6 +88,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('notebooks/{notebook}', ShowNotebook::class)->name('notebooks.show');
 
         Route::redirect('study', 'study/flashcards')->name('study.redirect');
+        Route::get('study/planner', StudyPlanner::class)->name('study.planner');
         Route::get('study/flashcards', StudyFlashcards::class)->name('study.flashcards');
         Route::get('study/simulado', StudySimulatedExam::class)->name('study.simulated');
         Route::get('study/exercises', StudyExercises::class)->name('study.exercises');

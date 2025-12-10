@@ -38,9 +38,18 @@ class Exercises extends Component
         'multiple_choice',
     ];
 
+    protected $queryString = [
+        'disciplineId' => ['except' => null],
+        'mode' => ['except' => 'true_false'],
+    ];
+
     public function mount(?int $disciplineId = null): void
     {
-        $this->disciplineId = $disciplineId;
+        if ($disciplineId) {
+            $this->disciplineId = $disciplineId;
+        }
+
+        $this->ensureValidMode();
         $this->loadExercise();
     }
 
@@ -146,6 +155,7 @@ class Exercises extends Component
 
     protected function loadExercise(): void
     {
+        $this->ensureValidMode();
         $this->fillGuesses = [];
         $this->answeredCorrectly = null;
         $this->feedbackTitle = null;
@@ -181,6 +191,13 @@ class Exercises extends Component
             $this->fillGuesses = $blankCount > 0
                 ? array_fill(0, $blankCount, '')
                 : [];
+        }
+    }
+
+    protected function ensureValidMode(): void
+    {
+        if (! in_array($this->mode, $this->modes, true)) {
+            $this->mode = $this->modes[0];
         }
     }
 

@@ -38,6 +38,7 @@
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Practice')" class="sidebar-nav-group space-y-2.5">
+                    <flux:navlist.item icon="clipboard-document-list" :href="route('study.planner')" :current="request()->routeIs('study.planner')" wire:navigate>{{ __('planner.title') }}</flux:navlist.item>
                     <flux:navlist.item icon="bolt" :href="route('study.flashcards')" :current="request()->routeIs('study.flashcards')" wire:navigate>{{ __('Flashcards') }}</flux:navlist.item>
                     <flux:navlist.item icon="sparkles" :href="route('study.exercises')" :current="request()->routeIs('study.exercises')" wire:navigate>{{ __('Exercises') }}</flux:navlist.item>
                     <flux:navlist.item icon="clipboard-document-check" :href="route('study.simulated')" :current="request()->routeIs('study.simulated')" wire:navigate>{{ __('Simulated test') }}</flux:navlist.item>

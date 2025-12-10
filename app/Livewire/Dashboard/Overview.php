@@ -6,6 +6,8 @@ use App\Models\Discipline;
 use App\Models\FlashcardSession;
 use App\Models\Note;
 use App\Models\Notebook;
+use App\Models\StudyPlanTask;
+use App\Services\Planner\StudyPlannerService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
@@ -92,6 +94,10 @@ class Overview extends Component
 
         $dailyHistory = $this->buildDailyHistory();
 
+        $planner = app(StudyPlannerService::class);
+        $plannerTodayTasks = $planner->ensureDailyTasks(auth()->user(), now()->startOfDay());
+        $plannerTodayPending = $plannerTodayTasks->where('status', StudyPlanTask::STATUS_PENDING);
+
         return view('livewire.dashboard.overview', [
             'metrics' => $metrics,
             'activeSessions' => $activeSessions,
@@ -103,6 +109,8 @@ class Overview extends Component
             'recentSessions' => $recentSessions,
             'lastStudy' => $lastStudy,
             'dailyHistory' => $dailyHistory,
+            'plannerTodayTasks' => $plannerTodayTasks,
+            'plannerTodayPending' => $plannerTodayPending,
         ])->layout('layouts.app', [
             'title' => __('Dashboard'),
         ]);

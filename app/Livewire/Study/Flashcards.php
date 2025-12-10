@@ -28,6 +28,10 @@ class Flashcards extends Component
 
     public bool $focusMode = false;
 
+    protected $queryString = [
+        'disciplineFilter' => ['except' => null, 'as' => 'discipline'],
+    ];
+
     public function mount(): void
     {
         if ($this->attemptLoadRequestedSession()) {

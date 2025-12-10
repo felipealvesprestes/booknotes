@@ -7,6 +7,7 @@ use App\Notifications\GenericSystemNotification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
@@ -116,6 +117,16 @@ MESSAGE,
     public function flashcardSessions(): HasMany
     {
         return $this->hasMany(FlashcardSession::class);
+    }
+
+    public function studyPlan(): HasOne
+    {
+        return $this->hasOne(StudyPlan::class);
+    }
+
+    public function studyPlanTasks(): HasMany
+    {
+        return $this->hasMany(StudyPlanTask::class);
     }
 
     public function pdfDocuments(): HasMany
