@@ -78,43 +78,49 @@
     </div>
 
     @if ($plannerTodayPending->count() > 0)
-        <div class="rounded-xl border border-amber-200 bg-amber-50 px-5 py-4">
-            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div class="space-y-1">
-                    <p class="text-xs font-semibold uppercase tracking-wide text-amber-700">{{ __('planner.today_label') }}</p>
-                    <h3 class="text-base font-semibold text-amber-900">
+        <flux:callout
+            class="mb-2 border border-blue-200 bg-blue-50 text-blue-900"
+            variant="info"
+        >
+            <div class="space-y-3">
+                <div class="flex items-center gap-2">
+                    <flux:icon.clipboard-document-check class="h-5 w-5 text-blue-700" />
+                    <p class="text-sm font-semibold text-blue-900">
                         {{ __('planner.reminder.title', ['count' => $plannerTodayPending->count()]) }}
-                    </h3>
-                    <p class="text-sm text-amber-800">
-                        {{ __('planner.reminder.subtitle') }}
                     </p>
                 </div>
 
-                <flux:button
-                    variant="primary"
-                    color="amber"
-                    icon="clipboard-document-check"
-                    :href="route('study.planner')"
-                    wire:navigate>
-                    {{ __('planner.reminder.cta') }}
-                </flux:button>
-            </div>
+                <p class="text-sm text-blue-800">
+                    {{ __('planner.reminder.subtitle') }}
+                </p>
 
-            <div class="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ($plannerTodayPending->take(3) as $task)
-                    <div class="flex items-start justify-between rounded-lg border border-white/40 bg-white/70 px-3 py-2">
-                        <div class="flex flex-col gap-0.5">
-                            <p class="text-sm font-semibold text-amber-900 truncate">
-                                {{ $task->discipline?->title ?? __('planner.labels.any_discipline') }}
-                            </p>
-                            <p class="text-xs text-amber-800">
-                                {{ __('planner.modes.' . $task->study_mode) }} · {{ trans_choice('planner.units.' . $task->unit_label, $task->quantity, ['count' => $task->quantity]) }}
-                            </p>
+                <div class="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($plannerTodayPending->take(3) as $task)
+                        <div class="flex items-start justify-between rounded-lg border border-blue-100 bg-blue-100 p-3">
+                            <div class="flex flex-col gap-0.5">
+                                <p class="text-sm font-semibold text-blue-900 truncate">
+                                    {{ $task->discipline?->title ?? __('planner.labels.any_discipline') }}
+                                </p>
+                                <p class="text-xs text-blue-800">
+                                    {{ __('planner.modes.' . $task->study_mode) }} · {{ trans_choice('planner.units.' . $task->unit_label, $task->quantity, ['count' => $task->quantity]) }}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
+
+                <div class="flex justify-end">
+                    <flux:button
+                        variant="primary"
+                        color="blue"
+                        icon="arrow-right"
+                        :href="route('study.planner')"
+                        wire:navigate>
+                        {{ __('planner.reminder.cta') }}
+                    </flux:button>
+                </div>
             </div>
-        </div>
+        </flux:callout>
     @endif
 
     @if ($showOnboardingHero)
