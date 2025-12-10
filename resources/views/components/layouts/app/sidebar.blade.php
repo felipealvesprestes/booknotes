@@ -17,7 +17,7 @@
                 <flux:sidebar.collapse class="hidden lg:flex" :tooltip="__('Toggle sidebar')" />
             </flux:sidebar.header>
 
-            <flux:navlist variant="outline" class="space-y-4">
+            <flux:navlist variant="outline" class="space-y-2">
                 <flux:navlist.group :heading="__('Workspace')" class="sidebar-nav-group space-y-2.5">
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="book-open" :href="route('notebooks.index')" :current="request()->routeIs('notebooks.*')" wire:navigate>{{ __('Notebooks') }}</flux:navlist.item>
