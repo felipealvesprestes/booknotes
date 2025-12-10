@@ -277,6 +277,7 @@ $statusClasses = [
                         <h3 class="text-sm font-semibold text-zinc-800">{{ __('planner.form.disciplines') }}</h3>
                         <span class="text-xs text-zinc-500">{{ __('planner.form.selected_count', ['count' => count($planForm['selected_disciplines'])]) }}</span>
                     </div>
+                    <p class="text-xs text-zinc-500">{{ __('planner.form.disciplines_hint') }}</p>
 
                     <div class="space-y-3">
                         @forelse ($availableDisciplines as $discipline)

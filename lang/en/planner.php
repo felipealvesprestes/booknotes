@@ -64,6 +64,7 @@ return [
         'study_days' => 'Study days per week',
         'disciplines' => 'Disciplines in this plan',
         'selected_count' => ':count selected',
+        'disciplines_hint' => 'Only disciplines with flashcards are listed here.',
         'empty_disciplines_title' => 'You have no disciplines yet.',
         'empty_disciplines_description' => 'Create a discipline to start configuring your planner.',
     ],

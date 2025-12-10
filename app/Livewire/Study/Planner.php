@@ -307,7 +307,8 @@ class Planner extends Component
     {
         return auth()->user()
             ->disciplines()
-            ->select('id', 'title')
+            ->select('disciplines.id', 'disciplines.title')
+            ->whereHas('notes', fn ($query) => $query->where('is_flashcard', true))
             ->orderBy('title')
             ->get();
     }

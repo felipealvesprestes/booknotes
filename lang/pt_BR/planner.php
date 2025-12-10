@@ -64,6 +64,7 @@ return [
         'study_days' => 'Dias de estudo na semana',
         'disciplines' => 'Disciplinas do planner',
         'selected_count' => ':count selecionada(s)',
+        'disciplines_hint' => 'Listamos apenas disciplinas que já possuem flashcards.',
         'empty_disciplines_title' => 'Você ainda não criou disciplinas.',
         'empty_disciplines_description' => 'Cadastre pelo menos uma disciplina para montar o planner.',
     ],
