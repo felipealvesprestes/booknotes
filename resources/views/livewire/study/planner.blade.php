@@ -8,7 +8,7 @@ $modeMeta = [
 ];
 
 $statusClasses = [
-'pending' => 'text-amber-500 border border-amber-300',
+'pending' => 'text-amber-600 border border-amber-300',
 'completed' => 'text-emerald-700 border border-emerald-200',
 'cancelled' => 'text-zinc-500 border border-zinc-200',
 ];
@@ -132,7 +132,7 @@ $statusClasses = [
                                     </span>
 
                                     @if ($task->is_overdue)
-                                    <span class="inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-600">
+                                    <span class="inline-flex items-center rounded-full px-2 py-1 text-xs text-red-600 border border-red-300">
                                         {{ __('planner.labels.overdue') }}
                                     </span>
                                     @endif
