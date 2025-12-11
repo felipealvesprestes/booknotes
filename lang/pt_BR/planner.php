@@ -88,8 +88,8 @@ return [
     ],
 
     'reminder' => [
-        'title' => 'Você tem :count tarefa(s) para hoje.',
-        'subtitle' => 'Conclua seu roteiro de estudo antes de continuar.',
+        'title' => 'Você tem tarefas para hoje.',
+        'subtitle' => 'Há sessões preparadas para hoje. Abra o roteiro e siga seu plano.',
         'cta' => 'Ver roteiro de hoje',
     ],
 

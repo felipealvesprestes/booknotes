@@ -88,8 +88,8 @@ return [
     ],
 
     'reminder' => [
-        'title' => 'You have :count task(s) for today.',
-        'subtitle' => 'Wrap up your study route before moving on.',
+        'title' => 'You have tasks for today.',
+        'subtitle' => 'You have sessions lined up for today. Open your route and follow the plan.',
         'cta' => "Open today's route",
     ],
 
