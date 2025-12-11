@@ -8,7 +8,7 @@ $modeMeta = [
 ];
 
 $statusClasses = [
-'pending' => 'bg-amber-100 text-amber-800',
+'pending' => 'bg-amber-400 text-amber-50',
 'completed' => 'bg-emerald-100 text-emerald-700',
 'cancelled' => 'bg-zinc-100 text-zinc-500',
 ];
@@ -93,7 +93,7 @@ $statusClasses = [
                                     $mode = $modeMeta[$task->study_mode] ?? null;
                                     @endphp
                                     @if ($mode)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-white/70 px-2 py-0.5 text-xs font-semibold text-indigo-700">
+                                    <span class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-700">
                                         <flux:icon :icon="$mode['icon']" class="h-4 w-4" />
                                         {{ $mode['label'] }}
                                     </span>
@@ -271,7 +271,7 @@ $statusClasses = [
                         @endforeach
                     </div>
                     @error('planForm.study_days_per_week')
-                        <p class="text-xs text-rose-600">{{ $message }}</p>
+                    <p class="text-xs text-rose-600">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -282,7 +282,7 @@ $statusClasses = [
                     </div>
                     <p class="text-xs text-zinc-500">{{ __('planner.form.disciplines_hint') }}</p>
                     @error('planForm.selected_disciplines')
-                        <p class="text-xs text-rose-600">{{ $message }}</p>
+                    <p class="text-xs text-rose-600">{{ $message }}</p>
                     @enderror
 
                     <div class="space-y-3">

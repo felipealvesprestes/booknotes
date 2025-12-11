@@ -48,7 +48,7 @@ return [
         'scheduled_for' => 'Agendada para :date',
         'mode_prefix' => 'Modo:',
         'days_suffix' => 'dias',
-        'today_compact' => 'HOJE',
+        'today_compact' => 'Hoje',
         'reset_warning' => 'Isso vai remover todas as rotinas e tarefas geradas. Deseja continuar?',
     ],
 
