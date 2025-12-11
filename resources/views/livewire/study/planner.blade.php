@@ -53,22 +53,42 @@ $statusClasses = [
 
     <div class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.pending_today') }}</dt>
+            <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                <dt>{{ __('planner.stats.pending_today') }}</dt>
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-amber-100 text-amber-600">
+                    <flux:icon.clock class="h-5 w-5" />
+                </span>
+            </div>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['today_pending']) }}</dd>
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.completed_today') }}</dt>
+            <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                <dt>{{ __('planner.stats.completed_today') }}</dt>
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-emerald-100 text-emerald-600">
+                    <flux:icon.check-circle class="h-5 w-5" />
+                </span>
+            </div>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['today_completed']) }}</dd>
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.disciplines') }}</dt>
+            <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                <dt>{{ __('planner.stats.disciplines') }}</dt>
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-purple-100 text-purple-600">
+                    <flux:icon.book-open class="h-5 w-5" />
+                </span>
+            </div>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['disciplines']) }}</dd>
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.weekly_sessions') }}</dt>
+            <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                <dt>{{ __('planner.stats.weekly_sessions') }}</dt>
+                <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-sky-100 text-sky-600">
+                    <flux:icon.calendar class="h-5 w-5" />
+                </span>
+            </div>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['weekly_sessions']) }}</dd>
         </div>
     </div>
@@ -85,7 +105,7 @@ $statusClasses = [
 
                 <div class="space-y-4">
                     @forelse ($todayTasks as $task)
-                    <div class="rounded-xl border border-zinc-100 bg-white p-4">
+                    <div class="rounded-xl border border-zinc-200 bg-white p-4">
                         <div class="flex flex-col gap-3">
                             <div class="space-y-2">
                                 <div class="flex flex-wrap items-center gap-2">
@@ -93,7 +113,7 @@ $statusClasses = [
                                     $mode = $modeMeta[$task->study_mode] ?? null;
                                     @endphp
                                     @if ($mode)
-                                    <span class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs text-indigo-400 border border-indigo-200">
+                                    <span class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs text-indigo-500 border border-indigo-200">
                                         <flux:icon :icon="$mode['icon']" class="h-4 w-4" />
                                         {{ $mode['label'] }}
                                     </span>
