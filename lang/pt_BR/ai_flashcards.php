@@ -6,7 +6,7 @@ return [
     'limit_reached' => 'Você atingiu o limite diário de flashcards com IA. Tente novamente amanhã.',
     'used_today' => '{1} Você já gerou :count flashcard com IA hoje.|[2,*] Você já gerou :count flashcards com IA hoje.',
     'remaining_today' => '{1} Ainda pode gerar :count flashcard hoje.|[2,*] Ainda pode gerar :count flashcards hoje.',
-    'remaining_after' => '{1} restará :count flashcard hoje.|[2,*] restarão :count flashcards hoje.',
+    'remaining_after' => '{1} você ainda pode gerar :count flashcard hoje.|[2,*] você ainda pode gerar :count flashcards hoje.',
     'batch_size' => '{1} :count cartão neste lote.|[2,*] :count cartões neste lote.',
     'used_title' => 'Gerados hoje com IA',
     'remaining_title' => 'Ainda disponível hoje',
