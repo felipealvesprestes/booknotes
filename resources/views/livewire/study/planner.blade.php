@@ -8,9 +8,9 @@ $modeMeta = [
 ];
 
 $statusClasses = [
-'pending' => 'bg-amber-400 text-amber-50',
-'completed' => 'bg-emerald-100 text-emerald-700',
-'cancelled' => 'bg-zinc-100 text-zinc-500',
+'pending' => 'text-amber-500 border border-amber-300',
+'completed' => 'text-emerald-700 border border-emerald-200',
+'cancelled' => 'text-zinc-500 border border-zinc-200',
 ];
 @endphp
 
@@ -58,17 +58,17 @@ $statusClasses = [
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-emerald-600">{{ __('planner.stats.completed_today') }}</dt>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.completed_today') }}</dt>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['today_completed']) }}</dd>
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('planner.stats.disciplines') }}</dt>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.disciplines') }}</dt>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['disciplines']) }}</dd>
         </div>
 
         <div class="rounded-md border border-zinc-200 bg-white p-5">
-            <dt class="text-xs font-semibold uppercase tracking-wide text-amber-500">{{ __('planner.stats.weekly_sessions') }}</dt>
+            <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('planner.stats.weekly_sessions') }}</dt>
             <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ number_format($planSummary['weekly_sessions']) }}</dd>
         </div>
     </div>
@@ -85,7 +85,7 @@ $statusClasses = [
 
                 <div class="space-y-4">
                     @forelse ($todayTasks as $task)
-                    <div class="rounded-xl border border-zinc-100 bg-zinc-50/80 p-4">
+                    <div class="rounded-xl border border-zinc-100 bg-white p-4">
                         <div class="flex flex-col gap-3">
                             <div class="space-y-2">
                                 <div class="flex flex-wrap items-center gap-2">
@@ -93,18 +93,18 @@ $statusClasses = [
                                     $mode = $modeMeta[$task->study_mode] ?? null;
                                     @endphp
                                     @if ($mode)
-                                    <span class="inline-flex items-center gap-1 rounded-full bg-indigo-100 px-2 py-0.5 text-xs font-semibold text-indigo-700">
+                                    <span class="inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs text-indigo-400 border border-indigo-200">
                                         <flux:icon :icon="$mode['icon']" class="h-4 w-4" />
                                         {{ $mode['label'] }}
                                     </span>
                                     @endif
 
-                                    <span class="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold {{ $statusClasses[$task->status] ?? 'bg-zinc-100 text-zinc-500' }}">
+                                    <span class="inline-flex items-center rounded-full px-2 py-1 text-xs {{ $statusClasses[$task->status] ?? 'bg-zinc-100 text-zinc-500' }}">
                                         {{ __('planner.statuses.' . $task->status) }}
                                     </span>
 
                                     @if ($task->is_overdue)
-                                    <span class="inline-flex items-center rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700">
+                                    <span class="inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs text-amber-600">
                                         {{ __('planner.labels.overdue') }}
                                     </span>
                                     @endif

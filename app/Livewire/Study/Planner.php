@@ -58,7 +58,7 @@ class Planner extends Component
         $this->upcomingTasks = collect();
 
         $this->loadPlan();
-        $this->refreshTasks(generate: false);
+        $this->refreshTasks(generate: true);
     }
 
     public function savePlan(): void
@@ -231,33 +231,36 @@ class Planner extends Component
             }
 
             $this->upcomingTasks = $upcoming;
-
-            $this->planSummary['today_pending'] = $this->todayTasks
-                ->where('status', StudyPlanTask::STATUS_PENDING)
-                ->count();
-
-            $this->planSummary['today_completed'] = $todaySet
-                ->where('status', StudyPlanTask::STATUS_COMPLETED)
-                ->count();
-
-            return;
         }
 
-        // Only read what exists (used when resetting).
-        $this->todayTasks = StudyPlanTask::query()
+        // Always reload from the database to keep counters in sync.
+        $todayBaseQuery = StudyPlanTask::query()
             ->ownedBy($user)
+            ->whereDate('scheduled_for', '<=', $today);
+
+        $this->todayTasks = (clone $todayBaseQuery)
             ->with('discipline')
-            ->whereDate('scheduled_for', '<=', $today)
+            ->orderBy('scheduled_for')
+            ->orderBy('id')
             ->get();
 
         $this->upcomingTasks = StudyPlanTask::query()
             ->ownedBy($user)
             ->with('discipline')
+            ->where('status', StudyPlanTask::STATUS_PENDING)
             ->whereDate('scheduled_for', '>', $today)
+            ->orderBy('scheduled_for')
+            ->orderBy('id')
             ->get();
 
-        $this->planSummary['today_pending'] = 0;
-        $this->planSummary['today_completed'] = 0;
+        $this->planSummary['today_pending'] = (clone $todayBaseQuery)
+            ->where('status', StudyPlanTask::STATUS_PENDING)
+            ->count();
+
+        $this->planSummary['today_completed'] = (clone $todayBaseQuery)
+            ->where('status', StudyPlanTask::STATUS_COMPLETED)
+            ->whereDate('scheduled_for', $today)
+            ->count();
     }
 
     protected function updateUpcomingHorizon(): void
