@@ -25,6 +25,7 @@ use App\Livewire\Study\Flashcards as StudyFlashcards;
 use App\Livewire\Study\Exercises as StudyExercises;
 use App\Livewire\Study\Planner as StudyPlanner;
 use App\Livewire\Study\SimulatedExam as StudySimulatedExam;
+use App\Livewire\Study\PdfFlashcards as StudyPdfFlashcards;
 use App\Livewire\Settings\Billing;
 use App\Livewire\Settings\Language;
 use App\Livewire\Settings\Password;
@@ -90,6 +91,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::redirect('study', 'study/flashcards')->name('study.redirect');
         Route::get('study/planner', StudyPlanner::class)->name('study.planner');
         Route::get('study/flashcards', StudyFlashcards::class)->name('study.flashcards');
+        Route::get('study/pdf-flashcards', StudyPdfFlashcards::class)->name('study.pdf-flashcards');
         Route::get('study/simulado', StudySimulatedExam::class)->name('study.simulated');
         Route::get('study/exercises', StudyExercises::class)->name('study.exercises');
 

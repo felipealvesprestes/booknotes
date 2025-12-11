@@ -35,6 +35,7 @@
                     </flux:navlist.item>
                     <flux:navlist.item icon="arrow-down-tray" :href="route('notes.export')" :current="request()->routeIs('notes.export')" wire:navigate>{{ __('PDF exports') }}</flux:navlist.item>
                     <flux:navlist.item icon="document-text" :href="route('pdfs.index')" :current="request()->routeIs('pdfs.*')" wire:navigate>{{ __('Document library') }}</flux:navlist.item>
+                    <flux:navlist.item icon="arrow-up-tray" :href="route('study.pdf-flashcards')" :current="request()->routeIs('study.pdf-flashcards')" wire:navigate>{{ __('pdf_flashcards.menu') }}</flux:navlist.item>
                 </flux:navlist.group>
 
                 <flux:navlist.group :heading="__('Practice')" class="sidebar-nav-group space-y-2.5">

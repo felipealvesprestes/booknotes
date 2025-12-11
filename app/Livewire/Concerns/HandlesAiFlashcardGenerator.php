@@ -4,13 +4,10 @@ namespace App\Livewire\Concerns;
 
 use App\Exceptions\AiFlashcardGenerationException;
 use App\Exceptions\AiFlashcardsLimitException;
-use App\Models\Log;
-use App\Models\Note;
+use App\Services\Ai\AiFlashcardStorageService;
 use App\Services\Ai\AiFlashcardsUsageService;
 use App\Services\Ai\GenerateFlashcardsService;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 /**
@@ -240,63 +237,13 @@ trait HandlesAiFlashcardGenerator
     /**
      * @param  array<int, array{question: string, answer: string, extra?: string|null}>  $flashcards
      */
-    protected function persistAiFlashcards(array $flashcards): int
+    protected function persistAiFlashcards(array $flashcards, string $source = 'ai_flashcards'): int
     {
-        $disciplineId = $this->discipline->getKey();
-        $count = 0;
-
-        DB::transaction(function () use ($flashcards, $disciplineId, &$count): void {
-            foreach ($flashcards as $card) {
-                $question = $this->sanitizeText($card['question'] ?? '');
-                $answer = $this->sanitizeText($card['answer'] ?? '');
-                $extra = isset($card['extra']) ? $this->sanitizeText($card['extra']) : null;
-
-                if ($question === '' || $answer === '') {
-                    continue;
-                }
-
-                $finalAnswer = $this->formatAnswerWithExtra($answer, $extra);
-
-                $note = Note::create([
-                    'title' => Str::of($question)->limit(255, '')->value(),
-                    'content' => $finalAnswer,
-                    'is_flashcard' => true,
-                    'flashcard_question' => Str::of($question)->limit(255, '')->value(),
-                    'flashcard_answer' => $finalAnswer,
-                    'discipline_id' => $disciplineId,
-                ]);
-
-                Log::create([
-                    'action' => 'note.created',
-                    'context' => [
-                        'note_id' => $note->id,
-                        'discipline_id' => $note->discipline_id,
-                        'is_flashcard' => true,
-                        'source' => 'ai_flashcards',
-                    ],
-                ]);
-
-                $count++;
-            }
-        });
-
-        return $count;
-    }
-
-    protected function sanitizeText(?string $value): string
-    {
-        $plain = trim(strip_tags((string) $value));
-
-        return preg_replace('/\\s+/u', ' ', $plain) ?? '';
-    }
-
-    protected function formatAnswerWithExtra(string $answer, ?string $extra): string
-    {
-        if (blank($extra)) {
-            return $answer;
-        }
-
-        return "{$answer}\n\n" . __('ai_flashcards.extra_note', ['extra' => $extra]);
+        return app(AiFlashcardStorageService::class)->store(
+            $this->discipline,
+            $flashcards,
+            $source,
+        );
     }
 
     protected function aiUsageService(): AiFlashcardsUsageService
