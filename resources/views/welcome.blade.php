@@ -635,6 +635,13 @@
                             <li class="flex items-start gap-3">
                                 <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
                                 <div>
+                                    <p class="font-semibold text-neutral-900">Roteiro de estudo inteligente</p>
+                                    <p>Monte um plano semanal, selecione disciplinas e receba tarefas diárias automáticas com modos de estudo equilibrados para manter o ritmo.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
                                     <p class="font-semibold text-neutral-900">Modo Múltipla Escolha</p>
                                     <p>O sistema transforma automaticamente seus flashcards em quizzes com alternativas baralhadas e feedback instantâneo para medir retenção rapidamente.</p>
                                 </div>
