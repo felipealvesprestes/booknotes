@@ -1,5 +1,5 @@
 @php
-    $monthlyAmount = number_format(config('services.stripe.monthly_amount', 14.9), 2, ',', '.');
+    $monthlyAmount = number_format(config('services.stripe.monthly_amount', 24.9), 2, ',', '.');
     $planLabel = $user?->subscriptionPlanName();
 @endphp
 

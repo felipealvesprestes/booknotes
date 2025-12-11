@@ -295,8 +295,7 @@
                                 <img
                                     src="{{ asset('img/landing/dashboard-pt.png') }}"
                                     alt="Painel de estudos do Booknotes com métricas, cadernos e sessões."
-                                    class="w-full h-auto max-md:blur-[1px]"
-                                />
+                                    class="w-full h-auto max-md:blur-[1px]" />
                             </div>
 
                             <figcaption class="px-5 py-4 text-xs leading-snug text-neutral-600 border-t border-neutral-100 bg-white/90">
@@ -524,7 +523,7 @@
                 </div>
             </section>
 
-            <section class="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">  
+            <section class="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">
                 <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                     <div class="space-y-6">
                         <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
@@ -581,7 +580,7 @@
 
             <section id="pricing" class="pt-24 pb-10">
                 @php($originalPriceValue = 29.90)
-                @php($discountedPriceValue = config('services.stripe.monthly_amount', 14.90))
+                @php($discountedPriceValue = config('services.stripe.monthly_amount', 24.90))
                 @php($originalPrice = number_format($originalPriceValue, 2, ',', '.'))
                 @php($monthlyPrice = number_format($discountedPriceValue, 2, ',', '.'))
                 @php($discountPercent = (int) max(0, min(100, round(100 - ($discountedPriceValue / $originalPriceValue * 100)))))
@@ -616,6 +615,13 @@
                                 <div>
                                     <p class="font-semibold text-neutral-900">Assistente com Inteligência Artificial</p>
                                     <p>Deixe a IA gerar flashcards e montar sua base de conhecimentos para simulados e modos de estudos com poucos cliques.</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
+                                <div>
+                                    <p class="font-semibold text-neutral-900">Flashcards a partir de PDFs</p>
+                                    <p>Envie um PDF, escolha a disciplina e gere 20, 30 ou 50 flashcards com IA.</p>
                                 </div>
                             </li>
                             <li class="flex items-start gap-3">

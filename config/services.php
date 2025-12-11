@@ -6,12 +6,12 @@ $stripeLifetimeDefaults = [
 ];
 
 $stripeLifetimeFromEnv = array_filter(array_map(
-    static fn ($email) => trim($email),
+    static fn($email) => trim($email),
     explode(',', (string) env('SUBSCRIPTION_LIFETIME_EMAILS', ''))
 ));
 
 $reengagementRecipients = array_values(array_filter(array_map(
-    static fn ($email) => trim($email),
+    static fn($email) => trim($email),
     explode(',', (string) env('REENGAGEMENT_EMAILS', 'felipealvesprestes@gmail.com'))
 )));
 
@@ -70,7 +70,7 @@ return [
         'price_id' => env('STRIPE_PRICE_ID'),
         'trial_days' => (int) env('SUBSCRIPTION_TRIAL_DAYS', 14),
         'plan_name' => env('SUBSCRIPTION_PLAN_NAME', 'Acesso Plataforma Booknotes'),
-        'monthly_amount' => (float) env('SUBSCRIPTION_MONTHLY_AMOUNT', 14.90),
+        'monthly_amount' => (float) env('SUBSCRIPTION_MONTHLY_AMOUNT', 24.90),
         'lifetime_emails' => array_values(array_unique(array_merge(
             $stripeLifetimeDefaults,
             $stripeLifetimeFromEnv,

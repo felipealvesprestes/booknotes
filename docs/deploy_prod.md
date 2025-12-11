@@ -64,14 +64,14 @@ php artisan migrate --force
 
 Antes de publicar, garanta que o `.env` de produção contém:
 
-- `STRIPE_KEY` / `STRIPE_SECRET` (usar as chaves **live**)
-- `STRIPE_PRICE_ID=price_1SRc0lA5HGNTUlGMohJIFB39`
-- `STRIPE_WEBHOOK_SECRET=` (copiar do Stripe após criar o webhook)
-- `SUBSCRIPTION_TRIAL_DAYS=14`
-- `SUBSCRIPTION_PLAN_NAME="Acesso Plataforma Booknotes"`
-- `SUBSCRIPTION_MONTHLY_AMOUNT=14.90`
-- `SUBSCRIPTION_LIFETIME_EMAILS="felipealvesprestes@gmail.com,gabrielakrauzerprestes@gmail.com"`
-- `CASHIER_CURRENCY=brl` e `CASHIER_CURRENCY_LOCALE=pt_BR`
+-   `STRIPE_KEY` / `STRIPE_SECRET` (usar as chaves **live**)
+-   `STRIPE_PRICE_ID=price_1SRc0lA5HGNTUlGMohJIFB39`
+-   `STRIPE_WEBHOOK_SECRET=` (copiar do Stripe após criar o webhook)
+-   `SUBSCRIPTION_TRIAL_DAYS=14`
+-   `SUBSCRIPTION_PLAN_NAME="Acesso Plataforma Booknotes"`
+-   `SUBSCRIPTION_MONTHLY_AMOUNT=24.90`
+-   `SUBSCRIPTION_LIFETIME_EMAILS="felipealvesprestes@gmail.com,gabrielakrauzerprestes@gmail.com"`
+-   `CASHIER_CURRENCY=brl` e `CASHIER_CURRENCY_LOCALE=pt_BR`
 
 > Use as chaves de teste apenas no ambiente de desenvolvimento. Em produção, substitua pelas chaves live.
 
@@ -81,7 +81,7 @@ Antes de publicar, garanta que o `.env` de produção contém:
 
 1. Crie o endpoint `https://www.booknotes.com.br/stripe/webhook` no Stripe Dashboard → Developers → Webhooks.
 2. Assine os eventos padrões do Cashier (`customer.subscription.updated`, `customer.subscription.deleted`, `invoice.payment_succeeded`, `invoice.payment_failed`, `checkout.session.completed`, `payment_intent.succeeded`, `payment_intent.payment_failed`).
-3. Copie o *Signing secret* e preencha `STRIPE_WEBHOOK_SECRET` no `.env`.
+3. Copie o _Signing secret_ e preencha `STRIPE_WEBHOOK_SECRET` no `.env`.
 4. Para testar localmente: `stripe listen --forward-to http://localhost:8000/stripe/webhook`.
 
 ---
