@@ -246,15 +246,15 @@
                     <p class="text-sm font-semibold text-zinc-900">{{ __('pdf_flashcards.form.steps_title') }}</p>
                     <ol class="space-y-2 text-xs text-zinc-600">
                         <li class="flex items-start gap-2">
-                            <span class="mt-0.5 h-5 w-5 rounded-full bg-indigo-100 text-center text-[11px] font-semibold text-indigo-700">1</span>
+                            <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center flex-shrink-0 rounded-full bg-indigo-100 text-[11px] font-semibold leading-none text-indigo-700">1</span>
                             <span>{{ __('pdf_flashcards.form.step_upload') }}</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="mt-0.5 h-5 w-5 rounded-full bg-indigo-100 text-center text-[11px] font-semibold text-indigo-700">2</span>
+                            <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center flex-shrink-0 rounded-full bg-indigo-100 text-[11px] font-semibold leading-none text-indigo-700">2</span>
                             <span>{{ __('pdf_flashcards.form.step_select') }}</span>
                         </li>
                         <li class="flex items-start gap-2">
-                            <span class="mt-0.5 h-5 w-5 rounded-full bg-indigo-100 text-center text-[11px] font-semibold text-indigo-700">3</span>
+                            <span class="mt-0.5 inline-flex h-5 w-5 items-center justify-center flex-shrink-0 rounded-full bg-indigo-100 text-[11px] font-semibold leading-none text-indigo-700">3</span>
                             <span>{{ __('pdf_flashcards.form.step_generate') }}</span>
                         </li>
                     </ol>
