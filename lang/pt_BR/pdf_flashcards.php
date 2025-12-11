@@ -3,7 +3,7 @@
 return [
     'title' => 'Flashcards a partir do PDF',
     'menu' => 'Flashcards via PDF',
-    'description' => 'Envie um PDF, escolha a disciplina e deixe a IA criar os flashcards sem salvar o arquivo.',
+    'description' => 'Envie um PDF, escolha a disciplina e deixe a IA criar os flashcards para você.',
     'errors' => [
         'parse_failed' => 'Não conseguimos ler este PDF. Envie um arquivo válido dentro dos limites.',
         'too_many_pages' => 'Este PDF tem :pages páginas. O limite é de :max páginas.',
