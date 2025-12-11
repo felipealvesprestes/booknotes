@@ -35,9 +35,9 @@ class Planner extends Component
 
     public int $upcomingDays = 0;
 
-    protected StudyPlannerService $planner;
+    public bool $hasPlan = false;
 
-    public bool $showResetConfirm = false;
+    protected StudyPlannerService $planner;
 
     public function boot(StudyPlannerService $planner): void
     {
@@ -88,11 +88,6 @@ class Planner extends Component
         session()->flash('status', __('planner.messages.tasks_refreshed'));
     }
 
-    public function confirmReset(): void
-    {
-        $this->showResetConfirm = true;
-    }
-
     public function resetPlanTasks(): void
     {
         $user = auth()->user();
@@ -119,8 +114,9 @@ class Planner extends Component
         $this->planSummary['today_completed'] = 0;
         $this->planSummary['disciplines'] = 0;
         $this->planSummary['weekly_sessions'] = 0;
+        $this->hasPlan = false;
 
-        $this->showResetConfirm = false;
+        $this->dispatch('modal-close', name: 'confirm-reset');
 
         session()->flash('status', __('planner.messages.tasks_refreshed'));
     }
@@ -177,6 +173,7 @@ class Planner extends Component
             ?->load('disciplines');
 
         if (! $plan) {
+            $this->hasPlan = false;
             $this->planSummary = [
                 'disciplines' => 0,
                 'weekly_sessions' => 0,
@@ -192,6 +189,7 @@ class Planner extends Component
             return;
         }
 
+        $this->hasPlan = true;
         $this->planSummary['disciplines'] = $plan->disciplines->count();
         $this->planSummary['weekly_sessions'] = $plan->disciplines->count() * $plan->study_days_per_week;
 

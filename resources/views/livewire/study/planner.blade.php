@@ -24,17 +24,20 @@ $statusClasses = [
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-            <flux:button
-                variant="ghost"
-                color="zinc"
-                icon="trash"
-                wire:click="confirmReset">
-                {{ __('planner.actions.reset') }}
-            </flux:button>
+            @if ($hasPlan)
+            <flux:modal.trigger name="confirm-reset">
+                <flux:button
+                    variant="ghost"
+                    color="zinc"
+                    icon="trash">
+                    {{ __('planner.actions.reset') }}
+                </flux:button>
+            </flux:modal.trigger>
+            @endif
         </div>
     </div>
 
-    <flux:modal name="confirm-reset" wire:model="showResetConfirm" class="max-w-md">
+    <flux:modal name="confirm-reset" class="max-w-md">
         <div class="space-y-4">
             <h3 class="text-lg font-semibold text-zinc-900">{{ __('planner.actions.reset') }}</h3>
             <p class="text-sm text-zinc-600">
@@ -44,7 +47,12 @@ $statusClasses = [
                 <flux:modal.close>
                     <flux:button variant="ghost" color="zinc">{{ __('Cancel') }}</flux:button>
                 </flux:modal.close>
-                <flux:button variant="primary" color="rose" icon="trash" wire:click="resetPlanTasks">
+                <flux:button
+                    variant="primary"
+                    color="rose"
+                    icon="trash"
+                    wire:click="resetPlanTasks"
+                    wire:target="resetPlanTasks">
                     {{ __('planner.actions.reset') }}
                 </flux:button>
             </div>
