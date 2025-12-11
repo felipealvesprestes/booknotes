@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\Note;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class StudyPlannerService
 {
@@ -63,54 +64,42 @@ class StudyPlannerService
         int $studyDaysPerWeek,
         int $dailySessionsTarget,
         array $disciplineSessions,
-    ): StudyPlan {
-        $plan = $this->getOrCreatePlan($user);
+    ): ?StudyPlan {
+        return DB::transaction(function () use ($user, $studyDaysPerWeek, $dailySessionsTarget, $disciplineSessions): ?StudyPlan {
+            // Drop the existing plan (and its tasks/links) to rebuild cleanly.
+            if ($existing = $this->findPlan($user)) {
+                $existing->delete();
+            }
 
-        $plan->forceFill([
-            'study_days_per_week' => $this->clamp($studyDaysPerWeek, 1, 7),
-            'daily_sessions_target' => $this->clamp($dailySessionsTarget, 0, 12),
-        ])->save();
+            $requestedIds = array_map('intval', array_keys($disciplineSessions));
 
-        $requestedIds = array_map('intval', array_keys($disciplineSessions));
+            if ($requestedIds === []) {
+                return null;
+            }
 
-        if ($requestedIds === []) {
-            $plan->disciplines()->delete();
+            $plan = StudyPlan::create([
+                'user_id' => $user->id,
+                'study_days_per_week' => $this->clamp($studyDaysPerWeek, 1, 7),
+                'daily_sessions_target' => $this->clamp($dailySessionsTarget, 0, 12),
+                'last_mode_index' => 0,
+            ]);
 
-            $this->clearFuturePendingTasks($user);
+            $validDisciplineIds = Discipline::query()
+                ->whereIn('id', $requestedIds)
+                ->pluck('id')
+                ->all();
+
+            foreach ($validDisciplineIds as $disciplineId) {
+                $sessions = $this->clamp((int) ($disciplineSessions[$disciplineId] ?? 1), 1, 21);
+
+                $plan->disciplines()->create([
+                    'discipline_id' => $disciplineId,
+                    'sessions_per_week' => $sessions,
+                ]);
+            }
 
             return $plan->fresh('disciplines.discipline');
-        }
-
-        $validDisciplineIds = Discipline::query()
-            ->whereIn('id', $requestedIds)
-            ->pluck('id')
-            ->all();
-
-        $existingIds = [];
-
-        foreach ($validDisciplineIds as $disciplineId) {
-            $sessions = $this->clamp((int) ($disciplineSessions[$disciplineId] ?? 1), 1, 21);
-
-            /** @var StudyPlanDiscipline $record */
-            $record = $plan->disciplines()->updateOrCreate(
-                ['discipline_id' => $disciplineId],
-                ['sessions_per_week' => $sessions],
-            );
-
-            $existingIds[] = $record->discipline_id;
-        }
-
-        if ($existingIds !== []) {
-            $plan->disciplines()
-                ->whereNotIn('discipline_id', $existingIds)
-                ->delete();
-        } else {
-            $plan->disciplines()->delete();
-        }
-
-        $this->clearFuturePendingTasks($user);
-
-        return $plan->fresh('disciplines.discipline');
+        });
     }
 
     /**

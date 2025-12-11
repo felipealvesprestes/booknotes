@@ -340,7 +340,7 @@ $statusClasses = [
 
                 <div class="flex items-center justify-end gap-3">
                     <flux:button type="submit" variant="primary" icon="sparkles">
-                        {{ __('planner.actions.save_plan') }}
+                        {{ $hasPlan ? __('planner.actions.update_plan') : __('planner.actions.save_plan') }}
                     </flux:button>
                 </div>
             </form>

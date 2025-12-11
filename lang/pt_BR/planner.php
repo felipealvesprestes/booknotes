@@ -79,6 +79,7 @@ return [
         'restore' => 'Restaurar',
         'start' => 'Iniciar estudo',
         'save_plan' => 'Salvar plano',
+        'update_plan' => 'Atualizar plano',
     ],
 
     'messages' => [

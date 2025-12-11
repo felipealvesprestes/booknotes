@@ -79,6 +79,7 @@ return [
         'restore' => 'Restore',
         'start' => 'Start study',
         'save_plan' => 'Save plan',
+        'update_plan' => 'Update plan',
     ],
 
     'messages' => [
