@@ -210,9 +210,8 @@
                             @endif
                         </div>
 
-                        <div class="flex flex-col gap-3 pt-2 sm:flex-row">
+                        <div class="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:justify-end sm:items-center sm:gap-2">
                             <flux:button
-                                class="flex-1"
                                 variant="ghost"
                                 color="red"
                                 wire:click="markIncorrect"
@@ -222,7 +221,6 @@
                             </flux:button>
 
                             <flux:button
-                                class="flex-1"
                                 variant="primary"
                                 wire:click="markCorrect"
                                 icon="check"
