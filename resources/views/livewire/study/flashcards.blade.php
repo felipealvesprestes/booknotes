@@ -1,4 +1,40 @@
-<div class="space-y-8">
+<div
+    class="space-y-8"
+    x-data="{
+        focusMode: @entangle('focusMode').live,
+        collapsedByFocus: false,
+        ensureSidebarState(collapsed) {
+            const sidebar = document.querySelector('[data-flux-sidebar]');
+
+            if (! sidebar) {
+                return false;
+            }
+
+            const onDesktop = sidebar.hasAttribute('data-flux-sidebar-on-desktop');
+            const isCollapsed = onDesktop
+                ? sidebar.hasAttribute('data-flux-sidebar-collapsed-desktop')
+                : sidebar.hasAttribute('data-flux-sidebar-collapsed-mobile');
+
+            if (isCollapsed === collapsed) {
+                return false;
+            }
+
+            document.dispatchEvent(new CustomEvent('flux-sidebar-toggle'));
+
+            return true;
+        },
+    }"
+    x-effect="
+        if (focusMode) {
+            if (ensureSidebarState(true)) {
+                collapsedByFocus = true;
+            }
+        } else if (collapsedByFocus) {
+            ensureSidebarState(false);
+            collapsedByFocus = false;
+        }
+    "
+>
     @unless ($focusMode)
         <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -107,11 +143,12 @@
                     </div>
                     @if ($session && $session->hasPendingCards())
                     <flux:button
-                        variant="ghost"
+                        variant="outline"
+                        icon="{{ $focusMode ? 'eye' : 'eye-slash' }}"
                         @class([
-                            'self-start whitespace-nowrap text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-1',
-                            '!text-blue-500' => ! $focusMode,
-                            '!text-red-500' => $focusMode,
+                            'self-start whitespace-nowrap text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-1',
+                            '!border-indigo-200 !bg-indigo-50 !text-indigo-700 hover:!bg-indigo-100' => ! $focusMode,
+                            '!border-rose-200 !bg-rose-50 !text-rose-700 hover:!bg-rose-100' => $focusMode,
                         ])
                         wire:click="toggleFocusMode"
                     >
