@@ -13,8 +13,8 @@
 </head>
 
 <body class="bg-white text-neutral-900 antialiased">
-    <div class="relative isolate overflow-hidden">
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[420px] bg-gradient-to-b from-indigo-100 via-white to-transparent"></div>
+    <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-indigo-200/60 via-indigo-100/40 to-transparent"></div>
+        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 mx-auto h-[420px] max-w-6xl bg-gradient-to-r from-indigo-200/40 via-sky-100/40 to-purple-200/40 blur-[120px]"></div>
 
         @php($siteNavigation = [
         ['label' => 'Recursos', 'href' => '#features'],
@@ -146,8 +146,8 @@
             </div>
         </header>
 
-        <main class="mx-auto max-w-6xl px-6">
-            <section class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
+        <main class="mx-auto max-w-6xl px-6 pb-24 space-y-16 sm:space-y-24">
+            <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
                         Novo módulo de Inteligência Artificial
@@ -199,7 +199,7 @@
                 </div>
             </section>
 
-            <section id="workflow" class="mt-20 overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
+            <section id="workflow" class="overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
                 <div class="mx-auto max-w-4xl text-center">
                     <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Melhore seus estudos em três passos</h2>
                     <p class="mt-4 text-base leading-relaxed text-neutral-300">
@@ -231,49 +231,11 @@
                 </div>
             </section>
 
-            <section class="relative mt-16 overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-20 shadow-[0_18px_60px_rgba(15,23,42,0.08)] sm:px-12">
-                <div class="pointer-events-none absolute inset-x-0 bottom-[-28%] h-[360px] bg-[radial-gradient(circle_at_bottom,_rgba(129,140,248,0.45),_rgba(236,72,153,0.2),_transparent_70%)] blur-3xl"></div>
-                <div class="mx-auto max-w-3xl text-center">
-                    <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Novo assistente de IA
-                    </span>
-                    <h2 class="mt-6 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
-                        Estude com a Inteligência Artificial do {{ config('app.name') }}
-                    </h2>
-                    <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-600">
-                        Gere flashcards, resumos e toda a base de conhecimento em poucos cliques. A IA organiza suas notas, produz cards prontos para os modos de exercício e simulado e mostra o que precisa de reforço antes da próxima prova.
-                    </p>
-                    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-                        @if (Route::has('register'))
-                        <a
-                            href="{{ route('register') }}"
-                            class="relative z-10 rounded-lg bg-gradient-to-r bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/40 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
-                            Criar minha conta gratuita
-                        </a>
-                        @endif
-                        <a
-                            href="#features"
-                            class="text-sm font-semibold text-neutral-900 transition hover:text-neutral-600">
-                            Ver como funciona <span aria-hidden="true">→</span>
-                        </a>
-                    </div>
-                </div>
-                <svg viewBox="0 0 1024 1024" aria-hidden="true" class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 -translate-y-1/2">
-                    <circle r="512" cx="512" cy="512" fill="url(#ai-spotlight)" fill-opacity="0.7" />
-                    <defs>
-                        <radialGradient id="ai-spotlight">
-                            <stop stop-color="#818CF8" />
-                            <stop offset="1" stop-color="#E879F9" />
-                        </radialGradient>
-                    </defs>
-                </svg>
-            </section>
-
-            <section class="pt-24">
+            <section id="imagem">
                 <div class="mx-auto max-w-6xl">
                     <div class="max-w-3xl mx-auto text-center">
-                        <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                            Hub de estudos completo para quem leva o aprendizado a sério
+                        <h2 class="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
+                            Plataforma de estudos completa para quem quer evoluir
                         </h2>
                         <p class="mt-4 text-base leading-relaxed text-neutral-600">
                             Um pouco da experiência dentro do {{ config('app.name') }} — sem tirar o foco do que importa: estudar com eficiência.
@@ -306,7 +268,7 @@
                 </div>
             </section>
 
-            <section class="mt-10">
+            <section id="bloco-cta">
                 <div class="relative overflow-hidden rounded-3xl bg-indigo-600 px-8 py-16 text-white sm:px-12">
                     <div class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.3),transparent_60%)]"></div>
                     <div class="mx-auto flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
@@ -328,202 +290,104 @@
                 </div>
             </section>
 
-            <section id="features" class="mt-10 pb-24">
-                <div class="relative overflow-hidden rounded-3xl border border-neutral-100 bg-gradient-to-b from-white via-indigo-50/40 to-white px-8 py-20 shadow-[0_18px_70px_rgba(15,23,42,0.08)] sm:px-14">
-                    <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-52 max-w-5xl bg-gradient-to-r from-indigo-200/50 via-white to-sky-200/40 blur-[120px]"></div>
-                    <div class="pointer-events-none absolute -bottom-12 -left-16 h-40 w-40 rounded-full bg-gradient-to-br from-sky-200/60 to-purple-200/50 blur-[110px]"></div>
-                    <div class="relative space-y-16">
-                        <div class="mx-auto max-w-3xl space-y-6 text-center">
+            <section id="features">
+                <div class="relative overflow-hidden rounded-3xl border border-neutral-100 bg-white px-8 py-20 shadow-[0_18px_60px_rgba(15,23,42,0.08)] sm:px-14">
+                    <!-- Glow decorativo -->
+                    <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-40 max-w-5xl bg-gradient-to-r from-indigo-200/50 via-white to-sky-200/40 blur-[120px]"></div>
+
+                    <div class="relative space-y-20">
+                        <!-- Header -->
+                        <div class="mx-auto max-w-3xl text-center space-y-6">
                             <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                                Recursos exclusivos
+                                Tudo em um só lugar
                             </span>
                             <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                                Recursos que impulsionam o seu estudo
+                                Um método completo para estudar melhor — todos os dias
                             </h2>
                             <p class="text-base leading-relaxed text-neutral-600">
-                                Clareza e tempo de qualidade: organize leituras, transforme em flashcards e revise em modos inteligentes com o mesmo fluxo visual limpo em qualquer dispositivo.
+                                O {{ config('app.name') }} transforma leitura em aprendizado ativo.
+                                Você cria conteúdo com IA, revisa no ritmo certo e acompanha sua evolução com clareza.
                             </p>
                         </div>
-                        <div class="grid gap-6 lg:grid-cols-2">
-                            <div class="rounded-xl border border-gray-100 bg-white/80 p-6 shadow-sm shadow-indigo-50/40 sm:flex sm:items-center sm:gap-6">
-                                <div class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M8 9h8M8 12h5M8 15h3" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <div class="mt-4 sm:mt-0">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">Rotina com contexto</p>
-                                    <p class="mt-2 text-xl font-semibold text-neutral-900">Painel 360º</p>
-                                    <p class="mt-2 text-sm text-neutral-600">Veja hábitos, progresso, taxa de acerto e logs importantes em um dashboard com filtros personalizáveis.</p>
-                                </div>
+
+                        <!-- Benefícios principais -->
+                        <div class="grid gap-10 lg:grid-cols-3">
+                            <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
+                                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
+                                    Organize
+                                </p>
+                                <h3 class="mt-3 text-xl font-semibold text-neutral-900">
+                                    Clareza total do que estudar
+                                </h3>
+                                <p class="mt-3 text-sm text-neutral-600">
+                                    Estruture seus estudos em cadernos, disciplinas e notas.
+                                    Tudo fica conectado, com filtros e contadores automáticos.
+                                </p>
+                                <ul class="mt-5 space-y-2 text-sm text-neutral-600">
+                                    <li>• Notas rápidas com tags</li>
+                                    <li>• Base conhecimento personalizada</li>
+                                    <li>• Biblioteca de PDFs integrada</li>
+                                </ul>
                             </div>
-                            <div class="rounded-xl border border-gray-100 bg-white/80 p-6 shadow-sm shadow-purple-50/40 sm:flex sm:items-center sm:gap-6">
-                                <div class="flex size-14 shrink-0 items-center justify-center rounded-2xl bg-purple-50 text-purple-600">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="m7 12 3 3 7-7" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <div class="mt-4 sm:mt-0">
-                                    <p class="text-xs font-semibold uppercase tracking-[0.28em] text-purple-500">Compartilhe resultados</p>
-                                    <p class="mt-2 text-xl font-semibold text-neutral-900">Exportações premium</p>
-                                    <p class="mt-2 text-sm text-neutral-600">Monte PDFs por disciplina, filtros e envie pacotes completos para mentores, alunos ou equipes.</p>
-                                </div>
+
+                            <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
+                                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
+                                    Aprenda
+                                </p>
+                                <h3 class="mt-3 text-xl font-semibold text-neutral-900">
+                                    Estudo ativo que realmente fixa
+                                </h3>
+                                <p class="mt-3 text-sm text-neutral-600">
+                                    Não é só leitura. Você pratica, erra, acerta e reforça os pontos certos
+                                    com modos inteligentes baseados nos seus próprios materiais.
+                                </p>
+                                <ul class="mt-5 space-y-2 text-sm text-neutral-600">
+                                    <li>• Flashcards inteligentes</li>
+                                    <li>• Múltipla escolha, V/F e Lacunas</li>
+                                    <li>• Simulados completos</li>
+                                </ul>
+                            </div>
+
+                            <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
+                                <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
+                                    Evolua
+                                </p>
+                                <h3 class="mt-3 text-xl font-semibold text-neutral-900">
+                                    Veja sua evolução com dados reais
+                                </h3>
+                                <p class="mt-3 text-sm text-neutral-600">
+                                    Acompanhe hábitos, sessões, taxa de acertos e histórico.
+                                    Saiba exatamente onde melhorar antes da próxima prova.
+                                </p>
+                                <ul class="mt-5 space-y-2 text-sm text-neutral-600">
+                                    <li>• Painel 360º de estudos</li>
+                                    <li>• Métricas de desempenho</li>
+                                    <li>• Logs e histórico completo</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-100 via-indigo-100 to-sky-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <circle cx="12" cy="12" r="3.25" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M6.25 6.25 4.5 4.5M17.75 17.75l1.75 1.75M17.75 6.25l1.75-1.75M6.25 17.75 4.5 19.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Inteligência Artificial integrada</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Crie flashcards completos em segundos e monte base de conhecimento para simulados e todos os modos de estudos.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">IA</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Automação</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M4.75 5.75h14.5M4.75 18.25h14.5M6.25 5.75v12.5A1.5 1.5 0 0 0 7.75 19.75h8.5a1.5 1.5 0 0 0 1.5-1.5V5.75" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M9.5 9.5h5M9.5 13h5" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Painel de estudos e métricas</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Acompanhe cadernos, disciplinas, notas e flashcards, veja sessões recentes e monitore a taxa de acertos dos últimos 30 dias.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Métricas</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Insights</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M7.5 7.5h9M7.5 12h6M7.5 16.5h3" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5 21h14a1 1 0 0 0 1-1V4.914a1 1 0 0 0-.293-.707l-1.914-1.914A1 1 0 0 0 17.086 2H5a1 1 0 0 0-1 1v17a1 1 0 0 0 1 1Z" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Notas e flashcards conectados</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Crie notas ricas, vincule a disciplinas e transforme em flashcards com um clique para usar filtros, buscas e o hub de estudos com foco.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Flashcards</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Filtros</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M15.75 17.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5Z" />
-                                        <path d="M15.75 5.25V3M7.5 12H3m5.25-6.75-1.5-1.5m0 13.5 1.5-1.5m12.75-4.5h-4.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Hub de PDFs e exportações</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Guarde apostilas no visualizador de PDFs e gere documentos unificados com filtros, agrupamentos e layouts configuráveis.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">PDFs</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Exportações</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M9 9h6v6H9z" />
-                                        <path d="M7 7h10v10H7z" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Verdadeiro ou falso</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Gere afirmações combinadas com respostas de outros cards para testar rapidamente se o conceito apresentado corresponde ao conteúdo original.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Revisões</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Conceitos</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M5 12h14" stroke-linecap="round" />
-                                        <path d="M6 8h6M12 16h6" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Complete as lacunas</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Escondemos até quatro termos relevantes da resposta para você digitar e reforçar vocabulário, fórmulas ou datas críticas de cada flashcard.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Memória</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Vocabulário</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M7 9h10M7 13h10M7 17h6" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M5 7h14v12H5z" stroke-linecap="round" stroke-linejoin="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Múltipla escolha</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Criamos alternativas A, B, C e D com respostas de outros cards para comparar nuances e identificar pegadinhas de provas e concursos.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Quizzes</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Pegadinhas</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M6.75 7.75h10.5v10.5H6.75z" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M6.75 10.5h10.5" stroke-linecap="round" />
-                                        <path d="M10.5 7.75v-2a.75.75 0 0 1 .75-.75h1.5a.75.75 0 0 1 .75.75v2" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Simulados completos</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Selecione cadernos ou disciplinas, defina 10, 30 ou 50 perguntas e receba provas com múltipla escolha baseadas nos seus próprios flashcards.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Simulado</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Estatísticas</span>
-                                </div>
-                            </article>
-                            <article class="group flex h-full flex-col rounded-xl border border-gray-100 bg-white/90 p-6 transition duration-300 hover:-translate-y-1">
-                                <div class="flex size-14 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-100 via-sky-100 to-purple-100 text-indigo-600 shadow-inner">
-                                    <svg class="size-7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                                        <path d="M5 5h14v14H5z" stroke-linecap="round" stroke-linejoin="round" />
-                                        <path d="M8 9h8M8 12h5M8 15h3" stroke-linecap="round" />
-                                    </svg>
-                                </div>
-                                <h3 class="mt-6 text-lg font-semibold text-neutral-900">Painel 360º</h3>
-                                <p class="mt-3 text-sm leading-relaxed text-neutral-600">
-                                    Acompanhe hábitos, taxa de acertos, desempenho nos simulados, logs e sessões recentes em um painel completo com filtros personalizados.
-                                </p>
-                                <div class="mt-5 flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-[0.2em] text-indigo-500">
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Métricas</span>
-                                    <span class="rounded-full bg-indigo-50 px-3 py-1">Insights</span>
-                                </div>
-                            </article>
+
+                        <!-- IA como diferencial -->
+                        <div class="mx-auto max-w-4xl rounded-3xl bg-indigo-600 px-8 py-12 text-center text-white">
+                            <h3 class="text-2xl font-semibold">
+                                Tudo isso potencializado por Inteligência Artificial
+                            </h3>
+                            <p class="mt-4 text-sm text-indigo-100 leading-relaxed">
+                                Gere flashcards e resumos em segundos, monte sua base de conhecimento
+                                e deixe a IA organizar o conteúdo para todos os modos de estudo.
+                            </p>
+
+                            <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em]">
+                                <span class="rounded-full bg-white/10 px-4 py-2">IA para flashcards</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">IA para resumos</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Automação de estudos</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section class="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-18 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">
+            <section id="seguranca" class="overflow-hidden rounded-3xl border border-neutral-200 bg-neutral-950/95 px-8 py-16 text-white shadow-xl shadow-neutral-900/10 sm:px-12 sm:py-20">
                 <div class="grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
                     <div class="space-y-6">
                         <span class="inline-flex items-center rounded-full bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.32em] text-indigo-200">
@@ -578,163 +442,329 @@
                 </div>
             </section>
 
-            <section id="pricing" class="pt-24 pb-10">
+            <section id="pricing" class="bg-white">
                 @php($monthlyPriceValue = config('services.stripe.monthly_amount', 24.90))
                 @php($monthlyPrice = number_format($monthlyPriceValue, 2, ',', '.'))
-                <div class="mx-auto max-w-4xl text-center">
-                    <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-600">Plano único</p>
-                    <h2 class="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                        Evolua seus estudos com o {{ config('app.name') }} Premium
-                    </h2>
-                    <p class="mt-4 text-base leading-relaxed text-neutral-600">
-                        Teste todos os recursos por 14 dias, sem precisar de cartão. Se gostar, você ativa a assinatura mensal com cobrança automática — sem burocracia.
-                    </p>
-                </div>
 
-                <div class="mt-12 grid gap-8 items-start lg:grid-cols-2">
-                    <div class="relative rounded-3xl border border-neutral-200 bg-white/90 p-8 shadow-xl shadow-indigo-100">
-                        <p class="text-sm font-semibold text-neutral-500">Inclui acesso completo</p>
-                        <div class="mt-3 flex flex-wrap items-center gap-2">
-                            <div class="flex items-baseline gap-2">
-                                <span class="text-4xl font-bold tracking-tight text-neutral-900">R$ {{ $monthlyPrice }}</span>
-                                <span class="text-sm text-neutral-500">/mês</span>
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    {{-- Header --}}
+                    <div class="mx-auto max-w-4xl text-center space-y-3">
+                        <span class="inline-flex items-center justify-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
+                            Planos Booknotes
+                        </span>
+                        <h2 class="text-4xl font-semibold tracking-tight text-balance text-neutral-900 sm:text-5xl">
+                            Estude com consistência. Evolua com clareza.
+                        </h2>
+                    </div>
+
+                    <p class="mx-auto mt-6 max-w-3xl text-center text-lg font-medium text-pretty text-neutral-600 sm:text-xl leading-8">
+                        IA para gerar conteúdo, modos completos de estudo e um roteiro semanal para você manter ritmo — sem perder tempo organizando tudo do zero.
+                    </p>
+
+                    {{-- Pricing cards --}}
+                    <div class="isolate mx-auto mt-16 grid max-w-md grid-cols-1 gap-y-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+                        {{-- Free trial --}}
+                        <div class="-mr-px flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-neutral-200 lg:mt-8 lg:rounded-r-none xl:p-10">
+                            <div>
+                                <div class="flex items-center justify-between gap-x-4">
+                                    <h3 id="tier-trial" class="text-lg font-semibold text-neutral-900">Teste gratuito</h3>
+                                    <span class="inline-flex items-center rounded-full bg-neutral-100 px-2.5 py-1 text-xs font-semibold text-neutral-700">
+                                        Sem cartão
+                                    </span>
+                                </div>
+
+                                <p class="mt-4 text-sm text-neutral-600">
+                                    14 dias para experimentar a rotina completa do Booknotes: IA, estudo ativo e exportações.
+                                </p>
+
+                                <p class="mt-6 flex items-baseline gap-x-1">
+                                    <span class="text-4xl font-semibold tracking-tight text-neutral-900">R$ 0</span>
+                                    <span class="text-sm font-semibold text-neutral-600">/14 dias</span>
+                                </p>
+
+                                <ul role="list" class="mt-8 space-y-3 text-sm text-neutral-600">
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        IA para gerar flashcards e resumos
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Exportações em PDF habilitadas
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Modos ativos: Múltipla escolha, Lacunas e V/F
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Cancele quando quiser, sem burocracia
+                                    </li>
+                                </ul>
+                            </div>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                aria-describedby="tier-trial"
+                                class="mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold text-indigo-600 ring-1 ring-indigo-200 hover:ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Começar grátis
+                                </a>
+                            @endif
+                        </div>
+
+                        {{-- Premium --}}
+                        <div class="flex flex-col justify-between rounded-3xl bg-white p-8 ring-2 ring-indigo-400 lg:z-10 lg:rounded-b-none xl:p-10">
+                            <div>
+                                <div class="flex items-center justify-between gap-x-4">
+                                    <h3 id="tier-premium" class="text-lg font-semibold text-indigo-600">
+                                        {{ config('app.name') }} Premium
+                                    </h3>
+
+                                    <span class="shrink-0 whitespace-nowrap inline-flex items-center rounded-full bg-indigo-600/10 px-3 py-1 text-xs font-semibold leading-none text-indigo-600">
+                                        Mais popular
+                                    </span>
+                                </div>
+
+                                <p class="mt-4 text-sm text-neutral-600">
+                                    Para quem quer estudar de verdade: criar conteúdo rápido, revisar com eficiência e acompanhar evolução.
+                                </p>
+
+                                <p class="mt-6 flex items-baseline gap-x-1">
+                                    <span class="text-4xl font-semibold tracking-tight text-neutral-900">R$ {{ $monthlyPrice }}</span>
+                                    <span class="text-sm font-semibold text-neutral-600">/mês</span>
+                                </p>
+
+                                <ul role="list" class="mt-8 space-y-3 text-sm text-neutral-600">
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        IA para flashcards e resumos com fluxo guiado
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Notas, flashcards e biblioteca de PDFs em um só lugar
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Modos de estudo: Múltipla escolha, Lacunas, V/F e Simulado
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Roteiro semanal com tarefas diárias automáticas
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Métricas de desempenho e histórico de evolução
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Suporte humano em português
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-8 flex flex-col gap-3">
+                                @if (Route::has('register'))
+                                    <a href="{{ route('register') }}"
+                                    aria-describedby="tier-premium"
+                                    class="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                        Assinar o Premium
+                                    </a>
+                                @endif
+
+                                @if (Route::has('login'))
+                                    <a href="{{ route('login') }}"
+                                    class="block rounded-md px-3 py-2 text-center text-sm font-semibold text-neutral-900 ring-1 ring-neutral-200 hover:ring-neutral-300">
+                                        Já tenho conta
+                                    </a>
+                                @endif
                             </div>
                         </div>
-                        <p class="mt-3 text-sm text-neutral-600">
-                            <span class="font-bold">14 dias de testes gratuitos</span> · impostos calculados automaticamente · cancelamento a qualquer momento
-                        </p>
-                        <ul class="mt-8 space-y-3 rounded-2xl bg-neutral-50/80 p-5 text-sm text-neutral-700">
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Assistente com Inteligência Artificial</p>
-                                    <p>Deixe a IA gerar flashcards e montar sua base de conhecimentos para simulados e modos de estudos com poucos cliques.</p>
+
+                        {{-- Teams --}}
+                        <div class="-ml-px flex flex-col justify-between rounded-3xl bg-white p-8 ring-1 ring-neutral-200 lg:mt-8 lg:rounded-l-none xl:p-10">
+                            <div>
+                                <div class="flex items-center justify-between gap-x-4">
+                                    <h3 id="tier-teams" class="text-lg font-semibold text-neutral-900">
+                                        Mentorias e instituições
+                                    </h3>
+
+                                    <span class="shrink-0 whitespace-nowrap inline-flex items-center rounded-full bg-neutral-100 px-3 py-1 text-xs font-semibold leading-none text-neutral-700">
+                                        Sob medida
+                                    </span>
                                 </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Flashcards a partir de PDFs</p>
-                                    <p>Envie um PDF, escolha a disciplina e gere 20, 30 ou 50 flashcards com IA.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Notas Rápidas</p>
-                                    <p>Organize seus estudos com anotações rápidas e funcionais. Utilize tags para manter tudo organizado.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Flashcards</p>
-                                    <p>Converta qualquer anotação em flashcards. Utilize suas anotações como flashcards para criar revisões eficientes em um clique.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Roteiro de estudo inteligente</p>
-                                    <p>Monte um plano semanal, selecione disciplinas e receba tarefas diárias automáticas com modos de estudo equilibrados para manter o ritmo.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Modo Múltipla Escolha</p>
-                                    <p>O sistema transforma automaticamente seus flashcards em quizzes com alternativas baralhadas e feedback instantâneo para medir retenção rapidamente.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Modo Complete a Lacuna</p>
-                                    <p>A plataforma identifica termos-chave nos seus resumos, gera lacunas automaticamente e oferece dicas para você treinar memorização ativa.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Modo Verdadeiro ou Falso</p>
-                                    <p>Receba afirmações criadas automaticamente a partir do seu conteúdo e pratique conceitos em séries focadas, acompanhando métricas para ajustar o cronograma.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Simulado sob demanda</p>
-                                    <p>Monte provas com 10, 30 ou 50 questões usando os seus flashcards, controle o tempo e salve estatísticas detalhadas de cada tentativa.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Assinatura transparente</p>
-                                    <p>Assinatura simples e segura, com cobrança clara, cancelamento a qualquer momento e 14 dias de testes gratuitos.</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <span class="mt-1 inline-flex size-2 flex-none rounded-full bg-indigo-500"></span>
-                                <div>
-                                    <p class="font-semibold text-neutral-900">Suporte contínuo</p>
-                                    <p>Atualizações constantes e suporte humano em português sempre que precisar.</p>
-                                </div>
-                            </li>
-                        </ul>
-                        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+                                <p class="mt-4 text-sm text-neutral-600">
+                                    Para quem precisa de onboarding assistido, exportações frequentes, permissões e visão compartilhada.
+                                </p>
+
+                                <p class="mt-6 flex items-baseline gap-x-1">
+                                    <span class="text-4xl font-semibold tracking-tight text-neutral-900">Personalizado</span>
+                                </p>
+
+                                <ul role="list" class="mt-8 space-y-3 text-sm text-neutral-600">
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Múltiplos perfis com histórico independente
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Permissões, exportações em lote e governança de conteúdo
+                                    </li>
+                                    <li class="flex gap-x-3">
+                                        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                            <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                        </svg>
+                                        Suporte dedicado e onboarding guiado
+                                    </li>
+                                </ul>
+                            </div>
+
                             @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="inline-flex flex-1 items-center justify-center rounded-2xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-indigo-500">
-                                Começar período grátis
-                            </a>
-                            @endif
-                            @if (Route::has('login'))
-                            <a href="{{ route('login') }}" class="inline-flex flex-1 items-center justify-center rounded-2xl border border-neutral-200 px-6 py-3 text-sm font-semibold text-neutral-900 transition hover:border-neutral-300">
-                                Já tenho conta
-                            </a>
+                                <a href="{{ route('register') }}"
+                                aria-describedby="tier-teams"
+                                class="mt-8 block rounded-md px-3 py-2 text-center text-sm font-semibold text-indigo-600 ring-1 ring-indigo-200 hover:ring-indigo-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                                    Quero levar para meu time
+                                </a>
                             @endif
                         </div>
-                        <p class="mt-4 text-xs text-neutral-500">
-                            A cobrança acontece somente após o período de testes.
-                        </p>
                     </div>
 
-                    <div class="rounded-3xl border border-neutral-200 bg-neutral-50/80 p-8 text-sm leading-relaxed text-neutral-700">
-                        <p class="text-base font-semibold text-neutral-900">
-                            Estude com o Booknotes por R$ {{ $monthlyPrice }} e aproveite todo o potencial da plataforma
-                        </p>
+                    {{-- Everything included --}}
+                    <div class="mx-auto mt-16 max-w-5xl rounded-3xl bg-neutral-50/80 p-8 ring-1 ring-neutral-200 sm:p-10">
+                        <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                            <h3 class="text-2xl font-semibold text-neutral-900">Tudo que você ganha no Booknotes</h3>
+                        </div>
 
-                        <p class="mt-3">
-                            Organize suas anotações com rapidez, use tags para manter tudo no lugar e transforme qualquer conteúdo em flashcards para revisões eficientes. Exporte seus resumos em PDF e acompanhe sua evolução com métricas em tempo real.
-                        </p>
-
-                        <p class="mt-3">
-                            Pratique com métodos inteligentes: gere automaticamente exercícios de <strong>Múltipla Escolha</strong>, <strong>Complete a Lacuna</strong> e <strong>Verdadeiro ou Falso</strong> a partir dos seus flashcards — sempre com feedback imediato para consolidar o aprendizado.
-                        </p>
-
-                        <p class="mt-3">
-                            Use <strong>simulados</strong> sob demanda para montar provas com 10, 30 ou 50 questões, controlar o tempo, acompanhar estatísticas detalhadas e avaliar sua retenção antes de qualquer exame.
-                        </p>
-
-                        <p class="mt-3">
-                            Cada assinatura mantém o Booknotes em constante evolução — com novos recursos, atualizações frequentes e suporte humano em português sempre que você precisar.
-                        </p>
-
-                        <p class="mt-3">
-                            Continue seus estudos com foco, sem anúncios, distrações ou planos confusos. Tudo em um só lugar, criado para quem leva o aprendizado a sério.
-                        </p>
-
-                        <p class="mt-3">
-                            Precisa de um plano para equipes, mentorias ou instituições? Fale conosco e criamos uma condição personalizada — mantendo os 14 dias de testes gratuitos.
-                        </p>
+                        <ul class="mt-6 grid gap-4 text-sm text-neutral-700 sm:grid-cols-2">
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Assistente com IA para flashcards e resumos
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Flashcards a partir de PDFs (20, 30 ou 50 cards)
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Notas rápidas com tags e filtros
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Biblioteca de PDFs + exportações configuráveis
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Roteiro semanal com tarefas diárias automáticas
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Múltipla escolha com feedback imediato
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Complete a Lacuna para memorização ativa
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Verdadeiro/Falso com métricas instantâneas
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Simulados (10, 30 ou 50 questões) com estatísticas
+                            </li>
+                            <li class="flex gap-3">
+                                <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="h-6 w-5 flex-none text-indigo-600">
+                                    <path d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z" clip-rule="evenodd" fill-rule="evenodd" />
+                                </svg>
+                                Assinatura transparente + suporte contínuo em português
+                            </li>
+                        </ul>
                     </div>
-
                 </div>
             </section>
 
-            <section id="testimonials" class="mt-14 pb-24">
+            <section id="bloco-ia" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-20 shadow-[0_18px_60px_rgba(15,23,42,0.08)] sm:px-12">
+                <div class="pointer-events-none absolute inset-x-0 bottom-[-28%] h-[360px] bg-[radial-gradient(circle_at_bottom,_rgba(129,140,248,0.45),_rgba(236,72,153,0.2),_transparent_70%)] blur-3xl"></div>
+                <div class="mx-auto max-w-3xl text-center">
+                    <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
+                        Novo assistente de IA
+                    </span>
+                    <h2 class="mt-6 text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
+                        Estude com a Inteligência Artificial do {{ config('app.name') }}
+                    </h2>
+                    <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-600">
+                        Gere flashcards, resumos e toda a base de conhecimento em poucos cliques. A IA organiza suas notas, produz cards prontos para os modos de exercício e simulado e mostra o que precisa de reforço antes da próxima prova.
+                    </p>
+                    <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
+                        @if (Route::has('register'))
+                        <a
+                            href="{{ route('register') }}"
+                            class="relative z-10 rounded-lg bg-gradient-to-r bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/40 transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                            Criar minha conta gratuita
+                        </a>
+                        @endif
+                        <a
+                            href="#features"
+                            class="text-sm font-semibold text-neutral-900 transition hover:text-neutral-600">
+                            Ver como funciona <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                </div>
+                <svg viewBox="0 0 1024 1024" aria-hidden="true" class="pointer-events-none absolute top-1/2 left-1/2 -z-10 h-96 w-96 -translate-x-1/2 -translate-y-1/2">
+                    <circle r="512" cx="512" cy="512" fill="url(#ai-spotlight)" fill-opacity="0.7" />
+                    <defs>
+                        <radialGradient id="ai-spotlight">
+                            <stop stop-color="#818CF8" />
+                            <stop offset="1" stop-color="#E879F9" />
+                        </radialGradient>
+                    </defs>
+                </svg>
+            </section>
+
+            <section id="testimonials">
                 <div class="mx-auto">
-                    <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Quem já está aprendendo com {{ config('app.name') }}</h2>
+                    <h2 class="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">Quem já está aprendendo com {{ config('app.name') }}</h2>
                     <p class="mt-4 text-lg text-neutral-600">
                         Estudantes, pesquisadores e profissionais já usam a plataforma para transformar leitura em resultados.
                     </p>
@@ -768,43 +798,90 @@
                 </div>
             </section>
 
-            <section id="faq" class="pb-24">
-                <div class="mx-auto">
-                    <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">Perguntas frequentes</h2>
-                    <dl class="mt-12 space-y-10 divide-y divide-neutral-200">
-                        <div class="pt-0">
-                            <dt class="text-base font-semibold text-neutral-900">Preciso instalar algo?</dt>
-                            <dd class="mt-3 text-sm text-neutral-600">
-                                Não. {{ config('app.name') }} roda no navegador, funciona bem em qualquer dispositivo e oferece autenticação em duas etapas direto pela web.
-                            </dd>
-                        </div>
-                        <div class="pt-8">
-                            <dt class="text-base font-semibold text-neutral-900">Como organizo diferentes áreas de estudo?</dt>
-                            <dd class="mt-3 text-sm text-neutral-600">
-                                Use cadernos para temas amplos, crie disciplinas para cada prova ou módulo e relacione notas e flashcards. Os contadores e filtros ajudam a achar tudo rapidamente.
-                            </dd>
-                        </div>
-                        <div class="pt-8">
-                            <dt class="text-base font-semibold text-neutral-900">Consigo estudar com flashcards pelo próprio app?</dt>
-                            <dd class="mt-3 text-sm text-neutral-600">
-                                Sim. Marque notas como flashcards, abra o hub de estudos, revele respostas no seu ritmo e registre acertos e erros. Cartas incorretas voltam automaticamente ao final da fila.
-                            </dd>
-                        </div>
-                        <div class="pt-8">
-                            <dt class="text-base font-semibold text-neutral-900">Minha conta fica protegida?</dt>
-                            <dd class="mt-3 text-sm text-neutral-600">
-                                Além das verificações por e-mail, você pode habilitar 2FA, acompanhar cada ação no log de atividades e controlar idioma e senha nas telas de configurações.
-                            </dd>
-                        </div>
-                        <div class="pt-8" id="lgpd">
-                            <dt class="text-base font-semibold text-neutral-900">Como o {{ config('app.name') }} trata cookies e dados pessoais?</dt>
-                            <dd class="mt-3 text-sm text-neutral-600">
-                                Mantemos apenas cookies essenciais para autenticação e segurança e solicitamos seu consentimento para métricas opcionais, seguindo os princípios de finalidade, necessidade e transparência previstos na LGPD. Saiba mais na nossa
-                                <a href="{{ route('privacy') }}" class="font-semibold text-indigo-600 underline-offset-4 transition hover:text-indigo-500">Política de privacidade</a>
-                                ou ajuste o consentimento pelo banner exibido na área deslogada.
-                            </dd>
-                        </div>
-                    </dl>
+            <section id="faq" class="bg-white">
+                <div class="mx-auto max-w-7xl">
+                    <h2 class="text-4xl font-semibold tracking-tight text-neutral-900 sm:text-5xl">
+                        Perguntas frequentes
+                    </h2>
+
+                    <p class="mt-6 max-w-2xl text-base/7 text-neutral-600">
+                        Ficou com alguma dúvida e não encontrou a resposta aqui?
+                        Fale com a gente pelo
+                        <a href="mailto:contato@booknotes.com.br" class="font-semibold text-indigo-600 hover:text-indigo-500">
+                            Central de suporte
+                        </a>
+                        e respondemos o quanto antes.
+                    </p>
+
+                    <div class="mt-16 sm:mt-20">
+                        <dl class="space-y-16 sm:grid sm:grid-cols-2 sm:space-y-0 sm:gap-x-6 sm:gap-y-16 lg:grid-cols-3 lg:gap-x-10">
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Preciso instalar algo para estudar com o Booknotes?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Não. O {{ config('app.name') }} funciona direto no navegador, em qualquer dispositivo, sem downloads.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Para qual público o uso do Booknotes é indicado?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Para estudantes de vestibular, concursos, faculdade e certificações — e para quem quer estudar com método e consistência.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Como é feita a organização dos meus estudos?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Crie cadernos, disciplinas e notas. Transforme notas em flashcards para usar nos modos de estudos.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Consigo estudar com flashcards pelo próprio app?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Sim. Você estuda no hub, registra acertos/erros e reforça automaticamente os cards que erra.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Quais são os modos de estudo que estão disponíveis?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Flashcards, Múltipla Escolha, Complete as Lacunas, Verdadeiro/Falso e Simulados — todos baseados no seu conteúdo.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Posso enviar PDFs e gerar conteúdo a partir deles?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Sim. Você envia PDFs para sua biblioteca e pode gerar flashcards (e resumos, quando disponível no seu plano) com fluxo guiado.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">A IA tem limite de uso para gerar conteúdo?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Sim, para garantir qualidade e sustentabilidade. Os limites ficam claros dentro da plataforma e foram pensados para rotina de estudos instensas.
+                                </dd>
+                            </div>
+
+                            <div>
+                                <dt class="text-base/7 font-semibold text-neutral-900">Minha conta realmente fica protegida de acessos indevidos?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Sim. Você pode habilitar 2FA, e ações importantes ficam registradas no log (ex.: exportações, estudos, alterações e exclusões).
+                                </dd>
+                            </div>
+
+                            <div id="lgpd">
+                                <dt class="text-base/7 font-semibold text-neutral-900">Como o {{ config('app.name') }} trata cookies e dados pessoais?</dt>
+                                <dd class="mt-2 text-base/7 text-neutral-600">
+                                    Nós usamos apenas os cookies essenciais para a aplicação e seguimos a LGPD. Você pode ler detalhes na
+                                    <a href="{{ route('privacy') }}" class="font-semibold text-indigo-600 hover:text-indigo-500">
+                                        Política de privacidade
+                                    </a>.
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
                 </div>
             </section>
         </main>
