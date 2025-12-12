@@ -14,7 +14,7 @@ $statusClasses = [
 ];
 @endphp
 
-<div class="space-y-8">
+<div class="space-y-6">
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
         <div>
             <h1 class="text-2xl font-semibold text-zinc-900">{{ __('planner.heading') }}</h1>
