@@ -2,6 +2,13 @@
     $minQuantity = $quantityOptions[0] ?? 0;
     $limitReached = $remainingToday < $minQuantity;
     $uploadMb = number_format($maxUploadKilobytes / 1024, 1);
+    $topErrorMessage = $errorMessage
+        ? trim(preg_replace(
+            ['/(Divida o PDF com Smallpdf.*)$/i', '/(Split the PDF with Smallpdf.*)$/i'],
+            '',
+            strip_tags($errorMessage),
+        ))
+        : null;
 @endphp
 
 <div class="space-y-6">
@@ -19,13 +26,13 @@
         </div>
     </div>
 
-    @if ($errorMessage)
+    @if ($topErrorMessage)
         <div class="rounded-md border border-rose-200 bg-rose-50/80 p-4 text-rose-900">
             <div class="flex items-start gap-3">
                 <flux:icon.shield-exclamation class="h-5 w-5 text-rose-500" />
                 <div class="space-y-1">
-                    <p class="text-sm font-semibold">{{ $errorMessage }}</p>
-                    <p class="text-xs text-rose-700">{{ __('pdf_flashcards.errors.try_again') }}</p>
+                    <p class="text-sm font-semibold">{{ $topErrorMessage }}</p>
+                    <p class="text-xs text-rose-700">{{ __('pdf_flashcards.errors.try_again', ['max' => $maxPages]) }}</p>
                 </div>
             </div>
         </div>
@@ -75,9 +82,23 @@
                         </p>
                     </div>
 
-                    <div class="flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
+                    <div class="flex items-center gap-1 rounded-full bg-indigo-50 px-3 py-1 text-xs font-semibold text-indigo-700">
                         <flux:icon.document class="h-4 w-4" />
                         {{ __('pdf_flashcards.form.limit_badge', ['max' => $maxPages]) }}
+                        <flux:tooltip
+                            position="bottom"
+                            align="start"
+                            interactive
+                            :content="new \Illuminate\Support\HtmlString(__('pdf_flashcards.form.limit_help'))"
+                        >
+                            <button
+                                type="button"
+                                class="inline-flex h-6 w-6 items-center justify-center rounded-full text-indigo-700 transition hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-offset-1"
+                            >
+                                <flux:icon.information-circle class="h-4 w-4" />
+                                <span class="sr-only">{{ __('pdf_flashcards.form.limit_help_label') }}</span>
+                            </button>
+                        </flux:tooltip>
                     </div>
                 </div>
 
@@ -110,7 +131,7 @@
                             {{ __('Uploading...') }}
                         </p>
                         @error('pdfUpload')
-                            <p class="text-sm text-rose-600">{{ $message }}</p>
+                            <p class="text-sm text-rose-600">{!! $message !!}</p>
                         @enderror
                     </div>
 

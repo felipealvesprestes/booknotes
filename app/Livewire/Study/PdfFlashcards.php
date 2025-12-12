@@ -82,7 +82,7 @@ class PdfFlashcards extends Component
         $this->isProcessing = true;
 
         try {
-            $this->validate($this->rules(), [], $this->validationAttributes());
+            $this->validate($this->rules(), $this->messages(), $this->validationAttributes());
         } catch (ValidationException $exception) {
             $this->isProcessing = false;
 
@@ -219,6 +219,15 @@ class PdfFlashcards extends Component
                 'integer',
                 Rule::in($this->quantityOptions),
             ],
+        ];
+    }
+
+    protected function messages(): array
+    {
+        $maxUploadMb = number_format($this->maxUploadKilobytes / 1024, 1);
+
+        return [
+            'pdfUpload.max' => __('pdf_flashcards.errors.too_large', ['size' => $maxUploadMb]),
         ];
     }
 
