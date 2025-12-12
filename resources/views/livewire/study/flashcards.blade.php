@@ -83,44 +83,47 @@
             'space-y-6 w-full max-w-4xl' => $focusMode,
         ])>
             @unless ($focusMode)
-            <section class="rounded-md border border-zinc-200 bg-white/90 p-6">
-                <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p class="mt-1 text-sm text-zinc-500">
-                            {{ __('Review how today\'s flashcard practice is going before jumping into the queue.') }}
-                        </p>
+            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="rounded-md border border-zinc-200 bg-white p-5">
+                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        <dt>{{ __('Studied today') }}</dt>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-indigo-100 text-indigo-600">
+                            <flux:icon.bolt class="h-5 w-5" />
+                        </span>
                     </div>
-                    <span class="text-xs font-medium text-zinc-500">
-                        {{ __('Updated in real time during this session.') }}
-                    </span>
+                    <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['reviewed'] }}</dd>
                 </div>
 
-                <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                        <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Studied today') }}</dt>
-                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['reviewed'] }}</dd>
-                        <p class="mt-1 text-xs text-zinc-500">{{ __('Cards reviewed across your open sessions.') }}</p>
+                <div class="rounded-md border border-zinc-200 bg-white p-5">
+                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        <dt>{{ __('Correct answers') }}</dt>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-emerald-100 text-emerald-600">
+                            <flux:icon.check-circle class="h-5 w-5" />
+                        </span>
                     </div>
-
-                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                        <dt class="text-xs font-semibold uppercase tracking-wide text-green-600">{{ __('Correct answers') }}</dt>
-                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['correct'] }}</dd>
-                        <p class="mt-1 text-xs text-zinc-500">{{ __('Well done! These cards are sticking.') }}</p>
-                    </div>
-
-                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                        <dt class="text-xs font-semibold uppercase tracking-wide text-amber-600">{{ __('Needs review') }}</dt>
-                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['incorrect'] }}</dd>
-                        <p class="mt-1 text-xs text-zinc-500">{{ __('We will show these again so you can reinforce them.') }}</p>
-                    </div>
-
-                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                        <dt class="text-xs font-semibold uppercase tracking-wide text-indigo-600">{{ __('Accuracy') }}</dt>
-                        <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['accuracy'] }}%</dd>
-                        <p class="mt-1 text-xs text-zinc-500">{{ __('Aim for steady progress—consistency beats perfection.') }}</p>
-                    </div>
+                    <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['correct'] }}</dd>
                 </div>
-            </section>
+
+                <div class="rounded-md border border-zinc-200 bg-white p-5">
+                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        <dt>{{ __('Needs review') }}</dt>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-amber-100 text-amber-600">
+                            <flux:icon.arrow-path class="h-5 w-5" />
+                        </span>
+                    </div>
+                    <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['incorrect'] }}</dd>
+                </div>
+
+                <div class="rounded-md border border-zinc-200 bg-white p-5">
+                    <div class="flex items-center justify-between text-xs font-semibold uppercase tracking-wide text-zinc-500">
+                        <dt>{{ __('Accuracy') }}</dt>
+                        <span class="inline-flex h-8 w-8 items-center justify-center rounded-md bg-sky-100 text-sky-600">
+                            <flux:icon.sparkles class="h-5 w-5" />
+                        </span>
+                    </div>
+                    <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['accuracy'] }}%</dd>
+                </div>
+            </div>
             @endunless
 
             <div @class([
