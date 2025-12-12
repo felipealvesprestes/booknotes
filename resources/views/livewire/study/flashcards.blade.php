@@ -33,55 +33,51 @@
             ensureSidebarState(false);
             collapsedByFocus = false;
         }
-    "
->
+    ">
     @unless ($focusMode)
-        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-                <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Flashcards') }}</h1>
-                <p class="text-sm text-zinc-500">
-                    {{ __('Review your flashcards with spaced practice, track accuracy, and revisit past sessions whenever you need.') }}
-                </p>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <x-select
-                    wire:model.live="disciplineFilter"
-                    :placeholder="__('All disciplines')"
-                    class="w-full sm:w-60"
-                >
-                    @foreach ($disciplines as $discipline)
-                        <option value="{{ $discipline->id }}">{{ $discipline->title }}</option>
-                    @endforeach
-                </x-select>
-
-                <flux:button variant="primary" wire:click="startSession" icon="play">
-                    {{ __('Start / resume') }}
-                </flux:button>
-
-                <flux:button variant="ghost" color="amber" wire:click="restartSession" icon="arrow-path">
-                    {{ __('Restart') }}
-                </flux:button>
-            </div>
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-semibold text-zinc-900">{{ __('Flashcards') }}</h1>
+            <p class="text-sm text-zinc-500">
+                {{ __('Review your flashcards with spaced practice, track accuracy, and revisit past sessions whenever you need.') }}
+            </p>
         </div>
 
-        <x-auth-session-status :status="session('status')" />
+        <div class="flex items-center gap-2">
+            <x-select
+                wire:model.live="disciplineFilter"
+                :placeholder="__('All disciplines')"
+                class="w-full sm:w-60">
+                @foreach ($disciplines as $discipline)
+                <option value="{{ $discipline->id }}">{{ $discipline->title }}</option>
+                @endforeach
+            </x-select>
 
-        @if ($errors->has('session'))
-        <div class="rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-            {{ $errors->first('session') }}
+            <flux:button variant="primary" wire:click="startSession" icon="play">
+                {{ __('Start / resume') }}
+            </flux:button>
+
+            <flux:button variant="ghost" color="amber" wire:click="restartSession" icon="arrow-path">
+                {{ __('Restart') }}
+            </flux:button>
         </div>
-        @endif
+    </div>
+
+    <x-auth-session-status :status="session('status')" />
+
+    @if ($errors->has('session'))
+    <div class="rounded-md border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        {{ $errors->first('session') }}
+    </div>
+    @endif
 
     @endunless
 
-    <div @class([
-        'flex justify-center' => $focusMode,
-    ])>
-        <div @class([
-            'space-y-6 w-full' => ! $focusMode,
-            'space-y-6 w-full max-w-4xl' => $focusMode,
+    <div @class([ 'flex justify-center'=> $focusMode,
         ])>
+        <div @class([ 'space-y-6 w-full'=> ! $focusMode,
+            'space-y-6 w-full max-w-4xl' => $focusMode,
+            ])>
             @unless ($focusMode)
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <div class="rounded-md border border-zinc-200 bg-white p-5">
@@ -126,11 +122,9 @@
             </div>
             @endunless
 
-            <div @class([
-                'rounded-md border border-zinc-200 bg-white p-6',
-                'mx-auto w-full max-w-3xl shadow-lg' => $focusMode,
+            <div @class([ 'rounded-md border border-zinc-200 bg-white p-6' , 'mx-auto w-full max-w-3xl shadow-lg'=> $focusMode,
                 'min-h-[70vh]' => $focusMode,
-            ])>
+                ])>
                 <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div class="space-y-3">
                         <h2 class="text-lg font-semibold text-zinc-900">{{ __('Active session') }}</h2>
@@ -147,13 +141,11 @@
                     <flux:button
                         variant="outline"
                         icon="{{ $focusMode ? 'eye' : 'eye-slash' }}"
-                        @class([
-                            'self-start whitespace-nowrap text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-1',
-                            '!border-indigo-200 !bg-indigo-50 !text-indigo-700 hover:!bg-indigo-100' => ! $focusMode,
-                            '!border-rose-200 !bg-rose-50 !text-rose-700 hover:!bg-rose-100' => $focusMode,
+                        @class([ 'self-start whitespace-nowrap text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500/40 focus-visible:ring-offset-1' , '!border-indigo-200 !bg-indigo-50 !text-indigo-700 hover:!bg-indigo-100'=> ! $focusMode,
+                        '!border-rose-200 !bg-rose-50 !text-rose-700 hover:!bg-rose-100' => $focusMode,
                         ])
                         wire:click="toggleFocusMode"
-                    >
+                        >
                         {{ $focusMode ? __('Exit focus mode') : __('Focus mode') }}
                     </flux:button>
                     @endif
@@ -186,8 +178,8 @@
                 <div class="mt-6 rounded-md border border-dashed border-zinc-200 bg-zinc-50 p-6" data-study-card>
                     @if ($currentCard)
                     <div class="space-y-4">
-                        <p class="text-xs uppercase tracking-wide text-zinc-900 font-bold">{{ __('Question') }}</p>
-                        <h3 class="text-lg font-semibold text-zinc-900">
+                        <p class="text-xs uppercase tracking-wide text-zinc-500 font-bold">{{ __('Question') }}</p>
+                        <h3 class="text-lg font-semibold text-zinc-900 border-l-4 border-emerald-400 pl-3">
                             {{ $currentCard->flashcard_question ?: $currentCard->title }}
                         </h3>
                         @if ($currentCard->flashcard_question && $currentCard->title !== $currentCard->flashcard_question)
@@ -284,8 +276,7 @@
                             {{ __('Per page') }}
                             <x-select
                                 wire:model.live="todaySessionsPerPage"
-                                class="w-24"
-                            >
+                                class="w-24">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="20">20</option>
@@ -295,51 +286,51 @@
                 </div>
 
                 @if ($todaySessions->isEmpty())
-                    <div class="flex flex-col items-center gap-3 py-8 text-center text-sm text-zinc-500">
-                        <flux:icon.calendar class="h-8 w-8 text-zinc-300" />
-                        <p>{{ __('No sessions recorded today yet. Start one above and we will display it here for quick access.') }}</p>
-                    </div>
+                <div class="flex flex-col items-center gap-3 py-8 text-center text-sm text-zinc-500">
+                    <flux:icon.calendar class="h-8 w-8 text-zinc-300" />
+                    <p>{{ __('No sessions recorded today yet. Start one above and we will display it here for quick access.') }}</p>
+                </div>
                 @else
-                    <ul class="mt-4 space-y-4">
-                        @foreach ($todaySessions as $todaySession)
-                            @php
-                                $totalQueue = is_array($todaySession->note_ids) ? count($todaySession->note_ids) : 0;
-                                $hasPending = $todaySession->hasPendingCards();
-                            @endphp
-                            <li class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                                <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                    <div>
-                                        <p class="text-sm font-semibold text-zinc-900">
-                                            {{ $todaySession->discipline?->title ?? __('All disciplines') }}
-                                        </p>
-                                        <p class="text-xs text-zinc-500">
-                                            {{ __('Correct :correct • Incorrect :incorrect', ['correct' => $todaySession->correct_count, 'incorrect' => $todaySession->incorrect_count]) }}
-                                        </p>
-                                    </div>
-                                    <div class="flex items-center gap-2">
-                                        <span class="rounded-full border px-3 py-1 text-xs font-medium {{ $hasPending ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-200 bg-emerald-50 text-emerald-700' }}">
-                                            {{ $hasPending ? __('In progress') : __('Completed') }}
-                                        </span>
-                                        @if ($hasPending)
-                                            <flux:button variant="ghost" size="xs" wire:click="resumeSession({{ $todaySession->id }})" icon="play">
-                                                {{ __('Resume') }}
-                                            </flux:button>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="mt-3 flex items-center justify-between text-xs text-zinc-500">
-                                    <span>{{ __('Queue') }}: {{ $todaySession->current_index }} / {{ $totalQueue }}</span>
-                                    <span>{{ __('Accuracy') }}: {{ $todaySession->accuracy }}%</span>
-                                </div>
-                            </li>
-                        @endforeach
-                    </ul>
-
-                    @if ($todaySessions->hasPages())
-                        <div class="mt-4">
-                            {{ $todaySessions->links('livewire.study.pagination', ['scrollTo' => false]) }}
+                <ul class="mt-4 space-y-4">
+                    @foreach ($todaySessions as $todaySession)
+                    @php
+                    $totalQueue = is_array($todaySession->note_ids) ? count($todaySession->note_ids) : 0;
+                    $hasPending = $todaySession->hasPendingCards();
+                    @endphp
+                    <li class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                            <div>
+                                <p class="text-sm font-semibold text-zinc-900">
+                                    {{ $todaySession->discipline?->title ?? __('All disciplines') }}
+                                </p>
+                                <p class="text-xs text-zinc-500">
+                                    {{ __('Correct :correct • Incorrect :incorrect', ['correct' => $todaySession->correct_count, 'incorrect' => $todaySession->incorrect_count]) }}
+                                </p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="rounded-full border px-3 py-1 text-xs font-medium {{ $hasPending ? 'border-amber-200 bg-amber-50 text-amber-700' : 'border-emerald-200 bg-emerald-50 text-emerald-700' }}">
+                                    {{ $hasPending ? __('In progress') : __('Completed') }}
+                                </span>
+                                @if ($hasPending)
+                                <flux:button variant="ghost" size="xs" wire:click="resumeSession({{ $todaySession->id }})" icon="play">
+                                    {{ __('Resume') }}
+                                </flux:button>
+                                @endif
+                            </div>
                         </div>
-                    @endif
+                        <div class="mt-3 flex items-center justify-between text-xs text-zinc-500">
+                            <span>{{ __('Queue') }}: {{ $todaySession->current_index }} / {{ $totalQueue }}</span>
+                            <span>{{ __('Accuracy') }}: {{ $todaySession->accuracy }}%</span>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+
+                @if ($todaySessions->hasPages())
+                <div class="mt-4">
+                    {{ $todaySessions->links('livewire.study.pagination', ['scrollTo' => false]) }}
+                </div>
+                @endif
                 @endif
             </div>
 
@@ -358,8 +349,7 @@
                         update();
                         el.addEventListener('scroll', update);
                     },
-                }"
-            >
+                }">
                 {{-- Ajuste a classe max-h abaixo para experimentar diferentes alturas neste histórico. --}}
                 <div class="max-h-[680px] overflow-y-auto" x-ref="dailyHistoryScroll">
                     <div class="p-6">
@@ -368,70 +358,68 @@
                             {{ __('Each row groups all sessions from the same day, so you can revisit your streak and accuracy evolution.') }}
                         </p>
 
-                    @if ($dailyHistory->isEmpty())
-                    <div class="mt-6 flex flex-col items-center gap-3 py-10 text-center text-sm text-zinc-500">
-                        <flux:icon.chart-bar class="h-8 w-8 text-zinc-300" />
-                        <p>{{ __('As you complete sessions your daily statistics will appear here.') }}</p>
-                    </div>
-                    @else
-                    <div class="mt-4 space-y-4">
-                        @foreach ($dailyHistory as $day)
-                        <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <p class="text-sm font-semibold text-zinc-900">
-                                        {{ $day['date']->translatedFormat('d M Y') }}
-                                    </p>
-                                    <p class="text-xs text-zinc-500">
-                                        {{ __('Sessions: :count • Accuracy: :accuracy%', ['count' => $day['sessions']->count(), 'accuracy' => $day['accuracy']]) }}
-                                    </p>
-                                </div>
-                                <span class="text-sm font-semibold text-indigo-600">{{ $day['reviewed'] }} {{ __('cards') }}</span>
-                            </div>
-
-                            <div class="mt-3 h-2 rounded-full bg-zinc-200">
-                                <div
-                                    class="h-2 rounded-full bg-indigo-500"
-                                    style="width: {{ $day['accuracy'] }}%;"
-                                    aria-valuenow="{{ $day['accuracy'] }}"
-                                    aria-valuemin="0"
-                                    aria-valuemax="100"></div>
-                            </div>
-
-                            <div class="mt-4">
-                                <ul class="space-y-2 text-xs text-zinc-500">
-                                    @foreach ($day['sessions'] as $historySession)
-                                    <li class="flex flex-col gap-1">
-                                        <span class="truncate text-sm font-medium text-zinc-700">{{ $historySession->discipline?->title ?? __('All disciplines') }}</span>
-                                        <span>{{ $historySession->correct_count }}/{{ $historySession->correct_count + $historySession->incorrect_count }} • {{ $historySession->accuracy }}%</span>
-                                    </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                        @if ($dailyHistory->isEmpty())
+                        <div class="mt-6 flex flex-col items-center gap-3 py-10 text-center text-sm text-zinc-500">
+                            <flux:icon.chart-bar class="h-8 w-8 text-zinc-300" />
+                            <p>{{ __('As you complete sessions your daily statistics will appear here.') }}</p>
                         </div>
-                        @endforeach
-                    </div>
-                    @endif
-                </div>
+                        @else
+                        <div class="mt-4 space-y-4">
+                            @foreach ($dailyHistory as $day)
+                            <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <p class="text-sm font-semibold text-zinc-900">
+                                            {{ $day['date']->translatedFormat('d M Y') }}
+                                        </p>
+                                        <p class="text-xs text-zinc-500">
+                                            {{ __('Sessions: :count • Accuracy: :accuracy%', ['count' => $day['sessions']->count(), 'accuracy' => $day['accuracy']]) }}
+                                        </p>
+                                    </div>
+                                    <span class="text-sm font-semibold text-indigo-600">{{ $day['reviewed'] }} {{ __('cards') }}</span>
+                                </div>
 
-                <div
-                    class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent"
-                    x-show="! atEnd"
-                ></div>
-                <div
-                    class="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center"
-                    x-show="! atEnd"
-                    x-transition.opacity
-                >
-                    <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500">
-                        <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75V13l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06L9.25 13V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
-                        </svg>
-                        {{ __('Scroll for more') }}
-                    </span>
+                                <div class="mt-3 h-2 rounded-full bg-zinc-200">
+                                    <div
+                                        class="h-2 rounded-full bg-indigo-500"
+                                        style="width: {{ $day['accuracy'] }}%;"
+                                        aria-valuenow="{{ $day['accuracy'] }}"
+                                        aria-valuemin="0"
+                                        aria-valuemax="100"></div>
+                                </div>
+
+                                <div class="mt-4">
+                                    <ul class="space-y-2 text-xs text-zinc-500">
+                                        @foreach ($day['sessions'] as $historySession)
+                                        <li class="flex flex-col gap-1">
+                                            <span class="truncate text-sm font-medium text-zinc-700">{{ $historySession->discipline?->title ?? __('All disciplines') }}</span>
+                                            <span>{{ $historySession->correct_count }}/{{ $historySession->correct_count + $historySession->incorrect_count }} • {{ $historySession->accuracy }}%</span>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                        @endif
+                    </div>
+
+                    <div
+                        class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent"
+                        x-show="! atEnd"></div>
+                    <div
+                        class="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center"
+                        x-show="! atEnd"
+                        x-transition.opacity>
+                        <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500">
+                            <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75V13l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06L9.25 13V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
+                            </svg>
+                            {{ __('Scroll for more') }}
+                        </span>
+                    </div>
                 </div>
+                @endunless
             </div>
-            @endunless
         </div>
     </div>
-</div>
