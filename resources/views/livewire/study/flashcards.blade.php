@@ -76,12 +76,11 @@
     @endunless
 
     <div @class([
-        'grid gap-6 lg:grid-cols-[2fr_1fr]' => ! $focusMode,
         'flex justify-center' => $focusMode,
     ])>
         <div @class([
-            'space-y-6' => ! $focusMode,
-            'w-full max-w-3xl' => $focusMode,
+            'space-y-6 w-full' => ! $focusMode,
+            'space-y-6 w-full max-w-4xl' => $focusMode,
         ])>
             @unless ($focusMode)
             <section class="rounded-md border border-zinc-200 bg-white/90 p-6">
@@ -96,7 +95,7 @@
                     </span>
                 </div>
 
-                <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                     <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
                         <dt class="text-xs font-semibold uppercase tracking-wide text-zinc-500">{{ __('Studied today') }}</dt>
                         <dd class="mt-2 text-2xl font-semibold text-zinc-900">{{ $todaySummary['reviewed'] }}</dd>
@@ -342,98 +341,96 @@
                     @endif
                 @endif
             </div>
+
+            <div
+                class="relative rounded-md border border-zinc-200 bg-white"
+                x-data="{
+                    atEnd: true,
+                    init() {
+                        const el = this.$refs.dailyHistoryScroll;
+                        if (! el) return;
+
+                        const update = () => {
+                            this.atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 4;
+                        };
+
+                        update();
+                        el.addEventListener('scroll', update);
+                    },
+                }"
+            >
+                {{-- Ajuste a classe max-h abaixo para experimentar diferentes alturas neste histórico. --}}
+                <div class="max-h-[680px] overflow-y-auto" x-ref="dailyHistoryScroll">
+                    <div class="p-6">
+                        <h2 class="text-lg font-semibold text-zinc-900">{{ __('Daily history') }}</h2>
+                        <p class="mt-1 text-sm text-zinc-500">
+                            {{ __('Each row groups all sessions from the same day, so you can revisit your streak and accuracy evolution.') }}
+                        </p>
+
+                    @if ($dailyHistory->isEmpty())
+                    <div class="mt-6 flex flex-col items-center gap-3 py-10 text-center text-sm text-zinc-500">
+                        <flux:icon.chart-bar class="h-8 w-8 text-zinc-300" />
+                        <p>{{ __('As you complete sessions your daily statistics will appear here.') }}</p>
+                    </div>
+                    @else
+                    <div class="mt-4 space-y-4">
+                        @foreach ($dailyHistory as $day)
+                        <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-sm font-semibold text-zinc-900">
+                                        {{ $day['date']->translatedFormat('d M Y') }}
+                                    </p>
+                                    <p class="text-xs text-zinc-500">
+                                        {{ __('Sessions: :count • Accuracy: :accuracy%', ['count' => $day['sessions']->count(), 'accuracy' => $day['accuracy']]) }}
+                                    </p>
+                                </div>
+                                <span class="text-sm font-semibold text-indigo-600">{{ $day['reviewed'] }} {{ __('cards') }}</span>
+                            </div>
+
+                            <div class="mt-3 h-2 rounded-full bg-zinc-200">
+                                <div
+                                    class="h-2 rounded-full bg-indigo-500"
+                                    style="width: {{ $day['accuracy'] }}%;"
+                                    aria-valuenow="{{ $day['accuracy'] }}"
+                                    aria-valuemin="0"
+                                    aria-valuemax="100"></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <ul class="space-y-2 text-xs text-zinc-500">
+                                    @foreach ($day['sessions'] as $historySession)
+                                    <li class="flex flex-col gap-1">
+                                        <span class="truncate text-sm font-medium text-zinc-700">{{ $historySession->discipline?->title ?? __('All disciplines') }}</span>
+                                        <span>{{ $historySession->correct_count }}/{{ $historySession->correct_count + $historySession->incorrect_count }} • {{ $historySession->accuracy }}%</span>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+
+                <div
+                    class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent"
+                    x-show="! atEnd"
+                ></div>
+                <div
+                    class="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center"
+                    x-show="! atEnd"
+                    x-transition.opacity
+                >
+                    <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500">
+                        <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75V13l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06L9.25 13V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
+                        </svg>
+                        {{ __('Scroll for more') }}
+                    </span>
+                </div>
+            </div>
             @endunless
         </div>
-
-        @unless ($focusMode)
-        <div
-            class="relative self-start rounded-md border border-zinc-200 bg-white"
-            x-data="{
-                atEnd: true,
-                init() {
-                    const el = this.$refs.dailyHistoryScroll;
-                    if (! el) return;
-
-                    const update = () => {
-                        this.atEnd = el.scrollTop + el.clientHeight >= el.scrollHeight - 4;
-                    };
-
-                    update();
-                    el.addEventListener('scroll', update);
-                },
-            }"
-        >
-            {{-- Ajuste a classe max-h abaixo para experimentar diferentes alturas neste histórico. --}}
-            <div class="max-h-[680px] overflow-y-auto" x-ref="dailyHistoryScroll">
-                <div class="p-6">
-                    <h2 class="text-lg font-semibold text-zinc-900">{{ __('Daily history') }}</h2>
-                    <p class="mt-1 text-sm text-zinc-500">
-                        {{ __('Each row groups all sessions from the same day, so you can revisit your streak and accuracy evolution.') }}
-                    </p>
-
-                @if ($dailyHistory->isEmpty())
-                <div class="mt-6 flex flex-col items-center gap-3 py-10 text-center text-sm text-zinc-500">
-                    <flux:icon.chart-bar class="h-8 w-8 text-zinc-300" />
-                    <p>{{ __('As you complete sessions your daily statistics will appear here.') }}</p>
-                </div>
-                @else
-                <div class="mt-4 space-y-4">
-                    @foreach ($dailyHistory as $day)
-                    <div class="rounded-md border border-zinc-100 bg-zinc-50 p-4">
-                        <div class="flex items-center justify-between">
-                            <div>
-                                <p class="text-sm font-semibold text-zinc-900">
-                                    {{ $day['date']->translatedFormat('d M Y') }}
-                                </p>
-                                <p class="text-xs text-zinc-500">
-                                    {{ __('Sessions: :count • Accuracy: :accuracy%', ['count' => $day['sessions']->count(), 'accuracy' => $day['accuracy']]) }}
-                                </p>
-                            </div>
-                            <span class="text-sm font-semibold text-indigo-600">{{ $day['reviewed'] }} {{ __('cards') }}</span>
-                        </div>
-
-                        <div class="mt-3 h-2 rounded-full bg-zinc-200">
-                            <div
-                                class="h-2 rounded-full bg-indigo-500"
-                                style="width: {{ $day['accuracy'] }}%;"
-                                aria-valuenow="{{ $day['accuracy'] }}"
-                                aria-valuemin="0"
-                                aria-valuemax="100"></div>
-                        </div>
-
-                        <div class="mt-4">
-                            <ul class="space-y-2 text-xs text-zinc-500">
-                                @foreach ($day['sessions'] as $historySession)
-                                <li class="flex flex-col gap-1">
-                                    <span class="truncate text-sm font-medium text-zinc-700">{{ $historySession->discipline?->title ?? __('All disciplines') }}</span>
-                                    <span>{{ $historySession->correct_count }}/{{ $historySession->correct_count + $historySession->incorrect_count }} • {{ $historySession->accuracy }}%</span>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-
-            <div
-                class="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-white to-transparent"
-                x-show="! atEnd"
-            ></div>
-            <div
-                class="pointer-events-none absolute inset-x-0 bottom-5 flex justify-center"
-                x-show="! atEnd"
-                x-transition.opacity
-            >
-                <span class="inline-flex items-center gap-1 rounded-full bg-white/95 px-2 py-1 text-[11px] font-medium text-zinc-500">
-                    <svg class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75V13l2.72-2.72a.75.75 0 111.06 1.06l-4 4a.75.75 0 01-1.06 0l-4-4a.75.75 0 111.06-1.06L9.25 13V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
-                    </svg>
-                    {{ __('Scroll for more') }}
-                </span>
-            </div>
-        </div>
-        @endunless
     </div>
 </div>
