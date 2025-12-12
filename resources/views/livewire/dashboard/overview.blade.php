@@ -463,12 +463,12 @@
                     <ul class="space-y-3">
                         @foreach ($recentSessions as $session)
                         @php
-                            $isCompleted = $session->status === 'completed';
-                            $statusLabel = $isCompleted ? __('Completed') : __('In progress');
-                            $statusBadgeClasses = $isCompleted
-                                ? 'border-emerald-100 bg-emerald-50 text-emerald-700'
-                                : 'border-amber-100 bg-amber-50 text-amber-700';
-                            $statusDotClasses = $isCompleted ? 'bg-emerald-500' : 'bg-amber-500';
+                            $isActive = $session->status === 'active' && $session->hasRemainingCardsInQueue();
+                            $statusLabel = $isActive ? __('In progress') : __('Completed');
+                            $statusBadgeClasses = $isActive
+                                ? 'border-amber-100 bg-amber-50 text-amber-700'
+                                : 'border-emerald-100 bg-emerald-50 text-emerald-700';
+                            $statusDotClasses = $isActive ? 'bg-amber-500' : 'bg-emerald-500';
                         @endphp
                         <li class="rounded-lg border border-zinc-200 bg-white p-4 shadow-sm shadow-zinc-100/60">
                             <p class="text-sm font-semibold text-zinc-900">
@@ -482,7 +482,7 @@
                                 <span class="text-zinc-400">•</span>
                                 <span>{{ $session->studied_at?->diffForHumans() }}</span>
                             </div>
-                            @if (! $isCompleted)
+                            @if ($isActive)
                             <div class="mt-4">
                                 <flux:button
                                     size="sm"

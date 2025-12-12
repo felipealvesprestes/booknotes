@@ -221,3 +221,29 @@ it('ignores stale sessions without pending cards when starting a new one', funct
     expect($staleSession->status)->toBe('completed');
     expect(FlashcardSession::query()->where('status', 'active')->count())->toBe(1);
 });
+
+it('skips missing flashcards when resuming a session', function (): void {
+    $user = User::factory()->create();
+    actingAs($user);
+
+    [$discipline, $notes] = seedDisciplineWithFlashcards($user, 3);
+
+    Livewire::test(StudyFlashcards::class)
+        ->set('disciplineFilter', $discipline->id)
+        ->call('startSession')
+        ->assertHasNoErrors();
+
+    $session = FlashcardSession::first();
+    $firstNoteId = $session->note_ids[0];
+
+    Note::find($firstNoteId)?->delete();
+
+    $component = Livewire::test(StudyFlashcards::class)
+        ->assertSet('sessionId', $session->id);
+
+    $currentCard = $component->viewData('currentCard');
+
+    expect($currentCard)->not->toBeNull();
+    expect($currentCard->id)->not->toBe($firstNoteId);
+    expect($session->fresh()->note_ids)->not->toContain($firstNoteId);
+});

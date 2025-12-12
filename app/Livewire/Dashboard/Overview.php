@@ -58,6 +58,7 @@ class Overview extends Component
 
         $recentSessions = FlashcardSession::query()
             ->with('discipline')
+            ->whereIn('status', ['active', 'completed'])
             ->orderByDesc('studied_at')
             ->limit(5)
             ->get();

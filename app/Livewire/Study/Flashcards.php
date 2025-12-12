@@ -191,11 +191,7 @@ class Flashcards extends Component
             return null;
         }
 
-        $noteId = $session->currentNoteId();
-
-        return $noteId
-            ? Note::query()->find($noteId)
-            : null;
+        return $this->resolveCurrentCard($session);
     }
 
     public function getProgressPercentProperty(): int
@@ -398,5 +394,49 @@ class Flashcards extends Component
         $this->sessionId = $session->id;
         $this->disciplineFilter = $session->discipline_id;
         $this->showAnswer = false;
+    }
+
+    protected function resolveCurrentCard(FlashcardSession $session): ?Note
+    {
+        while ($session->hasPendingCards()) {
+            $noteId = $session->currentNoteId();
+
+            if (! $noteId) {
+                break;
+            }
+
+            $note = Note::query()->find($noteId);
+
+            if ($note) {
+                return $note;
+            }
+
+            $this->pruneMissingNoteFromSession($session);
+        }
+
+        $session->ensureStatusFromProgress();
+
+        return null;
+    }
+
+    /**
+     * Remove a missing note from the queue so the session can advance.
+     */
+    protected function pruneMissingNoteFromSession(FlashcardSession $session): void
+    {
+        $noteIds = $session->note_ids ?? [];
+        $currentIndex = $session->current_index ?? 0;
+
+        if (! isset($noteIds[$currentIndex])) {
+            return;
+        }
+
+        unset($noteIds[$currentIndex]);
+        $noteIds = array_values($noteIds);
+
+        $session->note_ids = $noteIds;
+        $session->total_cards = count($noteIds);
+        $session->current_index = min($currentIndex, count($noteIds));
+        $session->save();
     }
 }
