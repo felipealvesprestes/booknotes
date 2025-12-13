@@ -150,13 +150,18 @@
             <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Novo módulo de Inteligência Artificial
+                        Inteligência Artificial integrada
                     </span>
-                    <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 uppercase leading-12 sm:text-4xl">
-                        Evolua seu modo de estudar com a <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">Inteligência Artificial</span>
+
+                    <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 leading-tight sm:text-4xl uppercase">
+                        Estude e pratique com consistência e <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">retenha mais</span>
+                        conteúdo
                     </h1>
+
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        A plataforma {{ config('app.name') }} reúne tudo o que você precisa para estudar com eficiência. Utilize o poder da <span class="font-bold">Inteligência Artificial</span> para criar flashcards inteligentes, modos de múltipla escolha, verdadeiro ou falso, complete as lacunas e simulados.
+                        O {{ config('app.name') }} transforma leitura em <span class="font-semibold text-neutral-900">aprendizado ativo</span>.
+                        Você organiza o material, gera flashcards e exercícios com <span class="font-semibold">IA</span>,
+                        revisa no ritmo certo e acompanha sua evolução com métricas claras.
                     </p>
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
@@ -170,7 +175,7 @@
                         <a
                             href="#features"
                             class="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold text-indigo-600 transition hover:text-indigo-500">
-                            Ver recursos principais
+                            Ver como melhora na prática
                             <svg class="size-4 text-current" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                 <path d="M8.00065 1.33331C7.63246 1.33331 7.33398 1.63179 7.33398 1.99998V11.7243L3.4716 7.86195C3.21025 7.6006 2.78792 7.6006 2.52657 7.86195C2.26521 8.12331 2.26521 8.54564 2.52657 8.80699L7.52824 13.8087C7.78959 14.07 8.21192 14.07 8.47327 13.8087L13.4749 8.80699C13.7363 8.54564 13.7363 8.12331 13.4749 7.86195C13.2136 7.6006 12.7912 7.6006 12.5299 7.86195L8.66732 11.7243V1.99998C8.66732 1.63179 8.36884 1.33331 8.00065 1.33331Z" />
                             </svg>
@@ -179,21 +184,32 @@
                 </div>
                 <div class="mt-14 grid gap-6 sm:grid-cols-3">
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Organização inteligente</h3>
-                        <p class="mt-3 text-sm text-neutral-600">
-                            Organize livros e projetos em cadernos, disciplinas e notas com filtros rápidos e contadores automáticos.
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Você ganha clareza</h3>
+                        <p class="mt-3 text-sm text-neutral-700 font-medium">
+                            Você sabe exatamente o que estudar e o que revisar.
+                        </p>
+                        <p class="mt-2 text-sm text-neutral-600">
+                            Cadernos, disciplinas e notas com filtros rápidos e contadores automáticos.
                         </p>
                     </div>
+
                     <div class="rounded-2xl border border-indigo-100/60 bg-white p-6 text-left shadow-sm shadow-indigo-100/50">
-                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Biblioteca conectada</h3>
-                        <p class="mt-3 text-sm text-neutral-600">
-                            Envie PDFs, visualize referências e converta qualquer nota em flashcard para estudar direto no hub de revisões.
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Você estuda de forma ativa</h3>
+                        <p class="mt-3 text-sm text-neutral-700 font-medium">
+                            Deixa de só ler e começa a fixar conteúdo.
+                        </p>
+                        <p class="mt-2 text-sm text-neutral-600">
+                            PDFs + notas viram flashcards e exercícios dentro do seu hub de revisões.
                         </p>
                     </div>
+
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
-                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Modos de estudo</h3>
-                        <p class="mt-3 text-sm text-neutral-600">
-                            Verdadeiro ou Falso, Complete as Lacunas, Múltipla Escolha e Simulado, equilibram memorização, vocabulário e análise com base em seus flashcards.
+                        <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Você evolui com dados</h3>
+                        <p class="mt-3 text-sm text-neutral-700 font-medium">
+                            Enxerga progresso real e reforça onde precisar.
+                        </p>
+                        <p class="mt-2 text-sm text-neutral-600">
+                            Modos: V/F, Lacunas, Múltipla Escolha e Simulados com métricas.
                         </p>
                     </div>
                 </div>
@@ -201,31 +217,33 @@
 
             <section id="workflow" class="overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
                 <div class="mx-auto max-w-4xl text-center">
-                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">Melhore seus estudos em três passos</h2>
+                    <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">
+                        Do conteúdo à aprovação! Um fluxo simples e eficaz
+                    </h2>
                     <p class="mt-4 text-base leading-relaxed text-neutral-300">
-                        Combine leitura ativa, anotações estruturadas e revisão contínua sem precisar alternar entre múltiplas ferramentas.
+                        Pare de recomeçar do zero toda semana. Capture o conteúdo, pratique e revise com consistência — tudo no mesmo lugar.
                     </p>
                 </div>
                 <div class="mt-16 grid gap-10 sm:grid-cols-3">
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">01</p>
-                        <h3 class="mt-4 text-xl font-semibold">Capture e organize</h3>
+                        <h3 class="mt-4 text-xl font-semibold">Organize sem fricção</h3>
                         <p class="mt-3 text-sm text-neutral-300">
-                            Crie cadernos e disciplinas para cada objetivo, adicione notas estruturadas e envie PDFs importantes para manter todo o material referenciado.
+                            Traga PDFs e anotações para cadernos e disciplinas. Você encontra tudo rápido e mantém o estudo “vivo” ao longo das semanas.
                         </p>
                     </div>
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">02</p>
-                        <h3 class="mt-4 text-xl font-semibold">Aprenda de forma ativa</h3>
+                        <h3 class="mt-4 text-xl font-semibold">Pratique para fixar</h3>
                         <p class="mt-3 text-sm text-neutral-300">
-                            Converta notas em flashcards, inicie sessões com fila embaralhada, ative o modo foco e pratique com exercícios de Verdadeiro ou Falso, Lacunas e Múltipla Escolha com estatísticas instantâneas.
+                            Transforme conteúdo em flashcards e exercícios. Erre e acerte com feedback imediato — e reforce exatamente o que precisa.
                         </p>
                     </div>
                     <div class="rounded-2xl border border-white/10 bg-white/5 p-6 text-left backdrop-blur">
                         <p class="text-sm font-semibold uppercase tracking-[0.32em] text-indigo-200">03</p>
-                        <h3 class="mt-4 text-xl font-semibold">Compartilhe e acompanhe</h3>
+                        <h3 class="mt-4 text-xl font-semibold">Evolua com consistência</h3>
                         <p class="mt-3 text-sm text-neutral-300">
-                            Gere exportações em PDF para mentores ou equipes, consulte o log de atividades e use as métricas para planejar as próximas revisões.
+                            Acompanhe sessões, acertos e histórico. Você sabe onde está forte e o que revisar antes da prova.
                         </p>
                     </div>
                 </div>
@@ -275,7 +293,7 @@
                         <div>
                             <h2 class="text-3xl font-semibold tracking-tight">Desbloqueie seu hub de estudos com IA</h2>
                             <p class="mt-4 text-sm text-indigo-100">
-                                Ative dashboards, biblioteca de PDFs, exportações em PDF e autenticação em duas etapas em menos de dois minutos. Sem cartão, sem pegadinha, cancele quando quiser.
+                                14 dias grátis, sem cartão. Use IA, PDFs, modos de estudo e métricas para construir consistência — e saber o que revisar antes da prova.
                             </p>
                         </div>
 
@@ -292,11 +310,8 @@
 
             <section id="features">
                 <div class="relative overflow-hidden rounded-3xl border border-neutral-100 bg-white px-8 py-20 shadow-[0_18px_60px_rgba(15,23,42,0.08)] sm:px-14">
-                    <!-- Glow decorativo -->
                     <div class="pointer-events-none absolute inset-x-0 top-0 mx-auto h-40 max-w-5xl bg-gradient-to-r from-indigo-200/50 via-white to-sky-200/40 blur-[120px]"></div>
-
                     <div class="relative space-y-20">
-                        <!-- Header -->
                         <div class="mx-auto max-w-3xl text-center space-y-6">
                             <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
                                 Tudo em um só lugar
@@ -309,8 +324,6 @@
                                 Você cria conteúdo com IA, revisa no ritmo certo e acompanha sua evolução com clareza.
                             </p>
                         </div>
-
-                        <!-- Benefícios principais -->
                         <div class="grid gap-10 lg:grid-cols-3">
                             <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
@@ -329,7 +342,6 @@
                                     <li>• Biblioteca de PDFs integrada</li>
                                 </ul>
                             </div>
-
                             <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
                                     Aprenda
@@ -347,7 +359,6 @@
                                     <li>• Simulados completos</li>
                                 </ul>
                             </div>
-
                             <div class="rounded-2xl border border-neutral-200 bg-neutral-50/60 p-8">
                                 <p class="text-xs font-semibold uppercase tracking-[0.28em] text-indigo-500">
                                     Evolua
@@ -366,8 +377,6 @@
                                 </ul>
                             </div>
                         </div>
-
-                        <!-- IA como diferencial -->
                         <div class="mx-auto max-w-4xl rounded-3xl bg-indigo-600 px-8 py-12 text-center text-white">
                             <h3 class="text-2xl font-semibold">
                                 Tudo isso potencializado por Inteligência Artificial
