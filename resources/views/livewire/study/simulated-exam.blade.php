@@ -11,6 +11,8 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
 <div
     class="space-y-8"
     x-data="{
+        examStarted: @entangle('examStarted').live,
+        examFinished: @entangle('examFinished').live,
         scrollToQuestions() {
             this.scrollToRef('questionBlock');
         },
@@ -25,6 +27,37 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                 if (target) {
                     const top = window.pageYOffset + target.getBoundingClientRect().top - offset;
                     window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        },
+        ensureSidebarState(collapsed) {
+            const sidebar = document.querySelector('[data-flux-sidebar]');
+
+            if (! sidebar) {
+                return;
+            }
+
+            const onDesktop = sidebar.hasAttribute('data-flux-sidebar-on-desktop');
+            const isCollapsed = onDesktop
+                ? sidebar.hasAttribute('data-flux-sidebar-collapsed-desktop')
+                : sidebar.hasAttribute('data-flux-sidebar-collapsed-mobile');
+
+            if (isCollapsed === collapsed) {
+                return;
+            }
+
+            document.dispatchEvent(new CustomEvent('flux-sidebar-toggle'));
+        },
+        init() {
+            this.$watch('examStarted', (started) => {
+                if (started) {
+                    this.ensureSidebarState(true);
+                }
+            });
+
+            this.$watch('examFinished', (finished) => {
+                if (finished) {
+                    this.ensureSidebarState(false);
                 }
             });
         }
@@ -351,7 +384,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
                     <div class="text-xs text-zinc-500">
                         {{ __('Make sure you have enough flashcards with detailed answers to form convincing alternatives.') }}
                     </div>
-                    <flux:button variant="primary" icon="play" wire:click="startExam">
+                    <flux:button variant="primary" icon="play" wire:click="startExam" x-on:click="ensureSidebarState(true)">
                         {{ $examStarted ? __('Restart simulation') : __('Start simulation') }}
                     </flux:button>
                 </div>
@@ -602,7 +635,7 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             <p class="text-xs text-indigo-800">
                 {{ __('This attempt is stored in your history. Start another simulation to stay sharp.') }}
             </p>
-            <flux:button variant="primary" icon="play" wire:click="startExam">
+            <flux:button variant="primary" icon="play" wire:click="startExam" x-on:click="ensureSidebarState(true)">
                 {{ __('Start another simulation') }}
             </flux:button>
         </div>
