@@ -369,55 +369,57 @@
                     </flux:button>
                 </div>
 
-                @if ($recentNotes->isNotEmpty())
-                <ul role="list" class="divide-y divide-zinc-100">
-                    @foreach ($recentNotes as $note)
-                    @php
-                        $badgeClasses = $note->is_flashcard
-                            ? 'border-emerald-100 bg-emerald-50 text-emerald-700'
-                            : 'border-zinc-200 bg-zinc-50 text-zinc-600';
-                        $iconWrapperClasses = $note->is_flashcard
-                            ? 'bg-emerald-50 text-emerald-600'
-                            : 'bg-indigo-50 text-indigo-600';
-                    @endphp
-                    <li>
-                        <a
-                            class="relative flex flex-col gap-4 px-4 py-4 transition hover:bg-zinc-50 sm:flex-row sm:items-center sm:justify-between sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-                            href="{{ route('notes.show', [$note->discipline, $note]) }}"
-                            wire:navigate>
-                        <div class="flex min-w-0 gap-4">
-                            <span class="flex h-12 w-12 flex-none items-center justify-center rounded-full {{ $iconWrapperClasses }}">
-                                @if ($note->is_flashcard)
-                                    <flux:icon.sparkles class="h-5 w-5" />
-                                @else
-                                    <flux:icon.book-open-text class="h-5 w-5" />
-                                @endif
-                            </span>
-                            <div class="min-w-0 flex-1">
-                                <p class="text-sm font-semibold text-zinc-900">
-                                    {{ $note->title }}
-                                </p>
-                                <p class="mt-2 text-xs text-zinc-500">
-                                    {{ $note->discipline?->title ?? __('No discipline') }}
-                                    • {{ $note->updated_at?->diffForHumans() }}
-                                </p>
+                <div class="px-6 pb-6">
+                    @if ($recentNotes->isNotEmpty())
+                    <ul role="list" class="divide-y divide-zinc-100">
+                        @foreach ($recentNotes as $note)
+                        @php
+                            $badgeClasses = $note->is_flashcard
+                                ? 'border-emerald-100 bg-emerald-50 text-emerald-700'
+                                : 'border-zinc-200 bg-zinc-50 text-zinc-600';
+                            $iconWrapperClasses = $note->is_flashcard
+                                ? 'bg-emerald-50 text-emerald-600'
+                                : 'bg-indigo-50 text-indigo-600';
+                        @endphp
+                        <li>
+                            <a
+                                class="relative flex flex-col gap-4 px-4 py-4 transition hover:bg-zinc-50 sm:flex-row sm:items-center sm:justify-between sm:px-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+                                href="{{ route('notes.show', [$note->discipline, $note]) }}"
+                                wire:navigate>
+                            <div class="flex min-w-0 gap-4">
+                                <span class="flex h-12 w-12 flex-none items-center justify-center rounded-full {{ $iconWrapperClasses }}">
+                                    @if ($note->is_flashcard)
+                                        <flux:icon.sparkles class="h-5 w-5" />
+                                    @else
+                                        <flux:icon.book-open-text class="h-5 w-5" />
+                                    @endif
+                                </span>
+                                <div class="min-w-0 flex-1">
+                                    <p class="text-sm font-semibold text-zinc-900">
+                                        {{ $note->title }}
+                                    </p>
+                                    <p class="mt-2 text-xs text-zinc-500">
+                                        {{ $note->discipline?->title ?? __('No discipline') }}
+                                        • {{ $note->updated_at?->diffForHumans() }}
+                                    </p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="flex shrink-0 items-center gap-3">
-                            <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium {{ $badgeClasses }}">
-                                {{ $note->is_flashcard ? __('Flashcard') : __('Note') }}
-                            </span>
-                            <flux:icon.chevron-right class="h-5 w-5 text-zinc-400" />
-                        </div>
-                        </a>
-                    </li>
-                    @endforeach
-                </ul>
-                @else
-                <div class="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-6 py-12 text-center text-sm text-zinc-500">
-                    <p>{{ __('Start by creating a note or converting one into a flashcard to populate this list.') }}</p>
+                            <div class="flex shrink-0 items-center gap-3">
+                                <span class="inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-medium {{ $badgeClasses }}">
+                                    {{ $note->is_flashcard ? __('Flashcard') : __('Note') }}
+                                </span>
+                                <flux:icon.chevron-right class="h-5 w-5 text-zinc-400" />
+                            </div>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    @else
+                    <div class="rounded-md border border-dashed border-zinc-200 bg-zinc-50 px-6 py-12 text-center text-sm text-zinc-500">
+                        <p>{{ __('Start by creating a note or converting one into a flashcard to populate this list.') }}</p>
+                    </div>
+                    @endif
                 </div>
-                @endif
             </div>
         </div>
 
