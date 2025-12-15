@@ -110,19 +110,19 @@
             $onboardingSteps = [
                 [
                     'title' => __('Create notebook'),
-                    'description' => __('Create your first notebook to start organizing your notes.'),
+                    'description' => __('Create your first notebook to organize the subjects you will study.'),
                 ],
                 [
-                    'title' => __('Add disciplines'),
-                    'description' => __('Create your first discipline to organize notes inside a notebook.'),
+                    'title' => __('Add a discipline'),
+                    'description' => __('Disciplines receive the flashcards generated from PDFs and texts.'),
                 ],
                 [
-                    'title' => __('Capture notes and flashcards'),
-                    'description' => __('Capture your thoughts and promote them to flashcards when ready to study.'),
+                    'title' => __('Generate flashcards with AI'),
+                    'description' => __('Use PDFs or texts to generate flashcards and build your knowledge base.'),
                 ],
                 [
-                    'title' => __('Start a study session'),
-                    'description' => __('Open the Practice menu, pick a study mode, and start reviewing right away.'),
+                    'title' => __('Start reviewing'),
+                    'description' => __('Choose a study mode and begin reviewing your flashcards right away.'),
                 ],
             ];
         @endphp
@@ -131,9 +131,9 @@
             <div class="mx-auto w-full">
                 <div class="relative isolate overflow-hidden bg-gradient-to-br from-indigo-900 via-zinc-900 to-slate-900 px-6 py-16 text-center text-white rounded-xl sm:px-16">
                     <div class="mx-auto max-w-4xl">
-                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ __('Build your knowledge base inside Booknotes') }}</h2>
+                        <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ __('Build your study base inside Booknotes') }}</h2>
                         <p class="mt-4 text-base text-zinc-200 sm:text-lg">
-                            {{ __('Create notebooks, disciplines, and your first note to unlock the full experience. Follow the steps below to activate your personalized study hub.') }}
+                            {{ __('Create a notebook and a discipline to generate flashcards from PDFs or text with artificial intelligence and start reviewing.') }}
                         </p>
                     </div>
 
