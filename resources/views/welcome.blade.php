@@ -147,7 +147,7 @@
         </header>
 
         <main class="mx-auto max-w-6xl px-6 pb-24 space-y-16 sm:space-y-24">
-            <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 py-16 shadow-lg shadow-indigo-100/30 sm:px-12">
+            <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 pt-16 pb-8 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
                         Inteligência Artificial integrada
@@ -159,10 +159,12 @@
                     </h1>
 
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        O {{ config('app.name') }} transforma leitura em <span class="font-semibold text-neutral-900">aprendizado ativo</span>.
-                        Você organiza o material, gera flashcards e exercícios com <span class="font-semibold">IA</span>,
-                        revisa no ritmo certo e acompanha sua evolução com métricas claras.
+                        O {{ config('app.name') }} transforma leitura em
+                        <span class="font-semibold text-neutral-900">aprendizado ativo</span>.
+                        Você estuda com prática e revisões guiadas por <span class="font-semibold">IA</span>,
+                        no ritmo certo, com métricas claras de evolução.
                     </p>
+
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
                         @if (Route::has('register'))
                         <a
@@ -192,7 +194,6 @@
                             Cadernos, disciplinas e notas com filtros rápidos e contadores automáticos.
                         </p>
                     </div>
-
                     <div class="rounded-2xl border border-indigo-100/60 bg-white p-6 text-left shadow-sm shadow-indigo-100/50">
                         <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Você estuda de forma ativa</h3>
                         <p class="mt-3 text-sm text-neutral-700 font-medium">
@@ -202,7 +203,6 @@
                             PDFs + notas viram flashcards e exercícios dentro do seu hub de revisões.
                         </p>
                     </div>
-
                     <div class="rounded-2xl border border-indigo-100/60 bg-indigo-50/80 p-6 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-widest text-indigo-600">Você evolui com dados</h3>
                         <p class="mt-3 text-sm text-neutral-700 font-medium">
@@ -213,6 +213,9 @@
                         </p>
                     </div>
                 </div>
+                <p class="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-neutral-500">
+                    Com apoio da <strong>inteligência artificial</strong>, você mantém a rotina e revisa no ritmo certo.
+                </p>
             </section>
 
             <section id="workflow" class="overflow-hidden rounded-3xl bg-neutral-950 px-8 py-20 text-white sm:px-12">
@@ -379,17 +382,18 @@
                         </div>
                         <div class="mx-auto max-w-4xl rounded-3xl bg-indigo-600 px-8 py-12 text-center text-white">
                             <h3 class="text-2xl font-semibold">
-                                Tudo isso potencializado por Inteligência Artificial
+                                Tudo isso guiado por Inteligência Artificial
                             </h3>
                             <p class="mt-4 text-sm text-indigo-100 leading-relaxed">
-                                Gere flashcards e resumos em segundos, monte sua base de conhecimento
-                                e deixe a IA organizar o conteúdo para todos os modos de estudo.
+                                A IA ajuda você a estudar no ritmo certo: sugere revisões, reforça o que você erra
+                                e mantém seu conteúdo pronto para praticar com consistência.
                             </p>
 
+
                             <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em]">
-                                <span class="rounded-full bg-white/10 px-4 py-2">IA para flashcards</span>
-                                <span class="rounded-full bg-white/10 px-4 py-2">IA para resumos</span>
-                                <span class="rounded-full bg-white/10 px-4 py-2">Automação de estudos</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Revisão guiada</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Foco no que erra</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Ritmo de estudo</span>
                             </div>
                         </div>
                     </div>
@@ -743,8 +747,9 @@
                         Estude com a Inteligência Artificial do {{ config('app.name') }}
                     </h2>
                     <p class="mx-auto mt-6 max-w-3xl text-lg leading-relaxed text-neutral-600">
-                        Gere flashcards, resumos e toda a base de conhecimento em poucos cliques. A IA organiza suas notas, produz cards prontos para os modos de exercício e simulado e mostra o que precisa de reforço antes da próxima prova.
+                        Transforme seus materiais em um plano de estudo prático. A IA ajuda a preparar exercícios, reforça automaticamente o que você erra e deixa claro o que revisar antes da prova.
                     </p>
+
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
                         @if (Route::has('register'))
                         <a
