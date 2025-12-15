@@ -150,19 +150,17 @@
             <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 pt-16 pb-8 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Inteligência Artificial integrada
+                        Estudo ativo para concursos
                     </span>
 
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 leading-tight sm:text-4xl uppercase">
-                        Estude e pratique com consistência e <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">retenha mais</span>
+                        Estude com clareza, revise para a prova e <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">retenha mais</span>
                         conteúdo
                     </h1>
 
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        O {{ config('app.name') }} transforma leitura em
-                        <span class="font-semibold text-neutral-900">aprendizado ativo</span>.
-                        Você estuda com prática e revisões guiadas por <span class="font-semibold">IA</span>,
-                        no ritmo certo, com métricas claras de evolução.
+                        O {{ config('app.name') }} transforma seus PDFs e anotações em <span class="font-semibold text-neutral-900">flashcards e exercícios</span>.
+                        Com <span class="font-semibold">IA</span>, você mantém uma rotina de revisões, pratica no tempo certo e acompanha sua evolução com métricas.
                     </p>
 
                     <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -177,7 +175,7 @@
                         <a
                             href="#features"
                             class="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-base font-semibold text-indigo-600 transition hover:text-indigo-500">
-                            Ver como melhora na prática
+                            Ver como revisar melhor
                             <svg class="size-4 text-current" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                                 <path d="M8.00065 1.33331C7.63246 1.33331 7.33398 1.63179 7.33398 1.99998V11.7243L3.4716 7.86195C3.21025 7.6006 2.78792 7.6006 2.52657 7.86195C2.26521 8.12331 2.26521 8.54564 2.52657 8.80699L7.52824 13.8087C7.78959 14.07 8.21192 14.07 8.47327 13.8087L13.4749 8.80699C13.7363 8.54564 13.7363 8.12331 13.4749 7.86195C13.2136 7.6006 12.7912 7.6006 12.5299 7.86195L8.66732 11.7243V1.99998C8.66732 1.63179 8.36884 1.33331 8.00065 1.33331Z" />
                             </svg>
@@ -214,7 +212,7 @@
                     </div>
                 </div>
                 <p class="mx-auto mt-6 max-w-3xl text-center text-sm leading-relaxed text-neutral-500">
-                    Com apoio da <strong>inteligência artificial</strong>, você mantém a rotina e revisa no ritmo certo.
+                    Com apoio da <strong>inteligência artificial</strong>, você cria sua base de estudos e revisa com consistência.
                 </p>
             </section>
 
@@ -317,14 +315,15 @@
                     <div class="relative space-y-20">
                         <div class="mx-auto max-w-3xl text-center space-y-6">
                             <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                                Tudo em um só lugar
+                                Para revisar melhor para a prova
                             </span>
                             <h2 class="text-3xl font-semibold tracking-tight text-neutral-900 sm:text-4xl">
-                                Um método completo para estudar melhor — todos os dias
+                                Transforme seus PDFs em revisões — e retenha mais, com consistência
                             </h2>
                             <p class="text-base leading-relaxed text-neutral-600">
-                                O {{ config('app.name') }} transforma leitura em aprendizado ativo.
-                                Você cria conteúdo com IA, revisa no ritmo certo e acompanha sua evolução com clareza.
+                                O {{ config('app.name') }} converte PDFs e anotações em
+                                <span class="font-semibold text-neutral-900">flashcards e exercícios</span>.
+                                A IA acelera a criação do conteúdo, e você pratica e revisa com consistência.
                             </p>
                         </div>
                         <div class="grid gap-10 lg:grid-cols-3">
@@ -353,11 +352,11 @@
                                     Estudo ativo que realmente fixa
                                 </h3>
                                 <p class="mt-3 text-sm text-neutral-600">
-                                    Não é só leitura. Você pratica, erra, acerta e reforça os pontos certos
-                                    com modos inteligentes baseados nos seus próprios materiais.
+                                    Não é só leitura. Você transforma PDFs e notas em prática: flashcards e exercícios para estudar
+                                    e reforçar os pontos certos antes da prova.
                                 </p>
                                 <ul class="mt-5 space-y-2 text-sm text-neutral-600">
-                                    <li>• Flashcards inteligentes</li>
+                                    <li>• PDF → flashcards com IA</li>
                                     <li>• Múltipla escolha, V/F e Lacunas</li>
                                     <li>• Simulados completos</li>
                                 </ul>
@@ -382,18 +381,17 @@
                         </div>
                         <div class="mx-auto max-w-4xl rounded-3xl bg-indigo-600 px-8 py-12 text-center text-white">
                             <h3 class="text-2xl font-semibold">
-                                Tudo isso guiado por Inteligência Artificial
+                                Inteligência Artificial para criar sua base de estudos
                             </h3>
+
                             <p class="mt-4 text-sm text-indigo-100 leading-relaxed">
-                                A IA ajuda você a estudar no ritmo certo: sugere revisões, reforça o que você erra
-                                e mantém seu conteúdo pronto para praticar com consistência.
+                                A IA transforma seus PDFs e textos em flashcards prontos para estudo.
+                                Você organiza, pratica e revisa no seu ritmo, com controle total do conteúdo.
                             </p>
-
-
                             <div class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-semibold uppercase tracking-[0.2em]">
-                                <span class="rounded-full bg-white/10 px-4 py-2">Revisão guiada</span>
-                                <span class="rounded-full bg-white/10 px-4 py-2">Foco no que erra</span>
-                                <span class="rounded-full bg-white/10 px-4 py-2">Ritmo de estudo</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">PDF → Flashcards</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Criação automática</span>
+                                <span class="rounded-full bg-white/10 px-4 py-2">Controle do usuário</span>
                             </div>
                         </div>
                     </div>
