@@ -159,7 +159,7 @@
                     </h1>
 
                     <p class="mt-6 text-lg leading-relaxed text-neutral-600">
-                        O {{ config('app.name') }} transforma seus PDFs e anotações em <span class="font-semibold text-neutral-900">flashcards e exercícios</span>.
+                        O {{ config('app.name') }} transforma seus PDFs e anotações em <span class="font-semibold text-neutral-900">conteúdos e exercícios</span>.
                         Com <span class="font-semibold">IA</span>, você mantém uma rotina de revisões, pratica no tempo certo e acompanha sua evolução com métricas.
                     </p>
 
