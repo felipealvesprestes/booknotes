@@ -150,7 +150,7 @@
             <section id="hero" class="relative overflow-hidden rounded-3xl border border-indigo-100 bg-white px-8 pt-16 pb-8 shadow-lg shadow-indigo-100/30 sm:px-12">
                 <div class="mx-auto max-w-3xl text-center">
                     <span class="inline-flex items-center rounded-full bg-indigo-50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-indigo-600">
-                        Estudo ativo para concursos
+                        Plataforma de estudos com IA
                     </span>
 
                     <h1 class="mt-6 text-3xl font-semibold tracking-tight text-neutral-900 leading-tight sm:text-4xl uppercase">
