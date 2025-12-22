@@ -15,6 +15,11 @@ $reengagementRecipients = array_values(array_filter(array_map(
     explode(',', (string) env('REENGAGEMENT_EMAILS', 'felipealvesprestes@gmail.com'))
 )));
 
+$institutionalPartnershipRecipients = array_values(array_filter(array_map(
+    static fn($email) => trim($email),
+    explode(',', (string) env('INSTITUTIONAL_PARTNERSHIP_EMAILS', ''))
+)));
+
 return [
 
     /*
@@ -61,6 +66,10 @@ return [
         'reengagement_emails' => array_values(array_unique($reengagementRecipients)),
         'booknotes_url' => env('BOOKNOTES_APP_URL', 'https://booknotes.com.br'),
         'instagram_url' => env('BOOKNOTES_INSTAGRAM_URL', 'https://instagram.com/booknotes.br'),
+        'institutional_partnership_emails' => array_values(array_unique($institutionalPartnershipRecipients)),
+        'contact_name' => env('BOOKNOTES_CONTACT_NAME', 'Felipe Prestes'),
+        'contact_email' => env('BOOKNOTES_CONTACT_EMAIL', 'contato@booknotes.com.br'),
+        'contact_phone' => env('BOOKNOTES_CONTACT_PHONE', '51 9 99985956'),
     ],
 
     'stripe' => [
