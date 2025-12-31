@@ -70,10 +70,16 @@
     @apply  !mb-0 !leading-tight;
 }
 
-input:focus[data-flux-control],
-textarea:focus[data-flux-control],
-select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
+/* Form controls focus ring (inputs/textareas/selects) */
+@layer components {
+    input[data-flux-control]:focus,
+    input[data-flux-control]:focus-visible,
+    textarea[data-flux-control]:focus,
+    textarea[data-flux-control]:focus-visible,
+    select[data-flux-control]:focus,
+    select[data-flux-control]:focus-visible {
+        @apply outline-hidden !ring-2 !ring-emerald-500 !ring-offset-2 !ring-offset-white;
+    }
 }
 
 [x-cloak] {

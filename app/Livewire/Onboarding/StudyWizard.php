@@ -70,11 +70,24 @@ class StudyWizard extends Component
         $this->validateCurrentStep();
 
         $this->step = $this->normalizeStep($this->step + 1);
+        $this->dispatch('wizard-step-updated', step: $this->step);
     }
 
     public function previousStep(): void
     {
         $this->step = $this->normalizeStep($this->step - 1);
+        $this->dispatch('wizard-step-updated', step: $this->step);
+    }
+
+    public function submitCurrentStep(): void
+    {
+        if ($this->step < 4) {
+            $this->nextStep();
+
+            return;
+        }
+
+        $this->submit();
     }
 
     public function submit(): void

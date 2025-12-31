@@ -1,4 +1,28 @@
-<div class="space-y-6">
+<div
+    class="space-y-6"
+    wire:keydown.enter.prevent="submitCurrentStep"
+    x-data="{
+        step: @entangle('step').live,
+        focusCurrent() {
+            this.$nextTick(() => {
+                const targets = {
+                    1: this.$refs.notebookInput,
+                    2: this.$refs.disciplineInput,
+                    3: this.$refs.topicInput,
+                };
+
+                const el = targets[this.step] || null;
+
+                if (el) {
+                    el.focus();
+                }
+            });
+        },
+    }"
+    x-init="focusCurrent()"
+    x-effect="focusCurrent()"
+    x-on:wizard-step-updated.window="step = $event.detail.step; focusCurrent()"
+>
     <div class="space-y-6">
         <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
             <div class="space-y-1">
@@ -84,17 +108,18 @@
                         </p>
                     </div>
 
-                    <div class="space-y-2">
-                        <flux:input
-                            wire:model.defer="notebookTitle"
-                            :label="__('Notebook name')"
-                            type="text"
-                            maxlength="255"
-                            autocomplete="off"
-                            :placeholder="__('E.g. Exam prep, Semester review, Bar exam...')" />
-                        <p class="text-xs text-zinc-500">{{ __('You can edit this later.') }}</p>
+                        <div class="space-y-2">
+                            <flux:input
+                                x-ref="notebookInput"
+                                wire:model.defer="notebookTitle"
+                                :label="__('Notebook name')"
+                                type="text"
+                                maxlength="255"
+                                autocomplete="off"
+                                :placeholder="__('E.g. Exam prep, Semester review, Bar exam...')" />
+                            <p class="text-xs text-zinc-500">{{ __('You can edit this later.') }}</p>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 @if ($step === 2)
@@ -106,16 +131,17 @@
                         </p>
                     </div>
 
-                    <div class="space-y-2">
-                        <flux:input
-                            wire:model.defer="disciplineTitle"
-                            :label="__('Discipline name')"
-                            type="text"
-                            maxlength="255"
-                            autocomplete="off"
-                            :placeholder="__('E.g. Anatomy basics, Contract law, Front-end foundations...')" />
+                        <div class="space-y-2">
+                            <flux:input
+                                x-ref="disciplineInput"
+                                wire:model.defer="disciplineTitle"
+                                :label="__('Discipline name')"
+                                type="text"
+                                maxlength="255"
+                                autocomplete="off"
+                                :placeholder="__('E.g. Anatomy basics, Contract law, Front-end foundations...')" />
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 @if ($step === 3)
@@ -127,15 +153,16 @@
                         </p>
                     </div>
 
-                    <div class="space-y-3">
-                        <flux:input
-                            wire:model.defer="aiTopic"
-                            :label="__('Topic')"
-                            :placeholder="__('E.g. Digestive system, Reconstruction era, PHP OOP...')" />
+                        <div class="space-y-3">
+                            <flux:input
+                                x-ref="topicInput"
+                                wire:model.defer="aiTopic"
+                                :label="__('Topic')"
+                                :placeholder="__('E.g. Digestive system, Reconstruction era, PHP OOP...')" />
 
-                        <flux:textarea
-                            wire:model.defer="aiDescription"
-                            :label="__('What do you want to learn about this topic?')"
+                            <flux:textarea
+                                wire:model.defer="aiDescription"
+                                :label="__('What do you want to learn about this topic?')"
                             rows="4"
                             :placeholder="__('Key concepts, definitions, examples, exceptions...')" />
 
