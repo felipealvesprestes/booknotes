@@ -31,6 +31,10 @@ class SimulatedExam extends Component
 
     public int $answeredCount = 0;
 
+    public bool $autoStart = false;
+
+    protected bool $autoStartAttempted = false;
+
     public int $correctCount = 0;
 
     public bool $examStarted = false;
@@ -54,15 +58,39 @@ class SimulatedExam extends Component
 
     public function mount(): void
     {
+        if (! $this->disciplineId && request()->filled('disciplineId')) {
+            $this->disciplineId = request()->integer('disciplineId');
+        }
+
         if ($this->disciplineId) {
             $this->scopeType = 'discipline';
         }
+
+        $this->autoStart = request()->boolean('autostart', false);
+        $this->maybeAutoStartExam();
+    }
+
+    public function hydrate(): void
+    {
+        $this->maybeAutoStartExam();
     }
 
     public function updatedScopeType(): void
     {
         $this->notebookId = null;
         $this->disciplineId = null;
+    }
+
+    protected function maybeAutoStartExam(): void
+    {
+        if ($this->autoStartAttempted || ! $this->autoStart) {
+            return;
+        }
+
+        if ($this->disciplineId) {
+            $this->autoStartAttempted = true;
+            $this->startExam();
+        }
     }
 
     public function startExam(): void

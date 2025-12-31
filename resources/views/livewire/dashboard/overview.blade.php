@@ -133,7 +133,7 @@
                     <div class="mx-auto max-w-4xl">
                         <h2 class="text-3xl font-semibold tracking-tight sm:text-4xl">{{ __('Build your study base inside Booknotes') }}</h2>
                         <p class="mt-4 text-base text-zinc-200 sm:text-lg">
-                            {{ __('Create a notebook and a discipline to generate flashcards from PDFs or text with artificial intelligence and start reviewing.') }}
+                            {{ __('Start your first study in minutes: add a notebook, set the discipline, describe your topic, and let AI generate flashcards for you to review.') }}
                         </p>
                     </div>
 
@@ -149,12 +149,12 @@
 
                     <div class="mt-12 flex flex-wrap items-center justify-center gap-3">
                         <a
-                            href="{{ route('notebooks.create') }}"
+                            href="{{ route('study.wizard') }}"
                             wire:navigate
                             class="rounded-md bg-white px-4 py-2.5 text-sm font-semibold text-zinc-900 shadow-sm transition hover:bg-zinc-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-                            {{ __('Create notebook') }}
+                            {{ __('Start studying') }}
                         </a>
-                        <span class="text-sm text-zinc-300">{{ __('Start with your notebook to unlock the next steps.') }}</span>
+                        <span class="text-sm text-zinc-300">{{ __('It takes under 2 minutes to generate your first study with AI.') }}</span>
                     </div>
 
                 </div>

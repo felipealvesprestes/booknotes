@@ -12,6 +12,7 @@ use App\Livewire\Notes\EditNote;
 use App\Livewire\Notes\Index as NoteIndex;
 use App\Http\Controllers\PdfDocumentStreamController;
 use App\Livewire\Notes\Library as NotesLibrary;
+use App\Livewire\Onboarding\StudyWizard;
 use App\Livewire\Notes\ShowNote;
 use App\Livewire\Pdfs\Library as PdfLibrary;
 use App\Livewire\Logs\Index as LogsIndex;
@@ -94,6 +95,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('study/pdf-flashcards', StudyPdfFlashcards::class)->name('study.pdf-flashcards');
         Route::get('study/simulado', StudySimulatedExam::class)->name('study.simulated');
         Route::get('study/exercises', StudyExercises::class)->name('study.exercises');
+        Route::get('study/start', StudyWizard::class)->name('study.wizard');
 
         Route::get('disciplines', DisciplineIndex::class)->name('disciplines.index');
         Route::get('disciplines/create', CreateDiscipline::class)->name('disciplines.create');
