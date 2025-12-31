@@ -49,9 +49,17 @@ $answeredDisplay = $examFinished ? $answeredCount : $answeredSelections;
             document.dispatchEvent(new CustomEvent('flux-sidebar-toggle'));
         },
         init() {
+            if (this.examStarted) {
+                this.$nextTick(() => this.scrollToQuestions());
+            }
+
             this.$watch('examStarted', (started) => {
                 if (started) {
                     this.ensureSidebarState(true);
+                }
+
+                if (started) {
+                    this.scrollToQuestions();
                 }
             });
 
