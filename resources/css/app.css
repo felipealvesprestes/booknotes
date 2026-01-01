@@ -70,14 +70,14 @@
     @apply  !mb-0 !leading-tight;
 }
 
-/* Form controls focus ring (inputs/textareas/selects) */
+/* Form controls focus ring (inputs/textareas/selects) — scoped to app shell */
 @layer components {
-    input[data-flux-control]:focus,
-    input[data-flux-control]:focus-visible,
-    textarea[data-flux-control]:focus,
-    textarea[data-flux-control]:focus-visible,
-    select[data-flux-control]:focus,
-    select[data-flux-control]:focus-visible {
+    .app-platform input[data-flux-control]:focus,
+    .app-platform input[data-flux-control]:focus-visible,
+    .app-platform textarea[data-flux-control]:focus,
+    .app-platform textarea[data-flux-control]:focus-visible,
+    .app-platform select[data-flux-control]:focus,
+    .app-platform select[data-flux-control]:focus-visible {
         @apply outline-hidden !ring-2 !ring-emerald-500 !ring-offset-2 !ring-offset-white;
     }
 }
